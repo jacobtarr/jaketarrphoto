@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: heroBlockTagline
+instructions: null
+name: 'Hero Block Tagline'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: 70
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

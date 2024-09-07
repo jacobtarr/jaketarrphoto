@@ -1,0 +1,83 @@
+color: null
+fieldLayouts:
+  a79e3e7b-5dcb-41e5-9a33-544fa4d4844e:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2024-09-06T22:45:24+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            includeInCards: false
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            providesThumbs: false
+            readonly: false
+            requirable: false
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: e6ae950e-a0c4-4391-ac36-d846cac9311e
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2024-09-06T22:56:51+00:00'
+            elementCondition: null
+            fieldUid: d7c03649-4ae5-4736-b6b0-54c403a46935 # Hero Block Tagline
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 99cb0d81-ebfb-4b92-8e5b-8d11b68da57c
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2024-09-07T00:29:07+00:00'
+            elementCondition: null
+            fieldUid: 62cd1ea7-a0c3-4fff-9f57-32d325c6a842 # Hero Block Photos
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: a33dfc46-d000-4d38-9b53-1362d2ba4392
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 058d9d78-70cc-4437-9384-102a6af2a50b
+        userCondition: null
+handle: heroBlock
+hasTitleField: true
+icon: ''
+name: 'Hero Block'
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: ''
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

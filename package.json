@@ -30,7 +30,7 @@
   "authorUrl": "https://madebyshape.co.uk",
   "license": "ISC",
   "bugs": {
-      "url": "https://github.com/madebyshape/craft-cms/issues"
+    "url": "https://github.com/madebyshape/craft-cms/issues"
   },
   "homepage": "https://github.com/madebyshape/craft-cms#readme"
 }

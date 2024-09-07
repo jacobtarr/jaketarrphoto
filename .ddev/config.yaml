@@ -1,4 +1,4 @@
-name: craft-cms
+name: jacobtarrphoto
 type: craftcms
 docroot: web
 php_version: "8.2"

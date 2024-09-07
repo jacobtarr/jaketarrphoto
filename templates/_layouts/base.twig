@@ -1,33 +1,39 @@
 {%- minify -%}
 
-   <!doctype html>
-   <html class="no-js" lang="{{ craft.app.language|slice(0,2) }}">
-      <head>
+<!doctype html>
+<html class="no-js" lang="{{ craft.app.language|slice(0,2) }}">
+	<head>
 
-         <meta charset="utf-8">
-         <meta http-equiv="x-ua-compatible" content="ie=edge">
-         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta
+		name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://use.typekit.net/ziu3lge.css" />
 
-         {# Fonts #}
-         {{ include ('_components/fonts', ignore_missing = true) }}
+		{# Fonts #}
+		{{ include ('_components/fonts', ignore_missing = true) }}
 
-         {# CSS / JS #}
-         {{ craft.vite.script('/src/index.js', false) }}
+		{# CSS / JS #}
+		{{ craft.vite.script('/src/index.js', false) }}
 
-         {# Favicons #}
-         {{ craft.vite.inline('@webroot/dist/favicons/webapp.html') }}
+		{# Favicons #}
+		{{ craft.vite.inline('@webroot/dist/favicons/webapp.html') }}
 
-         {# AlpineJS "blip" Fix #}
-         <style>[x-cloak] { display: none; }</style>
+		{# AlpineJS "blip" Fix #}
+		<style>
+			[x-cloak] {
+				display: none;
+			}
+		</style>
 
-      </head>
+	</head>
 
-      <body>
+	<body>
 
-         {% block body %}{% endblock %}
+		{% block body %}{% endblock %}
 
-      </body>
+	</body>
 
-   </html>
+</html>
 
 {%- endminify -%}

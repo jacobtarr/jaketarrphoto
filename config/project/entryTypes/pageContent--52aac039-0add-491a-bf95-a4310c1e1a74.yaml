@@ -1,6 +1,6 @@
 color: null
 fieldLayouts:
-  71660a2a-5e9c-456e-9584-e81e70baf6f2:
+  40659c41-1b8e-4cc9-8501-75773b569a39:
     tabs:
       -
         elementCondition: null
@@ -10,6 +10,7 @@ fieldLayouts:
             autocomplete: false
             autocorrect: true
             class: null
+            dateAdded: '2024-09-07T02:54:20+00:00'
             disabled: false
             elementCondition: null
             id: null
@@ -30,21 +31,37 @@ fieldLayouts:
             tip: null
             title: null
             type: craft\fieldlayoutelements\entries\EntryTitleField
-            uid: 0cf026d5-6d08-4e27-8a1f-ab30bca41c98
+            uid: e52236c1-f501-4c84-8935-6d6683b84dee
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2024-09-07T02:57:13+00:00'
+            elementCondition: null
+            fieldUid: 01914777-7aec-4ffe-b263-513b6e67154f # Page Content
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e275905b-961e-4678-9379-9815dca467c7
             userCondition: null
             warning: null
             width: 100
         name: Content
-        uid: 0102572d-d127-40b1-b9c0-704387cc932f
+        uid: d0eb788c-e37f-4397-8084-8eddaec06445
         userCondition: null
-handle: pageBlocks
+handle: pageContent
 hasTitleField: true
-icon: file
-name: 'Page - Blocks'
+icon: ''
+name: 'Page Content'
 showSlugField: true
 showStatusField: true
 slugTranslationKeyFormat: null
 slugTranslationMethod: site
-titleFormat: null
+titleFormat: ''
 titleTranslationKeyFormat: null
 titleTranslationMethod: site

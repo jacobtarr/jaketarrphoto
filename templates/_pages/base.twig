@@ -1,1 +1,11 @@
-{% include '_pages/types/' ~ entry.type.handle %}
+{% extends '_layouts/global' %}
+
+{% block site %}
+
+  {% for block in entry.pageBlocksContent.all() %}
+
+    {% include '_blocks/' ~ block.type.handle %}
+
+  {% endfor %}
+
+{% endblock %}

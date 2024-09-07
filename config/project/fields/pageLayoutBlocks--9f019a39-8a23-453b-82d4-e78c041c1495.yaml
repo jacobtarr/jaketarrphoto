@@ -1,0 +1,23 @@
+columnSuffix: null
+handle: pageLayoutBlocks
+instructions: null
+name: 'Page Layout Blocks'
+searchable: false
+settings:
+  createButtonLabel: null
+  entryTypes:
+    - b28d4120-dd8f-47c8-9968-e484ce2daf49 # Split Content Block
+    - 9dffce5e-9785-4d43-9780-bd0a2c39d141 # Slider Block
+    - 7cfa1850-34c5-4ccc-9135-a2d131dc732e # Two Column Block
+    - 78cd8c82-7d01-4597-9562-f8383ff843c5 # Featured Works Block
+  includeTableView: false
+  maxEntries: null
+  minEntries: null
+  pageSize: 50
+  propagationKeyFormat: null
+  propagationMethod: all
+  showCardsInGrid: false
+  viewMode: cards
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Matrix

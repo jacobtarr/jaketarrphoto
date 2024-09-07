@@ -20,7 +20,7 @@ return GeneralConfig::create()
     ->testToEmailAddress(App::env('TEST_TO_EMAIL_ADDRESS') ?? false)
     ->cpTrigger(App::env('CP_TRIGGER') ?? 'admin')
     ->allowUpdates(App::env('ALLOW_UPDATES') ?? true)
-    ->timezone(App::env('TIMEZONE') ?? 'Europe/London')
+    ->timezone(App::env('TIMEZONE') ?? 'America/Phoenix')
     ->errorTemplatePrefix('_exceptions/')
     ->enableGql(0)
     ->useEmailAsUsername(1)
@@ -39,7 +39,7 @@ return GeneralConfig::create()
         ['link', ['rel' => 'icon', 'href' => '/dist/favicons/favicon.ico']],
     ])
     ->aliases([
-        '@web' => App::env('SITE_URL'),
+        '@web' => App::env('PRIMARY_SITE_URL'),
         '@webroot' => App::env('WEB_ROOT'),
     ])
 ;

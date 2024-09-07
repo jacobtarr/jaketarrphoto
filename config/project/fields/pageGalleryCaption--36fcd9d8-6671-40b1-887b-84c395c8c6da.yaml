@@ -1,0 +1,21 @@
+columnSuffix: null
+handle: pageGalleryCaption
+instructions: null
+name: 'Page Gallery Caption'
+searchable: false
+settings:
+  availableTransforms: ''
+  availableVolumes: '*'
+  ckeConfig: null
+  createButtonLabel: null
+  defaultTransform: null
+  enableSourceEditingForNonAdmins: false
+  purifierConfig: null
+  purifyHtml: true
+  showUnpermittedFiles: false
+  showUnpermittedVolumes: false
+  showWordCount: false
+  wordLimit: 360
+translationKeyFormat: null
+translationMethod: none
+type: craft\ckeditor\Field

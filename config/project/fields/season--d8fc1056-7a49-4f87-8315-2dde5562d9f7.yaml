@@ -1,0 +1,21 @@
+columnSuffix: null
+handle: season
+instructions: null
+name: Season
+searchable: false
+settings:
+  allowSelfRelations: false
+  branchLimit: null
+  maintainHierarchy: false
+  maxRelations: null
+  minRelations: null
+  selectionLabel: 'Add a season'
+  showCardsInGrid: false
+  showSiteMenu: true
+  source: 'group:80e8622f-26e3-4121-8be3-3716c04cd508' # Season
+  targetSiteId: null
+  validateRelatedElements: false
+  viewMode: list
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Categories

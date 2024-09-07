@@ -1,0 +1,99 @@
+color: null
+fieldLayouts:
+  83f1b97b-d0f9-49bb-9ae9-0bcd83b6d259:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2024-09-06T22:47:54+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            includeInCards: false
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            providesThumbs: false
+            readonly: false
+            requirable: false
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: 4d027432-d6cb-4653-af5e-0f089530294c
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2024-09-06T23:44:22+00:00'
+            elementCondition: null
+            fieldUid: 26fbff70-0997-4ddd-a8d8-96e64b850188 # Featured Works Block Content
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: ad0952ae-0694-444c-9a28-181e74d30feb
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2024-09-06T23:44:22+00:00'
+            elementCondition: null
+            fieldUid: 481a7e66-9921-4b62-9821-8aa4e542ff38 # Featured Works Link
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: c77d61f1-6d30-4160-a120-3c1f9f0d342f
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2024-09-06T23:44:22+00:00'
+            elementCondition: null
+            fieldUid: 8fa86f99-106d-4ca6-81d8-9f080a241f5b # Featured Works Images
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 83e02824-1806-4b64-96f0-21e1f02b2542
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: ffb95827-7fa0-45f3-827f-36045ed02e4e
+        userCondition: null
+handle: featuredWorksblock
+hasTitleField: true
+icon: ''
+name: 'Featured Works Block'
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: ''
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

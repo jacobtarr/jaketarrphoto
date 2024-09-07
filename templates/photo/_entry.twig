@@ -1,0 +1,23 @@
+{% extends '_layouts/global.twig' %}
+
+{% block site %}
+    <article class="photo">
+        <h1>{{ entry.title }}</h1>
+        
+        {# Check if there's a featured image and display it #}
+        {% if entry.featuredImage.one() %}
+            {{ dump(entry.featuredImage.one().url) }}
+            <img src="{{ entry.featuredImage.one().url }}" alt="{{ entry.featuredImage.one().title }}">
+        {% endif %}
+        
+        <p>{{ entry.overview | raw }}</p>
+        
+        <ul>
+            <li>State: {{ entry.state.one().title }}</li>
+            <li>Location: {{ entry.location }}</li>
+            <li>Date Taken: {{ entry.dateTaken | date('F j, Y') }}</li>
+            <li>Season: {{ entry.season.one().title }}</li>
+            <li>Genre: {{ entry.genre.one().title }}</li>
+        </ul>
+    </article>
+{% endblock %}

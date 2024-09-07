@@ -1,0 +1,8 @@
+/* Import all SCSS files from atoms, molecules, and organisms */
+@import "atoms/**/*.scss";
+@import "molecules/**/*.scss";
+@import "organisms/**/*.scss";
+
+body {
+  background-color: blue;
+}

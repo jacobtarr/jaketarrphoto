@@ -1,4 +1,4 @@
-dateModified: 1712760306
+dateModified: 1725711720
 email:
   fromEmail: $CRAFT_EMAIL_SYSTEM
   fromName: $CRAFT_EMAIL_SYSTEM
@@ -7,18 +7,135 @@ email:
   transportSettings:
     command: '/usr/local/bin/mailpit sendmail -t --smtp-addr 127.0.0.1:1025'
   transportType: craft\mail\transportadapters\Sendmail
+fs:
+  blogImagesFilesystem:
+    hasUrls: true
+    name: 'Blog Images Filesystem'
+    settings:
+      path: web/uploads/blog
+    type: craft\fs\Local
+    url: 'https://jacobtarrphoto.ddev.site:8443/web/uploads/blog'
+  portfolioImagesFilesystem:
+    hasUrls: true
+    name: 'Portfolio Images Filesystem'
+    settings:
+      path: web/uploads/portfolio
+    type: craft\fs\Local
+    url: 'https://jacobtarrphoto.ddev.site:8443/web/uploads/portfolio'
 meta:
   __names__:
+    0b524177-94b9-4dc7-a491-f3f390810261: 'Contact Form' # Contact Form
+    1a07dfa1-6719-409b-aae0-4355938489fa: Overview # Overview
+    01f1709e-90b6-4a73-a760-fd999f43b328: 'Featured Image' # Featured Image
+    03abafd4-804b-4730-a878-f77b4520e502: 'Page Gallery Images' # Page Gallery Images
+    3d0151b1-3180-4665-8e2f-be7c0d1f1452: 'Two Column Block Layout' # Two Column Block Layout
+    3d2ab139-6eab-4ce4-a7c7-023881701cfd: 'Right Column Content' # Right Column Content
+    5f67fcef-4f51-4832-a46c-d1f9fe66abc0: 'Page Form' # Page Form
+    6b800eda-1b70-4f2b-90dc-4ea35a2a6894: 'Page Spacer' # Page Spacer
     7b662bcd-ea91-4c91-86ce-c60348c664d1: Pages # Pages
+    7cfa1850-34c5-4ccc-9135-a2d131dc732e: 'Two Column Block' # Two Column Block
     8b610edc-f2dd-46b6-9597-96fcbb6d302a: Simple # Simple
     08c386f4-5a41-4c9f-8282-f6785af06bfc: $CRAFT_SITE_NAME # $CRAFT_SITE_NAME
+    8fa86f99-106d-4ca6-81d8-9f080a241f5b: 'Featured Works Images' # Featured Works Images
+    9dffce5e-9785-4d43-9780-bd0a2c39d141: 'Slider Block' # Slider Block
+    9e513de1-d75e-4e1c-b23d-38cdbe24f060: Genre # Genre
+    9f019a39-8a23-453b-82d4-e78c041c1495: 'Page Layout Blocks' # Page Layout Blocks
     19d6d897-1cde-4d59-914a-2bf8a23e7916: 'Public Schema' # Public Schema
-    bdf6317d-0df7-449f-a937-a1a274ffb106: 'Page - Blocks' # Page - Blocks
+    26fbff70-0997-4ddd-a8d8-96e64b850188: 'Featured Works Block Content' # Featured Works Block Content
+    36fcd9d8-6671-40b1-887b-84c395c8c6da: 'Page Gallery Caption' # Page Gallery Caption
+    44da612c-bbaf-434b-bbbb-1668252f0f43: 'Two Column Block Image' # Two Column Block Image
+    48aff211-f136-4da9-bea7-1eda25c22145: Homepage # Homepage
+    52aac039-0add-491a-bf95-a4310c1e1a74: 'Page Content' # Page Content
+    62cd1ea7-a0c3-4fff-9f57-32d325c6a842: 'Hero Block Photos' # Hero Block Photos
+    78cd8c82-7d01-4597-9562-f8383ff843c5: 'Featured Works Block' # Featured Works Block
+    79bef8f5-acf1-45ea-b55c-7f7a45909130: State # State
+    80e8622f-26e3-4121-8be3-3716c04cd508: Season # Season
+    86ad037a-07c7-4d8f-90d3-e4fa9a31c7ef: 'Portfolio Images' # Portfolio Images
+    90c2cf62-2b6c-444e-b313-13461f103649: Photos # Photos
+    298cea5e-e970-4f91-91b6-21ba893e3458: Photo # Photo
+    450da273-b412-48fc-bc9e-70a49eb8e206: 'Page Subtitle' # Page Subtitle
+    481a7e66-9921-4b62-9821-8aa4e542ff38: 'Featured Works Link' # Featured Works Link
+    7034c2c9-2683-438f-bf87-296f2b9783a3: 'Two Column Block Link' # Two Column Block Link
+    40154e12-d51d-4237-badf-a11bfc0ab075: 'Slider Block Link' # Slider Block Link
+    70434c25-7ead-44db-ac04-32c85ac27e21: Homepage # Homepage
+    99253d82-2d49-4285-8539-155472cf8207: 'Left Column Content' # Left Column Content
+    452561b9-4d58-4e06-abbb-ec181d217e97: 'Page Subtitle with Content' # Page Subtitle with Content
+    758857ca-7d33-49af-810b-cb347619a61f: 'Page Callout Columns' # Page Callout Columns
+    01914777-7aec-4ffe-b263-513b6e67154f: 'Page Content' # Page Content
+    8612363b-d7c9-43e9-993a-b6454190280c: Genre # Genre
+    33982884-3ffc-4b10-ab0f-7acce9c2f4e6: 'Page Callout Box' # Page Callout Box
+    a985436b-09b0-444a-b956-d68913d3b05e: State # State
+    a1898536-62a3-49b5-946b-baae1b1c79fa: Location # Location
+    ac26babf-e061-425b-851b-465499715d7f: 'Date Taken' # Date Taken
+    b4bc8ded-4c1d-49ff-9fa2-e5f3dba0fe78: New # New
+    b28d4120-dd8f-47c8-9968-e484ce2daf49: 'Split Content Block' # Split Content Block
+    cf585ce0-229d-46cc-ba10-76f2824fd3f7: 'Page Buttons' # Page Buttons
+    d7c03649-4ae5-4736-b6b0-54c403a46935: 'Hero Block Tagline' # Hero Block Tagline
+    d8fc1056-7a49-4f87-8315-2dde5562d9f7: Season # Season
     d99bf7af-1eb1-4b77-814e-624eeec1a0e3: $CRAFT_SITE_NAME # $CRAFT_SITE_NAME
+    dd9022f8-c938-4870-87fc-85b9cca37611: 'Homepage Blocks' # Homepage Blocks
+    e2e8232d-7a91-4520-9f64-0d0c97df5efc: 'Page Gallery' # Page Gallery
+    eb0ea69f-509b-47a6-87cb-c9f3ad376908: 'Page Form' # Page Form
+    f0a7b6f4-0e83-455e-aba3-24ce98fa11dc: 'Page Header' # Page Header
+    f7ba018a-381c-4d09-8f22-6a1ab3e317cd: 'Blog Images' # Blog Images
+    f9de5f77-9be5-458f-82a1-6460ca454203: 'Two Column Block Content' # Two Column Block Content
+    f38e7b86-9c80-45f7-9c24-03e61e14abf6: 'Hero Block' # Hero Block
+    fa0732ba-e924-456d-8e2c-4666006edb64: 'Two Column Block Reverse' # Two Column Block Reverse
+    fcd2475b-f27b-406f-a8a4-96b0bf65fab9: 'Page Spacer' # Page Spacer
+plugins:
+  blitz:
+    edition: standard
+    enabled: true
+    licenseKey: 6GAZT1T6JSMQEHLAS4WDTNF6
+    schemaVersion: 5.7.0.1
+  ckeditor:
+    edition: standard
+    enabled: true
+    schemaVersion: 3.0.0.0
+  formie:
+    edition: standard
+    enabled: true
+    licenseKey: 8SL2Y3LQRIPPKN9EEL4UHW63
+    schemaVersion: 3.4.6
+  hyper:
+    edition: standard
+    enabled: true
+    licenseKey: XWYRBHKLI081SER9P21GQF8R
+    schemaVersion: 1.0.0
+  imager-x:
+    edition: lite
+    enabled: true
+    licenseKey: GNRZTVQD72OIP4O0IAUBQ4VG
+    schemaVersion: 4.0.0
+  mailgun:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  minify:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  seomatic:
+    edition: standard
+    enabled: true
+    licenseKey: H36V45NX84R1HOIB22NS7XNP
+    schemaVersion: 3.0.12
+  servd-asset-storage:
+    edition: standard
+    enabled: false
+    schemaVersion: 3.0.0
+  sprig:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.1
+  vite:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
 system:
   edition: pro
   live: true
   name: $CRAFT_SITE_NAME
   retryDuration: null
-  schemaVersion: 5.0.0.20
+  schemaVersion: 5.3.0.2
   timeZone: America/Los_Angeles

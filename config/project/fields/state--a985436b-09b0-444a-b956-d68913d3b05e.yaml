@@ -1,0 +1,21 @@
+columnSuffix: null
+handle: state
+instructions: null
+name: State
+searchable: false
+settings:
+  allowSelfRelations: false
+  branchLimit: null
+  maintainHierarchy: false
+  maxRelations: 1
+  minRelations: null
+  selectionLabel: 'Add a state'
+  showCardsInGrid: false
+  showSiteMenu: true
+  source: 'group:79bef8f5-acf1-45ea-b55c-7f7a45909130' # State
+  targetSiteId: null
+  validateRelatedElements: false
+  viewMode: list
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Categories
