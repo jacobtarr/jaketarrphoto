@@ -1,0 +1,14 @@
+<div class="c-page-section c-callout-box">
+  <div class="c-callout-box__grid grid xl:grid-cols-{{ calloutBox.columns|default(3) }} gap-x-5 gap-y-10">
+    {% for column in calloutBox.calloutBoxColumns %}
+      <div class="c-callout-box__col col-span-{{ column.colSpan|default('1') }}">
+        <div class="c-callout-box__col-title">
+          {{ column.title }}
+        </div>
+        <div class="c-callout-box__col-desc mt-4">
+          <p class="leading-5">{{ column.description|raw }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>

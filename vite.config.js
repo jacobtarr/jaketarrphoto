@@ -2,6 +2,7 @@ import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import { ViteFaviconsPlugin } from 'vite-plugin-favicon2';
 import ViteRestart from 'vite-plugin-restart';
 import copy from 'rollup-plugin-copy';
+import path from 'path'; // Use to resolve paths for SCSS
 
 export default ({ command }) => ({
     base: command === 'serve' ? '' : '/dist/',
@@ -30,6 +31,13 @@ export default ({ command }) => ({
         port: 3000,
         strictPort: true
     },
+    css: {
+        preprocessorOptions: {
+            scss: {
+                includePaths: [path.resolve(__dirname, 'src/css')], // Only set include paths
+            },
+        },
+    },
     plugins: [
         ViteRestart({
             reload: [
@@ -47,7 +55,7 @@ export default ({ command }) => ({
                     src: 'src/public/**/*', 
                     dest: 'web/dist'
                 }
-            ]
+            ],
         }),
         ViteImageOptimizer({})
     ]

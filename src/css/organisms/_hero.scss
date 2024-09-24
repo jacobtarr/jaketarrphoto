@@ -1,0 +1,40 @@
+.c-hero {
+  height: 650px;
+
+  &__content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    width: 75%;
+    margin-left: auto;
+  }
+}
+
+.c-hero__first-col {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  img {
+    height: 260px;
+  }
+}
+
+.c-hero__second-col {
+  
+  img {
+    height: 650px;
+  }
+}
+
+.c-hero__third-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  img {
+    height: calc(325px - 0.625rem);
+  }
+}

@@ -1,0 +1,15 @@
+h1, h2, h3, h4, h5, h6 {
+  @apply font-bold;
+}
+
+.o-heading {
+  &--underline {
+    @apply pb-5 border-b border-lightGray;
+  }
+}
+
+.o-subheading {
+  &--underline {
+    @apply pb-3 border-b border-lightGray;
+  }
+}

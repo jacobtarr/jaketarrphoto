@@ -1,4 +1,4 @@
-dateModified: 1725711720
+dateModified: 1727203180
 email:
   fromEmail: $CRAFT_EMAIL_SYSTEM
   fromName: $CRAFT_EMAIL_SYSTEM
@@ -55,6 +55,7 @@ meta:
     298cea5e-e970-4f91-91b6-21ba893e3458: Photo # Photo
     450da273-b412-48fc-bc9e-70a49eb8e206: 'Page Subtitle' # Page Subtitle
     481a7e66-9921-4b62-9821-8aa4e542ff38: 'Featured Works Link' # Featured Works Link
+    1204bcc0-8378-4dd4-ab64-a4ae43ad533c: Square # Square
     7034c2c9-2683-438f-bf87-296f2b9783a3: 'Two Column Block Link' # Two Column Block Link
     40154e12-d51d-4237-badf-a11bfc0ab075: 'Slider Block Link' # Slider Block Link
     70434c25-7ead-44db-ac04-32c85ac27e21: Homepage # Homepage
@@ -69,12 +70,15 @@ meta:
     ac26babf-e061-425b-851b-465499715d7f: 'Date Taken' # Date Taken
     b4bc8ded-4c1d-49ff-9fa2-e5f3dba0fe78: New # New
     b28d4120-dd8f-47c8-9968-e484ce2daf49: 'Split Content Block' # Split Content Block
+    cb27dbe3-1802-4914-bbe2-7a4a53f42e1d: 'Featured Works Photos' # Featured Works Photos
+    cc37a9f9-6845-4a61-bf7b-abc70fd83aae: Large # Large
     cf585ce0-229d-46cc-ba10-76f2824fd3f7: 'Page Buttons' # Page Buttons
     d7c03649-4ae5-4736-b6b0-54c403a46935: 'Hero Block Tagline' # Hero Block Tagline
     d8fc1056-7a49-4f87-8315-2dde5562d9f7: Season # Season
     d99bf7af-1eb1-4b77-814e-624eeec1a0e3: $CRAFT_SITE_NAME # $CRAFT_SITE_NAME
     dd9022f8-c938-4870-87fc-85b9cca37611: 'Homepage Blocks' # Homepage Blocks
     e2e8232d-7a91-4520-9f64-0d0c97df5efc: 'Page Gallery' # Page Gallery
+    e58d17c3-400b-4997-bc46-5215587c062b: Small # Small
     eb0ea69f-509b-47a6-87cb-c9f3ad376908: 'Page Form' # Page Form
     f0a7b6f4-0e83-455e-aba3-24ce98fa11dc: 'Page Header' # Page Header
     f7ba018a-381c-4d09-8f22-6a1ab3e317cd: 'Blog Images' # Blog Images

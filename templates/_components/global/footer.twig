@@ -1,1 +1,36 @@
-&copy; {{ now|date('Y') }} {{ siteName }}. All rights reserved.
+<footer class="c-footer-container w-full pt-8 pb-12 border-t border-lightgray bg-white">
+  <div class="container space-y-12">
+    <div class="c-footer mx-auto grid grid-cols-18 items-center justify-between">
+      <!-- Left logo and name section -->
+      <a href="/" class="c-logo col-span-4 col-start-2 flex items-center space-x-3">
+        {% include '_components/atoms/icons/logo.svg' %}
+        <h1 class="text-xs font-bold leading-3">
+          Jacob Tarr <span class="text-red"><br>Photography.</span>
+        </h1>
+      </a>
+      <nav class="c-footer__navigation col-span-12 flex justify-end items-center">
+        <a href="/about" class="px-7 text-lg font-semibold hover:text-red">About</a>
+        <a href="/portfolio" class="px-7 text-lg font-semibold hover:text-red">Portfolio</a>
+        <a href="/blog" class="px-7 text-lg font-semibold hover:text-red">Blog</a>
+        <a href="/contact" class="px-7 text-lg font-semibold hover:text-red">Contact</a>
+        <div class="px-7">
+          {% include '_components/atoms/button.twig' with {
+            "button": {
+              "url": '#top',
+              "text": 'Back To Top'
+            }
+          } %}
+        </div>
+      </nav>
+    </div>
+    <div class="c-footer__bottom mx-auto grid grid-cols-18">
+      <div class="col-start-2 col-span-16">
+        <div class="text-sm">
+          &copy; {{ now|date('Y') }} {{ siteName }}. All rights reserved.
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+</footer>

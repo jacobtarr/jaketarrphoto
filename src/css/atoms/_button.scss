@@ -1,0 +1,44 @@
+.o-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid black;
+  border-radius: 35px;
+  padding: 7px 20px;
+  transition: 0.15s all ease-in-out;
+  font-size: 14px;
+
+  html.u-dark-mode & {
+    border: 1px solid white;
+  }
+
+  svg path {
+    transition: 0.15s all ease-in-out;
+
+    html.u-dark-mode & {
+      stroke: white;
+    }
+  }
+
+  &:hover, &:focus {
+    color: white;
+    background-color: black;
+
+    html.u-dark-mode & {
+      color: black;
+      background-color: white;
+    }
+
+    svg path {
+      stroke: white;
+
+      html.u-dark-mode & {
+        stroke: black;
+      }
+    }
+  }
+}
+
+.c-button-group {
+  @apply flex flex-wrap gap-6;
+}

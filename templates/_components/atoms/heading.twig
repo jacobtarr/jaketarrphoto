@@ -1,0 +1,16 @@
+{% set underlineClass = not heading.underline is defined or heading.underline ? ' o-heading--underline' : '' %}
+{% set additionalClasses = heading.classes is defined and heading.classes ? ' ' ~ heading.classes : '' %}
+{% set headingTag = heading.tag is defined and heading.tag ? heading.tag : 'h1' %}
+
+{% if heading.text %}
+  {% set titleWords = heading.text|split(' ') %}
+  <{{ headingTag }} class="text-4xl o-heading leading-tight{{ underlineClass }}{{ additionalClasses }}">
+    {% for word in titleWords %}
+      {% if loop.last %}
+        <span class="text-red">{{ word|raw ~ '.' }}</span>
+      {% else %}
+        {{ word|raw }}
+      {% endif %}
+    {% endfor %}
+  </{{ headingTag }}>
+{% endif %}

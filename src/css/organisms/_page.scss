@@ -1,0 +1,9 @@
+.c-page {
+  margin-top: 100px;
+}
+
+.c-page-section {
+  &__content {
+    @apply mt-6;
+  }
+}

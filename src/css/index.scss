@@ -1,8 +1,31 @@
-/* Import all SCSS files from atoms, molecules, and organisms */
-@import "atoms/**/*.scss";
-@import "molecules/**/*.scss";
-@import "organisms/**/*.scss";
+// Import all SCSS files from atoms, molecules, and organisms
+@import './atoms/_headings';
+@import './atoms/_button';
+@import './atoms/text';
+@import './molecules/_card';
+@import './molecules/_photo-block';
+@import './molecules/_callout-box';
+@import './organisms/_hero';
+@import './organisms/_homepage';
+@import './organisms/_page';
+@import './organisms/_featured-section';
+@import './organisms/_footer';
+
+// Dark mode styles
+html.u-dark-mode {
+  transition: 0.15s all linear;
+  body {
+    color: #fff;
+    background-color: black;
+  }
+  
+  .bg-white {
+    background-color: black;
+  }
+
+
+}
 
 body {
-  background-color: blue;
+  transition: 0.15s all linear;
 }

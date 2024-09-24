@@ -68,9 +68,9 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            dateAdded: '2024-09-06T23:44:22+00:00'
+            dateAdded: '2024-09-10T19:20:12+00:00'
             elementCondition: null
-            fieldUid: 8fa86f99-106d-4ca6-81d8-9f080a241f5b # Featured Works Images
+            fieldUid: cb27dbe3-1802-4914-bbe2-7a4a53f42e1d # Featured Works Photos
             handle: null
             includeInCards: false
             instructions: null
@@ -79,14 +79,14 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 83e02824-1806-4b64-96f0-21e1f02b2542
+            uid: 5588881b-890e-4024-893e-6036808c4c72
             userCondition: null
             warning: null
             width: 100
         name: Content
         uid: ffb95827-7fa0-45f3-827f-36045ed02e4e
         userCondition: null
-handle: featuredWorksblock
+handle: featuredWorksBlock
 hasTitleField: true
 icon: ''
 name: 'Featured Works Block'

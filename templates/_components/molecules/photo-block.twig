@@ -1,0 +1,14 @@
+{% import '_components/atoms/image.twig' as img %}
+{% set additionalClasses = photo.classes is defined and photo.classes ? ' ' ~ photo.classes : '' %}
+
+<a href="{{ photo.url }}" class="c-photo-block{% if photo.isSquare|default(false) %} c-photo-block--square{% endif %}{{ additionalClasses }}">
+  {% set transform = photo.isSquare|default(false) ? 'square' : null %}
+  {{ img.renderImage(photo.image, 800, 1600, photo.title, transform) }}
+ 
+  {% if photo.location is not empty %}
+    <p class="c-photo-block__caption font-serif">
+      <span>{{ photo.location }}</span>
+      {% include '_components/atoms/icons/icon-pointer-arrow.svg' %}
+    </p>
+  {% endif %}
+</a>

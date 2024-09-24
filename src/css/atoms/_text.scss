@@ -1,0 +1,9 @@
+p {
+  @apply font-serif;
+}
+
+
+.u-drop-cap:first-letter {
+  @apply text-7xl font-bold float-left leading-none mr-2 text-red;
+}
+

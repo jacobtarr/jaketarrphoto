@@ -5,7 +5,7 @@ name: 'Hero Block Tagline'
 searchable: false
 settings:
   byteLimit: null
-  charLimit: 70
+  charLimit: 160
   code: false
   initialRows: 4
   multiline: false

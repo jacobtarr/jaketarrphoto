@@ -1,0 +1,22 @@
+columnSuffix: null
+handle: featuredWorksPhotos
+instructions: null
+name: 'Featured Works Photos'
+searchable: false
+settings:
+  allowSelfRelations: false
+  branchLimit: null
+  maintainHierarchy: false
+  maxRelations: 7
+  minRelations: null
+  selectionLabel: 'Add a photo'
+  showCardsInGrid: false
+  showSiteMenu: false
+  sources:
+    - 'section:90c2cf62-2b6c-444e-b313-13461f103649' # Photos
+  targetSiteId: null
+  validateRelatedElements: false
+  viewMode: list
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Entries

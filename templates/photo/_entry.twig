@@ -1,23 +1,128 @@
 {% extends '_layouts/global.twig' %}
 
 {% block site %}
-    <article class="photo">
-        <h1>{{ entry.title }}</h1>
-        
-        {# Check if there's a featured image and display it #}
-        {% if entry.featuredImage.one() %}
-            {{ dump(entry.featuredImage.one().url) }}
-            <img src="{{ entry.featuredImage.one().url }}" alt="{{ entry.featuredImage.one().title }}">
-        {% endif %}
-        
-        <p>{{ entry.overview | raw }}</p>
-        
-        <ul>
-            <li>State: {{ entry.state.one().title }}</li>
-            <li>Location: {{ entry.location }}</li>
-            <li>Date Taken: {{ entry.dateTaken | date('F j, Y') }}</li>
-            <li>Season: {{ entry.season.one().title }}</li>
-            <li>Genre: {{ entry.genre.one().title }}</li>
-        </ul>
-    </article>
+
+	<section class="c-photo-page c-page container">
+		<div class="c-photo-page-grid grid grid-cols-18 gap-4">
+			<div class="col-span-16 col-start-2 space-y-12">
+				{% include '_components/atoms/heading.twig' with {
+					"heading": {
+						"text": entry.title
+					}
+				} %}
+				<div class="c-photo-page-content-grid grid grid-cols-2 gap-[60px]">
+					<div class="c-photo-page-photo col-span-1">
+						<div class="sticky top-4">
+							{% if entry.featuredImage.one() %}
+								<img class="" src="{{ entry.featuredImage.one().url }}" alt="{{ entry.featuredImage.one().title }}">
+							{% endif %}
+						</div>
+					</div>
+					<div class="c-photo-page-content col-span-1 space-y-15">
+						{% if entry.overview %}
+							<div class="c-page-section c-photo-intro u-drop-cap">
+								{{ entry.overview }}
+							</div>
+						{% endif %}
+
+						{% include '_components/molecules/callout-box.twig' with {
+							"calloutBox": {
+								"columns": 3,
+								"calloutBoxColumns": [
+									{
+										title: 'Date Taken',
+										description: entry.dateTaken ? entry.dateTaken|date('F j, Y') : ''
+									},
+									{
+										title: 'Location',
+										description: entry.location
+									},
+									{
+										title: 'Tags',
+										description: [
+											entry.state.one() ? entry.state.one().title : '',
+											entry.season.one() ? entry.season.one().title : '',
+											entry.genre.one() ? entry.genre.one().title : ''
+										]|filter(v => v != '')|join(', ')
+									}
+								]
+							}
+						} %}
+
+						<div class="c-page-section">
+							{% include '_components/atoms/subheading.twig' with {
+								"subheading": {
+									"text": "Share this photo"
+								}
+							} %}
+							<div class="c-page-section__content">
+								<div class="c-button-group">
+									{% include '_components/atoms/button.twig' with {
+										"button": {
+											"url": 'https://www.facebook.com/sharer/sharer.php?u=' ~ craft.app.request.url|url_encode,
+											"text": 'Facebook'
+										}
+									} %}
+									{% include '_components/atoms/button.twig' with {
+										"button": {
+											"url": 'https://twitter.com/intent/tweet?text=Check this out: ' ~ craft.app.request.url,
+											"text": 'Tweet'
+										}
+									} %}
+									{% include '_components/atoms/button.twig' with {
+										"button": {
+											"url": 'https://pinterest.com/pin/create/button/?url=' ~ craft.app.request.url,
+											"text": 'Pinterest'
+										}
+									} %}
+								</div>
+							</div>
+						</div>
+
+						{% set relatedEntries = craft.entries()
+							.section('photos')
+							.relatedTo({
+								targetElement: entry.state.one(),
+								field: 'state'
+							})
+							.id('not ' ~ entry.id)
+							.limit(3)
+							.all()
+						%}
+
+						{% if relatedEntries|length %}
+							<div class="c-page-section">
+								{% include '_components/atoms/subheading.twig' with {
+									"subheading": {
+										"text": "More from " ~ entry.state.one().title
+									}
+								} %}
+								<div class="c-page-section__content">
+									<div class="grid grid-cols-3 gap-5">
+										{% for relatedEntry in relatedEntries %}
+											<div class="col-span-1">
+												{% include '_components/molecules/photo-block.twig' with {
+													"photo": {
+														"classes": 'c-photo-block--small',
+														"image": relatedEntry.featuredImage.one(),
+														"url": relatedEntry.url,
+														"title": relatedEntry.title,
+														"location": relatedEntry.location,
+														"isSquare": true
+													}
+												} %}
+											</div>
+										{% endfor %}
+									</div>
+								</div>
+							</div>
+						{% endif %}
+							
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
 {% endblock %}

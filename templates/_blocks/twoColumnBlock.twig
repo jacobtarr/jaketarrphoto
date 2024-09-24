@@ -1,0 +1,50 @@
+{% import '_components/atoms/image.twig' as img %}
+
+<section class="c-two-column-container container">
+  <div class="c-column-block grid grid-cols-12 gap-[60px] items-center">
+  
+    {# Image Block #}
+    <div class="c-two-column-block__image 
+        col-span-{{ block.twoColumnBlockLayout ? '6' : '4' }} 
+        {{ not block.twoColumnBlockLayout and not block.twoColumnBlockReverse ? 'col-start-3' : '' }} 
+        order-{{ block.twoColumnBlockReverse ? '2' : '1' }}">
+      {% if block.twoColumnBlockImage|length %}
+        {{ img.renderImage(block.twoColumnBlockImage[0], 800, 1600, block.twoColumnBlockImage[0].title) }}
+      {% else %}
+        <p>No image found.</p>
+      {% endif %}
+    </div>
+    
+    {# Content Block #}
+    <div class="c-two-column-block__content 
+        col-span-{{ block.twoColumnBlockLayout ? '6' : '4' }} 
+        {{ not block.twoColumnBlockLayout and block.twoColumnBlockReverse ? 'col-start-3' : '' }} 
+        order-{{ block.twoColumnBlockReverse ? '1' : '2' }}">
+      <div class="">
+        {% include '_components/atoms/heading.twig' with {
+          "heading": {
+            "tag": "h3",
+            "underline": false,
+            "text": block.title
+          }
+        } %}
+        
+        {% if block.twoColumnBlockContent %}
+          <div class="mt-5">
+            <div class="font-serif leading-5">{{ block.twoColumnBlockContent|raw }}</div>
+          </div>
+        {% endif %}
+        
+        <div class="mt-6">
+          {% include '_components/atoms/button.twig' with {
+            "button": {
+              "url": block.twoColumnBlockLink.url,
+              "text": block.twoColumnBlockLink.text
+            }
+          } %}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

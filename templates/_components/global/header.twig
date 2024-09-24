@@ -1,37 +1,37 @@
-<header class="w-full py-4 border-b border-black">
-    <div class="container mx-auto flex items-center justify-between">
-      {# Left logo and name section #}
-      <div class="flex items-center space-x-3">
-        {% include '_components/atoms/icons/logo.svg' %}
-        <h1 class="text-2xl font-bold">
-          Jacob Tarr <span class="text-red-500">Photography</span>.
-        </h1>
-      </div>
+<header x-data="headerState()" class="c-header w-full py-4 border-b border-lightgray bg-white">
+  <div class="container mx-auto grid grid-cols-12 items-center justify-between">
+    <!-- Left logo and name section -->
+    <a href="/" class="c-logo col-span-3 flex items-center space-x-3">
+      {% include '_components/atoms/icons/logo.svg' %}
+      <h1 class="text-xs font-bold leading-3">
+        Jacob Tarr <span class="text-red"><br>Photography.</span>
+      </h1>
+    </a>
 
-      {# Center navigation links #}
-      <nav class="space-x-8">
-        <a href="/about" class="text-lg font-semibold hover:text-red-500">About</a>
-        <a href="/portfolio" class="text-lg font-semibold hover:text-red-500">Portfolio</a>
-        <a href="/blog" class="text-lg font-semibold hover:text-red-500">Blog</a>
-        <a href="/contact" class="text-lg font-semibold hover:text-red-500">Contact</a>
-      </nav>
+    <!-- Center navigation links -->
+    <nav class="c-header__navigation col-span-6 flex justify-center">
+      <a href="/about" class="px-7 text-lg font-semibold hover:text-red" :class="{'text-red': isActive('/about')}">About</a>
+      <a href="/portfolio" class="px-7 text-lg font-semibold hover:text-red" :class="{'text-red': isActive('/portfolio')}">Portfolio</a>
+      <a href="/blog" class="px-7 text-lg font-semibold hover:text-red" :class="{'text-red': isActive('/blog')}">Blog</a>
+      <a href="/contact" class="px-7 text-lg font-semibold hover:text-red" :class="{'text-red': isActive('/contact')}">Contact</a>
+    </nav>
 
-      {# Right side icons #}
-      <div class="flex space-x-5 items-center">
-        {# Light/dark mode icon #}
-        <button class="w-6 h-6 text-black focus:outline-none">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-7.364l-1.414 1.414M6.05 18.95l-1.414-1.414m12.728 0l1.414-1.414M6.05 5.05L4.636 6.464" />
-          </svg>
-        </button>
+    <!-- Right side icons -->
+    <div class="c-header__icons col-span-3 flex justify-end space-x-8 items-center">
+      <!-- Light/dark mode icon -->
+      <button @click="toggleDarkMode()" class="text-black focus:outline-none">
+        <template x-if="darkMode">
+          {% include '_components/atoms/icons/icon-light-mode.svg' %}
+        </template>
+        <template x-if="!darkMode">
+          {% include '_components/atoms/icons/icon-dark-mode.svg' %}
+        </template>
+      </button>
 
-        {# Instagram icon #}
-        <a href="https://instagram.com" class="text-black hover:text-red-500">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7a3 3 0 013-3h4a3 3 0 013 3v4a3 3 0 01-3 3H10a3 3 0 01-3-3V7z" />
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 14l5-5" />
-          </svg>
-        </a>
-      </div>
+      <!-- Instagram icon -->
+      <a href="https://instagram.com" class="text-black hover:text-red-500">
+        {% include '_components/atoms/icons/icon-instagram.svg' %}
+      </a>
     </div>
+  </div>
 </header>

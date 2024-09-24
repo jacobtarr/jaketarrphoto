@@ -27,9 +27,11 @@
 	{# Global Site Header #}
     {% include '_components/global/header' %}
 
-	{% block site %}
-	{% endblock %}
-
+	<main class="c-site-container mt-8">
+		{% block site %}
+		{% endblock %}
+	</main>
+	
 	{# Global Site Footer #}
     {% include '_components/global/footer' %}
 
