@@ -1,0 +1,9 @@
+.c-filter-box {
+  @apply px-5 pt-5 pb-8 bg-lighterGray;
+}
+
+.c-filter-section {
+  &__title {
+    @apply text-sm font-bold text-darkGray pb-2 border-b border-lightGray;
+  }
+}

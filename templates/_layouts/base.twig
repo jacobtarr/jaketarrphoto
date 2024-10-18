@@ -32,6 +32,9 @@
 
 		{% block body %}{% endblock %}
 
+		{# Sprig script required for AJAX-based functionality #}
+    {% do sprig.registerScript() %}
+
 	</body>
 
 </html>

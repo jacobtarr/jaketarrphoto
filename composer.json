@@ -11,7 +11,7 @@
     "nystudio107/craft-seomatic": "5.1.2",
     "nystudio107/craft-vite": "5.0.1",
     "putyourlightson/craft-blitz": "5.7.1",
-    "putyourlightson/craft-sprig": "3.5.0",
+    "putyourlightson/craft-sprig": "^3.5",
     "servd/craft-asset-storage": "^4.0.3",
     "spacecatninja/imager-x": "5.0.2",
     "verbb/formie": "^3.0",

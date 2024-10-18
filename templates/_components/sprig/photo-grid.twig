@@ -1,0 +1,138 @@
+{# Retrieve and set default filter values #}
+{% set state = state ?? '' %}
+{% set season = season ?? [] %}
+{% set genre = genre ?? [] %}
+
+{# Fetch the available categories for filters #}
+{% set states = craft.categories.group('state').all() %}
+{% set seasons = craft.categories.group('season').all() %}
+{% set genres = craft.categories.group('genre').all() %}
+
+<div class="c-portfolio-grid grid grid-cols-4 gap-5">
+  <div class="col-span-1">
+    <div class="space-y-5">
+      <h4 class="text-2xl font-semibold">Filters</h4>
+      <div class="c-filter-box space-y-10">
+        
+        <!-- States Filter (radio buttons) -->
+        <div class="c-filter-section space-y-5">
+          <div class="c-filter-section__title">States</div>
+          <div class="c-filter-section__form-group c-radio-group space-y-5">
+            <div class="c-radio-group__item flex items-center">
+              <input type="radio" name="state-radio" class="c-radio-input" id="state-radio-all" value="" sprig s-trigger="change" s-val:state="" {% if state == '' %} checked {% endif %}>
+              <label for="state-radio-all" class="ml-4">All</label>
+            </div>
+            {% for stateOption in states %}
+              <div class="c-radio-group__item flex items-center">
+                <input type="radio" name="state-radio" class="c-radio-input" id="state-radio-{{ stateOption.slug }}" value="{{ stateOption.slug }}" sprig s-trigger="change" s-val:state="{{ stateOption.slug }}" {% if state == stateOption.slug %} checked {% endif %}>
+                <label for="state-radio-{{ stateOption.slug }}" class="ml-4">{{ stateOption.title }}</label>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <!-- Seasons Filter (styled checkboxes) -->
+        <div class="c-filter-section space-y-5">
+          <div class="c-filter-section__title">Seasons</div>
+          <div class="c-filter-section__form-group c-checkbox-group space-y-5">
+            {% for seasonOption in seasons %}
+              <label class="c-checkbox">
+                <input class="c-checkbox__input" sprig type="checkbox" hidden id="seasons-{{ seasonOption.id }}" name="season[]" value="{{ seasonOption.slug }}" {% if seasonOption.slug in season %} checked {% endif %}>
+                <span class="c-checkbox__checkmark-icon-container mr-4">
+                  <svg class="c-checkbox__checkmark-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 10">
+                    <path d="M1 5L5 9L11 1" stroke="white" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                {{ seasonOption.title }}
+              </label>
+            {% endfor %}
+          </div>
+        </div>
+
+        <!-- Genres Filter (checkboxes) -->
+        <div class="c-filter-section space-y-5">
+          <div class="c-filter-section__title">Genres</div>
+          <div class="c-filter-section__form-group c-checkbox-group space-y-5">
+            {% for genreOption in genres %}
+              <label class="c-checkbox">
+                <input class="c-checkbox__input" sprig type="checkbox" hidden id="genres-{{ genreOption.id }}" name="genre[]" value="{{ genreOption.slug }}" {% if genreOption.slug in genre %} checked {% endif %}>
+                <span class="c-checkbox__checkmark-icon-container mr-4">
+                  <svg class="c-checkbox__checkmark-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 10">
+                    <path d="M1 5L5 9L11 1" stroke="white" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                {{ genreOption.title }}
+              </label>
+            {% endfor %}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Photo Grid (updated by Sprig) -->
+  <div class="col-span-3">
+    {# Start query for photos #}
+    {% set query = craft.entries().section('photos') %}
+
+    {# Create a list of relatedTo conditions #}
+    {% set relatedConditions = [] %}
+
+    {# Apply state filter if selected #}
+    {% if state %}
+      {% set stateCategory = craft.categories.slug(state).one() %}
+      {% if stateCategory %}
+        {% set relatedConditions = relatedConditions|merge([{ targetElement: stateCategory, field: 'state' }]) %}
+      {% endif %}
+    {% endif %}
+
+    {# Apply season filter if selected #}
+    {% if season is not empty %}
+      {% set seasonCategories = season|map(slug => craft.categories.slug(slug).one())|filter(e => e is not empty) %}
+      {% if seasonCategories is not empty %}
+        {% for seasonCategory in seasonCategories %}
+          {% set relatedConditions = relatedConditions|merge([{ targetElement: seasonCategory, field: 'season' }]) %}
+        {% endfor %}
+      {% endif %}
+    {% endif %}
+
+    {# Apply genre filter if selected #}
+    {% if genre is not empty %}
+      {% set genreCategories = genre|map(slug => craft.categories.slug(slug).one())|filter(e => e is not empty) %}
+      {% if genreCategories is not empty %}
+        {% for genreCategory in genreCategories %}
+          {% set relatedConditions = relatedConditions|merge([{ targetElement: genreCategory, field: 'genre' }]) %}
+        {% endfor %}
+      {% endif %}
+    {% endif %}
+
+    {# Apply relatedTo with AND logic #}
+    {% if relatedConditions is not empty %}
+      {% set query = query.relatedTo(['and']|merge(relatedConditions)) %}
+    {% endif %}
+
+    {# Fetch and display the filtered photo entries #}
+    {% set photoEntries = query.limit(null).all() %}
+    
+    {% if photoEntries is not empty %}
+      <div class="grid grid-cols-3 gap-5">
+        {% for photoEntry in photoEntries %}
+          <div class="col-span-1">
+            {% include '_components/molecules/photo-block.twig' with {
+              "photo": {
+                "image": photoEntry.featuredImage.one(),
+                "url": photoEntry.url,
+                "title": photoEntry.title,
+                "location": photoEntry.location,
+                "isSquare": true
+              }
+            } %}
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p>No photos match the current filters.</p>
+    {% endif %}
+  </div>
+</div>

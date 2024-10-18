@@ -77,7 +77,7 @@ Portfolio page
 - title (Portfolio)
 - Sidebar with filters:
    - State (radio buttons)
-    - All
+    - All (checked by default)
     - Arizona
     - Colorado
     - New Mexico

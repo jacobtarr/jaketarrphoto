@@ -1,2 +1,4 @@
 isPublic: true
 name: 'Public Schema'
+scope:
+  - 'sections.90c2cf62-2b6c-444e-b313-13461f103649:read' # Photos

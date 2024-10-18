@@ -1,0 +1,7 @@
+{# Ensure the count starts at 0 if not set #}
+{% set count = count ?? 0 %}
+
+<div sprig s-trigger="click" s-vals='{"count": {{ count + 1 }}}'>
+  <button class="o-button">Increment</button>
+  <p>Count: {{ count }}</p>
+</div>

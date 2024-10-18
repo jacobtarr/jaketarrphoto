@@ -1,0 +1,47 @@
+.c-radio-input {
+  @apply accent-black w-5 h-5 border-black rounded-full text-black focus:ring-black disabled:opacity-50 disabled:pointer-events-none checked:bg-black;
+}
+
+.c-checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  &__input[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+  }
+}
+
+.c-checkbox__checkmark-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 3px;
+  position: relative;
+}
+
+.c-checkbox__checkmark-icon {
+  position: absolute;
+  width: 12px;
+  height: 10px;
+  display: none;
+}
+
+.c-checkbox__input:checked + .c-checkbox__checkmark-icon-container {
+  background-color: black;
+}
+
+.c-checkbox__input:checked + .c-checkbox__checkmark-icon-container .c-checkbox__checkmark-icon {
+  display: block;
+}
+
+.c-checkbox__checkmark-icon path {
+  stroke: white;
+}
+
+
