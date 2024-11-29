@@ -1,0 +1,4 @@
+{% set additionalClasses = richText.classes is defined and richText.classes ? ' ' ~ richText.classes : '' %}
+{% if richText.content %}
+  <div class="o-rte font-serif space-y-5{{ additionalClasses }}">{{ richText.content|raw }}</div>
+{% endif %}

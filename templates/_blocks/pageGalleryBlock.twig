@@ -1,0 +1,20 @@
+{% extends '_base/_basePageBlock.twig' %}
+
+{% block pageBlockContent %}
+  {% import '_components/atoms/image.twig' as img %}
+  <div class="c-page-gallery-grid grid grid-cols-1 md:grid-cols-2 gap-5">
+    {% for image in block.pageGalleryImages %}
+      <div class="col-span-1  {{ loop.first ? 'md:col-span-2' }}">
+        {{ img.renderImage(image, 800, 1600, image.title) }}
+      </div>
+    {% endfor %}
+  </div>
+  <div class="c-page-gallery__caption">
+    {% include '_components/atoms/rich-text.twig' with {
+      "richText": {
+        "classes": 'text-darkGray border-t border-lightGray pt-3 mt-5',
+        "content": block.pageGalleryCaption
+      }
+    } %}
+  </div>
+{% endblock %}

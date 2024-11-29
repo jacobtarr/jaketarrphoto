@@ -1,5 +1,11 @@
 import Alpine from 'alpinejs';
-import '../css/index.scss'; // Assuming this is your main CSS file
+import '../css/index.scss';
+import { initializeSwiper, sliderData } from './swiperSetup'; // Import both functions from swiperSetup.js
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Initialize Swiper globally
+  initializeSwiper();
+});
 
 // Define your Alpine.js state for the header
 function headerState() {
@@ -12,13 +18,15 @@ function headerState() {
     },
     isActive(page) {
       return window.location.pathname.includes(page);
-    }
+    },
   };
 }
 
-// Attach Alpine to the window object
+// Attach Alpine.js components to the window object
 window.Alpine = Alpine;
-window.headerState = headerState; // Make the headerState function available globally
+window.headerState = headerState;
+window.sliderData = sliderData;
 
-// Initialize Alpine
+// Initialize Alpine.js
+Alpine.data('sliderData', sliderData);
 Alpine.start();

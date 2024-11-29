@@ -1,4 +1,4 @@
-<a class="o-button" href="{{ button.url }}">
+<a class="o-button" target="{{ button.target|default('_self') }}" href="{{ button.url }}">
   <span>{{ button.text }}</span>
   {% include '_components/atoms/icons/icon-button-up-arrow.svg' %}
 </a>

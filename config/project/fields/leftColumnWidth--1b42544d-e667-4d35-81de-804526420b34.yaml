@@ -1,0 +1,65 @@
+columnSuffix: null
+handle: leftColumnWidth
+instructions: 'The left and right column width each have a grid width spanning 6 columns each. Choose whether to make the left column smaller or larger. The right column will expand or shrink based on the left column''s width.'
+name: 'Left Column Width'
+searchable: false
+settings:
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - '4'
+        -
+          - value
+          - '4'
+        -
+          - default
+          - ''
+    -
+      __assoc__:
+        -
+          - label
+          - '5'
+        -
+          - value
+          - '5'
+        -
+          - default
+          - ''
+    -
+      __assoc__:
+        -
+          - label
+          - '6'
+        -
+          - value
+          - '6'
+        -
+          - default
+          - '1'
+    -
+      __assoc__:
+        -
+          - label
+          - '7'
+        -
+          - value
+          - '7'
+        -
+          - default
+          - ''
+    -
+      __assoc__:
+        -
+          - label
+          - '8'
+        -
+          - value
+          - '8'
+        -
+          - default
+          - ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown

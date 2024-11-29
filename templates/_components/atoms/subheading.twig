@@ -1,21 +1,32 @@
 {% set underlineClass = not subheading.underline is defined or subheading.underline ? ' o-subheading--underline' : '' %}
 {% set additionalClasses = subheading.classes is defined and subheading.classes ? ' ' ~ subheading.classes : '' %}
 {% set subheadingTag = subheading.tag is defined and subheading.tag ? subheading.tag : 'h3' %}
+{% set subheadingWithButtonClasses = subheading.button is defined and subheading.button ? ' flex justify-between items-center' : '' %}
 
 {% if subheading.text %}
-  {% set titleWords = subheading.text|split(' ') %}
-  <{{ subheadingTag }} class="text-3xl o-subheading leading-tight{{ underlineClass }}{{ additionalClasses }}">
-    {% for word in titleWords %}
-      {% if loop.last %}
-        {% if titleWords|length > 1 %}
-          <span class="text-red">{{ word|raw ~ '.' }}</span>
+  <div class="o-subheading{{ underlineClass }}{{ subheadingWithButtonClasses }}">
+    {% set titleWords = subheading.text|split(' ') %}
+    <{{ subheadingTag }} class="text-3xl leading-tight{{ additionalClasses }}">
+      {% for word in titleWords %}
+        {% if loop.last %}
+          {% if titleWords|length > 1 %}
+            <span class="text-red">{{ word|raw ~ '.' }}</span>
+          {% else %}
+            {{ word|raw ~ '.' }}
+          {% endif %}
         {% else %}
-          {{ word|raw ~ '.' }}
+          {{ word|raw }}
         {% endif %}
-      {% else %}
-        {{ word|raw }}
-      {% endif %}
-    {% endfor %}
-  </{{ subheadingTag }}>
-{% endif %}
+      {% endfor %}
+    </{{ subheadingTag }}>
+  {% endif %}
 
+  {% if subheading.button is defined %}
+    <div class="o-subheading__button">
+      {% include '_components/atoms/button.twig' with {
+        "button": subheading.button
+      } %}
+    </div>
+  {% endif %}
+</div>
+  

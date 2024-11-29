@@ -1,6 +1,6 @@
+{% extends '_base/_basePageSection.twig' %}
 {% import '_components/atoms/image.twig' as img %}
-
-<section class="c-two-column-container container">
+{% block pageSectionContent %}
   <div class="c-column-block grid grid-cols-12 gap-[60px] items-center">
   
     {# Image Block #}
@@ -21,8 +21,8 @@
         {{ not block.twoColumnBlockLayout and block.twoColumnBlockReverse ? 'col-start-3' : '' }} 
         order-{{ block.twoColumnBlockReverse ? '1' : '2' }}">
       <div class="">
-        {% include '_components/atoms/heading.twig' with {
-          "heading": {
+        {% include '_components/atoms/subheading.twig' with {
+          "subheading": {
             "tag": "h3",
             "underline": false,
             "text": block.title
@@ -47,4 +47,6 @@
     </div>
 
   </div>
-</section>
+{% endblock %}
+
+  

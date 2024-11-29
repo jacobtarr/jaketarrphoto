@@ -1,0 +1,9 @@
+{% extends '_base/_basePageBlock.twig' %}
+
+{% block pageBlockContent %}
+  {% include '_components/atoms/rich-text.twig' with {
+    "richText": {
+      "content": block.pageContent
+    }
+  } %}
+{% endblock %}

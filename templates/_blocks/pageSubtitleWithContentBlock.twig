@@ -1,0 +1,28 @@
+{% extends '_base/_basePageBlock.twig' %}
+{% set additionalClasses = 'space-y-7' %}
+{% block pageBlockContent %}
+  {% include '_components/atoms/subheading.twig' with {
+    "subheading": {
+      "text": block.pageSubtitle
+    }
+  } %}
+  {% include '_components/atoms/rich-text.twig' with {
+    "richText": {
+      "content": block.pageContent
+    }
+  } %}
+  {% if block.pageButtons|length > 0 %}
+    <div class="flex flex-wrap gap-5">
+      {% for button in block.pageButtons %}
+        {% include '_components/atoms/button.twig' with {
+          "button": {
+            "url": button.url,
+            "text": button.text,
+            "target": button.target
+          }
+        } %}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+{% endblock %}

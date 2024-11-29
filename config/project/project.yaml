@@ -1,4 +1,4 @@
-dateModified: 1728847006
+dateModified: 1729463915
 email:
   fromEmail: $CRAFT_EMAIL_SYSTEM
   fromName: $CRAFT_EMAIL_SYSTEM
@@ -26,6 +26,7 @@ meta:
   __names__:
     0b524177-94b9-4dc7-a491-f3f390810261: 'Contact Form' # Contact Form
     1a07dfa1-6719-409b-aae0-4355938489fa: Overview # Overview
+    1b42544d-e667-4d35-81de-804526420b34: 'Left Column Width' # Left Column Width
     01f1709e-90b6-4a73-a760-fd999f43b328: 'Featured Image' # Featured Image
     03abafd4-804b-4730-a878-f77b4520e502: 'Page Gallery Images' # Page Gallery Images
     3d0151b1-3180-4665-8e2f-be7c0d1f1452: 'Two Column Block Layout' # Two Column Block Layout

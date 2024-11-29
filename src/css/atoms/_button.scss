@@ -1,4 +1,4 @@
-.o-button {
+@mixin o-button {
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -7,6 +7,7 @@
   padding: 7px 20px;
   transition: 0.15s all ease-in-out;
   font-size: 14px;
+  @apply font-sans bg-white text-black;
 
   html.u-dark-mode & {
     border: 1px solid white;
@@ -37,6 +38,10 @@
       }
     }
   }
+}
+
+.o-button {
+  @include o-button;
 }
 
 .c-button-group {

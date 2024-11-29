@@ -1,0 +1,10 @@
+{% extends '_base/_basePageBlock.twig' %}
+
+{% block pageBlockContent %}
+  {% set form = craft.formie.forms.handle(block.pageForm).one() %}
+  {% if form %}
+    {{ craft.formie.renderForm(form) }}
+  {% else %}
+    <p>Form not found.</p>
+  {% endif %}
+{% endblock %}

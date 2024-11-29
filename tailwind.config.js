@@ -1,6 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 
 const defaultTheme = require('tailwindcss/defaultTheme');
+const generateGridClasses = () => {
+  const breakpoints = ['sm', 'md', 'lg', 'xl', '2xl'];
+  const gridCounts = Array.from({ length: 12 }, (_, i) => i + 1); // Generates [1, 2, ..., 12]
+  
+  return breakpoints.flatMap(bp => 
+    gridCounts.map(count => `${bp}:grid-cols-${count}`)
+  );
+};
 
 export default {
   theme: {
@@ -23,6 +31,8 @@ export default {
       gridTemplateColumns: {
         // Define an 18-column grid
         '18': 'repeat(18, minmax(0, 1fr))',
+        // Adding 16-column grid
+        '16': 'repeat(16, minmax(0, 1fr))',
       },
       gridColumn: {
         'span-16': 'span 16 / span 16',  // To allow columns to span 16 in an 18-column grid
@@ -59,7 +69,7 @@ export default {
         4: '1rem',      // 16px
         5: '1.25rem',   // 20px
         6: '1.5rem',    // 24px
-        7: '1.75rem',   // 28px
+        7: '1.875rem',   // 30px
         8: '2rem',      // 32px
         9: '2.25rem',   // 36px
         10: '2.5rem',   // 40px
@@ -133,9 +143,12 @@ export default {
   plugins: [
     require('@tailwindcss/aspect-ratio'),
   ],
-  safelist: [],
+  safelist: [
+    ...generateGridClasses(),
+  ],
   content: [
     './templates/**/*.{twig,html,js}',
     './src/**/*.{css,js}',
+    './**/*.twig',
   ],
 }

@@ -1,4 +1,31 @@
 isPublic: true
 name: 'Public Schema'
 scope:
+  - 'sites.08c386f4-5a41-4c9f-8282-f6785af06bfc:read' # $CRAFT_SITE_NAME
+  - 'elements.drafts:read'
+  - 'elements.revisions:read'
+  - 'elements.inactive:read'
+  - 'sections.48aff211-f136-4da9-bea7-1eda25c22145:read' # Homepage
+  - 'sections.7b662bcd-ea91-4c91-86ce-c60348c664d1:read' # Pages
   - 'sections.90c2cf62-2b6c-444e-b313-13461f103649:read' # Photos
+  - 'nestedentryfields.26fbff70-0997-4ddd-a8d8-96e64b850188:read' # Featured Works Block Content
+  - 'nestedentryfields.1a07dfa1-6719-409b-aae0-4355938489fa:read' # Overview
+  - 'nestedentryfields.01914777-7aec-4ffe-b263-513b6e67154f:read' # Page Content
+  - 'nestedentryfields.36fcd9d8-6671-40b1-887b-84c395c8c6da:read' # Page Gallery Caption
+  - 'nestedentryfields.f9de5f77-9be5-458f-82a1-6460ca454203:read' # Two Column Block Content
+  - 'nestedentryfields.dd9022f8-c938-4870-87fc-85b9cca37611:read' # Homepage Blocks
+  - 'nestedentryfields.99253d82-2d49-4285-8539-155472cf8207:read' # Left Column Content
+  - 'nestedentryfields.758857ca-7d33-49af-810b-cb347619a61f:read' # Page Callout Columns
+  - 'nestedentryfields.9f019a39-8a23-453b-82d4-e78c041c1495:read' # Page Layout Blocks
+  - 'nestedentryfields.3d2ab139-6eab-4ce4-a7c7-023881701cfd:read' # Right Column Content
+  - 'volumes.86ad037a-07c7-4d8f-90d3-e4fa9a31c7ef:read' # Portfolio Images
+  - 'volumes.f7ba018a-381c-4d09-8f22-6a1ab3e317cd:read' # Blog Images
+  - 'usergroups.everyone:read'
+  - 'categorygroups.8612363b-d7c9-43e9-993a-b6454190280c:read' # Genre
+  - 'categorygroups.80e8622f-26e3-4121-8be3-3716c04cd508:read' # Season
+  - 'categorygroups.79bef8f5-acf1-45ea-b55c-7f7a45909130:read' # State
+  - 'formieForms.all:read'
+  - 'formieForms.0c01bb40-371a-4f06-af7c-4905426be3a8:read'
+  - 'formieSubmissions.all:read'
+  - 'formieSubmissions.0c01bb40-371a-4f06-af7c-4905426be3a8:read'
+  - 'seomatic.all:read'

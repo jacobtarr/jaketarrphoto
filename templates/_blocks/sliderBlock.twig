@@ -1,1 +1,57 @@
-<h3>slider block</h3>
+{% extends '_base/_basePageSection.twig' %}
+
+{% block pageSectionContent %}
+  {% import '_components/atoms/image.twig' as img %}
+  <div x-data="sliderData()" class="c-slider-block space-y-8">
+    {% include '_components/atoms/subheading.twig' with {
+      "subheading": {
+        "text": 'Newest Photos',
+        "button": {
+          "url": '/portfolio',
+          "text": 'View Portfolio'
+        }
+      }
+    } %}
+
+    <div class="c-slider">
+      <div class="c-slider-grid grid grid-cols-16 gap-5">
+        {# Left Content Column #}
+        <div class="c-slide-content-container col-span-4">
+          <div class="c-slide-content text-right">
+            <div class="c-slide-content__inner">
+              <div class="c-slide-content__number text-6xl" x-text="(currentIndex + 1).toString().padStart(2, '0')"></div>
+              <div class="c-slide-content__info space-y-4">
+                <h4 class="font-bold text-xl" x-text="slides[currentIndex]?.title"></h4>
+                <p class="font-sans font-bold text-mediumGray" x-text="slides[currentIndex]?.location"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {# Swiper Carousel Column #}
+        <div class="c-slides col-span-12 relative">
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
+              {% set photos = craft.entries.section('photos').limit(5).orderBy('postDate desc').all() %}
+              {% for photoEntry in photos %}
+                <div class="swiper-slide" data-title="{{ photoEntry.title }}" data-location="{{ photoEntry.location }}">
+                  {{ img.renderImage(photoEntry.featuredImage.one(), 400, 800, photoEntry.title, 'square') }}
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+
+          {# Navigation Buttons Below Carousel #}
+          <div class="swiper-navigation">
+            <div class="swiper-button-prev">
+              {% include '_components/atoms/icons/icon-carousel-down-arrow.svg' %}
+            </div>
+            <div class="swiper-button-next">
+              {% include '_components/atoms/icons/icon-carousel-up-arrow.svg' %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

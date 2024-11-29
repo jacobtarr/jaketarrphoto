@@ -1,105 +1,102 @@
-<section class="c-featured-works-container container">
-  <div class="space-y-5">
-    <div class="c-featured-grid grid grid-cols-18 gap-4">
-      <div class="c-featured-grid__first-col col-start-2 col-span-5">
-        <div class="c-featured-grid__content w-[80%]">
-          {% include '_components/atoms/heading.twig' with {
-            "heading": {
-              "tag": "h3",
-              "underline": false,
-              "text": block.title
+{% extends '_base/_basePageSection.twig' %}
+
+{% block pageSectionContent %}
+  <div class="c-featured-grid__top grid grid-cols-2 md:grid-cols-16 gap-4">
+    <div class="c-featured-grid__first-col col-span-4">
+      <div class="c-featured-grid__content w-[80%]">
+        {% include '_components/atoms/subheading.twig' with {
+          "subheading": {
+            "tag": "h3",
+            "underline": false,
+            "text": block.title
+          }
+        } %}
+        {% if block.featuredWorksBlockContent %}
+          <div class="mt-5">
+            <div class="font-serif leading-5">{{ block.featuredWorksBlockContent|raw }}</div>
+          </div>
+        {% endif %}
+        <div class="mt-6">
+          {% include '_components/atoms/button.twig' with {
+            "button": {
+              "url": block.featuredWorksLink.url,
+              "text": block.featuredWorksLink.text
             }
           } %}
-          {% if block.featuredWorksBlockContent %}
-            <div class="mt-5">
-              <div class="font-serif leading-5">{{ block.featuredWorksBlockContent|raw }}</div>
-            </div>
-          {% endif %}
-          <div class="mt-6">
-            {% include '_components/atoms/button.twig' with {
-              "button": {
-                "url": block.featuredWorksLink.url,
-                "text": block.featuredWorksLink.text
-              }
-            } %}
-          </div>
         </div>
-        <!-- First Image -->
-        {% set firstImage = block.featuredWorksPhotos[0] %}
-        {% include '_components/molecules/photo-block.twig' with {
-          "photo": {
-            "image": firstImage.featuredImage[0],
-            "url": firstImage.url,
-            "title": firstImage.title,
-            "location": firstImage.location
-          }
-        } %}
       </div>
-      <div class="c-featured-grid__second-col col-span-7">
-        <!-- Second Image -->
-        {% set secondImage = block.featuredWorksPhotos[1] %}
-        {% include '_components/molecules/photo-block.twig' with {
-          "photo": {
-            "image": secondImage.featuredImage[0],
-            "url": secondImage.url,
-            "title": secondImage.title,
-            "location": secondImage.location
-          }
-        } %}
-      </div>
-      <div class="c-featured-grid__third-col col-span-4">
-        <!-- Third Image -->
-        {% set thirdImage = block.featuredWorksPhotos[2] %}
-        {% include '_components/molecules/photo-block.twig' with {
-          "photo": {
-            "image": thirdImage.featuredImage[0],
-            "url": thirdImage.url,
-            "title": thirdImage.title,
-            "location": thirdImage.location
-          }
-        } %}
-
-        <!-- Fourth Image -->
-        {% set fourthImage = block.featuredWorksPhotos[3] %}
-        {% include '_components/molecules/photo-block.twig' with {
-          "photo": {
-            "image": fourthImage.featuredImage[0],
-            "url": fourthImage.url,
-            "title": fourthImage.title,
-            "location": fourthImage.location
-          }
-        } %}
-      </div>
+      <!-- First Image -->
+      {% set firstImage = block.featuredWorksPhotos[0] %}
+      {% include '_components/molecules/photo-block.twig' with {
+        "photo": {
+          "image": firstImage.featuredImage[0],
+          "url": firstImage.url,
+          "title": firstImage.title,
+          "location": firstImage.location
+        }
+      } %}
     </div>
-    <div class="c-featured-grid__bottom grid grid-cols-18 gap-4">
-      <div class="col-start-2 col-span-8">
-        <!-- Fifth Image -->
-        {% set fifthImage = block.featuredWorksPhotos[4] %}
-        {% include '_components/molecules/photo-block.twig' with {
-          "photo": {
-            "image": fifthImage.featuredImage[0],
-            "url": fifthImage.url,
-            "title": fifthImage.title,
-            "location": fifthImage.location
-          }
-        } %}
-      </div>
-      <div class="col-span-8">
-        <!-- Sixth Image -->
-        {% set sixthImage = block.featuredWorksPhotos[5] %}
-        {% include '_components/molecules/photo-block.twig' with {
-          "photo": {
-            "image": sixthImage.featuredImage[0],
-            "url": sixthImage.url,
-            "title": sixthImage.title,
-            "location": sixthImage.location
-          }
-        } %}
-      </div>
+    <div class="c-featured-grid__second-col col-span-8">
+      <!-- Second Image -->
+      {% set secondImage = block.featuredWorksPhotos[1] %}
+      {% include '_components/molecules/photo-block.twig' with {
+        "photo": {
+          "image": secondImage.featuredImage[0],
+          "url": secondImage.url,
+          "title": secondImage.title,
+          "location": secondImage.location
+        }
+      } %}
+    </div>
+    <div class="c-featured-grid__third-col col-span-4">
+      <!-- Third Image -->
+      {% set thirdImage = block.featuredWorksPhotos[2] %}
+      {% include '_components/molecules/photo-block.twig' with {
+        "photo": {
+          "image": thirdImage.featuredImage[0],
+          "url": thirdImage.url,
+          "title": thirdImage.title,
+          "location": thirdImage.location
+        }
+      } %}
+
+      <!-- Fourth Image -->
+      {% set fourthImage = block.featuredWorksPhotos[3] %}
+      {% include '_components/molecules/photo-block.twig' with {
+        "photo": {
+          "image": fourthImage.featuredImage[0],
+          "url": fourthImage.url,
+          "title": fourthImage.title,
+          "location": fourthImage.location
+        }
+      } %}
     </div>
   </div>
-  
 
-
-  
-</section>
+  <div class="c-featured-grid__bottom grid grid-cols-18 gap-4">
+    <div class="col-span-9">
+      <!-- Fifth Image -->
+      {% set fifthImage = block.featuredWorksPhotos[4] %}
+      {% include '_components/molecules/photo-block.twig' with {
+        "photo": {
+          "image": fifthImage.featuredImage[0],
+          "url": fifthImage.url,
+          "title": fifthImage.title,
+          "location": fifthImage.location
+        }
+      } %}
+    </div>
+    <div class="col-span-9">
+      <!-- Sixth Image -->
+      {% set sixthImage = block.featuredWorksPhotos[5] %}
+      {% include '_components/molecules/photo-block.twig' with {
+        "photo": {
+          "image": sixthImage.featuredImage[0],
+          "url": sixthImage.url,
+          "title": sixthImage.title,
+          "location": sixthImage.location
+        }
+      } %}
+    </div>
+  </div>
+{% endblock %}
