@@ -1,4 +1,4 @@
-dateModified: 1732978586
+dateModified: 1732983381
 email:
   fromEmail: $CRAFT_EMAIL_SYSTEM
   fromName: $CRAFT_EMAIL_SYSTEM
@@ -212,7 +212,7 @@ plugins:
     schemaVersion: 3.0.12
   servd-asset-storage:
     edition: standard
-    enabled: false
+    enabled: true
     schemaVersion: 3.0.0
   sprig:
     edition: standard
