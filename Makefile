@@ -5,9 +5,10 @@ prod:
 	ddev exec npm run build
 
 prod-servd:
+	which php || echo "PHP not found"
 	npm install
 	npm run build
-	php craft project-config/apply
+	php craft project-config/apply || echo "Craft CLI command failed"
 
 dev: 
 	ddev start
