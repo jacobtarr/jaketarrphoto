@@ -1,11 +1,7 @@
 import Alpine from 'alpinejs';
+import '@preline/select';
 import '../css/index.scss';
-import { initializeSwiper, sliderData } from './swiperSetup'; // Import both functions from swiperSetup.js
-
-document.addEventListener('DOMContentLoaded', () => {
-  // Initialize Swiper globally
-  initializeSwiper();
-});
+import { initializeFlickity, sliderData } from './flickitySetup';
 
 // Define your Alpine.js state for the header
 function headerState() {
@@ -28,5 +24,7 @@ window.headerState = headerState;
 window.sliderData = sliderData;
 
 // Initialize Alpine.js
-Alpine.data('sliderData', sliderData);
-Alpine.start();
+document.addEventListener('DOMContentLoaded', () => {
+  Alpine.data('sliderData', sliderData);
+  Alpine.start();
+});

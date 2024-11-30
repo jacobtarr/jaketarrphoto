@@ -13,42 +13,43 @@
       }
     } %}
 
-    <div class="c-slider">
+    <div class="c-slider-section">
       <div class="c-slider-grid grid grid-cols-16 gap-5">
         {# Left Content Column #}
         <div class="c-slide-content-container col-span-4">
           <div class="c-slide-content text-right">
             <div class="c-slide-content__inner">
               <div class="c-slide-content__number text-6xl" x-text="(currentIndex + 1).toString().padStart(2, '0')"></div>
-              <div class="c-slide-content__info space-y-4">
-                <h4 class="font-bold text-xl" x-text="slides[currentIndex]?.title"></h4>
-                <p class="font-sans font-bold text-mediumGray" x-text="slides[currentIndex]?.location"></p>
+              <div class="c-slide-content__info space-y-8">
+                <div class="space-y-2">
+                  <h4 class="active-title font-bold leading-tight text-2xl"></h4>
+                  <p class="active-location font-sans font-bold text-mediumGray"></p>
+                </div>
+                <a class="o-button"
+                  target="{{ button.target|default('_self') }}"
+                  x-bind:href="slides[currentIndex]?.url || '#'"
+                >
+                  <span>View Photo</span>
+                  {% include '_components/atoms/icons/icon-button-up-arrow.svg' %}
+                </a>
               </div>
             </div>
           </div>
         </div>
 
-        {# Swiper Carousel Column #}
-        <div class="c-slides col-span-12 relative">
-          <div class="swiper-container">
-            <div class="swiper-wrapper">
-              {% set photos = craft.entries.section('photos').limit(5).orderBy('postDate desc').all() %}
-              {% for photoEntry in photos %}
-                <div class="swiper-slide" data-title="{{ photoEntry.title }}" data-location="{{ photoEntry.location }}">
-                  {{ img.renderImage(photoEntry.featuredImage.one(), 400, 800, photoEntry.title, 'square') }}
-                </div>
-              {% endfor %}
-            </div>
-          </div>
-
-          {# Navigation Buttons Below Carousel #}
-          <div class="swiper-navigation">
-            <div class="swiper-button-prev">
-              {% include '_components/atoms/icons/icon-carousel-down-arrow.svg' %}
-            </div>
-            <div class="swiper-button-next">
-              {% include '_components/atoms/icons/icon-carousel-up-arrow.svg' %}
-            </div>
+        {# Flickity Slider Column #}
+        <div class="c-slider-container col-span-12 relative">
+          <div class="c-slider">
+            {% set photos = craft.entries.section('photos').limit(6).orderBy('postDate desc').all() %}
+            {% for photoEntry in photos %}
+              <div class="c-slide"
+              data-title="{{ photoEntry.title }}"
+              data-location="{{ photoEntry.location }}"
+              data-url="{{ photoEntry.url }}"
+              data-index="{{ loop.index0 }}">
+                {{ img.renderImage(photoEntry.featuredImage.one(), 454, 454, photoEntry.title, 'square') }}
+              </div>
+            {% endfor %}
           </div>
         </div>
       </div>

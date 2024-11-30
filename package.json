@@ -36,6 +36,8 @@
   },
   "homepage": "https://github.com/madebyshape/craft-cms#readme",
   "dependencies": {
-    "swiper": "^11.1.15"
+    "@preline/select": "^2.5.1",
+    "flickity": "^3.0.0",
+    "preline": "^2.5.1"
   }
 }
