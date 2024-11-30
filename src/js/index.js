@@ -1,5 +1,4 @@
 import Alpine from 'alpinejs';
-import '@preline/select';
 import '../css/index.scss';
 import { initializeFlickity, sliderData } from './flickitySetup';
 

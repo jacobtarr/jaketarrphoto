@@ -4,6 +4,11 @@ prod:
 	ddev start
 	ddev exec npm run build
 
+prod-servd:
+	npm install
+	npm run build
+	php craft project-config/apply
+
 dev: 
 	ddev start
 	ddev exec npm run dev

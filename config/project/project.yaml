@@ -1,4 +1,4 @@
-dateModified: 1729463915
+dateModified: 1732978586
 email:
   fromEmail: $CRAFT_EMAIL_SYSTEM
   fromName: $CRAFT_EMAIL_SYSTEM
@@ -93,6 +93,91 @@ plugins:
     enabled: true
     licenseKey: 6GAZT1T6JSMQEHLAS4WDTNF6
     schemaVersion: 5.7.0.1
+    settings:
+      apiKey: ''
+      cacheControlHeader: 'public, s-maxage=31536000, max-age=0'
+      cacheControlHeaderExpired: 'public, s-maxage=5, max-age=0'
+      cacheDuration: null
+      cacheGeneratorSettings:
+        __assoc__:
+          -
+            - concurrency
+            - '3'
+      cacheGeneratorType: putyourlightson\blitz\drivers\generators\HttpGenerator
+      cacheNonHtmlResponses: false
+      cachePurgerType: putyourlightson\blitz\drivers\purgers\DummyPurger
+      cacheStorageSettings:
+        __assoc__:
+          -
+            - folderPath
+            - '@root/cache/blitz'
+          -
+            - compressCachedValues
+            - ''
+      cacheStorageType: putyourlightson\blitz\drivers\storage\FileStorage
+      cachingEnabled: true
+      debug: true
+      defaultCacheControlHeader: no-store
+      deployerType: putyourlightson\blitz\drivers\deployers\DummyDeployer
+      detectSsiEnabled: true
+      driverJobBatchSize: 100
+      driverJobPriority: 100
+      esiEnabled: false
+      excludedQueryStringParams:
+        -
+          __assoc__:
+            -
+              - queryStringParam
+              - gclid
+        -
+          __assoc__:
+            -
+              - queryStringParam
+              - fbclid
+      excludedUriPatterns:
+        -
+          __assoc__:
+            -
+              - uriPattern
+              - 'dynamic/.*'
+      generatePagesWithQueryStringParams: true
+      hintsEnabled: true
+      includedQueryStringParams:
+        -
+          __assoc__:
+            -
+              - queryStringParam
+              - '.*'
+      includedUriPatterns:
+        -
+          __assoc__:
+            -
+              - uriPattern
+              - '.*'
+      injectScriptEvent: DOMContentLoaded
+      injectScriptPosition: 3
+      integrations:
+        - putyourlightson\blitz\drivers\integrations\CommerceIntegration
+        - putyourlightson\blitz\drivers\integrations\SeomaticIntegration
+      maxRetryAttempts: 10
+      maxUriLength: 255
+      mutexTimeout: 1
+      outputComments: true
+      purgeAssetImagesWhenChanged: true
+      queryStringCaching: 1
+      queueJobTtr: 600
+      refreshCacheAutomaticallyForGlobals: true
+      refreshCacheEnabled: true
+      refreshCacheJobPriority: 10
+      refreshCacheWhenElementMovedInStructure: true
+      refreshCacheWhenElementSavedNotLive: false
+      refreshCacheWhenElementSavedUnchanged: false
+      refreshMode: 3
+      sendPoweredByHeader: true
+      ssiEnabled: false
+      ssiTagFormat: '<!--#include virtual="{uri}" -->'
+      trackElementQueries: true
+      trackElements: true
   ckeditor:
     edition: standard
     enabled: true
