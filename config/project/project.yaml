@@ -1,4 +1,4 @@
-dateModified: 1732983381
+dateModified: 1733021855
 email:
   fromEmail: $CRAFT_EMAIL_SYSTEM
   fromName: $CRAFT_EMAIL_SYSTEM
@@ -12,16 +12,30 @@ fs:
     hasUrls: true
     name: 'Blog Images Filesystem'
     settings:
-      path: web/uploads/blog
-    type: craft\fs\Local
-    url: 'https://jacobtarrphoto.ddev.site:8443/web/uploads/blog'
+      cdnUrlPattern: ''
+      customSubfolder: blog
+      makeUploadsPublic: true
+      optimisePrefix: ''
+      optimiseUrlPattern: ''
+      projectSlug: ''
+      securityKey: ''
+      subfolder: jake-photo/staging/blog/
+    type: servd\AssetStorage\AssetsPlatform\Fs
+    url: 'https://cdn2.assets-servd.host/'
   portfolioImagesFilesystem:
     hasUrls: true
     name: 'Portfolio Images Filesystem'
     settings:
-      path: web/uploads/portfolio
-    type: craft\fs\Local
-    url: 'https://jacobtarrphoto.ddev.site:8443/web/uploads/portfolio'
+      cdnUrlPattern: ''
+      customSubfolder: portfolio
+      makeUploadsPublic: true
+      optimisePrefix: ''
+      optimiseUrlPattern: ''
+      projectSlug: ''
+      securityKey: ''
+      subfolder: jake-photo/staging/portfolio/
+    type: servd\AssetStorage\AssetsPlatform\Fs
+    url: 'https://cdn2.assets-servd.host/'
 meta:
   __names__:
     0b524177-94b9-4dc7-a491-f3f390810261: 'Contact Form' # Contact Form
@@ -214,6 +228,29 @@ plugins:
     edition: standard
     enabled: true
     schemaVersion: 3.0.0
+    settings:
+      adjustFeedmeLogs: ''
+      assetsEnvironment: staging
+      assetsEnvironmentOverwrite: ''
+      cacheClearMode: full
+      clearCachesOnSave: never
+      disableDynamic: ''
+      disableTransforms: ''
+      fsMaps:
+        __assoc__:
+          -
+            - blogImagesFilesystem
+            - none
+          -
+            - portfolioImagesFilesystem
+            - none
+      fsMapsEnabled: ''
+      imageAutoConversion: webp
+      injectCors: '1'
+      projectSlug: jake-photo
+      securityKey: qSWF7L2l1AIBjtU4KMlKl7P1YEXOvIlU
+      suppressWarnings: ''
+      useLocalVolumes: false
   sprig:
     edition: standard
     enabled: true

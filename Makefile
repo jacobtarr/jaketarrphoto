@@ -10,6 +10,9 @@ prod-servd:
 	npm run build
 	php craft project-config/apply || echo "Craft CLI command failed"
 
+push-db-servd:
+    ddev ssh -c "./craft servd-asset-storage/local/push-database --to=staging --servdSlug=jake-photo --servdKey=qSWF7L2l1AIBjtU4KMlKl7P1YEXOvIlU"
+
 dev: 
 	ddev start
 	ddev exec npm run dev

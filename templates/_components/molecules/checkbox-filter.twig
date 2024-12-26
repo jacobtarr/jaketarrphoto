@@ -1,0 +1,25 @@
+{% macro renderFilter(title, options, selectedOptions, inputName) %}
+  <div class="c-filter-section space-y-5">
+    <div class="c-filter-section__title">{{ title }}</div>
+    <div class="c-filter-section__form-group c-checkbox-group space-y-5">
+      {% for option in options %}
+        <label class="c-checkbox">
+          <input 
+            class="c-checkbox__input" 
+            sprig 
+            type="checkbox" 
+            hidden 
+            id="{{ inputName }}-{{ option.id }}" 
+            name="{{ inputName }}[]" 
+            value="{{ option.slug }}" 
+            {% if option.slug in selectedOptions %} checked {% endif %}
+          >
+          <span class="c-checkbox__checkmark-icon-container mr-4">
+            {% include '_components/atoms/icons/icon-checkmark.svg' %}
+          </span>
+          {{ option.title }}
+        </label>
+      {% endfor %}
+    </div>
+  </div>
+{% endmacro %}
