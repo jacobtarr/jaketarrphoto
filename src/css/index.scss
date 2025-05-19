@@ -11,12 +11,13 @@
 @use './organisms/_homepage';
 @use './organisms/_page';
 @use './organisms/_slider';
+@use './organisms/_header';
 @use './organisms/_featured-section';
 @use './organisms/_footer';
 
 // Dark mode styles
 html.u-dark-mode {
-  transition: 0.15s all linear;
+  // transition: 0.15s all linear;
 
   body {
     color: #fff;
@@ -29,5 +30,5 @@ html.u-dark-mode {
 }
 
 body {
-  transition: 0.15s all linear;
+  // transition: 0.15s all linear;
 }

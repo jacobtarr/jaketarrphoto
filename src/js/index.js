@@ -2,10 +2,13 @@ import Alpine from 'alpinejs';
 import '../css/index.scss';
 import { initializeFlickity, sliderData } from './flickitySetup';
 
-// Define your Alpine.js state for the header
 function headerState() {
   return {
     darkMode: JSON.parse(localStorage.getItem('darkMode')) || false,
+    init() {
+      // Ensure the class is applied correctly on page load
+      document.documentElement.classList.toggle('u-dark-mode', this.darkMode);
+    },
     toggleDarkMode() {
       this.darkMode = !this.darkMode;
       localStorage.setItem('darkMode', JSON.stringify(this.darkMode));
@@ -24,6 +27,7 @@ window.sliderData = sliderData;
 
 // Initialize Alpine.js
 document.addEventListener('DOMContentLoaded', () => {
+  Alpine.data('headerState', headerState);
   Alpine.data('sliderData', sliderData);
   Alpine.start();
 });

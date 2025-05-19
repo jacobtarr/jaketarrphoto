@@ -49,6 +49,7 @@ export default {
         lighterGray: '#F5F5F5', // Background of callout boxes
         darkGray: '#999999', // Dark gray for callout box titles
         mediumGray: '#BBBBBB', // Rarely used gray
+        offBlack: '#232323', // Opposite of lightGray
         brands: {
           facebook: '#1877f2',
           twitter: '#1da1f2',

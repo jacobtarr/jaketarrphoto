@@ -1,0 +1,23 @@
+.c-header {
+  @apply w-full py-4 border-b border-lightGray bg-white;
+
+  html.u-dark-mode & {
+    @apply bg-black border-offBlack;
+  }
+  
+  &__icons {
+    html.u-dark-mode & {
+      svg path {
+        stroke: white;
+      }
+    }
+  }
+}
+
+.c-logo {
+  html.u-dark-mode & {
+    &__j {
+      fill: white;
+    }
+  }
+}

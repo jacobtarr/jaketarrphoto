@@ -56,8 +56,8 @@ export function sliderData() {
 
     updateActiveContent() {
       const activeSlide = this.slides[this.currentIndex];
-      document.querySelector('.active-title').innerText = activeSlide.title;
-      document.querySelector('.active-location').innerText = activeSlide.location;
+      document.querySelector('.c-active-title').innerText = activeSlide.title;
+      document.querySelector('.c-active-location').innerText = activeSlide.location;
     },
   };
 }

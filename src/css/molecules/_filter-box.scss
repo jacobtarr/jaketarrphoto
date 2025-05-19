@@ -1,9 +1,24 @@
+.c-filter-sidebar {
+  .c-reset-button {
+    position: absolute;
+    right: 0;
+  }
+}
+
 .c-filter-box {
   @apply px-5 pt-5 pb-8 bg-lighterGray;
+
+  html.u-dark-mode & {
+    @apply bg-offBlack;
+  }
 }
 
 .c-filter-section {
   &__title {
     @apply text-sm font-bold text-darkGray pb-2 border-b border-lightGray;
+
+    html.u-dark-mode & {
+      @apply border-offBlack;
+    }
   }
 }

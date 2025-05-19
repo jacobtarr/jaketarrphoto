@@ -1,4 +1,4 @@
-dateModified: 1733021855
+dateModified: 1735581538
 email:
   fromEmail: $CRAFT_EMAIL_SYSTEM
   fromName: $CRAFT_EMAIL_SYSTEM
@@ -84,6 +84,7 @@ meta:
     a1898536-62a3-49b5-946b-baae1b1c79fa: Location # Location
     ac26babf-e061-425b-851b-465499715d7f: 'Date Taken' # Date Taken
     b4bc8ded-4c1d-49ff-9fa2-e5f3dba0fe78: New # New
+    b5a06eb2-34c7-4d6a-b24a-5203601a2bea: Medium # Medium
     b28d4120-dd8f-47c8-9968-e484ce2daf49: 'Split Content Block' # Split Content Block
     cb27dbe3-1802-4914-bbe2-7a4a53f42e1d: 'Featured Works Photos' # Featured Works Photos
     cc37a9f9-6845-4a61-bf7b-abc70fd83aae: Large # Large

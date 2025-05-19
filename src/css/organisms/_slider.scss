@@ -108,6 +108,10 @@
 
   &__number {
     @apply text-lightGray leading-none font-bold self-start w-full;
+
+    html.u-dark-mode & {
+      @apply text-darkGray;
+    }
   }
 
   &__inner {
@@ -116,6 +120,14 @@
 
   &__info {
     @apply self-end w-full;
+  }
+}
+
+.c-active-location {
+  @apply text-mediumGray;
+
+  html.u-dark-mode & {
+    @apply text-darkGray;
   }
 }
 
@@ -132,6 +144,10 @@
     top: 0;
     right: 0;
     bottom: 0;
+
+    html.u-dark-mode & {
+      background-color: black;
+    }
   }
 
   &::after {
@@ -143,5 +159,9 @@
     top: 0;
     right: -1.25rem;
     bottom: 0;
+
+    html.u-dark-mode & {
+      background-color: black;
+    }
   }
 }
