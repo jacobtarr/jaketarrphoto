@@ -9,6 +9,7 @@ export function initializeFlickity() {
     wrapAround: true,
     pageDots: false,
     prevNextButtons: true,
+    lazyLoad: 5
   });
 
   // Dispatch a custom event on slide change

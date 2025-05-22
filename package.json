@@ -6,14 +6,17 @@
   "scripts": {
     "dev": "vite --port 3000",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "postinstall": "patch-package"
   },
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/typography": "^0.5.15",
     "alpinejs": "^3.13.8",
     "autoprefixer": "^10.4.19",
+    "patch-package": "^8.0.0",
     "postcss": "^8.4.38",
+    "postinstall-postinstall": "^2.1.0",
     "rollup": "^4.28.0",
     "rollup-plugin-copy": "^3.5.0",
     "sass": "^1.78.0",

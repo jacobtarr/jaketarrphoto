@@ -4,8 +4,14 @@
   html.u-dark-mode & {
     @apply bg-black border-offBlack;
   }
+
+  &__mobile-wrapper {
+    @apply relative;
+  }
   
   &__icons {
+    @apply flex items-center;
+
     html.u-dark-mode & {
       svg path {
         stroke: white;
@@ -21,3 +27,83 @@
     }
   }
 }
+
+.c-hamburger {
+  position: relative;
+  z-index: 60;
+}
+
+// Hamburger Overrides
+.hamburger {
+  padding: 0;
+  display: flex;
+  align-items: center;
+
+  &:hover,
+  &.is-active {
+    opacity: 1;
+  }
+
+  &-inner,
+  &-inner::before,
+  &-inner::after {
+    width: 30px;
+    height: 2px;
+    border-radius: 0;
+  }
+
+  &-inner {
+    margin-top: 0;
+    &::before {
+      top: -8px;
+    }
+    &::after {
+      bottom: -8px;
+    }
+  }
+}
+
+.hamburger-box {
+  height: 20px;
+  width: 30px;
+}
+
+.c-mobile-menu {
+  &.is-active {
+    .c-mobile-nav {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .hamburger {
+      &-inner,
+      &-inner::before,
+      &-inner::after {
+        background-color: white;
+      }
+    }
+  }
+
+  
+}
+
+.c-mobile-nav {
+  @apply bg-black;
+
+  position: fixed;
+  opacity: 0;
+  visibility: hidden;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 50;
+
+  &__list {
+    > li {
+      > a {
+      }
+    }
+  }
+}
+

@@ -17,8 +17,8 @@ export default {
       padding: '20px', // For padding around the container
       screens: {
         lg: '1140px', // Adjust as needed for desktop views, this can change based on your Figma setup
-        xl: '1440px',
-        '2xl': '1440px', // To keep it the same for larger screens
+        xl: '1400px',
+        '2xl': '1400px', // To keep it the same for larger screens
       },
     },
     screens: {
@@ -146,6 +146,13 @@ export default {
   ],
   safelist: [
     ...generateGridClasses(),
+    // 🍔 Hamburger classes
+    'hamburger',
+    'hamburger--arrow',
+    'hamburger--arrow-r',
+    'hamburger-box',
+    'hamburger-inner',
+    'is-active',
   ],
   content: [
     './templates/**/*.{twig,html,js}',
