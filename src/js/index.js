@@ -4,16 +4,23 @@ import { initializeFlickity, sliderData } from './flickitySetup';
 
 function headerState() {
   return {
+    open: false, // <-- this is needed!
     darkMode: JSON.parse(localStorage.getItem('darkMode')) || false,
+
     init() {
-      // Ensure the class is applied correctly on page load
       document.documentElement.classList.toggle('u-dark-mode', this.darkMode);
+
+      this.$watch('open', value => {
+        document.body.classList.toggle('mobile-menu-is-active', value);
+      });
     },
+
     toggleDarkMode() {
       this.darkMode = !this.darkMode;
       localStorage.setItem('darkMode', JSON.stringify(this.darkMode));
       document.documentElement.classList.toggle('u-dark-mode', this.darkMode);
     },
+
     isActive(page) {
       return window.location.pathname.includes(page);
     },

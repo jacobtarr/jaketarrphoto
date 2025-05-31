@@ -3,41 +3,42 @@
 {% block site %}
 
   <section class="c-page container">
-    <div class="c-page-grid-container grid grid-cols-2 sm:grid-cols-18 gap-4">
-      <div class="col-span-2 sm:col-span-16 sm:col-start-2 space-y-12">
-        <div class="c-page-grid grid grid-cols-2 md:grid-cols-12 gap-[60px]">
-          {% set leftColumnWidth = entry.leftColumnWidth|number %}
-          {% set colMap = {
-            4: 'md:col-span-4',
-            5: 'md:col-span-5',
-            6: 'md:col-span-6',
-            7: 'md:col-span-7',
-            8: 'md:col-span-8',
-            9: 'md:col-span-9'
-          } %}
+    <div class="c-page-grid-container grid sm:grid-cols-2 lg:grid-cols-16 gap-[60px]">
+        
+      {% set leftColumnWidth = entry.leftColumnWidth|number %}
+      {% set colMap = {
+        4: ' md:col-span-4',
+        6: ' md:col-span-6',
+        8: ' md:col-span-8',
+        10: ' md:col-span-10',
+        12: ' md:col-span-12'
+      } %}
 
-          {# Check if leftColumnWidth is within the expected range and provide fallback if needed #}
-          {% set leftColClass = colMap[leftColumnWidth] ?? 'lg:col-span-6' %}
-          {% set rightColClass = colMap[12 - leftColumnWidth] ?? 'lg:col-span-6' %}
+      {# Check if leftColumnWidth is within the expected range and provide fallback if needed #}
+      {% set leftColClass = colMap[leftColumnWidth] ?? ' lg:col-span-8' %}
+      {% set rightColClass = colMap[16 - leftColumnWidth] ?? ' lg:col-span-8' %}
 
-          <div class="c-page-left-column col-span-2 {{ leftColClass }}">
-            <div class="c-page-left-column__inner space-y-7">
-              {% for block in entry.leftColumnContent.all() %}
-                {% include '_blocks/' ~ block.type ~ 'Block.twig' with { block: block } %}
-              {% endfor %}
-            </div>
-          </div>
+      {# Check if left or right column is sticky #}
+      {% set sticky = entry.splitContentBlockColumnStickiness ?? 'none' %}
+      {% set leftStickyClass = sticky == 'leftColumn' ? ' sticky top-4' : '' %}
+      {% set rightStickyClass = sticky == 'rightColumn' ? ' sticky top-4' : '' %}
 
-          <div class="c-page-right-column col-span-2 {{ rightColClass }}">
-            <div class="c-page-right-column__inner space-y-7">
-              {% for block in entry.rightColumnContent.all() %}
-                {% include '_blocks/' ~ block.type ~ 'Block.twig' with { block: block } %}
-              {% endfor %}
-            </div>
-          </div>
-
-        </div>        
+      <div class="c-page-left-column sm:col-span-1{{ leftColClass }}">
+        <div class="c-page-left-column__inner space-y-7{{ leftStickyClass }}">
+          {% for block in entry.leftColumnContent.all() %}
+            {% include '_blocks/' ~ block.type ~ 'Block.twig' with { block: block } %}
+          {% endfor %}
+        </div>
       </div>
+
+      <div class="c-page-right-column sm:col-span-1{{ rightColClass }}">
+        <div class="c-page-right-column__inner space-y-7{{ rightStickyClass }}">
+          {% for block in entry.rightColumnContent.all() %}
+            {% include '_blocks/' ~ block.type ~ 'Block.twig' with { block: block } %}
+          {% endfor %}
+        </div>
+      </div>
+
     </div>
   </section>
 

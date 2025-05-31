@@ -4,13 +4,19 @@
 {% set subheadingWithButtonClasses = subheading.button is defined and subheading.button ? ' flex justify-between items-center' : '' %}
 
 {% if subheading.text %}
-  <div class="o-subheading{{ underlineClass }}{{ subheadingWithButtonClasses }}">
+  <div class="o-subheading{{ underlineClass }}{{ subheadingWithButtonClasses }}{{ additionalClasses }}">
     {% set titleWords = subheading.text|split(' ') %}
-    <{{ subheadingTag }} class="text-3xl leading-tight{{ additionalClasses }}">
+    <{{ subheadingTag }} class="text-3xl leading-tight">
+      {# Setting highlightLast to false will also delete period #}
+      {% set highlightLast = subheading.highlightLast is not defined or subheading.highlightLast %}
       {% for word in titleWords %}
         {% if loop.last %}
           {% if titleWords|length > 1 %}
-            <span class="text-red">{{ word|raw ~ '.' }}</span>
+            {% if highlightLast %}
+              <span class="text-red">{{ word|raw ~ '.' }}</span>
+            {% else %}
+              {{ word|raw }}
+            {% endif %}
           {% else %}
             {{ word|raw ~ '.' }}
           {% endif %}

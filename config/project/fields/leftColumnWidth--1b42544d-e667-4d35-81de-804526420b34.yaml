@@ -1,6 +1,6 @@
 columnSuffix: null
 handle: leftColumnWidth
-instructions: 'The left and right column width each have a grid width spanning 6 columns each. Choose whether to make the left column smaller or larger. The right column will expand or shrink based on the left column''s width.'
+instructions: 'The left and right column width each have a grid width spanning 8 columns each. Choose whether to make the left column smaller or larger. The right column will expand or shrink based on the left column''s width.'
 name: 'Left Column Width'
 searchable: false
 settings:
@@ -20,10 +20,10 @@ settings:
       __assoc__:
         -
           - label
-          - '5'
+          - '6'
         -
           - value
-          - '5'
+          - '6'
         -
           - default
           - ''
@@ -31,10 +31,10 @@ settings:
       __assoc__:
         -
           - label
-          - '6'
+          - '8'
         -
           - value
-          - '6'
+          - '8'
         -
           - default
           - '1'
@@ -42,10 +42,10 @@ settings:
       __assoc__:
         -
           - label
-          - '7'
+          - '10'
         -
           - value
-          - '7'
+          - '10'
         -
           - default
           - ''
@@ -53,10 +53,10 @@ settings:
       __assoc__:
         -
           - label
-          - '8'
+          - '12'
         -
           - value
-          - '8'
+          - '12'
         -
           - default
           - ''

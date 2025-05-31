@@ -1,5 +1,18 @@
 .c-header {
-  @apply w-full py-4 border-b border-lightGray bg-white;
+  height: 63px;
+  position: relative;
+  @apply w-full py-4 bg-white;
+
+  &::after {
+    content: '';
+    height: 1px;
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    z-index: 80;
+    
+    @apply bg-lightGray;
+  }
 
   html.u-dark-mode & {
     @apply bg-black border-offBlack;
@@ -21,6 +34,9 @@
 }
 
 .c-logo {
+  min-width: 63px;
+  @apply relative z-[70];
+
   html.u-dark-mode & {
     &__j {
       fill: white;
@@ -42,6 +58,12 @@
   &:hover,
   &.is-active {
     opacity: 1;
+  }
+
+  &.is-active {
+    &:hover {
+      opacity: 1;
+    }
   }
 
   &-inner,
@@ -68,42 +90,81 @@
   width: 30px;
 }
 
-.c-mobile-menu {
-  &.is-active {
+body {
+  &.mobile-menu-is-active {
+    overflow-y: hidden;
     .c-mobile-nav {
       opacity: 1;
-      visibility: visible;
+      pointer-events: auto;
+
+      &::before {
+        opacity: 1;
+        pointer-events: auto;
+      }
+    }
+
+    .c-mobile-nav__inner {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .c-logo {
+      h1 {
+        color: white;
+      }
+
+      &__j {
+        fill: white;
+      }
     }
 
     .hamburger {
-      &-inner,
-      &-inner::before,
-      &-inner::after {
-        background-color: white;
+      &.is-active {
+        .hamburger-inner,
+        .hamburger-inner::before,
+        .hamburger-inner::after {
+          background-color: white;
+        }
       }
     }
-  }
-
-  
+  }  
 }
 
 .c-mobile-nav {
-  @apply bg-black;
-
   position: fixed;
-  opacity: 0;
-  visibility: hidden;
   width: 100%;
   top: 0;
   left: 0;
   height: 100vh;
   z-index: 50;
 
-  &__list {
-    > li {
-      > a {
-      }
-    }
+  &::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: auto;
+    right: 0;
+    transition: 0.15s opacity linear;
+    opacity: 0;
+    pointer-events: none;
+    @apply bg-black;
+  }
+
+  &__inner {
+    position: relative;
+    z-index: 60;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+    transition-delay: 0.1s;
+    @apply mt-[63px] pt-5;
+  }
+
+  .o-subheading {
+    @apply text-darkGrayOpposite;
   }
 }
 

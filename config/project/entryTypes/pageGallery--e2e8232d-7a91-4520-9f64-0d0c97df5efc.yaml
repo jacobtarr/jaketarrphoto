@@ -72,12 +72,12 @@ fieldLayouts:
         userCondition: null
 handle: pageGallery
 hasTitleField: true
-icon: ''
+icon: null
 name: 'Page Gallery'
 showSlugField: true
 showStatusField: true
 slugTranslationKeyFormat: null
 slugTranslationMethod: site
-titleFormat: ''
+titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site

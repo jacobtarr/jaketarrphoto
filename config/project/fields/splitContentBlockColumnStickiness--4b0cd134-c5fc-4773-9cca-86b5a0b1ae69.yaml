@@ -1,0 +1,43 @@
+columnSuffix: null
+handle: splitContentBlockColumnStickiness
+instructions: 'Choose whether or not to make the left or right column sticky. "None" is the default option.'
+name: 'Split Content Block Column Stickiness'
+searchable: false
+settings:
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - None
+        -
+          - value
+          - none
+        -
+          - default
+          - '1'
+    -
+      __assoc__:
+        -
+          - label
+          - 'Left Column'
+        -
+          - value
+          - leftColumn
+        -
+          - default
+          - ''
+    -
+      __assoc__:
+        -
+          - label
+          - 'Right Column'
+        -
+          - value
+          - rightColumn
+        -
+          - default
+          - ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\RadioButtons

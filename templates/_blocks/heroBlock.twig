@@ -1,7 +1,7 @@
 {% import '_components/atoms/image.twig' as img %}
 
 <section class="c-hero-container container">
-  <div class="c-hero grid grid-cols-18 gap-4">
+  <div class="c-hero grid grid-cols-16 gap-4">
 
     {# First Image (8 columns wide) #}
     <div class="c-hero__first-col col-span-8">
@@ -36,7 +36,7 @@
     </div>
 
     {# Second Image (5 columns wide) #}
-    <div class="c-hero__second-col col-span-5">
+    <div class="c-hero__second-col col-span-4">
       {% set secondImage = block.heroBlockPhotos[1] %}
       {% include '_components/molecules/photo-block.twig' with {
         "photo": {
@@ -49,7 +49,7 @@
     </div>
 
     {# Two stacked images (5 columns wide) #}
-    <div class="c-hero__third-col col-span-5 space-y-5">
+    <div class="c-hero__third-col col-span-4 space-y-5">
       {% set thirdImage = block.heroBlockPhotos[2] %}
       {% include '_components/molecules/photo-block.twig' with {
         "photo": {

@@ -16,11 +16,11 @@
     <div class="c-slider-section">
       <div class="c-slider-grid grid grid-cols-16 gap-5">
         {# Left Content Column #}
-        <div class="c-slide-content-container col-span-4">
-          <div class="c-slide-content text-right">
+        <div class="c-slide-content-container col-span-16 md:col-span-4">
+          <div class="c-slide-content md:text-right">
             <div class="c-slide-content__inner">
               <div class="c-slide-content__number text-6xl" x-text="(currentIndex + 1).toString().padStart(2, '0')"></div>
-              <div class="c-slide-content__info space-y-8">
+              <div class="c-slide-content__info space-y-4 md:space-y-8">
                 <div class="space-y-2">
                   <h4 class="c-active-title font-bold leading-tight text-2xl"></h4>
                   <p class="c-active-location font-sans font-bold"></p>
@@ -37,8 +37,8 @@
           </div>
         </div>
 
-        {# Flickity Slider Column #}
-        <div class="c-slider-container col-span-12 relative">
+        {# Flickity/Right Slider Column #}
+        <div class="c-slider-container col-span-16 md:col-span-12 relative">
           <div class="c-slider">
             {% set photos = craft.entries.section('photos').limit(6).orderBy('postDate desc').all() %}
             {% for photoEntry in photos %}

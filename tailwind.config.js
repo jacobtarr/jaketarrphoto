@@ -17,8 +17,8 @@ export default {
       padding: '20px', // For padding around the container
       screens: {
         lg: '1140px', // Adjust as needed for desktop views, this can change based on your Figma setup
-        xl: '1400px',
-        '2xl': '1400px', // To keep it the same for larger screens
+        xl: '1340px',
+        '2xl': '1340px', // To keep it the same for larger screens
       },
     },
     screens: {
@@ -49,6 +49,7 @@ export default {
         lighterGray: '#F5F5F5', // Background of callout boxes
         darkGray: '#999999', // Dark gray for callout box titles
         mediumGray: '#BBBBBB', // Rarely used gray
+        darkGrayOpposite: '#666666', // Opposite of darkGray
         offBlack: '#232323', // Opposite of lightGray
         brands: {
           facebook: '#1877f2',

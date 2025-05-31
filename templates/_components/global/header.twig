@@ -1,4 +1,7 @@
-<header x-data="headerState()" x-init="init" class="c-header w-full py-4 border-b border-lightgray bg-white">
+<header 
+  x-data="headerState" 
+  x-init="init(); $watch('open', value => document.body.classList.toggle('mobile-menu-is-active', value))" 
+  class="c-header w-full py-4 border-b border-lightgray bg-white">
   <div class="container mx-auto grid grid-cols-12 items-center justify-between">
     <a href="/" class="c-logo col-span-3 flex items-center space-x-3">
       {% include '_components/atoms/icons/logo.svg' %}
@@ -26,13 +29,13 @@
         </button>
       </div>
 
-      <div x-data="{ open: false }" :class="{ 'is-active': open }" class="c-mobile-menu">
+      <div :class="{ 'is-active': open }" class="c-mobile-menu">
         <div class="c-hamburger md:hidden flex">
           <button 
-            @click="open = !open" 
-            :class="{ 'is-active': open }" 
-            class="hamburger hamburger--squeeze" 
-            type="button" 
+            @click="open = !open"
+            :class="{ 'is-active': open }"
+            class="hamburger hamburger--squeeze"
+            type="button"
             aria-label="Menu"
             aria-controls="navigation">
             <span class="hamburger-box">
@@ -41,21 +44,43 @@
           </button>
         </div>
 
-        <div class="c-mobile-nav flex md:hidden">
-          <ul class="c-mobile-nav__list">
-            <li>
-              <a href="/about" @click="setActivePage('/about')" class="text-lg font-semibold text-white hover:text-red" :class="{'text-red': isActive('/about')}">About</a>
-            </li>
-            <li>
-              <a href="/portfolio" @click="setActivePage('/portfolio')" class="text-lg font-semibold text-white hover:text-red" :class="{'text-red': isActive('/portfolio')}">Portfolio</a>
-            </li>
-            <li>
-              <a href="/blog" @click="setActivePage('/blog')" class="text-lg font-semibold text-white hover:text-red" :class="{'text-red': isActive('/blog')}">Blog</a>
-            </li>
-            <li>
-              <a href="/contact" @click="setActivePage('/contact')" class="text-lg font-semibold text-white hover:text-red" :class="{'text-red': isActive('/contact')}">Contact</a>
-            </li>
-          </ul>
+        {% set mobileLinkClasses = "text-5xl font-semibold text-white hover:text-red" %}
+
+        <div
+          x-show="open"
+          x-transition.opacity.duration.150ms
+          class="c-mobile-nav flex md:hidden">
+          <div class="c-mobile-nav__inner container space-y-15">
+            <ul class="c-mobile-nav__list space-y-2">
+              <li>
+                <a href="/about" @click="setActivePage('/about')" class="{{ mobileLinkClasses }}" :class="{'text-red': isActive('/about')}">About</a>
+              </li>
+              <li>
+                <a href="/portfolio" @click="setActivePage('/portfolio')" class="{{ mobileLinkClasses }}" :class="{'text-red': isActive('/portfolio')}">Portfolio</a>
+              </li>
+              <li>
+                <a href="/blog" @click="setActivePage('/blog')" class="{{ mobileLinkClasses }}" :class="{'text-red': isActive('/blog')}">Blog</a>
+              </li>
+              <li>
+                <a href="/contact" @click="setActivePage('/contact')" class="{{ mobileLinkClasses }}" :class="{'text-red': isActive('/contact')}">Contact</a>
+              </li>
+            </ul>
+            <div class="c-mobile-nav__footer space-y-2">
+              {% include '_components/atoms/subheading.twig' with {
+                "subheading": {
+                  "tag": "h5",
+                  "underline": false,
+                  "highlightLast": false,
+                  "text": 'Find me on Social Media:'
+                }
+              } %}
+              <ul class="space-y-2">
+                <li><a class="text-3xl font-bold leading-tight text-darkGrayOpposite hover:text-red" href="#">Instagram</a></li>
+                <li><a class="text-3xl font-bold leading-tight text-darkGrayOpposite hover:text-red" href="#">Facebook</a></li>
+              </ul>
+            </div>
+          </div>
+          
         </div>
       </div>
 

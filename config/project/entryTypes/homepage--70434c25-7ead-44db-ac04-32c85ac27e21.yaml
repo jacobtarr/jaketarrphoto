@@ -56,12 +56,12 @@ fieldLayouts:
         userCondition: null
 handle: homepage
 hasTitleField: true
-icon: ''
+icon: null
 name: Homepage
 showSlugField: true
 showStatusField: true
 slugTranslationKeyFormat: null
 slugTranslationMethod: site
-titleFormat: ''
+titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site

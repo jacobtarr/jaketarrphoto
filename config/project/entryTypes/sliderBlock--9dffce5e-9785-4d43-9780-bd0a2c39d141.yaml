@@ -56,12 +56,12 @@ fieldLayouts:
         userCondition: null
 handle: sliderBlock
 hasTitleField: true
-icon: ''
+icon: null
 name: 'Slider Block'
 showSlugField: true
 showStatusField: true
 slugTranslationKeyFormat: null
 slugTranslationMethod: site
-titleFormat: ''
+titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site

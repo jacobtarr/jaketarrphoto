@@ -40,12 +40,12 @@ fieldLayouts:
         userCondition: null
 handle: pageHeader
 hasTitleField: true
-icon: ''
+icon: null
 name: 'Page Header'
 showSlugField: true
 showStatusField: true
 slugTranslationKeyFormat: null
 slugTranslationMethod: site
-titleFormat: ''
+titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site

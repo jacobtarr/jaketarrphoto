@@ -32,9 +32,9 @@
     width: 50px;
     height: 50px;
     transform: none;
-    top: 0;
-    left: 0;
-    position: relative;
+    top: auto;
+    left: auto;
+    position: absolute;
 
     svg {
       display: none;
@@ -53,7 +53,7 @@
     }
 
     &.previous {
-      left: 0;
+      @apply right-[65px] left-auto md:left-0 md:right-auto;
 
       &::before {
         background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCA1MSA1MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjUiIGN5PSIyNSIgcj0iMjQuNSIgdHJhbnNmb3JtPSJtYXRyaXgoMSAxLjI5MjE1ZS0wOSAwLjAxNjU5NTMgMC45OTk4NjIgMCAwKSIgc3Ryb2tlPSJibGFjayIvPgo8cGF0aCBkPSJNMzIuODU2MiAxOC42NTY5TDIwLjI2MDIgMzEuMjUyOU0xOS4yNjUxIDIwLjkzNDNMMTkuNjU2OSAzMS44NTYyTDMwLjU3ODggMzIuMjQ4IiBzdHJva2U9ImJsYWNrIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8L3N2Zz4=");
@@ -67,7 +67,7 @@
     }
 
     &.next {
-      left: 1rem;
+      @apply right-0 left-auto md:left-[65px];
 
       &::before {
         background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCA1MSA1MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjUiIGN5PSIyNSIgcj0iMjQuNSIgdHJhbnNmb3JtPSJtYXRyaXgoMSAxLjI5MjE1ZS0wOSAwLjAxNjU5NTMgMC45OTk4NjIgMCAwKSIgc3Ryb2tlPSJibGFjayIvPgo8cGF0aCBkPSJNMTkuNjU2OSAzMS44NTYxTDMyLjI1MjkgMTkuMjZNMzMuMjQ4IDI5LjU3ODdMMzIuODU2MiAxOC42NTY4TDIxLjkzNDMgMTguMjY1IiBzdHJva2U9ImJsYWNrIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8L3N2Zz4=");
@@ -83,11 +83,11 @@
 }
 
 .c-slide {
-  width: 400px;
-  height: 400px;
   margin-right: 20px;
   opacity: 0.2;
   transition: opacity 0.3s ease-in-out;
+
+  @apply w-[250px] h-[250px] md:w-[400px] md:h-[400px];
 
   &.is-selected {
     opacity: 1;
@@ -101,13 +101,14 @@
 }
 
 .c-slide-content {
-  height: 400px;
   display: flex;
   justify-content: flex-end;
   position: relative;
 
+  @apply md:h-[400px];
+
   &__number {
-    @apply text-lightGray leading-none font-bold self-start w-full;
+    @apply text-lightGray leading-none font-bold self-start w-full hidden md:block;
 
     html.u-dark-mode & {
       @apply text-darkGray;
@@ -134,6 +135,8 @@
 .c-slide-content-container {
   position: relative;
   z-index: 10;
+
+  @apply order-2 md:order-1 md:w-auto w-[250px] md:w-full;
 
   &::before {
     content: '';
@@ -164,4 +167,8 @@
       background-color: black;
     }
   }
+}
+
+.c-slider-container {
+  @apply order-1 md:order-2;
 }

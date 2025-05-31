@@ -1,4 +1,4 @@
-dateModified: 1735581538
+dateModified: 1748645958
 email:
   fromEmail: $CRAFT_EMAIL_SYSTEM
   fromName: $CRAFT_EMAIL_SYSTEM
@@ -19,9 +19,9 @@ fs:
       optimiseUrlPattern: ''
       projectSlug: ''
       securityKey: ''
-      subfolder: jake-photo/staging/blog/
+      subfolder: staging/blog/
     type: servd\AssetStorage\AssetsPlatform\Fs
-    url: 'https://cdn2.assets-servd.host/'
+    url: 'https://jake-photo.files.svdcdn.com'
   portfolioImagesFilesystem:
     hasUrls: true
     name: 'Portfolio Images Filesystem'
@@ -33,9 +33,9 @@ fs:
       optimiseUrlPattern: ''
       projectSlug: ''
       securityKey: ''
-      subfolder: jake-photo/staging/portfolio/
+      subfolder: staging/portfolio/
     type: servd\AssetStorage\AssetsPlatform\Fs
-    url: 'https://cdn2.assets-servd.host/'
+    url: 'https://jake-photo.files.svdcdn.com'
 meta:
   __names__:
     0b524177-94b9-4dc7-a491-f3f390810261: 'Contact Form' # Contact Form
@@ -45,6 +45,7 @@ meta:
     03abafd4-804b-4730-a878-f77b4520e502: 'Page Gallery Images' # Page Gallery Images
     3d0151b1-3180-4665-8e2f-be7c0d1f1452: 'Two Column Block Layout' # Two Column Block Layout
     3d2ab139-6eab-4ce4-a7c7-023881701cfd: 'Right Column Content' # Right Column Content
+    4b0cd134-c5fc-4773-9cca-86b5a0b1ae69: 'Split Content Block Column Stickiness' # Split Content Block Column Stickiness
     5f67fcef-4f51-4832-a46c-d1f9fe66abc0: 'Page Form' # Page Form
     6b800eda-1b70-4f2b-90dc-4ea35a2a6894: 'Page Spacer' # Page Spacer
     7b662bcd-ea91-4c91-86ce-c60348c664d1: Pages # Pages
@@ -84,7 +85,6 @@ meta:
     a1898536-62a3-49b5-946b-baae1b1c79fa: Location # Location
     ac26babf-e061-425b-851b-465499715d7f: 'Date Taken' # Date Taken
     b4bc8ded-4c1d-49ff-9fa2-e5f3dba0fe78: New # New
-    b5a06eb2-34c7-4d6a-b24a-5203601a2bea: Medium # Medium
     b28d4120-dd8f-47c8-9968-e484ce2daf49: 'Split Content Block' # Split Content Block
     cb27dbe3-1802-4914-bbe2-7a4a53f42e1d: 'Featured Works Photos' # Featured Works Photos
     cc37a9f9-6845-4a61-bf7b-abc70fd83aae: Large # Large
@@ -237,19 +237,11 @@ plugins:
       clearCachesOnSave: never
       disableDynamic: ''
       disableTransforms: ''
-      fsMaps:
-        __assoc__:
-          -
-            - blogImagesFilesystem
-            - none
-          -
-            - portfolioImagesFilesystem
-            - none
       fsMapsEnabled: ''
       imageAutoConversion: webp
       injectCors: '1'
-      projectSlug: jake-photo
-      securityKey: qSWF7L2l1AIBjtU4KMlKl7P1YEXOvIlU
+      projectSlug: $SERVD_PROJECT_SLUG
+      securityKey: $SERVD_SECURITY_KEY
       suppressWarnings: ''
       useLocalVolumes: false
   sprig:

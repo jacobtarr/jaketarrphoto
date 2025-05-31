@@ -88,12 +88,12 @@ fieldLayouts:
         userCondition: null
 handle: pageSubtitleWithContent
 hasTitleField: true
-icon: ''
+icon: null
 name: 'Page Subtitle with Content'
 showSlugField: true
 showStatusField: true
 slugTranslationKeyFormat: null
 slugTranslationMethod: site
-titleFormat: ''
+titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site

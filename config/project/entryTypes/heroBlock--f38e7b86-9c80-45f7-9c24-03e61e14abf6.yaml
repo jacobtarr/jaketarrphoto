@@ -72,12 +72,12 @@ fieldLayouts:
         userCondition: null
 handle: heroBlock
 hasTitleField: true
-icon: ''
+icon: null
 name: 'Hero Block'
 showSlugField: true
 showStatusField: true
 slugTranslationKeyFormat: null
 slugTranslationMethod: site
-titleFormat: ''
+titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site

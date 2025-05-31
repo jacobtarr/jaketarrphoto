@@ -120,12 +120,12 @@ fieldLayouts:
         userCondition: null
 handle: twoColumnBlock
 hasTitleField: true
-icon: ''
+icon: null
 name: 'Two Column Block'
 showSlugField: true
 showStatusField: true
 slugTranslationKeyFormat: null
 slugTranslationMethod: site
-titleFormat: ''
+titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site

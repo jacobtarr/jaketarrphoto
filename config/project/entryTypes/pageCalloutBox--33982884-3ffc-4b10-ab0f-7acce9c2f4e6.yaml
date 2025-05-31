@@ -56,12 +56,12 @@ fieldLayouts:
         userCondition: null
 handle: pageCalloutBox
 hasTitleField: true
-icon: ''
+icon: null
 name: 'Page Callout Box'
 showSlugField: true
 showStatusField: true
 slugTranslationKeyFormat: null
 slugTranslationMethod: site
-titleFormat: ''
+titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
