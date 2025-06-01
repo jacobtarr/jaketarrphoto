@@ -8,6 +8,8 @@ dist
 .sass-cache/*
 .sass-cache
 *.css.map
+!src/
+!src/css/
 !src/css/vendor/
 
 # Javascript
