@@ -1,0 +1,25 @@
+columnSuffix: null
+handle: pageBuilderFullColumnContent
+instructions: null
+name: 'Page Builder: Full Column Content'
+searchable: false
+settings:
+  createButtonLabel: null
+  entryTypes:
+    - f0a7b6f4-0e83-455e-aba3-24ce98fa11dc # Page Builder: Header Block
+    - 452561b9-4d58-4e06-abbb-ec181d217e97 # Page Builder: Subtitle with Content Block
+    - 33982884-3ffc-4b10-ab0f-7acce9c2f4e6 # Page Builder: Callout Box Block
+    - e2e8232d-7a91-4520-9f64-0d0c97df5efc # Page Builder: Gallery Block
+    - eb0ea69f-509b-47a6-87cb-c9f3ad376908 # Page Builder: Form Block
+    - b6b3dfbf-a51c-4b72-a0f4-13156ea28fe1 # Page Builder: Spacer Block
+  includeTableView: false
+  maxEntries: null
+  minEntries: null
+  pageSize: 50
+  propagationKeyFormat: null
+  propagationMethod: all
+  showCardsInGrid: false
+  viewMode: cards
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Matrix

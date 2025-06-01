@@ -14,10 +14,10 @@ scope:
   - 'nestedentryfields.36fcd9d8-6671-40b1-887b-84c395c8c6da:read' # Page Gallery Caption
   - 'nestedentryfields.f9de5f77-9be5-458f-82a1-6460ca454203:read' # Two Column Block Content
   - 'nestedentryfields.dd9022f8-c938-4870-87fc-85b9cca37611:read' # Homepage Blocks
-  - 'nestedentryfields.99253d82-2d49-4285-8539-155472cf8207:read' # Left Column Content
+  - 'nestedentryfields.99253d82-2d49-4285-8539-155472cf8207:read' # Page Builder: Left Column Content
   - 'nestedentryfields.758857ca-7d33-49af-810b-cb347619a61f:read' # Page Callout Columns
   - 'nestedentryfields.9f019a39-8a23-453b-82d4-e78c041c1495:read' # Page Layout Blocks
-  - 'nestedentryfields.3d2ab139-6eab-4ce4-a7c7-023881701cfd:read' # Right Column Content
+  - 'nestedentryfields.3d2ab139-6eab-4ce4-a7c7-023881701cfd:read' # Page Builder: Right Column Content
   - 'volumes.86ad037a-07c7-4d8f-90d3-e4fa9a31c7ef:read' # Portfolio Images
   - 'volumes.f7ba018a-381c-4d09-8f22-6a1ab3e317cd:read' # Blog Images
   - 'usergroups.everyone:read'

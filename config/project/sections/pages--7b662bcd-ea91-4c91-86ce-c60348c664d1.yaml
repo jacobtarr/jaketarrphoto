@@ -1,7 +1,7 @@
 defaultPlacement: end
 enableVersioning: true
 entryTypes:
-  - b28d4120-dd8f-47c8-9968-e484ce2daf49 # Split Content Block
+  - 54f6c8ff-d416-4233-8710-3ad76705b954 # Page Layout
 handle: pages
 maxAuthors: 1
 name: Pages
@@ -12,11 +12,11 @@ previewTargets:
         - label
         - Page
       -
-        - refresh
-        - '1'
-      -
         - urlFormat
         - '{url}'
+      -
+        - refresh
+        - '1'
 propagationMethod: all
 siteSettings:
   08c386f4-5a41-4c9f-8282-f6785af06bfc: # $CRAFT_SITE_NAME

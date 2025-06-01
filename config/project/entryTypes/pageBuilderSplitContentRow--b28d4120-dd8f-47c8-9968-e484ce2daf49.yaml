@@ -38,7 +38,7 @@ fieldLayouts:
           -
             dateAdded: '2025-05-30T22:59:18+00:00'
             elementCondition: null
-            fieldUid: 4b0cd134-c5fc-4773-9cca-86b5a0b1ae69 # Split Content Block Column Stickiness
+            fieldUid: 4b0cd134-c5fc-4773-9cca-86b5a0b1ae69 # Page Builder Option: Column Stickiness
             handle: null
             includeInCards: false
             instructions: null
@@ -54,7 +54,7 @@ fieldLayouts:
           -
             dateAdded: '2024-10-20T20:43:47+00:00'
             elementCondition: null
-            fieldUid: 1b42544d-e667-4d35-81de-804526420b34 # Left Column Width
+            fieldUid: 1b42544d-e667-4d35-81de-804526420b34 # Page Builder Option: Left Column Width
             handle: null
             includeInCards: false
             instructions: null
@@ -70,7 +70,7 @@ fieldLayouts:
           -
             dateAdded: '2024-09-07T02:03:38+00:00'
             elementCondition: null
-            fieldUid: 99253d82-2d49-4285-8539-155472cf8207 # Left Column Content
+            fieldUid: 99253d82-2d49-4285-8539-155472cf8207 # Page Builder: Left Column Content
             handle: null
             includeInCards: false
             instructions: null
@@ -86,7 +86,7 @@ fieldLayouts:
           -
             dateAdded: '2024-09-07T02:03:38+00:00'
             elementCondition: null
-            fieldUid: 3d2ab139-6eab-4ce4-a7c7-023881701cfd # Right Column Content
+            fieldUid: 3d2ab139-6eab-4ce4-a7c7-023881701cfd # Page Builder: Right Column Content
             handle: null
             includeInCards: false
             instructions: null
@@ -102,10 +102,10 @@ fieldLayouts:
         name: Content
         uid: 18240407-4bd9-4bf6-beaf-52fbb6fef8d1
         userCondition: null
-handle: splitContentBlock
+handle: pageBuilderSplitContentRow
 hasTitleField: true
-icon: table-layout
-name: 'Split Content Block'
+icon: table-rows
+name: 'Page Builder: Split Content Row'
 showSlugField: true
 showStatusField: true
 slugTranslationKeyFormat: null

@@ -1,4 +1,5 @@
-<div class="c-page-block {{ additionalClasses|default('') }}">
+{% set handle = block.type.handle|replace({'pageBuilder': '', 'Block': ''})|kebab %}
+<div class="c-page-block c-page-block--{{ handle }}{{ additionalClasses|default('') ? ' ' ~ additionalClasses : '' }}">
   {% block pageBlockContent %}
   {% endblock %}
 </div>

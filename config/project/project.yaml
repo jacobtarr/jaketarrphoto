@@ -1,4 +1,4 @@
-dateModified: 1748645958
+dateModified: 1748812409
 email:
   fromEmail: $CRAFT_EMAIL_SYSTEM
   fromName: $CRAFT_EMAIL_SYSTEM
@@ -39,15 +39,15 @@ fs:
 meta:
   __names__:
     0b524177-94b9-4dc7-a491-f3f390810261: 'Contact Form' # Contact Form
+    00e29050-57a6-4df7-b274-b36a66e19736: 'Page Builder: Full Column Content' # Page Builder: Full Column Content
     1a07dfa1-6719-409b-aae0-4355938489fa: Overview # Overview
-    1b42544d-e667-4d35-81de-804526420b34: 'Left Column Width' # Left Column Width
+    1b42544d-e667-4d35-81de-804526420b34: 'Page Builder Option: Left Column Width' # Page Builder Option: Left Column Width
     01f1709e-90b6-4a73-a760-fd999f43b328: 'Featured Image' # Featured Image
     03abafd4-804b-4730-a878-f77b4520e502: 'Page Gallery Images' # Page Gallery Images
     3d0151b1-3180-4665-8e2f-be7c0d1f1452: 'Two Column Block Layout' # Two Column Block Layout
-    3d2ab139-6eab-4ce4-a7c7-023881701cfd: 'Right Column Content' # Right Column Content
-    4b0cd134-c5fc-4773-9cca-86b5a0b1ae69: 'Split Content Block Column Stickiness' # Split Content Block Column Stickiness
+    3d2ab139-6eab-4ce4-a7c7-023881701cfd: 'Page Builder: Right Column Content' # Page Builder: Right Column Content
+    4b0cd134-c5fc-4773-9cca-86b5a0b1ae69: 'Page Builder Option: Column Stickiness' # Page Builder Option: Column Stickiness
     5f67fcef-4f51-4832-a46c-d1f9fe66abc0: 'Page Form' # Page Form
-    6b800eda-1b70-4f2b-90dc-4ea35a2a6894: 'Page Spacer' # Page Spacer
     7b662bcd-ea91-4c91-86ce-c60348c664d1: Pages # Pages
     7cfa1850-34c5-4ccc-9135-a2d131dc732e: 'Two Column Block' # Two Column Block
     8b610edc-f2dd-46b6-9597-96fcbb6d302a: Simple # Simple
@@ -61,11 +61,12 @@ meta:
     36fcd9d8-6671-40b1-887b-84c395c8c6da: 'Page Gallery Caption' # Page Gallery Caption
     44da612c-bbaf-434b-bbbb-1668252f0f43: 'Two Column Block Image' # Two Column Block Image
     48aff211-f136-4da9-bea7-1eda25c22145: Homepage # Homepage
-    52aac039-0add-491a-bf95-a4310c1e1a74: 'Page Content' # Page Content
+    54f6c8ff-d416-4233-8710-3ad76705b954: 'Page Layout' # Page Layout
     62cd1ea7-a0c3-4fff-9f57-32d325c6a842: 'Hero Block Photos' # Hero Block Photos
     78cd8c82-7d01-4597-9562-f8383ff843c5: 'Featured Works Block' # Featured Works Block
     79bef8f5-acf1-45ea-b55c-7f7a45909130: State # State
     80e8622f-26e3-4121-8be3-3716c04cd508: Season # Season
+    82a2a030-6246-4333-af89-a21865e574c4: 'Page Builder: Full Content Row' # Page Builder: Full Content Row
     86ad037a-07c7-4d8f-90d3-e4fa9a31c7ef: 'Portfolio Images' # Portfolio Images
     90c2cf62-2b6c-444e-b313-13461f103649: Photos # Photos
     298cea5e-e970-4f91-91b6-21ba893e3458: Photo # Photo
@@ -74,18 +75,20 @@ meta:
     1204bcc0-8378-4dd4-ab64-a4ae43ad533c: Square # Square
     7034c2c9-2683-438f-bf87-296f2b9783a3: 'Two Column Block Link' # Two Column Block Link
     40154e12-d51d-4237-badf-a11bfc0ab075: 'Slider Block Link' # Slider Block Link
+    68416f2f-16cf-49ab-83e7-e6b4b097e19d: 'Two Column Block Mobile Layout' # Two Column Block Mobile Layout
     70434c25-7ead-44db-ac04-32c85ac27e21: Homepage # Homepage
-    99253d82-2d49-4285-8539-155472cf8207: 'Left Column Content' # Left Column Content
-    452561b9-4d58-4e06-abbb-ec181d217e97: 'Page Subtitle with Content' # Page Subtitle with Content
+    99253d82-2d49-4285-8539-155472cf8207: 'Page Builder: Left Column Content' # Page Builder: Left Column Content
+    452561b9-4d58-4e06-abbb-ec181d217e97: 'Page Builder: Subtitle with Content Block' # Page Builder: Subtitle with Content Block
     758857ca-7d33-49af-810b-cb347619a61f: 'Page Callout Columns' # Page Callout Columns
     01914777-7aec-4ffe-b263-513b6e67154f: 'Page Content' # Page Content
     8612363b-d7c9-43e9-993a-b6454190280c: Genre # Genre
-    33982884-3ffc-4b10-ab0f-7acce9c2f4e6: 'Page Callout Box' # Page Callout Box
+    33982884-3ffc-4b10-ab0f-7acce9c2f4e6: 'Page Builder: Callout Box Block' # Page Builder: Callout Box Block
     a985436b-09b0-444a-b956-d68913d3b05e: State # State
     a1898536-62a3-49b5-946b-baae1b1c79fa: Location # Location
     ac26babf-e061-425b-851b-465499715d7f: 'Date Taken' # Date Taken
     b4bc8ded-4c1d-49ff-9fa2-e5f3dba0fe78: New # New
-    b28d4120-dd8f-47c8-9968-e484ce2daf49: 'Split Content Block' # Split Content Block
+    b6b3dfbf-a51c-4b72-a0f4-13156ea28fe1: 'Page Builder: Spacer Block' # Page Builder: Spacer Block
+    b28d4120-dd8f-47c8-9968-e484ce2daf49: 'Page Builder: Split Content Row' # Page Builder: Split Content Row
     cb27dbe3-1802-4914-bbe2-7a4a53f42e1d: 'Featured Works Photos' # Featured Works Photos
     cc37a9f9-6845-4a61-bf7b-abc70fd83aae: Large # Large
     cf585ce0-229d-46cc-ba10-76f2824fd3f7: 'Page Buttons' # Page Buttons
@@ -93,14 +96,15 @@ meta:
     d8fc1056-7a49-4f87-8315-2dde5562d9f7: Season # Season
     d99bf7af-1eb1-4b77-814e-624eeec1a0e3: $CRAFT_SITE_NAME # $CRAFT_SITE_NAME
     dd9022f8-c938-4870-87fc-85b9cca37611: 'Homepage Blocks' # Homepage Blocks
-    e2e8232d-7a91-4520-9f64-0d0c97df5efc: 'Page Gallery' # Page Gallery
+    e2e8232d-7a91-4520-9f64-0d0c97df5efc: 'Page Builder: Gallery Block' # Page Builder: Gallery Block
     e58d17c3-400b-4997-bc46-5215587c062b: Small # Small
-    eb0ea69f-509b-47a6-87cb-c9f3ad376908: 'Page Form' # Page Form
-    f0a7b6f4-0e83-455e-aba3-24ce98fa11dc: 'Page Header' # Page Header
+    eb0ea69f-509b-47a6-87cb-c9f3ad376908: 'Page Builder: Form Block' # Page Builder: Form Block
+    f0a7b6f4-0e83-455e-aba3-24ce98fa11dc: 'Page Builder: Header Block' # Page Builder: Header Block
     f7ba018a-381c-4d09-8f22-6a1ab3e317cd: 'Blog Images' # Blog Images
     f9de5f77-9be5-458f-82a1-6460ca454203: 'Two Column Block Content' # Two Column Block Content
     f38e7b86-9c80-45f7-9c24-03e61e14abf6: 'Hero Block' # Hero Block
     fa0732ba-e924-456d-8e2c-4666006edb64: 'Two Column Block Reverse' # Two Column Block Reverse
+    fbdf5212-75c7-4c55-a84d-1fe336d63dfc: 'Page Builder' # Page Builder
     fcd2475b-f27b-406f-a8a4-96b0bf65fab9: 'Page Spacer' # Page Spacer
 plugins:
   blitz:

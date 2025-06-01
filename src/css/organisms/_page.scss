@@ -1,9 +1,22 @@
 .c-page {
   margin-top: 100px;
+
+  @apply space-y-15;
+}
+
+.c-page-block {
+  @apply space-y-7;
 }
 
 .c-page-section {
   &__content {
     @apply mt-6;
+  }
+}
+
+.c-page-left-column,
+.c-page-right-column {
+  &__inner {
+    @apply space-y-7;
   }
 }

@@ -54,14 +54,14 @@ fieldLayouts:
         name: Content
         uid: 2f0346db-66ce-4f1f-8555-ff57b9ed1da9
         userCondition: null
-handle: pageForm
+handle: pageBuilderFormBlock
 hasTitleField: true
-icon: null
-name: 'Page Form'
+icon: cube
+name: 'Page Builder: Form Block'
 showSlugField: true
 showStatusField: true
 slugTranslationKeyFormat: null
 slugTranslationMethod: site
-titleFormat: null
+titleFormat: ''
 titleTranslationKeyFormat: null
 titleTranslationMethod: site

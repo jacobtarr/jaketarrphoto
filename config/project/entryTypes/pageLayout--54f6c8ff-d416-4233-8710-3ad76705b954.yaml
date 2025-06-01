@@ -1,6 +1,6 @@
 color: null
 fieldLayouts:
-  6a9981d4-7d12-4503-b119-8c213b153a1b:
+  8bb3b683-bc3d-423a-b8e6-42bdcafbef8e:
     tabs:
       -
         elementCondition: null
@@ -10,7 +10,7 @@ fieldLayouts:
             autocomplete: false
             autocorrect: true
             class: null
-            dateAdded: '2024-09-07T02:59:41+00:00'
+            dateAdded: '2025-06-01T19:08:15+00:00'
             disabled: false
             elementCondition: null
             id: null
@@ -31,14 +31,14 @@ fieldLayouts:
             tip: null
             title: null
             type: craft\fieldlayoutelements\entries\EntryTitleField
-            uid: e4ea45d4-662d-4dea-b948-13cca994574c
+            uid: 57f1b6a9-fd9f-4fdd-a183-e6fc49b18082
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2024-09-07T03:03:00+00:00'
+            dateAdded: '2025-06-01T19:13:25+00:00'
             elementCondition: null
-            fieldUid: 758857ca-7d33-49af-810b-cb347619a61f # Page Callout Columns
+            fieldUid: fbdf5212-75c7-4c55-a84d-1fe336d63dfc # Page Builder
             handle: null
             includeInCards: false
             instructions: null
@@ -47,21 +47,21 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 75671d9a-f1cf-42c8-97c0-a469f83a50ad
+            uid: db74c9db-adce-4c5b-86ef-d0b4d34738b6
             userCondition: null
             warning: null
             width: 100
         name: Content
-        uid: 75abc727-4402-4627-8aa2-2da74e42d93a
+        uid: 53f2d80f-7562-45a4-9dcd-a51e8f31a1b0
         userCondition: null
-handle: pageCalloutBox
+handle: pageLayout
 hasTitleField: true
-icon: null
-name: 'Page Callout Box'
+icon: table-layout
+name: 'Page Layout'
 showSlugField: true
 showStatusField: true
 slugTranslationKeyFormat: null
 slugTranslationMethod: site
-titleFormat: null
+titleFormat: ''
 titleTranslationKeyFormat: null
 titleTranslationMethod: site

@@ -25,14 +25,14 @@
         {% endif %}
       {% endfor %}
     </{{ subheadingTag }}>
-  {% endif %}
-
-  {% if subheading.button is defined %}
-    <div class="o-subheading__button">
-      {% include '_components/atoms/button.twig' with {
-        "button": subheading.button
-      } %}
-    </div>
-  {% endif %}
-</div>
+  
+    {% if subheading.button is defined %}
+      <div class="o-subheading__button">
+        {% include '_components/atoms/button.twig' with {
+          "button": subheading.button
+        } %}
+      </div>
+    {% endif %}
+  </div>
+{% endif %}
   

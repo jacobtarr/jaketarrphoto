@@ -38,14 +38,14 @@ fieldLayouts:
         name: Content
         uid: 7e7859b6-fa90-416a-a787-d0d456f9b1c3
         userCondition: null
-handle: pageHeader
+handle: pageBuilderHeaderBlock
 hasTitleField: true
-icon: null
-name: 'Page Header'
+icon: cube
+name: 'Page Builder: Header Block'
 showSlugField: true
 showStatusField: true
 slugTranslationKeyFormat: null
 slugTranslationMethod: site
-titleFormat: null
+titleFormat: ''
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
