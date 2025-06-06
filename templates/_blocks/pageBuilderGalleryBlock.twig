@@ -2,13 +2,23 @@
 
 {% block pageBlockContent %}
   {% import '_components/atoms/image.twig' as img %}
-  <div class="c-page-gallery-grid grid grid-cols-1 md:grid-cols-2 gap-5">
+  {% set layout = block.pageGalleryLayout ?? 'layout1' %}
+
+  {% set gridClass =
+    layout == 'layout1' ? 'md:grid-cols-2' :
+    layout == 'layout2' ? 'md:grid-cols-3' :
+    layout == 'layout3' ? 'md:grid-cols-4' :
+    layout == 'layout4' ? 'md:grid-cols-2' :
+    'md:grid-cols-2' %}
+
+  <div class="c-page-gallery-grid grid grid-cols-1 {{ gridClass }} gap-5">
     {% for image in block.pageGalleryImages %}
-      <div class="col-span-1  {{ loop.first ? 'md:col-span-2' }}">
+      <div class="{% if layout == 'layout4' and loop.first %}md:col-span-2{% else %}col-span-1{% endif %}">
         {{ img.renderImage(image, 800, 1600, image.title) }}
       </div>
     {% endfor %}
   </div>
+
   <div class="c-page-gallery__caption">
     {% include '_components/atoms/rich-text.twig' with {
       "richText": {

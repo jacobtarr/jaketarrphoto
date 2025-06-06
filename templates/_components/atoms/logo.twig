@@ -1,0 +1,8 @@
+{% set additionalClasses = logo.classes is defined and logo.classes ? ' ' ~ logo.classes : '' %}
+
+<a href="/" class="c-logo flex items-center space-x-3{{ additionalClasses }}">
+  {% include '_components/atoms/icons/logo.svg' %}
+  <h1 class="text-xs font-bold leading-3">
+    Jacob Tarr <span class="text-red"><br>Photography.</span>
+  </h1>
+</a>

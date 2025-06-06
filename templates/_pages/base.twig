@@ -20,7 +20,7 @@
         {% set leftStickyClass = sticky == 'leftColumn' ? ' sticky top-4' : '' %}
         {% set rightStickyClass = sticky == 'rightColumn' ? ' sticky top-4' : '' %}
 
-        <div class="c-page-row c-page-row--split-content grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-16 gap-[60px]">
+        <div class="c-page-row c-page-row--split-content grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-16 o-page-gap">
           <div class="c-page-left-column col-span-1{{ leftColClass }}">
             <div class="c-page-left-column__inner{{ leftStickyClass }}">
               {% for block in row.pageBuilderLeftColumnContent.all() %}

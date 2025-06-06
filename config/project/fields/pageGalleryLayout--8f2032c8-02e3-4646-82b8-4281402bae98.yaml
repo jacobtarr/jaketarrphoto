@@ -1,0 +1,54 @@
+columnSuffix: null
+handle: pageGalleryLayout
+instructions: null
+name: 'Page Gallery Layout'
+searchable: false
+settings:
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - 'Layout 1 (Default): 2-column grid'
+        -
+          - value
+          - layout1
+        -
+          - default
+          - '1'
+    -
+      __assoc__:
+        -
+          - label
+          - 'Layout 2: 3-column grid'
+        -
+          - value
+          - layout2
+        -
+          - default
+          - ''
+    -
+      __assoc__:
+        -
+          - label
+          - 'Layout 3: 4-column grid'
+        -
+          - value
+          - layout3
+        -
+          - default
+          - ''
+    -
+      __assoc__:
+        -
+          - label
+          - 'Layout 4: 1 large column + 2-column grid'
+        -
+          - value
+          - layout4
+        -
+          - default
+          - ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\RadioButtons

@@ -1,6 +1,7 @@
 // Import all SCSS files from atoms, molecules, and organisms
 @use './vendor/_hamburgers';
 @use './atoms/_headings';
+@use './atoms/_utility';
 @use './atoms/_button' as button;
 @use './atoms/_text';
 @use './atoms/_form';

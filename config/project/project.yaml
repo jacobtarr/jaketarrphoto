@@ -1,4 +1,4 @@
-dateModified: 1748812409
+dateModified: 1748885958
 email:
   fromEmail: $CRAFT_EMAIL_SYSTEM
   fromName: $CRAFT_EMAIL_SYSTEM
@@ -52,6 +52,7 @@ meta:
     7cfa1850-34c5-4ccc-9135-a2d131dc732e: 'Two Column Block' # Two Column Block
     8b610edc-f2dd-46b6-9597-96fcbb6d302a: Simple # Simple
     08c386f4-5a41-4c9f-8282-f6785af06bfc: $CRAFT_SITE_NAME # $CRAFT_SITE_NAME
+    8f2032c8-02e3-4646-82b8-4281402bae98: 'Page Gallery Layout' # Page Gallery Layout
     8fa86f99-106d-4ca6-81d8-9f080a241f5b: 'Featured Works Images' # Featured Works Images
     9dffce5e-9785-4d43-9780-bd0a2c39d141: 'Slider Block' # Slider Block
     9e513de1-d75e-4e1c-b23d-38cdbe24f060: Genre # Genre
