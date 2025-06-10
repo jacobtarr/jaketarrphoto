@@ -1,9 +1,26 @@
 {% macro renderImage(image, smallWidth, largeWidth, altText, transform = null) %}
-  <img 
-    src="{{ transform ? image.getUrl(transform) : image.getUrl('large') }}"
-    srcset="{% if transform %}{{ image.getUrl(transform) }} 800w{% else %}{{ image.getUrl('small') }} {{ smallWidth }}w, {{ image.getUrl('large') }} {{ largeWidth }}w{% endif %}"
-    sizes="{% if transform %}100vw{% else %}(max-width: 768px) 100vw, 50vw{% endif %}"
-    alt="{{ altText }}"
-    class="w-full h-full object-cover">
+  {% if image %}
+    {% if transform %}
+      <img 
+        src="{{ image.getUrl(transform) }}"
+        srcset="{{ image.getUrl(transform) }} {{ largeWidth }}w"
+        sizes="100vw"
+        alt="{{ altText }}"
+        loading="lazy"
+        class="w-full h-full object-cover"
+      >
+    {% else %}
+      <img 
+        src="{{ image.getUrl({ width: largeWidth, format: 'webp' }) }}"
+        srcset="
+          {{ image.getUrl({ width: smallWidth, format: 'webp' }) }} {{ smallWidth }}w,
+          {{ image.getUrl({ width: largeWidth, format: 'webp' }) }} {{ largeWidth }}w
+        "
+        sizes="(max-width: 768px) 100vw, 50vw"
+        alt="{{ altText }}"
+        loading="lazy"
+        class="w-full h-full object-cover"
+      >
+    {% endif %}
+  {% endif %}
 {% endmacro %}
-

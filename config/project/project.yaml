@@ -1,4 +1,4 @@
-dateModified: 1748885958
+dateModified: 1749531019
 email:
   fromEmail: $CRAFT_EMAIL_SYSTEM
   fromName: $CRAFT_EMAIL_SYSTEM
@@ -242,11 +242,19 @@ plugins:
       clearCachesOnSave: never
       disableDynamic: ''
       disableTransforms: ''
+      fsMaps:
+        __assoc__:
+          -
+            - blogImagesFilesystem
+            - none
+          -
+            - portfolioImagesFilesystem
+            - none
       fsMapsEnabled: ''
       imageAutoConversion: webp
       injectCors: '1'
-      projectSlug: $SERVD_PROJECT_SLUG
-      securityKey: $SERVD_SECURITY_KEY
+      projectSlug: jake-photo
+      securityKey: vDYo4A6UUS8mXNzGSSXzibVBUBR2PdjO
       suppressWarnings: ''
       useLocalVolumes: false
   sprig:

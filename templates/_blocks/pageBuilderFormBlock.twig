@@ -3,7 +3,12 @@
 {% block pageBlockContent %}
   {% set form = craft.formie.forms.handle(block.pageForm).one() %}
   {% if form %}
-    {{ craft.formie.renderForm(form) }}
+    {{ craft.formie.renderForm(form, {
+      attributes: {
+        'up-submit': 'false',
+        'up-layer': 'root'
+      }
+    }) }}
   {% else %}
     <p>Form not found.</p>
   {% endif %}

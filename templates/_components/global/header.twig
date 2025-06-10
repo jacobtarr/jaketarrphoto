@@ -1,4 +1,5 @@
-<header 
+<header
+  up-id="global-header"
   x-data="headerState" 
   x-init="init(); $watch('open', value => document.body.classList.toggle('mobile-menu-is-active', value))" 
   class="c-header w-full py-4 border-b border-lightgray bg-white">
@@ -9,10 +10,10 @@
       }
     } %}
     <nav class="c-header__desktop-navigation col-span-6 hidden md:flex justify-center">
-      <a href="/about" @click="setActivePage('/about')" class="px-7 text-lg font-semibold hover:text-red" :class="{'text-red': isActive('/about')}">About</a>
-      <a href="/portfolio" @click="setActivePage('/portfolio')" class="px-7 text-lg font-semibold hover:text-red" :class="{'text-red': isActive('/portfolio')}">Portfolio</a>
-      <a href="/blog" @click="setActivePage('/blog')" class="px-7 text-lg font-semibold hover:text-red" :class="{'text-red': isActive('/blog')}">Blog</a>
-      <a href="/contact" @click="setActivePage('/contact')" class="px-7 text-lg font-semibold hover:text-red" :class="{'text-red': isActive('/contact')}">Contact</a>
+      <a href="/about" up-target="main" @click="setActivePage('/about')" class="px-7 text-lg font-semibold hover:text-red" :class="{'text-red': isActive('/about')}">About</a>
+      <a href="/portfolio" up-target="main" @click="setActivePage('/portfolio')" class="px-7 text-lg font-semibold hover:text-red" :class="{'text-red': isActive('/portfolio')}">Portfolio</a>
+      <a href="/blog" up-target="main" @click="setActivePage('/blog')" class="px-7 text-lg font-semibold hover:text-red" :class="{'text-red': isActive('/blog')}">Blog</a>
+      <a href="/contact" up-target="main" @click="setActivePage('/contact')" class="px-7 text-lg font-semibold hover:text-red" :class="{'text-red': isActive('/contact')}">Contact</a>
     </nav>
 
     <div class="c-header__mobile-wrapper space-x-8 md:space-x-0 col-span-9 md:col-span-3 flex justify-end items-center">

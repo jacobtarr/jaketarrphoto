@@ -34,3 +34,14 @@ html.u-dark-mode {
 body {
   // transition: 0.15s all linear;
 }
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.4s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
