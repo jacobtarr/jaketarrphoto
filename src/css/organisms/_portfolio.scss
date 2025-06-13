@@ -1,0 +1,11 @@
+.c-portfolio-grid {
+  &__footer {
+    @apply text-center mt-5;
+  }
+}
+
+.c-portfolio {
+  &__sort-by-section {
+    @apply mb-5 text-right flex justify-end gap-x-5 relative;
+  }
+}

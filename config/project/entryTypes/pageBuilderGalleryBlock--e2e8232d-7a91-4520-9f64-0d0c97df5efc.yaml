@@ -52,6 +52,22 @@ fieldLayouts:
             warning: null
             width: 100
           -
+            dateAdded: '2025-06-10T16:59:33+00:00'
+            elementCondition: null
+            fieldUid: 7556ecfe-e429-4d78-baa4-ec9d0e89aaec # Page Gallery Lightbox Toggle
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 66eb1fe7-a136-454e-a0c1-9df9e51fd3e9
+            userCondition: null
+            warning: null
+            width: 100
+          -
             dateAdded: '2024-09-07T03:06:05+00:00'
             elementCondition: null
             fieldUid: 03abafd4-804b-4730-a878-f77b4520e502 # Page Gallery Images

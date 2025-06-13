@@ -5,13 +5,16 @@
 @use './atoms/_button' as button;
 @use './atoms/_text';
 @use './atoms/_form';
+@use './atoms/_dropdown';
 @use './molecules/_card';
 @use './molecules/_photo-block';
 @use './molecules/_callout-box';
 @use './molecules/_filter-box';
+@use './organisms/_gallery';
 @use './organisms/_hero';
 @use './organisms/_homepage';
 @use './organisms/_page';
+@use './organisms/_portfolio';
 @use './organisms/_slider';
 @use './organisms/_header';
 @use './organisms/_featured-section';

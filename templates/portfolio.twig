@@ -10,7 +10,18 @@
     } %}
 
     <!-- Sprig component for filters and photo grid -->
-    {{ sprig('_components/sprig/photo-grid') }}
+    {{ sprig('_components/sprig/photo-grid', {
+      offset: 0,
+      limit: 6,
+      state: '',
+      season: [],
+      genre: []
+    }) }}
+
+    {# {{ sprig('_components/sprig/test', {
+      offset: 0,
+      limit: 3
+    }) }} #}
 
   </div>
 </section>

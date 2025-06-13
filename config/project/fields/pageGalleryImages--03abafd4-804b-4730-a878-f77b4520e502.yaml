@@ -12,7 +12,7 @@ settings:
   defaultUploadLocationSource: 'volume:86ad037a-07c7-4d8f-90d3-e4fa9a31c7ef' # Portfolio Images
   defaultUploadLocationSubpath: null
   maintainHierarchy: false
-  maxRelations: 3
+  maxRelations: null
   minRelations: null
   previewMode: full
   restrictFiles: false

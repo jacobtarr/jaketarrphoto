@@ -1,0 +1,12 @@
+columnSuffix: null
+handle: pageGalleryLightboxToggle
+instructions: 'By default, all images in a gallery on a page will be selected to be in a lightbox gallery. Turning this off will disable that feature.'
+name: 'Page Gallery Lightbox Toggle'
+searchable: false
+settings:
+  default: true
+  offLabel: null
+  onLabel: null
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Lightswitch

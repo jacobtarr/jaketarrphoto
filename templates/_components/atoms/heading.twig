@@ -4,7 +4,7 @@
 
 {% if heading.text %}
   {% set titleWords = heading.text|split(' ') %}
-  <{{ headingTag }} class="text-4xl o-heading leading-tight{{ underlineClass }}{{ additionalClasses }}">
+  <{{ headingTag }} class="o-heading{{ underlineClass }}{{ additionalClasses }}" {{ heading.xClass ?? ''|raw }}>
     {% for word in titleWords %}
       {% if loop.last %}
         {% if titleWords|length > 1 %}

@@ -40,7 +40,9 @@
   },
   "homepage": "https://github.com/madebyshape/craft-cms#readme",
   "dependencies": {
+    "@alpinejs/intersect": "^3.14.9",
     "ev-emitter": "^2.1.2",
-    "flickity": "^3.0.0"
+    "flickity": "^3.0.0",
+    "photoswipe": "^5.4.4"
   }
 }

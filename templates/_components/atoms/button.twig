@@ -1,4 +1,26 @@
-<a class="o-button" target="{{ button.target|default('_self') }}" href="{{ button.url }}">
-  <span>{{ button.text }}</span>
-  {% include '_components/atoms/icons/icon-button-up-arrow.svg' %}
-</a>
+{% set tag = button.tag ?? 'a' %}
+{% set additionalClasses = button.classes is defined and button.classes ? ' ' ~ button.classes : '' %}
+{% set attrs = button.attrs ?? {} %}
+
+{% if tag == 'a' %}
+  {% set attrs = attrs|merge({
+    href: button.url ?? '#',
+    target: button.target ?? '_self'
+  }) %}
+{% endif %}
+
+<{{ tag }} class="o-button{{ additionalClasses }}"
+  {% for key, value in attrs %}
+    {{ key }}="{{ value is iterable ? value|join(',') : value }}"
+  {% endfor %}
+>
+  {% if button.text is defined %}
+    <span>{{ button.text }}</span>
+  {% endif %}
+
+  {% if button.icon is defined %}
+    {% include '_components/atoms/icons/icon-' ~ button.icon ~ '.svg' %}
+  {% elseif button.includeIcon is not defined or button.includeIcon %}
+    {% include '_components/atoms/icons/icon-button-up-arrow-v2.svg' %}
+  {% endif %}
+</{{ tag }}>

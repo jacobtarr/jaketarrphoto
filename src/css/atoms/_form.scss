@@ -46,39 +46,6 @@
   stroke: white;
 }
 
-.c-select-container {
-  position: relative;
-  display: inline-block;
-  width: 100%;
-}
-
-.c-select {
-  cursor: pointer;
-  appearance: none;
-  padding: 10px 15px;
-  border: 1px solid #000;
-  border-radius: 3px;
-  background-color: #fff;
-
-  &:hover, &:focus {
-    border-color: #000;
-    outline: none;
-  }
-}
-
-.c-select-arrow {
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  pointer-events: none;
-  transform: translateY(-50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 16px;
-  height: 16px;
-}
-
 // Formie classes
 .fui-btn.fui-submit {
   @include button.o-button;

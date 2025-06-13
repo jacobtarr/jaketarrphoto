@@ -1,7 +1,5 @@
 .c-page {
-  margin-top: 100px;
-
-  @apply space-y-15;
+  @apply space-y-15 md:space-y-[100px] mt-15 md:mt-[100px];
 }
 
 .c-page-block {

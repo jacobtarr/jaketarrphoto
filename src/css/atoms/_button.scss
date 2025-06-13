@@ -14,11 +14,17 @@
     @apply border-white bg-black text-white;
   }
 
-  svg path {
-    transition: 0.15s all ease-in-out;
+  svg {
+    width: 12px;
+    height: 12px;
 
-    html.u-dark-mode & {
-      stroke: white;
+    path {
+      transition: 0.15s all ease-in-out;
+
+      html.u-dark-mode & {
+        fill: white;
+        stroke: white;
+      }
     }
   }
 
@@ -33,10 +39,11 @@
     }
 
     svg path {
+      fill: white;
       stroke: white;
 
       html.u-dark-mode & {
-        stroke: black;
+        fill: black;
       }
     }
   }
@@ -45,6 +52,12 @@
 // Utility classes
 .o-button {
   @include o-button;
+
+  &--arrow-down {
+    svg {
+      transform: rotate(90deg);
+    }
+  }
 }
 
 .c-button-group {

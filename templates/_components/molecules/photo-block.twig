@@ -1,13 +1,23 @@
 {% import '_components/atoms/image.twig' as img %}
 {% set additionalClasses = photo.classes is defined and photo.classes ? ' ' ~ photo.classes : '' %}
+{% set attrs = photo.attrs ?? {} %}
 
-<a href="{{ photo.url }}" class="c-photo-block{{ additionalClasses }}">
+<a 
+  href="{{ photo.url }}" 
+  class="c-photo-block{{ additionalClasses }}"
+  {% for key, value in attrs %}
+    {{ key }}="{{ value }}"
+  {% endfor %}
+>
   {{ img.renderImage(photo.image, 800, 1600, photo.title, photo.transform|default(null)) }}
- 
-  {% if photo.location is not empty %}
-    <p class="c-photo-block__caption font-serif">
-      <span>{{ photo.location }}</span>
-      {% include '_components/atoms/icons/icon-pointer-arrow.svg' %}
+
+  {% if photo.caption is defined and photo.caption is not empty %}
+    {% set icon = photo.icon is defined and photo.icon is not empty 
+      ? '_components/atoms/icons/icon-' ~ photo.icon ~ '.svg' 
+      : '_components/atoms/icons/icon-up-right-small.svg' %}
+    <p class="c-photo-block__caption">
+      <span>{{ photo.caption }}</span>
+      {% include icon %}
     </p>
   {% endif %}
 </a>

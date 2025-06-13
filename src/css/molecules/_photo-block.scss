@@ -81,6 +81,21 @@
     transition: 0.6s all ease-in-out;
   }
 
+  &--gallery {
+    height: 100%;
+
+    .c-photo-block__caption {
+      text-align: right;
+      padding: 0 12.5px 0 20px;
+      @apply text-sm font-sans;
+      svg {
+        path {
+          fill: #fff;
+        }
+      }
+    }
+  }
+
   &--small {
     .c-photo-block__caption {
       font-size: 12px;

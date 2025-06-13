@@ -2,116 +2,150 @@
 {% import '_components/molecules/checkbox-filter.twig' as checkboxFilter %}
 
 {# Retrieve and set default filter values #}
-{% if reset is defined %}
-  {% set state = '' %}
-  {% set season = [] %}
-  {% set genre = [] %}
-{% else %}
-  {# Preserve filter state or set defaults if no filters are set #}
-  {% set state = state ?? '' %}
-  {% set season = season ?? [] %}
-  {% set genre = genre ?? [] %}
-{% endif %}
+{% set offset = offset ?? 0 %}
+{% set limit = limit ?? 6 %}
+{% set nextOffset = offset + limit %}
+{% set state = (reset is defined) ? '' : (state ?? '') %}
+{% set season = (reset is defined) ? [] : (season ?? []) %}
+{% set genre = (reset is defined) ? [] : (genre ?? []) %}
+{% set sort = (reset is defined) ? '' : (sort ?? '') %}
 
 {# Fetch the available categories for filters #}
 {% set states = craft.categories.group('state').all() %}
 {% set seasons = craft.categories.group('season').all() %}
 {% set genres = craft.categories.group('genre').all() %}
 
-<div class="c-portfolio-grid grid grid-cols-4 gap-5 js-photo-grid">
-
+<div class="c-portfolio grid grid-cols-4 gap-5 js-photo-grid">
   <div class="c-filter-sidebar col-span-1">
     <div class="c-filter-sidebar__inner space-y-5">
       <div class="flex gap-x-4 relative">
         <h4 class="text-2xl font-semibold">Filters</h4>
         {% if state or season|length > 0 or genre|length > 0 %}
-          <button 
-            sprig 
-            s-val:reset="1" 
-            class="o-button c-reset-button"
-          >
-            <span>Reset Filters</span>
-            {% include '_components/atoms/icons/icon-close.svg' %}
-          </button>
+          {% include '_components/atoms/button.twig' with {
+            button: {
+              tag: 'button',
+              classes: 'c-reset-button',
+              text: 'Reset Filters',
+              icon: 'close',
+              attrs: {
+                sprig: true,
+                's-val:reset': '1',
+                's-val:offset': '0',
+                's-val:limit': limit
+              }
+            }
+          } %}
         {% endif %}
       </div>
-      
       <div class="c-filter-box space-y-10">
-        
-        {# States Filter (select box) #}
         <div class="c-filter-section space-y-5">
           <div class="c-filter-section__title">States</div>
           <div class="c-filter-section__form-group space-y-5">
-            <div class="c-select-container">
-              <select sprig name="state" class="c-select block w-full form-select" value="{{ state }}">
-                <option value="">All States</option>
-                {% for stateOption in states %}
-                  <option value="{{ stateOption.slug }}" {% if state == stateOption.slug %} selected {% endif %}>
-                    {{ stateOption.title }}
-                  </option>
-                {% endfor %}
-              </select>
-              <span class="c-select-arrow">
-                {% include '_components/atoms/icons/icon-chevron-down.svg' %}
-              </span>
-            </div>
+            {% include '_components/atoms/dropdown.twig' with {
+              dropdown: {
+                name: 'state',
+                selected: state,
+                options: [{
+                  value: '',
+                  label: 'All States'
+                }] | merge(
+                  states|map(option => {
+                    value: option.slug,
+                    label: option.title
+                  })
+                ),
+                icon: 'chevron-down',
+                attrs: {
+                  sprig: true
+                }
+              }
+            } %}
           </div>
         </div>
-
-        {# Seasons Filter #}
         {{ checkboxFilter.renderFilter('Seasons', seasons, season, 'season') }}
-
-        {# Genres Filter #}
         {{ checkboxFilter.renderFilter('Genres', genres, genre, 'genre') }}
-        
       </div>
     </div>
   </div>
 
-  {# Photo Grid #}
   <div class="col-span-3">
+    <div class="c-portfolio__sort-by-section">
+      <h4 class="text-2xl font-semibold">Sort by</h4>
+      {% include '_components/atoms/dropdown.twig' with {
+        dropdown: {
+          name: 'sort',
+          selected: sort,
+          options: [
+            { value: '', label: 'Newest First' },
+            { value: 'oldest', label: 'Oldest First' },
+            { value: 'titleAsc', label: 'Title (A–Z)' },
+            { value: 'titleDesc', label: 'Title (Z–A)' }
+          ],
+          classes: 'c-dropdown--sort-by',
+          icon: 'sort-by',
+          attrs: {
+            sprig: true,
+            's-val:offset': 0,
+            's-val:limit': limit,
+            's-val:state': state
+          }
+          | merge(season|map(s => {('s-val:season[]'): s})|reduce((a, b) => a|merge(b), {}))
+          | merge(genre|map(g => {('s-val:genre[]'): g})|reduce((a, b) => a|merge(b), {}))
+        }
+      } %}
+    </div>
+    
     {% set query = craft.entries().section('photos') %}
+    {% if sort == 'oldest' %}
+      {% set query = query.orderBy('postDate ASC') %}
+    {% elseif sort == 'titleAsc' %}
+      {% set query = query.orderBy('title ASC') %}
+    {% elseif sort == 'titleDesc' %}
+      {% set query = query.orderBy('title DESC') %}
+    {% else %}
+      {% set query = query.orderBy('postDate DESC') %}
+    {% endif %}
     {% set relatedConditions = [] %}
 
-    {# Apply state filter if not reset #}
-    {% if state and reset is not defined %}
-      {% set stateCategory = craft.categories.slug(state).one() %}
-      {% if stateCategory %}
-        {% set relatedConditions = relatedConditions|merge([{ targetElement: stateCategory, field: 'state' }]) %}
+    {% if state %}
+      {% set category = craft.categories.slug(state).one() %}
+      {% if category %}
+        {% set relatedConditions = relatedConditions|merge([{ targetElement: category, field: 'state' }]) %}
       {% endif %}
     {% endif %}
 
-    {# Apply season filter if not reset #}
-    {% if season is not empty and reset is not defined %}
-      {% set seasonCategories = season|map(slug => craft.categories.slug(slug).one())|filter(e => e is not empty) %}
-      {% for seasonCategory in seasonCategories %}
-        {% set relatedConditions = relatedConditions|merge([{ targetElement: seasonCategory, field: 'season' }]) %}
-      {% endfor %}
-    {% endif %}
+    {% for slug in season %}
+      {% set category = craft.categories.slug(slug).one() %}
+      {% if category %}
+        {% set relatedConditions = relatedConditions|merge([{ targetElement: category, field: 'season' }]) %}
+      {% endif %}
+    {% endfor %}
 
-    {# Apply genre filter if not reset #}
-    {% if genre is not empty and reset is not defined %}
-      {% set genreCategories = genre|map(slug => craft.categories.slug(slug).one())|filter(e => e is not empty) %}
-      {% for genreCategory in genreCategories %}
-        {% set relatedConditions = relatedConditions|merge([{ targetElement: genreCategory, field: 'genre' }]) %}
-      {% endfor %}
-    {% endif %}
+    {% for slug in genre %}
+      {% set category = craft.categories.slug(slug).one() %}
+      {% if category %}
+        {% set relatedConditions = relatedConditions|merge([{ targetElement: category, field: 'genre' }]) %}
+      {% endif %}
+    {% endfor %}
 
-    {% if relatedConditions is not empty %}
+    {% if relatedConditions|length %}
       {% set query = query.relatedTo(['and']|merge(relatedConditions)) %}
     {% endif %}
 
-    {% set photoEntries = query.limit(null).all() %}
-    {% if photoEntries is not empty %}
-      <div class="grid grid-cols-3 gap-5 js-photo-grid">
-        {% for photoEntry in photoEntries %}
+    {% set total = query.count() %}
+    {% set entries = query.offset(offset).limit(limit).all() %}
+    {% set isLastPage = nextOffset >= total %}
+
+    {% if entries|length %}
+      <div id="photo-grid" class="c-portfolio-grid grid grid-cols-3 gap-5">
+        {% for photoEntry in entries %}
           <div class="col-span-1 c-photo-block-container">
             {% include '_components/molecules/photo-block.twig' with {
               "photo": {
                 "image": photoEntry.featuredImage.one(),
                 "url": photoEntry.url,
                 "title": photoEntry.title,
-                "location": photoEntry.location,
+                "caption": photoEntry.title,
                 "transform": 'square'
               }
             } %}
@@ -119,7 +153,40 @@
         {% endfor %}
       </div>
     {% else %}
-      <p>No photos match the current filters.</p>
+      <p class="mt-4">No photos match the current filters.</p>
     {% endif %}
+
+    <div id="load-more-wrapper"
+      {% if sprig.trigger == 'load-more-button' %}
+        s-swap-oob="true"
+      {% endif %}
+      class="c-portfolio-grid__footer"
+    >
+      {% if not isLastPage %}
+        {% include '_components/atoms/button.twig' with {
+          button: {
+            text: 'Load More',
+            tag: 'button',
+            classes: 'o-button--arrow-down',
+            attrs: {
+              id: 'load-more-button',
+              sprig: true,
+              's-val:offset': nextOffset,
+              's-val:limit': limit,
+              's-val:state': state,
+              's-val:sort': sort,
+              's-select': '.c-photo-block-container, #load-more-wrapper',
+              's-target': '#photo-grid',
+              's-swap': 'beforeend',
+            }
+            | merge(season|map(s => {('s-val:season[]'): s})|reduce((a, b) => a|merge(b), {}))
+            | merge(genre|map(g => {('s-val:genre[]'): g})|reduce((a, b) => a|merge(b), {}))
+          }
+        } %}
+      {% else %}
+        <button id="load-more-button" style="display: none;"></button>
+      {% endif %}
+    </div>
+
   </div>
 </div>

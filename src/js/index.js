@@ -1,10 +1,12 @@
 import Alpine from 'alpinejs';
+import intersect from '@alpinejs/intersect'
 import '../css/index.scss';
 import { initializeFlickity, sliderData } from './flickitySetup';
+import { initializePageGalleryComponent } from './pageGalleryComponent';
 
 function headerState() {
   return {
-    open: false, // <-- this is needed!
+    open: false,
     darkMode: JSON.parse(localStorage.getItem('darkMode')) || false,
 
     init() {
@@ -36,5 +38,7 @@ window.sliderData = sliderData;
 document.addEventListener('DOMContentLoaded', () => {
   Alpine.data('headerState', headerState);
   Alpine.data('sliderData', sliderData);
+  Alpine.plugin(intersect);
   Alpine.start();
+  initializePageGalleryComponent();
 });

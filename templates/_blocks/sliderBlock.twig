@@ -25,13 +25,14 @@
                   <h4 class="c-active-title font-bold leading-tight text-xl sm:text-2xl"></h4>
                   <p class="c-active-location font-sans"></p>
                 </div>
-                <a class="o-button"
-                  target="{{ button.target|default('_self') }}"
-                  x-bind:href="slides[currentIndex]?.url || '#'"
-                >
-                  <span>View Photo</span>
-                  {% include '_components/atoms/icons/icon-button-up-arrow.svg' %}
-                </a>
+                {% include '_components/atoms/button.twig' with {
+                  button: {
+                    text: 'View Photo',
+                    attrs: {
+                      'x-bind:href': "slides[currentIndex]?.url || '#'"
+                    }
+                  }
+                } %}
               </div>
             </div>
           </div>

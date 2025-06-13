@@ -1,4 +1,4 @@
-dateModified: 1749531019
+dateModified: 1749583064
 email:
   fromEmail: $CRAFT_EMAIL_SYSTEM
   fromName: $CRAFT_EMAIL_SYSTEM
@@ -75,6 +75,7 @@ meta:
     481a7e66-9921-4b62-9821-8aa4e542ff38: 'Featured Works Link' # Featured Works Link
     1204bcc0-8378-4dd4-ab64-a4ae43ad533c: Square # Square
     7034c2c9-2683-438f-bf87-296f2b9783a3: 'Two Column Block Link' # Two Column Block Link
+    7556ecfe-e429-4d78-baa4-ec9d0e89aaec: 'Page Gallery Lightbox Toggle' # Page Gallery Lightbox Toggle
     40154e12-d51d-4237-badf-a11bfc0ab075: 'Slider Block Link' # Slider Block Link
     68416f2f-16cf-49ab-83e7-e6b4b097e19d: 'Two Column Block Mobile Layout' # Two Column Block Mobile Layout
     70434c25-7ead-44db-ac04-32c85ac27e21: Homepage # Homepage
