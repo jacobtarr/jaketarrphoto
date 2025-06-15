@@ -3,7 +3,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .o-heading {
-  @apply text-2xl md:text-4xl leading-tight;
+  @apply text-3xl md:text-4xl leading-tight;
   &--underline {
     @apply pb-3 border-b border-lightGray;
 

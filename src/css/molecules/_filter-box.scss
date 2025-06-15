@@ -1,12 +1,65 @@
 .c-filter-sidebar {
+  @apply md:block md:col-span-1 space-y-5;
+  transform: none;
+
+  @media (min-width: 768px) {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
+
+  @media screen and (max-width: 767px) {
+    opacity: 0;
+    visibility: hidden;
+    
+
+    &::before {
+      content: '';
+      background-color: rgba(black, 0.9);
+    }
+
+    &.is-active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .c-filter-box {
+      transform: translateX(-100%);
+      visibility: hidden;
+      width: 80vw;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 120;
+      width: 80vw;
+      height: 100%;
+      opacity: 0;
+    }
+  }
+
   .c-reset-button {
     position: absolute;
     right: 0;
+  }
+
+  &.is-active {
+    @apply visible;
+
+    .c-filter-box {
+      transform: translateX(0);
+      visibility: visible;
+      opacity: 1;
+    }
   }
 }
 
 .c-filter-box {
   @apply px-5 pt-5 pb-8 bg-lighterGray;
+
+  @media screen and (max-width: 767px) {
+    transition: transform 0.15s ease-in-out;
+  }
 
   html.u-dark-mode & {
     @apply bg-offBlack;

@@ -6,6 +6,9 @@
 
 .c-portfolio {
   &__sort-by-section {
-    @apply mb-5 text-right flex justify-end gap-x-5 relative;
+    @apply text-right justify-end gap-x-5 relative flex;
+  }
+  &__filter-nav {
+    @apply flex justify-between items-center
   }
 }

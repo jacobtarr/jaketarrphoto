@@ -1,4 +1,5 @@
 import Alpine from 'alpinejs';
+import persist from '@alpinejs/persist'
 import intersect from '@alpinejs/intersect'
 import '../css/index.scss';
 import { initializeFlickity, sliderData } from './flickitySetup';
@@ -29,6 +30,8 @@ function headerState() {
   };
 }
 
+
+
 // Attach Alpine.js components to the window object
 window.Alpine = Alpine;
 window.headerState = headerState;
@@ -39,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
   Alpine.data('headerState', headerState);
   Alpine.data('sliderData', sliderData);
   Alpine.plugin(intersect);
+  Alpine.plugin(persist);
   Alpine.start();
   initializePageGalleryComponent();
 });

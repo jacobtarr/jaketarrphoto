@@ -2,14 +2,41 @@
   position: relative;
   display: inline-block;
   width: 100%;
+  cursor: pointer;
+  padding: 0;
+  border: 1px solid #000;
+  border-radius: 3px;
+  background-color: #fff;
+  transition: 0.15s all ease-in-out;
+  overflow: hidden;
+
+  &:hover, &:focus {
+    border-color: #000;
+    outline: none;
+    background-color: #000;
+    color: #fff;
+
+    .c-dropdown__arrow {
+      svg {
+        path {
+          fill: #fff;
+        }
+      }
+    }
+  }
+
+  .c-select {
+    padding: 7px 15px;
+    background-color: transparent;
+  }
 
   &--sort-by {
     width: auto;
+    border-radius: 35px;
+    font-size: 14px;
 
     .c-select {
-      border-radius: 35px;
       padding: 7px 55px 7px 20px;
-      font-size: 14px;
     }
 
     .c-dropdown__arrow {
@@ -23,26 +50,9 @@
   width: 100%;
   cursor: pointer;
   appearance: none;
-  padding: 7px 15px;
-  border: 1px solid #000;
-  border-radius: 3px;
-  background-color: #fff;
-  transition: 0.15s all ease-in-out;
-
-  &:hover, &:focus {
-    border-color: #000;
-    outline: none;
-    background-color: #000;
-    color: #fff;
-
-    + .c-dropdown__arrow {
-      svg {
-        path {
-          fill: #fff;
-        }
-      }
-    }
-  }
+  outline: none;
+  border: 0;
+  padding: 0;
 }
 
 .c-dropdown__arrow {
