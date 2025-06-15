@@ -26,8 +26,7 @@
   }
 
   .c-select {
-    padding: 7px 15px;
-    background-color: transparent;
+    @apply py-[5px] px-4 md:py-[7px] md:px-5 bg-transparent;
   }
 
   &--sort-by {
@@ -36,7 +35,7 @@
     font-size: 14px;
 
     .c-select {
-      padding: 7px 55px 7px 20px;
+      @apply py-[5px] pl-4 md:pr-[55px] md:py-[7px] md:pl-5;
     }
 
     .c-dropdown__arrow {

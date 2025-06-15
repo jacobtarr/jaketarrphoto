@@ -1,69 +1,29 @@
 .c-filter-sidebar {
-  @apply md:block md:col-span-1 space-y-5;
-  transform: none;
+  @apply fixed top-0 left-0 h-full w-[80vw] px-5 pt-5 pb-8 md:px-0 md:pt-0 md:pb-0 bg-lighterGray md:bg-transparent md:h-auto md:static md:block md:col-span-1 space-y-5 z-[100];
 
   @media (min-width: 768px) {
     display: block !important;
     opacity: 1 !important;
     visibility: visible !important;
     transform: none !important;
-  }
-
-  @media screen and (max-width: 767px) {
-    opacity: 0;
-    visibility: hidden;
-    
-
-    &::before {
-      content: '';
-      background-color: rgba(black, 0.9);
-    }
-
-    &.is-active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .c-filter-box {
-      transform: translateX(-100%);
-      visibility: hidden;
-      width: 80vw;
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 120;
-      width: 80vw;
-      height: 100%;
-      opacity: 0;
-    }
-  }
-
-  .c-reset-button {
-    position: absolute;
-    right: 0;
-  }
-
-  &.is-active {
-    @apply visible;
-
-    .c-filter-box {
-      transform: translateX(0);
-      visibility: visible;
-      opacity: 1;
-    }
-  }
-}
-
-.c-filter-box {
-  @apply px-5 pt-5 pb-8 bg-lighterGray;
-
-  @media screen and (max-width: 767px) {
-    transition: transform 0.15s ease-in-out;
+    width: auto !important;
   }
 
   html.u-dark-mode & {
     @apply bg-offBlack;
   }
+}
+
+.c-filter-box {
+  @apply md:px-5 md:pt-5 pb-8 md:bg-lighterGray space-y-8 md:space-y-0;
+
+  &__mobile-nav {
+    @apply flex justify-between items-center md:hidden;
+  }
+}
+
+.c-filter-sections {
+  @apply space-y-8 md:space-y-10;
 }
 
 .c-filter-section {

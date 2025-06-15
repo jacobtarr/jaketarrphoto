@@ -8,6 +8,7 @@
 {% set state = (reset is defined) ? '' : (state ?? '') %}
 {% set season = (reset is defined) ? [] : (season ?? []) %}
 {% set genre = (reset is defined) ? [] : (genre ?? []) %}
+{% set selectedFilterCount = (state ? 1 : 0) + season|length + genre|length %}
 {% set sort = (reset is defined) ? '' : (sort ?? '') %}
 
 {# Fetch the available categories for filters #}
@@ -17,9 +18,17 @@
   { handle: 'genre', selected: genre }
 ] %}
 
-<div class="c-portfolio space-y-5" x-data="{ filterOpen: $persist(false) }">
-  <div class="c-portfolio__filter-nav">
-    <div class="hidden md:flex gap-x-5 relative">
+<div class="c-portfolio space-y-5"
+  x-data="{ 
+    filterOpen: $persist(false),
+    toggleBodyScroll() {
+      document.body.classList.toggle('overflow-hidden', this.filterOpen);
+    }
+  }"
+  x-effect="toggleBodyScroll()"
+>
+  <div class="c-filter-nav">
+    <div class="hidden md:flex items-center gap-x-5 relative">
       <h4 class="text-2xl font-semibold">Filters</h4>
       {% if state or season|length > 0 or genre|length > 0 %}
         {% include '_components/atoms/button.twig' with {
@@ -39,12 +48,13 @@
       {% endif %}
     </div>
 
-    <div class="c-portfolio__mobile-filters block md:hidden">
+    <div class="c-filter-nav__col c-filter-nav__mobile-buttons">
       {% include '_components/atoms/button.twig' with {
         button: {
-          text: 'Filters',
+          text: 'Filters' ~ (selectedFilterCount > 0 ? ' (' ~ selectedFilterCount ~ ')' : ''),
           icon: 'filter',
           tag: 'button',
+          classes: 'justify-between',
           attrs: {
             '@click': 'filterOpen = true'
           }
@@ -52,7 +62,7 @@
       } %}
     </div>
 
-    <div class="c-portfolio__sort-by-section">
+    <div class="c-filter-nav__col c-filter-nav__sort-by">
       <h4 class="text-2xl font-semibold hidden md:block">Sort by</h4>
       {% include '_components/atoms/dropdown.twig' with {
         dropdown: {
@@ -84,50 +94,82 @@
   <div class="c-portfolio-grid js-photo-grid grid md:grid-cols-4 gap-5">
     <div
       x-show="filterOpen"
-      x-transition:enter="transition transform ease-in-out duration-150"
-      x-transition:enter-start="-translate-x-full opacity-0"
-      x-transition:enter-end="translate-x-0 opacity-100"
-      x-transition:leave="transition transform ease-in-out duration-150"
-      x-transition:leave-start="translate-x-0 opacity-100"
-      x-transition:leave-end="-translate-x-full opacity-0"
-      class="c-filter-box fixed top-0 left-0 z-[120] h-full w-[80vw] md:hidden"
+      x-transition:enter="transition-opacity ease-in duration-75"
+      x-transition:enter-start="opacity-0"
+      x-transition:enter-end="opacity-100"
+      x-transition:leave="transition-opacity ease-in duration-200 delay-100"
+      x-transition:leave-start="opacity-100"
+      x-transition:leave-end="opacity-0"
+      class="fixed inset-0 bg-black/90 z-[90] md:hidden"
+      @click="filterOpen = false"
+    ></div>
+    <div
+      x-show="filterOpen"
+      x-transition:enter="transition transform ease-in duration-200 delay-75"
+      x-transition:enter-start="-translate-x-full"
+      x-transition:enter-end="translate-x-0"
+      x-transition:leave="transition transform ease-in duration-200"
+      x-transition:leave-start="translate-x-0"
+      x-transition:leave-end="-translate-x-full"
+      class="c-filter-sidebar"
       @click.outside="filterOpen = false"
     >
       <div @click.stop>
-        <div class="c-filter-box space-y-10">
-          <div class="c-filter-section space-y-5">
-            <div class="c-filter-section__title">States</div>
-            <div class="c-filter-section__form-group space-y-5">
-              {% include '_components/atoms/dropdown.twig' with {
-                dropdown: {
-                  name: 'state',
-                  selected: state,
-                  options: [{
-                    value: '',
-                    label: 'All States'
-                  }] | merge(
-                    states|map(option => {
-                      value: option.slug,
-                      label: option.title
-                    })
-                  ),
-                  icon: 'chevron-down',
+        <div class="c-filter-box">
+          <div class="c-filter-box__mobile-nav">
+            <h4 class="text-2xl font-semibold">Filters</h4>
+            {% if state or season|length > 0 or genre|length > 0 %}
+              {% include '_components/atoms/button.twig' with {
+                button: {
+                  tag: 'button',
+                  classes: 'c-reset-button',
+                  text: 'Reset Filters',
+                  icon: 'close',
                   attrs: {
-                    sprig: true
+                    sprig: true,
+                    's-val:reset': '1',
+                    's-val:offset': '0',
+                    's-val:limit': limit
                   }
                 }
               } %}
-            </div>
+            {% endif %}
           </div>
-          {% for filter in checkboxFilters %}
-            {% set categories = craft.categories.group(filter.handle).all() %}
-            {{ checkboxFilter.renderFilter(
-              filter.handle|capitalize ~ 's',
-              categories,
-              filter.selected,
-              filter.handle
-            ) }}
-          {% endfor %}
+          <div class="c-filter-sections">
+            <div class="c-filter-section space-y-5">
+              <div class="c-filter-section__title">States</div>
+              <div class="c-filter-section__form-group space-y-5">
+                {% include '_components/atoms/dropdown.twig' with {
+                  dropdown: {
+                    name: 'state',
+                    selected: state,
+                    options: [{
+                      value: '',
+                      label: 'All States'
+                    }] | merge(
+                      states|map(option => {
+                        value: option.slug,
+                        label: option.title
+                      })
+                    ),
+                    icon: 'chevron-down',
+                    attrs: {
+                      sprig: true
+                    }
+                  }
+                } %}
+              </div>
+            </div>
+            {% for filter in checkboxFilters %}
+              {% set categories = craft.categories.group(filter.handle).all() %}
+              {{ checkboxFilter.renderFilter(
+                filter.handle|capitalize ~ 's',
+                categories,
+                filter.selected,
+                filter.handle
+              ) }}
+            {% endfor %}
+          </div>
         </div>
       </div>
     </div>
@@ -172,7 +214,7 @@
       {% set isLastPage = nextOffset >= total %}
 
       {% if entries|length %}
-        <div id="photo-grid" class="c-portfolio-grid grid grid-cols-2 lg:grid-cols-3 gap-5">
+        <div id="photo-grid" class="c-portfolio-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
           {% for photoEntry in entries %}
             <div class="col-span-1 c-photo-block-container">
               {% include '_components/molecules/photo-block.twig' with {
@@ -188,7 +230,15 @@
           {% endfor %}
         </div>
       {% else %}
-        <p class="mt-4">No photos match the current filters.</p>
+        {% include '_components/molecules/alert.twig' with {
+          alert: {
+            text: 'No photos match the current filters.',
+            attrs: {
+              role: 'alert',
+              'aria-live': 'polite'
+            }
+          }
+        } %}
       {% endif %}
 
       <div id="load-more-wrapper"

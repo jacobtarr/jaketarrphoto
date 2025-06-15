@@ -1,0 +1,7 @@
+.c-alert {
+  @apply bg-lightRed p-4 md:p-5 border-l-[5px] border-red;
+
+  p {
+    @apply font-sans text-base md:text-lg text-offBlack;
+  }
+}

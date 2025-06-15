@@ -136,7 +136,7 @@ body {
   top: 0;
   left: 0;
   height: 100vh;
-  z-index: 50;
+  z-index: 55;
 
   &::before {
     content: '';
@@ -155,7 +155,7 @@ body {
 
   &__inner {
     position: relative;
-    z-index: 60;
+    z-index: 90;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.15s ease;

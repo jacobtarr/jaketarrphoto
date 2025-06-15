@@ -4,11 +4,26 @@
   }
 }
 
-.c-portfolio {
-  &__sort-by-section {
-    @apply text-right justify-end gap-x-5 relative flex;
+.c-filter-nav {
+  @apply border-b border-lightGray md:border-0 bg-white flex justify-between items-center sticky top-0 z-50 md:static;
+
+  &__mobile-buttons {
+    @apply pr-4 md:pr-0 block md:hidden;
   }
-  &__filter-nav {
-    @apply flex justify-between items-center
+
+  &__sort-by {
+    @apply pl-4 md:pl-0 text-right justify-end gap-x-5 relative flex border-l border-lightGray md:border-0;
+  }
+
+  &__col {
+    @apply w-1/2 md:w-auto py-4 md:py-0;
+
+    .o-button {
+      @apply w-full md:w-auto;
+    }
+
+    .c-dropdown {
+      @apply w-full md:w-auto;
+    }
   }
 }
