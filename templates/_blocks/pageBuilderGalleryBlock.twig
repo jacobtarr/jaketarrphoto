@@ -3,16 +3,16 @@
   {% set layout = block.pageGalleryLayout ?? 'layout1' %}
 
   {% set gridClass =
-    layout == 'layout1' ? 'md:grid-cols-2' :
-    layout == 'layout2' ? 'md:grid-cols-3' :
-    layout == 'layout3' ? 'md:grid-cols-4' :
-    layout == 'layout4' ? 'md:grid-cols-2' :
-    'md:grid-cols-2' %}
+    layout == 'layout1' ? 'grid-cols-2' :
+    layout == 'layout2' ? 'grid-cols-3' :
+    layout == 'layout3' ? 'grid-cols-2 md:grid-cols-4' :
+    layout == 'layout4' ? 'grid-cols-2' :
+    'grid-cols-2' %}
 
   <div class="c-page-gallery">
     <div class="c-page-gallery__grid grid grid-cols-1 {{ gridClass }} gap-5">
       {% for image in block.pageGalleryImages %}
-        {% set colSpan = layout == 'layout4' and loop.first ? 'md:col-span-2' : 'col-span-1' %}
+        {% set colSpan = layout == 'layout4' and loop.first ? 'col-span-2' : 'col-span-1' %}
         {% set showLightbox = block.pageGalleryLightboxToggle %}
         <div class="c-page-gallery__image {{ colSpan }}">
           {% if showLightbox %}

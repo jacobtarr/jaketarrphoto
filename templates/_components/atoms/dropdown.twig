@@ -28,3 +28,24 @@
     {% endif %}
   </span>
 </div>
+
+{# Example usage #}
+{# {% include '_components/atoms/dropdown.twig' with {
+  dropdown: {
+    name: 'state',
+    selected: state,
+    options: [{
+      value: '',
+      label: 'All States'
+    }] | merge(
+      states|map(option => {
+        value: option.slug,
+        label: option.title
+      })
+    ),
+    icon: 'chevron-down',
+    attrs: {
+      sprig: true
+    }
+  }
+} %} #}

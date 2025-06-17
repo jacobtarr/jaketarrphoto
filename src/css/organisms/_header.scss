@@ -1,7 +1,9 @@
 .c-header {
-  height: 63px;
-  position: relative;
-  @apply w-full py-4 bg-white;
+  @apply relative h-[55px] md:h-[63px] w-full bg-white;
+
+  &__inner {
+    @apply h-full flex items-center justify-between;
+  }
 
   &::after {
     content: '';
@@ -19,11 +21,19 @@
   }
 
   &__mobile-wrapper {
-    @apply relative;
+    @apply h-full relative space-x-4 md:space-x-8 md:space-x-0 flex justify-end items-center;
   }
   
   &__icons {
-    @apply flex items-center;
+    @apply h-full flex items-center;
+
+    button {
+      @apply h-full md:p-5 md:bg-black;
+
+      svg path {
+        @apply md:stroke-white;
+      }
+    }
 
     html.u-dark-mode & {
       svg path {
@@ -33,25 +43,18 @@
   }
 }
 
-.c-logo {
-  min-width: 63px;
-  @apply relative z-[70];
-
-  html.u-dark-mode & {
-    &__j {
-      fill: white;
-    }
-  }
+.c-mobile-menu {
+  @apply flex justify-center items-center md:block h-full md:h-auto;
 }
 
 .c-hamburger {
-  position: relative;
-  z-index: 60;
+  @apply relative z-[60] h-full;
 }
 
 // Hamburger Overrides
 .hamburger {
-  padding: 0;
+  @apply border-l border-solid border-lightGray p-4;
+  
   display: flex;
   align-items: center;
 
@@ -72,6 +75,10 @@
     width: 30px;
     height: 2px;
     border-radius: 0;
+
+    html.u-dark-mode & {
+      background-color: white;
+    }
   }
 
   &-inner {

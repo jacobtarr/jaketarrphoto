@@ -2,21 +2,21 @@
   up-id="global-header"
   x-data="headerState" 
   x-init="init(); $watch('open', value => document.body.classList.toggle('mobile-menu-is-active', value))" 
-  class="c-header w-full py-4 border-b border-lightgray bg-white">
-  <div class="container mx-auto grid grid-cols-12 items-center justify-between">
+  class="c-header">
+  <div class="c-header__inner">
     {% include '_components/atoms/logo.twig' with {
       logo: {
-        classes: 'col-span-3'
+        classes: ''
       }
     } %}
-    <nav class="c-header__desktop-navigation col-span-6 hidden md:flex justify-center">
+    <nav class="c-nav">
       <a href="/about" up-target="main" @click="setActivePage('/about')" class="px-7 text-lg font-semibold hover:text-red" :class="{'text-red': isActive('/about')}">About</a>
       <a href="/portfolio" up-target="main" @click="setActivePage('/portfolio')" class="px-7 text-lg font-semibold hover:text-red" :class="{'text-red': isActive('/portfolio')}">Portfolio</a>
       <a href="/blog" up-target="main" @click="setActivePage('/blog')" class="px-7 text-lg font-semibold hover:text-red" :class="{'text-red': isActive('/blog')}">Blog</a>
       <a href="/contact" up-target="main" @click="setActivePage('/contact')" class="px-7 text-lg font-semibold hover:text-red" :class="{'text-red': isActive('/contact')}">Contact</a>
     </nav>
 
-    <div class="c-header__mobile-wrapper space-x-8 md:space-x-0 col-span-9 md:col-span-3 flex justify-end items-center">
+    <div class="c-header__mobile-wrapper">
       <div class="c-header__icons">
         <button @click="toggleDarkMode()" class="text-black focus:outline-none">
           <template x-if="darkMode">
@@ -29,7 +29,7 @@
       </div>
 
       <div :class="{ 'is-active': open }" class="c-mobile-menu">
-        <div class="c-hamburger md:hidden flex">
+        <div class="c-hamburger flex md:hidden">
           <button 
             @click="open = !open"
             :class="{ 'is-active': open }"

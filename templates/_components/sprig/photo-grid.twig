@@ -1,3 +1,6 @@
+{# Import the radio filter #}
+{% import '_components/molecules/radio-filter.twig' as radioFilter %}
+
 {# Import the checkbox filter #}
 {% import '_components/molecules/checkbox-filter.twig' as checkboxFilter %}
 
@@ -114,7 +117,7 @@
       class="c-filter-sidebar"
       @click.outside="filterOpen = false"
     >
-      <div @click.stop>
+      <div class="c-filter-box-container" @click.stop>
         <div class="c-filter-box">
           <div class="c-filter-box__mobile-nav">
             <h4 class="text-2xl font-semibold">Filters</h4>
@@ -136,30 +139,12 @@
             {% endif %}
           </div>
           <div class="c-filter-sections">
-            <div class="c-filter-section space-y-5">
-              <div class="c-filter-section__title">States</div>
-              <div class="c-filter-section__form-group space-y-5">
-                {% include '_components/atoms/dropdown.twig' with {
-                  dropdown: {
-                    name: 'state',
-                    selected: state,
-                    options: [{
-                      value: '',
-                      label: 'All States'
-                    }] | merge(
-                      states|map(option => {
-                        value: option.slug,
-                        label: option.title
-                      })
-                    ),
-                    icon: 'chevron-down',
-                    attrs: {
-                      sprig: true
-                    }
-                  }
-                } %}
-              </div>
-            </div>
+            {% set allStates = [{ title: 'All States', slug: '' }] | merge(states) %}
+            {% set extraVals = {
+              'season': season,
+              'genre': genre
+            } %}
+            {{ radioFilter.renderFilter('States', allStates, state, 'state', limit, sort, extraVals) }}
             {% for filter in checkboxFilters %}
               {% set categories = craft.categories.group(filter.handle).all() %}
               {{ checkboxFilter.renderFilter(

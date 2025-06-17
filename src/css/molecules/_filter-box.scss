@@ -1,5 +1,7 @@
 .c-filter-sidebar {
-  @apply fixed top-0 left-0 h-full w-[80vw] px-5 pt-5 pb-8 md:px-0 md:pt-0 md:pb-0 bg-lighterGray md:bg-transparent md:h-auto md:static md:block md:col-span-1 space-y-5 z-[100];
+  @apply px-5 pt-5 pb-8 md:px-0 md:pt-0 md:pb-0 space-y-5 
+  fixed top-0 left-0 h-full w-[80vw]
+  bg-lighterGray md:bg-transparent md:h-auto md:static md:block md:col-span-1 z-[100];
 
   @media (min-width: 768px) {
     display: block !important;
@@ -12,6 +14,10 @@
   html.u-dark-mode & {
     @apply bg-offBlack;
   }
+}
+
+.c-filter-box-container {
+  @apply md:sticky top-5;
 }
 
 .c-filter-box {

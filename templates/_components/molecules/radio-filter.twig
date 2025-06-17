@@ -1,0 +1,32 @@
+{% macro renderFilter(title, options, selectedValue, inputName, limit, sort, extraVals) %}
+  <div class="c-filter-section space-y-5">
+    <div class="c-filter-section__title">{{ title }}</div>
+    <div class="c-filter-section__form-group space-y-5">
+      {% for option in options %}
+        <label class="c-radio-label">
+          <input
+            type="radio"
+            class="c-radio-input"
+            name="{{ inputName }}"
+            value="{{ option.slug }}"
+            {% if selectedValue == option.slug %}checked{% endif %}
+            sprig
+            s-val:offset="0"
+            s-val:limit="{{ limit }}"
+            s-val:sort="{{ sort }}"
+            {% for key, val in extraVals %}
+              {% if val is iterable %}
+                {% for item in val %}
+                  s-val:{{ key }}[]="{{ item }}"
+                {% endfor %}
+              {% else %}
+                s-val:{{ key }}="{{ val }}"
+              {% endif %}
+            {% endfor %}
+          >
+          <span>{{ option.title }}</span>
+        </label>
+      {% endfor %}
+    </div>
+  </div>
+{% endmacro %}

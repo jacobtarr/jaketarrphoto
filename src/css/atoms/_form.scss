@@ -1,5 +1,9 @@
 @use './_button' as button;
 
+.c-radio-label {
+  @apply flex items-center gap-4 cursor-pointer;
+}
+
 .c-radio-input {
   @apply accent-black w-5 h-5 border-black rounded-full text-black focus:ring-black disabled:opacity-50 disabled:pointer-events-none checked:bg-black;
 }

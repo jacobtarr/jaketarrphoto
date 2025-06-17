@@ -1,0 +1,21 @@
+.c-logo {
+  @apply flex items-center gap-4 md:gap-5 h-[23px] md:h-[25px] relative z-[70];
+
+  &__image {
+    @apply p-4 md:p-5 bg-lighterGray;
+  }
+
+  &__text {
+    @apply text-xs md:text-base lg:text-xl font-bold leading-3 md:leading-4 lg:leading-3;
+
+    br {
+      @apply md:hidden;
+    }
+  }
+
+  html.u-dark-mode & {
+    &__j {
+      fill: white;
+    }
+  }
+}
