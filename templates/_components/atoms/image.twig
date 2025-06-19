@@ -1,26 +1,53 @@
 {% macro renderImage(image, smallWidth, largeWidth, altText, transform = null) %}
   {% if image %}
+    {% set isObject = image is defined and image is iterable and image is not string %}
+
     {% if transform %}
-      <img 
-        src="{{ image.getUrl(transform) }}"
-        srcset="{{ image.getUrl(transform) }} {{ largeWidth }}w"
-        sizes="100vw"
-        alt="{{ altText }}"
-        loading="lazy"
-        class="w-full h-full object-cover"
-      >
+      {% if isObject %}
+        <img 
+          src="{{ image.getUrl(transform) }}"
+          srcset="{{ image.getUrl(transform) }} {{ largeWidth }}w"
+          sizes="100vw"
+          alt="{{ altText }}"
+          loading="lazy"
+          class="w-full h-full object-cover"
+        >
+      {% else %}
+        <img 
+          src="{{ image }}"
+          srcset="{{ image }} {{ largeWidth }}w"
+          sizes="100vw"
+          alt="{{ altText }}"
+          loading="lazy"
+          class="w-full h-full object-cover"
+        >
+      {% endif %}
     {% else %}
-      <img 
-        src="{{ image.getUrl({ width: largeWidth, format: 'webp' }) }}"
-        srcset="
-          {{ image.getUrl({ width: smallWidth, format: 'webp' }) }} {{ smallWidth }}w,
-          {{ image.getUrl({ width: largeWidth, format: 'webp' }) }} {{ largeWidth }}w
-        "
-        sizes="(max-width: 768px) 100vw, 50vw"
-        alt="{{ altText }}"
-        loading="lazy"
-        class="w-full h-full object-cover"
-      >
+      {% if isObject %}
+        <img 
+          src="{{ image.getUrl({ width: largeWidth, format: 'webp' }) }}"
+          srcset="
+            {{ image.getUrl({ width: smallWidth, format: 'webp' }) }} {{ smallWidth }}w,
+            {{ image.getUrl({ width: largeWidth, format: 'webp' }) }} {{ largeWidth }}w
+          "
+          sizes="(max-width: 768px) 100vw, 50vw"
+          alt="{{ altText }}"
+          loading="lazy"
+          class="w-full h-full object-cover"
+        >
+      {% else %}
+        <img 
+          src="{{ image }}"
+          srcset="
+            {{ image }} {{ smallWidth }}w,
+            {{ image }} {{ largeWidth }}w
+          "
+          sizes="(max-width: 768px) 100vw, 50vw"
+          alt="{{ altText }}"
+          loading="lazy"
+          class="w-full h-full object-cover"
+        >
+      {% endif %}
     {% endif %}
   {% endif %}
 {% endmacro %}

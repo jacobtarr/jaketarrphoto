@@ -29,7 +29,7 @@
 }
 
 .c-filter-sections {
-  @apply space-y-8 md:space-y-10;
+  @apply space-y-8 md:space-y-10 pb-8 md:pb-0 overflow-y-auto md:overflow-visible max-h-[calc(100vh-88px)] md:max-h-none;
 }
 
 .c-filter-section {

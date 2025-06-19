@@ -1,8 +1,12 @@
 .c-logo {
-  @apply flex items-center gap-4 md:gap-5 h-[23px] md:h-[25px] relative z-[70];
+  @apply flex items-center gap-4 md:gap-5 relative z-[70];
 
   &__image {
     @apply p-4 md:p-5 bg-lighterGray;
+
+    svg {
+      @apply h-[23px] w-[48.3px] md:w-[52.5px] md:h-[25px];
+    }
   }
 
   &__text {

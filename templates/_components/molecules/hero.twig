@@ -1,0 +1,31 @@
+{% import '_components/atoms/image.twig' as img %}
+{% set image = hero.image ?? null %}
+{% set heading = hero.heading ?? null %}
+{% set secondary_heading = hero.secondary_heading ?? null %}
+{% set additionalClasses = hero.classes is defined and hero.classes ? ' ' ~ hero.classes : '' %}
+
+<div class="c-hero{{ additionalClasses }}">
+  <div class="c-hero__image">
+    {{ img.renderImage(image, 800, 1600, heading) }}
+  </div>
+  <div class="c-hero__content container">
+    <div class="c-hero__text">
+      {% include '_components/atoms/heading.twig' with {
+        heading: {
+          text: heading,
+          underline: false
+        }
+      } %}
+      {% if secondary_heading %}
+        {% include '_components/atoms/heading.twig' with {
+          heading: {
+            text: secondary_heading,
+            underline: false,
+            tag: 'h2',
+            classes: 'o-heading--secondary text-red'
+          }
+        } %}
+      {% endif %}
+    </div>
+  </div>
+</div>

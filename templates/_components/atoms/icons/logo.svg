@@ -1,4 +1,4 @@
-<svg class="c-logo" viewBox="0 0 63 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg class="c-logo" width="52.5px" height="25px" viewBox="0 0 63 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path class="c-logo__j" d="M0 17H17V0H30V30H0V17Z" fill="black"/>
 <path class="c-logo__t" d="M33 0H63V13H46V30H33V0Z" fill="#D63031"/>
 </svg>

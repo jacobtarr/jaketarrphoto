@@ -1,23 +1,16 @@
 {% extends '_layouts/global.twig' %}
 
 {% block site %}
-<section class="c-portfolio-page c-page container">
-  <div class="md:space-y-12">
-    {% include '_components/atoms/heading.twig' with {
-      "heading": {
-        "text": 'Portfolio'
-      }
-    } %}
+<section class="c-portfolio-page c-page">
 
-    <!-- Sprig component for filters and photo grid -->
-    {{ sprig('_components/sprig/photo-grid', {
-      offset: 0,
-      limit: 6,
-      state: '',
-      season: [],
-      genre: []
-    }) }}
+  <!-- Sprig component for filters and photo grid -->
+  {{ sprig('_components/sprig/photo-grid', {
+    offset: 0,
+    limit: 9,
+    state: '',
+    season: [],
+    genre: []
+  }) }}
 
-  </div>
 </section>
 {% endblock %}

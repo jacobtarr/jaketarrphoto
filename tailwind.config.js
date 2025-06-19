@@ -13,12 +13,12 @@ const generateGridClasses = () => {
 export default {
   theme: {
     container: {
-      center: true, // Center the container
-      padding: '20px', // For padding around the container
+      center: true,
+      padding: '1rem',
       screens: {
-        lg: '1140px', // Adjust as needed for desktop views, this can change based on your Figma setup
+        lg: '1140px',
         xl: '1340px',
-        '2xl': '1340px', // To keep it the same for larger screens
+        '2xl': '1340px',
       },
     },
     screens: {
@@ -29,9 +29,7 @@ export default {
     },
     extend: {
       gridTemplateColumns: {
-        // Define an 18-column grid
         '18': 'repeat(18, minmax(0, 1fr))',
-        // Adding 16-column grid
         '16': 'repeat(16, minmax(0, 1fr))',
       },
       gridColumn: {
