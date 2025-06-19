@@ -1,5 +1,5 @@
 .c-filter-sidebar {
-  @apply px-5 pt-5 pb-8 md:px-0 md:pt-0 md:pb-0 space-y-5 
+  @apply md:px-5 md:pt-5 md:pb-8 md:px-0 md:pt-0 md:pb-0 space-y-5 
   fixed top-0 left-0 h-full w-[80vw]
   bg-lighterGray md:bg-transparent md:h-auto md:static md:block md:col-span-1 z-[100];
 
@@ -21,15 +21,15 @@
 }
 
 .c-filter-box {
-  @apply md:px-5 md:pt-5 pb-8 md:bg-lighterGray space-y-8 md:space-y-0;
+  @apply md:px-5 md:pt-5 md:pb-8 md:bg-lighterGray space-y-8 md:space-y-0;
 
   &__mobile-nav {
-    @apply flex justify-between items-center md:hidden;
+    @apply px-5 md:px-0 pt-5 md:pt-0 flex justify-between items-center md:hidden;
   }
 }
 
 .c-filter-sections {
-  @apply space-y-8 md:space-y-10 pb-8 md:pb-0 overflow-y-auto md:overflow-visible max-h-[calc(100vh-88px)] md:max-h-none;
+  @apply px-5 md:px-0 space-y-8 md:space-y-10 max-h-[calc(100dvh-88px)] md:max-h-none pb-12 md:pb-0 overflow-y-auto md:overflow-visible md:max-h-none;
 }
 
 .c-filter-section {

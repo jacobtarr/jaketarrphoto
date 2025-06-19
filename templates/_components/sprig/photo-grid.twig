@@ -29,6 +29,15 @@
     }
   }"
   x-effect="toggleBodyScroll()"
+  x-init="
+    setTimeout(() => restoreScroll(), 0);
+    const mq = window.matchMedia('(min-width: 768px)');
+    mq.addEventListener('change', e => {
+      if (e.matches) {
+        filterOpen = false;
+      }
+    });
+  "
 >
   
   {% set portfolioHeroImageData = {
@@ -177,34 +186,34 @@
                 saveScroll() { this.scrollTop = $refs.scroll.scrollTop },
                 restoreScroll() { $refs.scroll.scrollTop = this.scrollTop }
               }"
-              x-init="restoreScroll"
+              x-init="setTimeout(() => restoreScroll(), 0)"
+              class="c-filter-sections-container"
             >
-            <div class="c-filter-sections" x-ref="scroll"
-    @scroll.debounce.200ms="saveScroll">
-              {% set allStates = [{ title: 'All States', slug: '' }] | merge(states) %}
-              {% set extraVals = {
-                'season': season,
-                'genre': genre
-              } %}
-              {{ radioFilter.renderFilter(
-                'States',
-                allStates,
-                state,
-                'state',
-                limit,
-                sort,
-                extraVals)
-              }}
-              {% for filter in checkboxFilters %}
-                {% set categories = craft.categories.group(filter.handle).all() %}
-                {{ checkboxFilter.renderFilter(
-                  filter.handle|capitalize ~ 's',
-                  categories,
-                  filter.selected,
-                  filter.handle
-                ) }}
-              {% endfor %}
-            </div>
+              <div class="c-filter-sections" x-ref="scroll" @scroll.debounce.200ms="saveScroll">
+                {% set allStates = [{ title: 'All States', slug: '' }] | merge(states) %}
+                {% set extraVals = {
+                  'season': season,
+                  'genre': genre
+                } %}
+                {{ radioFilter.renderFilter(
+                  'States',
+                  allStates,
+                  state,
+                  'state',
+                  limit,
+                  sort,
+                  extraVals)
+                }}
+                {% for filter in checkboxFilters %}
+                  {% set categories = craft.categories.group(filter.handle).all() %}
+                  {{ checkboxFilter.renderFilter(
+                    filter.handle|capitalize ~ 's',
+                    categories,
+                    filter.selected,
+                    filter.handle
+                  ) }}
+                {% endfor %}
+              </div>
             </div>
           </div>
         </div>
