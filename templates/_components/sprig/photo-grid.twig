@@ -171,8 +171,27 @@
                 </div>
               {% endif %}
             </div>
-            <div class="c-filter-sections-container" id="filters-scroll-container">
-              <form sprig id="filters-form" class="c-filter-sections">
+            <div
+              class="c-filter-sections-container"
+              x-data="{
+                scrollTop: $persist(0),
+                saveScroll() { this.scrollTop = $refs.scroll.scrollTop },
+                restoreScroll() {
+                  this.$nextTick(() => {
+                    this.$refs.scroll.scrollTop = this.scrollTop;
+                  });
+                }
+              }"
+              x-init="restoreScroll()"
+            >
+              <form
+                sprig
+                id="filters-form"
+                x-ref="scroll"
+                @scroll.debounce.150ms="saveScroll"
+                @sprig:success.window="restoreScroll"
+                class="c-filter-sections"
+              >
                 {% set allStates = [{ title: 'All States', slug: '' }] | merge(states) %}
                 {% set extraVals = {
                   'season': season,
