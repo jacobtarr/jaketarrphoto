@@ -21,23 +21,7 @@
   { handle: 'genre', selected: genre }
 ] %}
 
-<div class="c-portfolio md:space-y-12"
-  x-data="{ 
-    filterOpen: $persist(false),
-    toggleBodyScroll() {
-      document.body.classList.toggle('overflow-hidden', this.filterOpen);
-    }
-  }"
-  x-effect="toggleBodyScroll()"
-  x-init="
-    const mq = window.matchMedia('(min-width: 768px)');
-    mq.addEventListener('change', e => {
-      if (e.matches) {
-        filterOpen = false;
-      }
-    });
-  "
->
+<div class="c-portfolio md:space-y-12">
   
   {% set portfolioHeroImageData = {
     '' : { image: '/dist/images/portfolio-hero/base.jpg', heading: '' },
@@ -177,12 +161,18 @@
               class="c-filter-sections-container"
               x-data="{
                 scrollTop: $persist(0),
-                saveScroll() { this.scrollTop = this.$refs.scroll.scrollTop },
+                saveScroll() {
+  if (this.$refs.scroll) {
+    this.scrollTop = this.$refs.scroll.scrollTop;
+  }
+},
                 restoreScroll() {
-                  this.$nextTick(() => {
-                    this.$refs.scroll.scrollTop = this.scrollTop;
-                  });
-                }
+  this.$nextTick(() => {
+    if (this.$refs.scroll) {
+      this.$refs.scroll.scrollTop = this.scrollTop;
+    }
+  });
+}
               }"
               x-init="restoreScroll()"
               @sprig:success.window="restoreScroll"
