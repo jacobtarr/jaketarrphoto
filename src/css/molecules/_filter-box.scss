@@ -41,3 +41,11 @@
     }
   }
 }
+
+body.no-scroll-transition * {
+  scroll-behavior: auto !important;
+}
+
+html.scroll-restoring * {
+  scroll-behavior: auto !important;
+}

@@ -9,8 +9,8 @@
 {% set limit = limit ?? 9 %}
 {% set nextOffset = offset + limit %}
 {% set state = (reset is defined) ? '' : (state ?? '') %}
-{% set season = (reset is defined) ? [] : (season ?? []) %}
-{% set genre = (reset is defined) ? [] : (genre ?? []) %}
+{% set season = season is iterable and season is not string ? season : (season ? [season] : []) %}
+{% set genre = genre is iterable and genre is not string ? genre : (genre ? [genre] : []) %}
 {% set selectedFilterCount = (state ? 1 : 0) + season|length + genre|length %}
 {% set sort = (reset is defined) ? '' : (sort ?? '') %}
 
@@ -30,7 +30,6 @@
   }"
   x-effect="toggleBodyScroll()"
   x-init="
-    setTimeout(() => restoreScroll(), 0);
     const mq = window.matchMedia('(min-width: 768px)');
     mq.addEventListener('change', e => {
       if (e.matches) {
@@ -76,11 +75,7 @@
                   's-val:reset': '1',
                   's-val:offset': '0',
                   's-val:limit': limit,
-                  'x-on:click': "
-                    const url = new URL(window.location);
-                    url.search = '';
-                    window.history.replaceState({}, '', url);
-                  "
+                  "x-on:click": "document.querySelectorAll('#filters-form input').forEach(input => { if (input.type === 'checkbox') input.checked = false; if (input.type === 'radio') input.checked = input.value === ''; }); const url = new URL(window.location); url.search = ''; window.history.replaceState({}, '', url); document.querySelector('#filters-form').requestSubmit();"
                 }
               }
             } %}
@@ -169,27 +164,15 @@
                         's-val:reset': '1',
                         's-val:offset': '0',
                         's-val:limit': limit,
-                        'x-on:click': "
-                          const url = new URL(window.location);
-                          url.search = '';
-                          window.history.replaceState({}, '', url);
-                        "
+                        "x-on:click": "document.querySelectorAll('#filters-form input').forEach(input => { if (input.type === 'checkbox') input.checked = false; if (input.type === 'radio') input.checked = input.value === ''; }); const url = new URL(window.location); url.search = ''; window.history.replaceState({}, '', url); document.querySelector('#filters-form').requestSubmit();"
                       }
                     }
                   } %}
                 </div>
               {% endif %}
             </div>
-            <div 
-              x-data="{
-                scrollTop: $persist(0),
-                saveScroll() { this.scrollTop = $refs.scroll.scrollTop },
-                restoreScroll() { $refs.scroll.scrollTop = this.scrollTop }
-              }"
-              x-init="setTimeout(() => restoreScroll(), 0)"
-              class="c-filter-sections-container"
-            >
-              <div class="c-filter-sections" x-ref="scroll" @scroll.debounce.200ms="saveScroll">
+            <div class="c-filter-sections-container" id="filters-scroll-container">
+              <form sprig id="filters-form" class="c-filter-sections">
                 {% set allStates = [{ title: 'All States', slug: '' }] | merge(states) %}
                 {% set extraVals = {
                   'season': season,
@@ -210,10 +193,18 @@
                     filter.handle|capitalize ~ 's',
                     categories,
                     filter.selected,
-                    filter.handle
+                    filter.handle,
+                    limit,
+                    sort,
+                    {
+                      ('s-val:limit'): limit,
+                      ('s-val:sort'): sort,
+                    } 
+                    | merge(season|map(s => {('s-val:season[]'): s})|reduce((a, b) => a|merge(b), {}))
+                    | merge(genre|map(g => {('s-val:genre[]'): g})|reduce((a, b) => a|merge(b), {}))
                   ) }}
                 {% endfor %}
-              </div>
+              </form>
             </div>
           </div>
         </div>
@@ -231,28 +222,36 @@
         {% else %}
           {% set query = query.orderBy('postDate DESC') %}
         {% endif %}
+        
         {% set relatedConditions = [] %}
 
+        {# Handle radio filter for state #}
         {% if state %}
           {% set category = craft.categories.slug(state).one() %}
           {% if category %}
-            {% set relatedConditions = relatedConditions|merge([{ targetElement: category, field: 'state' }]) %}
+            {% set relatedConditions = relatedConditions|merge([
+              { targetElement: category, field: 'state' }
+            ]) %}
           {% endif %}
         {% endif %}
 
-        {# Loop over checkbox filters #}
+        {# Handle checkbox filters #}
         {% for filter in checkboxFilters %}
-          {% for slug in filter.selected %}
-            {% set category = craft.categories.slug(slug).one() %}
-            {% if category %}
-              {% set relatedConditions = relatedConditions|merge([{ targetElement: category, field: filter.handle }]) %}
-            {% endif %}
-          {% endfor %}
+          {% set selectedSlugs = filter.selected %}
+          {% if selectedSlugs|length %}
+            {% for slug in selectedSlugs %}
+              {% set cat = craft.categories().group(filter.handle).slug(slug).one() %}
+              {% if cat %}
+                {% set relatedConditions = relatedConditions|merge([{ targetElement: cat, field: filter.handle }]) %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
         {% endfor %}
 
         {% if relatedConditions|length %}
           {% set query = query.relatedTo(['and']|merge(relatedConditions)) %}
         {% endif %}
+
 
         {% set total = query.count() %}
         {% set entries = query.offset(offset).limit(limit).all() %}

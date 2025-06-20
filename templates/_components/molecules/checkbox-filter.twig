@@ -1,4 +1,4 @@
-{% macro renderFilter(title, options, selectedOptions, inputName) %}
+{% macro renderFilter(title, options, selectedOptions, inputName, extraAttrs) %}
   <div class="c-filter-section space-y-5">
     <div class="c-filter-section__title">{{ title }}</div>
     <div class="c-filter-section__form-group c-checkbox-group space-y-5">
@@ -6,13 +6,28 @@
         <label class="c-checkbox">
           <input 
             class="c-checkbox__input" 
-            sprig 
+            sprig
             type="checkbox" 
             hidden 
-            id="{{ inputName }}-{{ option.id }}" 
+            id="{{ inputName }}-{{ option.id }}"
             name="{{ inputName }}[]" 
             value="{{ option.slug }}" 
             {% if option.slug in selectedOptions %} checked {% endif %}
+            {% for attrName, attrVal in extraAttrs %}
+              {{ attrName }}="{{ attrVal }}"
+            {% endfor %}
+            x-on:change="
+  const url = new URL(window.location);
+  const checkboxes = document.querySelectorAll('input[name=\'{{ inputName }}[]\']');
+  url.searchParams.delete('{{ inputName }}');
+  checkboxes.forEach(cb => {
+    if (cb.checked) {
+      url.searchParams.append('{{ inputName }}', cb.value);
+    }
+  });
+  window.history.replaceState({}, '', url);
+  document.querySelector('#filters-form').requestSubmit();
+"
           >
           <span class="c-checkbox__checkmark-icon-container mr-4">
             {% include '_components/atoms/icons/icon-checkmark.svg' %}
