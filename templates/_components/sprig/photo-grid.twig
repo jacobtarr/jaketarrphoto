@@ -34,9 +34,8 @@
       }
     }
   }"
-  x-effect="toggleBodyScroll()"
+  x-init="$watch('filterOpen', value => toggleBodyScroll(value))"
 >
-  
   {% set portfolioHeroImageData = {
     '' : { image: '/dist/images/portfolio-hero/base.jpg', heading: '' },
     'arizona': { image: '/dist/images/portfolio-hero/arizona.jpg', heading: 'Arizona' },
@@ -188,14 +187,14 @@
             }"
             x-init="if (window.innerWidth < 768) { setTimeout(() => { visible = true; restoreScroll(); }, 200); } else { visible = true; }"
             @sprig:success.window="if (window.innerWidth < 768) { setTimeout(() => { visible = true; restoreScroll(); }, 200); } else { visible = true; }"
-            class="c-filter-sections-container"
+            class="c-filter-sections-wrapper"
           >
             <form
               sprig
               id="filters-form"
               x-ref="scroll"
               @scroll.debounce.150ms="saveScroll"
-              class="c-filter-sections"
+              class="c-filter-sections-container"
             >
               <div
                 x-show="visible"
@@ -206,7 +205,7 @@
                 x-transition:leave="transition-opacity duration-500 ease-in"
                 x-transition:leave-start="opacity-100"
                 x-transition:leave-end="opacity-0"
-                class="space-y-8 md:space-y-10"
+                class="c-filter-sections"
               >
                 {% set allStates = [{ title: 'All States', slug: '' }] | merge(states) %}
                 

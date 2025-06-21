@@ -28,8 +28,12 @@
   }
 }
 
+.c-filter-sections-container {
+  @apply px-5 md:px-0 max-h-[calc(100dvh-88px)] md:max-h-none pb-12 md:pb-0 overflow-y-auto md:overflow-visible md:max-h-none relative;
+}
+
 .c-filter-sections {
-  @apply px-5 md:px-0 max-h-[calc(100dvh-88px)] md:max-h-none pb-12 md:pb-0 overflow-y-auto md:overflow-visible md:max-h-none;
+  @apply space-y-8 md:space-y-10;
 }
 
 .c-filter-section {
