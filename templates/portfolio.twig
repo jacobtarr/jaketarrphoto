@@ -2,15 +2,7 @@
 
 {% block site %}
 <section class="c-portfolio-page c-page">
-<div 
-  x-data="{
-    filterOpen: $persist(false).as('portfolioFilterOpen'),
-    toggleBodyScroll() {
-      document.body.classList.toggle('overflow-hidden', this.filterOpen);
-    }
-  }"
-  x-effect="toggleBodyScroll()"
->
+
   <!-- Sprig component for filters and photo grid -->
   {{ sprig('_components/sprig/photo-grid', {
     offset: 0,
@@ -19,6 +11,6 @@
     season: [],
     genre: []
   }) }}
-</div>
+
 </section>
 {% endblock %}
