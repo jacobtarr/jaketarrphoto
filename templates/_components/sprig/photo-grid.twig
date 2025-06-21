@@ -9,8 +9,8 @@
 {% set limit = limit ?? 9 %}
 {% set nextOffset = offset + limit %}
 {% set state = (reset is defined) ? '' : (state ?? '') %}
-{% set season = season is iterable and season is not string ? season : (season ? [season] : []) %}
-{% set genre = genre is iterable and genre is not string ? genre : (genre ? [genre] : []) %}
+{% set genre = genre is iterable ? genre : (genre ? [genre] : []) %}
+{% set season = season is iterable ? season : (season ? [season] : []) %}
 {% set selectedFilterCount = (state ? 1 : 0) + season|length + genre|length %}
 {% set sort = (reset is defined) ? '' : (sort ?? '') %}
 
@@ -26,7 +26,12 @@
   x-data="{
     filterOpen: $persist(false).as('portfolioFilterOpen'),
     toggleBodyScroll() {
-      document.body.classList.toggle('overflow-hidden', this.filterOpen);
+      const isMobile = window.matchMedia('(max-width: 767px)').matches;
+      if (isMobile) {
+        document.body.classList.toggle('overflow-hidden', this.filterOpen);
+      } else {
+        document.body.classList.remove('overflow-hidden');
+      }
     }
   }"
   x-effect="toggleBodyScroll()"
@@ -167,56 +172,62 @@
               {% endif %}
             </div>
             <div
-  class="c-filter-sections-container"
-  x-data="{
-    visible: false,
-    saveScroll() {
-      sessionStorage.setItem('filterScrollTop', this.$refs.scroll.scrollTop);
-    },
-    restoreScroll() {
-      this.$nextTick(() => {
-        const scrollTop = sessionStorage.getItem('filterScrollTop');
-        if (this.$refs.scroll && scrollTop) {
-          this.$refs.scroll.scrollTop = parseInt(scrollTop);
-        }
-      });
-    }
-  }"
-  x-init="setTimeout(() => {
-    visible = true;
-    restoreScroll();
-  }, 20)"
-  @sprig:success.window="setTimeout(() => {
-    visible = true;
-    restoreScroll();
-  }, 20)"
->
-  <form
-    sprig
-    id="filters-form"
-    x-ref="scroll"
-    @scroll.debounce.150ms="saveScroll"
-    class="c-filter-sections"
-  >
-    <div
-      x-show="visible"
-      x-transition.opacity.duration.800ms
-      class="space-y-8"
-    >
+            x-data="{
+              visible: false,
+              saveScroll() {
+                sessionStorage.setItem('filterScrollTop', this.$refs.scroll.scrollTop);
+              },
+              restoreScroll() {
+                this.$nextTick(() => {
+                  const scrollTop = sessionStorage.getItem('filterScrollTop');
+                  if (this.$refs.scroll && scrollTop) {
+                    this.$refs.scroll.scrollTop = parseInt(scrollTop);
+                  }
+                });
+              }
+            }"
+            x-init="if (window.innerWidth < 768) { setTimeout(() => { visible = true; restoreScroll(); }, 200); } else { visible = true; }"
+            @sprig:success.window="if (window.innerWidth < 768) { setTimeout(() => { visible = true; restoreScroll(); }, 200); } else { visible = true; }"
+            class="c-filter-sections-container"
+          >
+            <form
+              sprig
+              id="filters-form"
+              x-ref="scroll"
+              @scroll.debounce.150ms="saveScroll"
+              class="c-filter-sections"
+            >
+              <div
+                x-show="visible"
+                x-cloak
+                x-transition:enter="transition-opacity duration-1000 ease-in-out"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+                x-transition:leave="transition-opacity duration-500 ease-in"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+                class="space-y-8 md:space-y-10"
+              >
                 {% set allStates = [{ title: 'All States', slug: '' }] | merge(states) %}
+                
+                {# Prepare s-val extras (exclude checkbox filters to avoid duplication) #}
+                {% set checkboxFilterHandles = checkboxFilters|map(f => f.handle) %}
                 {% set extraVals = {
                   'season': season,
-                  'genre': genre
-                } %}
+                  'genre': genre,
+                  'offset': offset,
+                  'limit': limit,
+                  'sort': sort
+                }|filter((val, key) => key not in checkboxFilterHandles) %}
                 {{ radioFilter.renderFilter(
                   'States',
                   allStates,
                   state,
-                  'state',
+                  'state',    
                   limit,
                   sort,
-                  extraVals)
-                }}
+                  extraVals
+                ) }}
                 {% for filter in checkboxFilters %}
                   {% set categories = craft.categories.group(filter.handle).all() %}
                   {{ checkboxFilter.renderFilter(
@@ -224,15 +235,15 @@
                     categories,
                     filter.selected,
                     filter.handle,
-                    limit,
-                    sort,
                     {
-                      ('s-val:limit'): limit,
-                      ('s-val:sort'): sort,
-                    } 
-                    | merge(season|map(s => {('s-val:season[]'): s})|reduce((a, b) => a|merge(b), {}))
-                    | merge(genre|map(g => {('s-val:genre[]'): g})|reduce((a, b) => a|merge(b), {}))
+                      's-val:limit': limit,
+                      's-val:sort': sort,
+                      'formSelector': '#filters-form'
+                    }
+                    | merge(season|map(s => {'s-val:season[]': s})|reduce((a, b) => a|merge(b), {}))
+                    | merge(genre|map(g => {'s-val:genre[]': g})|reduce((a, b) => a|merge(b), {}))
                   ) }}
+
                 {% endfor %}
                 </div>
               </form>
