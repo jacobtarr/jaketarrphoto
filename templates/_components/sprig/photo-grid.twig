@@ -25,16 +25,20 @@
   class="c-portfolio md:space-y-12"
   x-data="{
     filterOpen: $persist(false).as('portfolioFilterOpen'),
-    toggleBodyScroll() {
+    toggleBodyScroll(value = this.filterOpen) {
       const isMobile = window.matchMedia('(max-width: 767px)').matches;
       if (isMobile) {
-        document.body.classList.toggle('overflow-hidden', this.filterOpen);
+        document.body.classList.toggle('overflow-hidden', value);
       } else {
         document.body.classList.remove('overflow-hidden');
       }
     }
   }"
-  x-init="$watch('filterOpen', value => toggleBodyScroll(value))"
+  x-init="
+    toggleBodyScroll(filterOpen);
+    $watch('filterOpen', value => toggleBodyScroll(value));
+    window.addEventListener('resize', () => toggleBodyScroll());
+  "
 >
   {% set portfolioHeroImageData = {
     '' : { image: '/dist/images/portfolio-hero/base.jpg', heading: '' },
@@ -172,28 +176,55 @@
             </div>
             <div
             x-data="{
-              visible: false,
-              saveScroll() {
-                sessionStorage.setItem('filterScrollTop', this.$refs.scroll.scrollTop);
-              },
-              restoreScroll() {
-                this.$nextTick(() => {
-                  const scrollTop = sessionStorage.getItem('filterScrollTop');
-                  if (this.$refs.scroll && scrollTop) {
-                    this.$refs.scroll.scrollTop = parseInt(scrollTop);
-                  }
-                });
-              }
-            }"
-            x-init="if (window.innerWidth < 768) { setTimeout(() => { visible = true; restoreScroll(); }, 200); } else { visible = true; }"
-            @sprig:success.window="if (window.innerWidth < 768) { setTimeout(() => { visible = true; restoreScroll(); }, 200); } else { visible = true; }"
+  visible: false,
+  isMobile: window.matchMedia('(max-width: 767px)').matches,
+  saveScroll() {
+    if (this.isMobile && this.$refs.scroll) {
+      sessionStorage.setItem('filterScrollTop', this.$refs.scroll.scrollTop);
+    }
+  },
+  restoreScroll() {
+    if (this.isMobile && this.$refs.scroll) {
+      this.$nextTick(() => {
+        const scrollTop = sessionStorage.getItem('filterScrollTop');
+        if (scrollTop !== null) {
+          this.$refs.scroll.scrollTop = parseInt(scrollTop);
+        }
+      });
+    }
+  },
+  clearScroll() {
+    sessionStorage.removeItem('filterScrollTop');
+  }
+}"
+            x-init="
+  if (isMobile) {
+    setTimeout(() => {
+      visible = true;
+      restoreScroll();
+    }, 200);
+  } else {
+    visible = true;
+    clearScroll();
+  }
+"
+@sprig:before="clearScroll()"
+@sprig:success.window="
+  if (isMobile) {
+    setTimeout(() => {
+      visible = true;
+      restoreScroll();
+    }, 200);
+  } else {
+    visible = true;
+  }
+"
             class="c-filter-sections-wrapper"
           >
             <form
               sprig
               id="filters-form"
               x-ref="filtersForm"
-              x-ref="scroll"
               @scroll.debounce.150ms="saveScroll"
               class="c-filter-sections-container"
             >
