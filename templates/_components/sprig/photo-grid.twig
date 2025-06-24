@@ -38,6 +38,14 @@
     toggleBodyScroll(filterOpen);
     $watch('filterOpen', value => toggleBodyScroll(value));
     window.addEventListener('resize', () => toggleBodyScroll());
+
+    // Restore scroll after sort/reset
+    const stored = sessionStorage.getItem('sortScrollTop') || sessionStorage.getItem('resetScrollTop');
+    if (stored !== null) {
+      window.scrollTo({ top: parseInt(stored), behavior: 'auto' });
+      sessionStorage.removeItem('sortScrollTop');
+      sessionStorage.removeItem('resetScrollTop');
+    }
   "
 >
   {% set portfolioHeroImageData = {
@@ -73,10 +81,21 @@
                 icon: 'close',
                 attrs: {
                   sprig: true,
+                  's-preserve': true,
                   's-val:reset': '1',
                   's-val:offset': '0',
                   's-val:limit': limit,
-                  "x-on:click": "document.querySelectorAll('#filters-form input').forEach(input => { if (input.type === 'checkbox') input.checked = false; if (input.type === 'radio') input.checked = input.value === ''; }); const url = new URL(window.location); url.search = ''; window.history.replaceState({}, '', url); document.querySelector('#filters-form').requestSubmit();"
+                  'x-on:click': "
+                    sessionStorage.setItem('resetScrollTop', window.scrollY);
+                    document.querySelectorAll('#filters-form input').forEach(input => {
+                      if (input.type === 'checkbox') input.checked = false;
+                      if (input.type === 'radio') input.checked = input.value === '';
+                    });
+                    const url = new URL(window.location);
+                    url.search = '';
+                    window.history.replaceState({}, '', url);
+                    document.querySelector('#filters-form').requestSubmit();
+                  "
                 }
               }
             } %}
@@ -99,6 +118,13 @@
 
       <div class="c-filter-nav__col c-filter-nav__sort-by" x-data="{ sort: '{{ sort }}' }">
         <h4 class="text-2xl font-semibold hidden md:block">Sort by</h4>
+        <div class="c-dropdown-container w-full md:w-auto" x-data x-init="
+  const stored = sessionStorage.getItem('sortScrollTop');
+  if (stored !== null) {
+    window.scrollTo({ top: parseInt(stored), behavior: 'auto' });
+    sessionStorage.removeItem('sortScrollTop');
+  }
+">
         {% include '_components/atoms/dropdown.twig' with {
     dropdown: {
       name: 'sort',
@@ -113,15 +139,19 @@
       classes: 'c-dropdown--sort-by',
       icon: 'sort-by',
       attrs: {
+        
         'x-model': 'sort',
         'x-on:change': "
-          const url = new URL(window.location.href);
-          url.searchParams.set('sort', sort);
-          document.querySelector('#filters-form').requestSubmit();
+          const scrollTop = window.scrollY;
+    sessionStorage.setItem('sortScrollTop', scrollTop);
+    const url = new URL(window.location.href);
+    url.searchParams.set('sort', sort);
+    document.querySelector('#filters-form').requestSubmit();
         "
       }
     }
   } %}
+  </div>
       </div>
       {# end .c-portfolio__sort-by-section #}
     </div>
@@ -167,7 +197,17 @@
                         's-val:reset': '1',
                         's-val:offset': '0',
                         's-val:limit': limit,
-                        "x-on:click": "document.querySelectorAll('#filters-form input').forEach(input => { if (input.type === 'checkbox') input.checked = false; if (input.type === 'radio') input.checked = input.value === ''; }); const url = new URL(window.location); url.search = ''; window.history.replaceState({}, '', url); document.querySelector('#filters-form').requestSubmit();"
+                        'x-on:click': "
+                          sessionStorage.setItem('resetScrollTop', window.scrollY);
+                          document.querySelectorAll('#filters-form input').forEach(input => {
+                            if (input.type === 'checkbox') input.checked = false;
+                            if (input.type === 'radio') input.checked = input.value === '';
+                          });
+                          const url = new URL(window.location);
+                          url.search = '';
+                          window.history.replaceState({}, '', url);
+                          document.querySelector('#filters-form').requestSubmit();
+                        "
                       }
                     }
                   } %}
@@ -197,6 +237,7 @@
               sprig
               id="filters-form"
               x-ref="scroll"
+              s-preserve
               @scroll.debounce.150ms="saveScroll"
               class="c-filter-sections-container"
             >
