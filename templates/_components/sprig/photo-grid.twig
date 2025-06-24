@@ -155,11 +155,7 @@
       {# end .c-portfolio__sort-by-section #}
     </div>
     <div class="c-portfolio-grid js-photo-grid grid md:grid-cols-4 gap-5">
-      <div
-  x-data="filterScroll()"
-  x-init="restoreScroll()"
-  @sprig:success.window="restoreScroll()"
->
+
       {# start .c-filter-sidebar #}
       <div
         x-show="filterOpen"
@@ -238,12 +234,13 @@
             class="c-filter-sections-wrapper"
           >
             {# start #filters-form #}
+            {% set isMobile = 'Mobile' in craft.app.request.userAgent %}
             <form
               sprig
               id="filters-form"
               @scroll.debounce.150ms="saveScroll()"
               x-ref="scroll"
-              s-preserve
+              {{ not isMobile ? 's-preserve' }}
               class="c-filter-sections-container"
             >
               <div
@@ -308,7 +305,6 @@
         </div>
       </div>
       {# end .c-filter-sidebar #}
-      </div>
       
       <div class="c-portfolio__results col-span-1 md:col-span-3" x-data='{"sort": {{ sort|default('')|json_encode|raw }} }'>
         {% set query = craft.entries().section('photos') %}
@@ -426,21 +422,3 @@
   
   
 </div>
-
-<script>
-  function filterScroll() {
-    return {
-      saveScroll() {
-        const el = document.querySelector('.c-filter-sections');
-        if (el) sessionStorage.setItem('filterScrollTop', el.scrollTop);
-      },
-      restoreScroll() {
-        const el = document.querySelector('.c-filter-sections');
-        const top = sessionStorage.getItem('filterScrollTop');
-        if (el && top !== null) {
-          el.scrollTop = parseInt(top);
-        }
-      }
-    }
-  }
-</script>
