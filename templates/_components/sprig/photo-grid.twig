@@ -119,39 +119,38 @@
       <div class="c-filter-nav__col c-filter-nav__sort-by" x-data="{ sort: '{{ sort }}' }">
         <h4 class="text-2xl font-semibold hidden md:block">Sort by</h4>
         <div class="c-dropdown-container w-full md:w-auto" x-data x-init="
-  const stored = sessionStorage.getItem('sortScrollTop');
-  if (stored !== null) {
-    window.scrollTo({ top: parseInt(stored), behavior: 'auto' });
-    sessionStorage.removeItem('sortScrollTop');
-  }
-">
-        {% include '_components/atoms/dropdown.twig' with {
-    dropdown: {
-      name: 'sort',
-      selected: sort,
-      prepend_text: 'Sort by:',
-      options: [
-        { value: '', label: 'Newest First' },
-        { value: 'oldest', label: 'Oldest First' },
-        { value: 'titleAsc', label: 'Title (A–Z)' },
-        { value: 'titleDesc', label: 'Title (Z–A)' }
-      ],
-      classes: 'c-dropdown--sort-by',
-      icon: 'sort-by',
-      attrs: {
-        
-        'x-model': 'sort',
-        'x-on:change': "
-          const scrollTop = window.scrollY;
-    sessionStorage.setItem('sortScrollTop', scrollTop);
-    const url = new URL(window.location.href);
-    url.searchParams.set('sort', sort);
-    document.querySelector('#filters-form').requestSubmit();
-        "
-      }
-    }
-  } %}
-  </div>
+          const stored = sessionStorage.getItem('sortScrollTop');
+          if (stored !== null) {
+            window.scrollTo({ top: parseInt(stored), behavior: 'auto' });
+            sessionStorage.removeItem('sortScrollTop');
+          }
+        ">
+          {% include '_components/atoms/dropdown.twig' with {
+            dropdown: {
+              name: 'sort',
+              selected: sort,
+              prepend_text: 'Sort by:',
+              options: [
+                { value: '', label: 'Newest First' },
+                { value: 'oldest', label: 'Oldest First' },
+                { value: 'titleAsc', label: 'Title (A–Z)' },
+                { value: 'titleDesc', label: 'Title (Z–A)' }
+              ],
+              classes: 'c-dropdown--sort-by',
+              icon: 'sort-by',
+              attrs: {
+              'x-model': 'sort',
+              'x-on:change': "
+                const scrollTop = window.scrollY;
+                sessionStorage.setItem('sortScrollTop', scrollTop);
+                const url = new URL(window.location.href);
+                url.searchParams.set('sort', sort);
+                document.querySelector('#filters-form').requestSubmit();
+                "
+              }
+            }
+          } %}
+        </div>
       </div>
       {# end .c-portfolio__sort-by-section #}
     </div>
@@ -168,7 +167,8 @@
         x-transition:leave-end="opacity-0"
         class="fixed inset-0 bg-black/90 z-[90] md:hidden"
         @click="filterOpen = false"
-      ></div>
+      >
+      </div>
       <div
         x-show="filterOpen"
         x-transition:enter="transition transform ease-in duration-175 delay-50"
@@ -233,6 +233,7 @@
             @sprig:success.window="if (window.innerWidth < 768) { setTimeout(() => { visible = true; restoreScroll(); }, 200); } else { visible = true; }"
             class="c-filter-sections-wrapper"
           >
+            {# start #filters-form #}
             <form
               sprig
               id="filters-form"
@@ -251,6 +252,7 @@
                 x-transition:leave-start="opacity-100"
                 x-transition:leave-end="opacity-0"
                 class="c-filter-sections"
+                x-ref="scrollTarget"
               >
                 {% set allStates = [{ title: 'All States', slug: '' }] | merge(states) %}
                 
@@ -273,38 +275,41 @@
                   extraVals
                 ) }}
                 {% for filter in checkboxFilters %}
-  {% set categories = craft.categories.group(filter.handle).all() %}
+                  {% set categories = craft.categories.group(filter.handle).all() %}
+                  {% set extraAttrs = {
+                    's-val:limit': limit,
+                    's-val:sort': sort,
+                    'formSelector': '#filters-form'
+                  } %}
 
-  {% set extraAttrs = {
-    's-val:limit': limit,
-    's-val:sort': sort,
-    'formSelector': '#filters-form'
-  } %}
+                  {% if filter.handle == 'season' %}
+                    {% set extraAttrs = extraAttrs
+                      | merge(season|map(s => {'s-val:season[]': s})|reduce((a, b) => a|merge(b), {})) %}
+                  {% elseif filter.handle == 'genre' %}
+                    {% set extraAttrs = extraAttrs
+                      | merge(genre|map(g => {'s-val:genre[]': g})|reduce((a, b) => a|merge(b), {})) %}
+                  {% endif %}
 
-  {% if filter.handle == 'season' %}
-    {% set extraAttrs = extraAttrs
-      | merge(season|map(s => {'s-val:season[]': s})|reduce((a, b) => a|merge(b), {})) %}
-  {% elseif filter.handle == 'genre' %}
-    {% set extraAttrs = extraAttrs
-      | merge(genre|map(g => {'s-val:genre[]': g})|reduce((a, b) => a|merge(b), {})) %}
-  {% endif %}
-
-  {{ checkboxFilter.renderFilter(
-    filter.handle|capitalize ~ 's',
-    categories,
-    filter.selected,
-    filter.handle,
-    extraAttrs
-  ) }}
-{% endfor %}
+                  {{ checkboxFilter.renderFilter(
+                    filter.handle|capitalize ~ 's',
+                    categories,
+                    filter.selected,
+                    filter.handle,
+                    extraAttrs
+                  ) }}
+                {% endfor %}
                 </div>
-              </form>
-            </div>
+              </div>
+            </form>{# end #filters-form #}
+
+            
+
           </div>
         </div>
       </div>
       {# end .c-filter-sidebar #}
 
+      {# start .c-portfolio__results #}
       <div class="c-portfolio__results col-span-1 md:col-span-3" x-data='{"sort": {{ sort|default('')|json_encode|raw }} }'>
         {% set query = craft.entries().section('photos') %}
         {% if sort == 'oldest' %}
@@ -334,22 +339,20 @@
           {% set selectedSlugs = filter.selected %}
           {% if selectedSlugs|length %}
             {% set cats = craft.categories().group(filter.handle).slug(selectedSlugs).all() %}
-{% if cats|length %}
-  {% set relatedConditions = relatedConditions|merge([
-    {
-      field: filter.handle,
-      targetElement: cats
-    }
-  ]) %}
-{% endif %}
+            {% if cats|length %}
+              {% set relatedConditions = relatedConditions|merge([
+                {
+                  field: filter.handle,
+                  targetElement: cats
+                }
+              ]) %}
+            {% endif %}
           {% endif %}
         {% endfor %}
 
         {% if relatedConditions|length %}
-  {% set query = query.relatedTo(['and']|merge(relatedConditions)) %}
-{% endif %}
-
-
+          {% set query = query.relatedTo(['and']|merge(relatedConditions)) %}
+        {% endif %}
 
         {% set total = query.count() %}
         {% set entries = query.offset(offset).limit(limit).all() %}
@@ -384,39 +387,39 @@
         {% endif %}
 
         <div id="load-more-wrapper"
-  {% if sprig.trigger == 'load-more-button' %}
-    s-swap-oob="true"
-  {% endif %}
-  class="c-portfolio-grid__footer"
-  x-data
->
-  {% if not isLastPage %}
-    {% include '_components/atoms/button.twig' with {
-      button: {
-        text: 'Load More',
-        tag: 'button',
-        classes: 'o-button--arrow-down',
-        attrs: {
-          id: 'load-more-button',
-          sprig: true,
-          's-val:offset': nextOffset,
-          's-val:limit': limit,
-          's-val:state': state,
-          's-select': '.c-photo-block-container, #load-more-wrapper',
-          's-target': '#photo-grid',
-          's-swap': 'beforeend',
-          ':s-val:sort': 'sort'
-        }
-        | merge(season|map(s => {('x-bind:s-val:season[]'): s|json_encode})|reduce((a, b) => a|merge(b), {}))
-        | merge(genre|map(g => {('x-bind:s-val:genre[]'): g|json_encode})|reduce((a, b) => a|merge(b), {}))
-      }
-    } %}
-  {% else %}
-    <button id="load-more-button" style="display: none;"></button>
-  {% endif %}
-</div>
-      </div>
-      {# end .c-portfolio__results #}
+          {% if sprig.trigger == 'load-more-button' %}
+            s-swap-oob="true"
+          {% endif %}
+          class="c-portfolio-grid__footer"
+          x-data
+        >
+          {% if not isLastPage %}
+            {% include '_components/atoms/button.twig' with {
+              button: {
+                text: 'Load More',
+                tag: 'button',
+                classes: 'o-button--arrow-down',
+                attrs: {
+                  id: 'load-more-button',
+                  sprig: true,
+                  's-val:offset': nextOffset,
+                  's-val:limit': limit,
+                  's-val:state': state,
+                  's-select': '.c-photo-block-container, #load-more-wrapper',
+                  's-target': '#photo-grid',
+                  's-swap': 'beforeend',
+                  ':s-val:sort': 'sort'
+                }
+                | merge(season|map(s => {('x-bind:s-val:season[]'): s|json_encode})|reduce((a, b) => a|merge(b), {}))
+                | merge(genre|map(g => {('x-bind:s-val:genre[]'): g|json_encode})|reduce((a, b) => a|merge(b), {}))
+              }
+            } %}
+          {% else %}
+            <button id="load-more-button" style="display: none;"></button>
+          {% endif %}
+        </div>
+      </div>{# end .c-portfolio__results #}
+
     </div>
   </div>
 
