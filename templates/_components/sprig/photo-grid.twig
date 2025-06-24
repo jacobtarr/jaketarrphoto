@@ -278,19 +278,19 @@
                   ) }}
                   {% for filter in checkboxFilters %}
                     {% set categories = craft.categories.group(filter.handle).all() %}
-                    {% set checkboxExtras = {} %}
-                    {% for filter in checkboxFilters %}
-                      {% set checkboxExtras = checkboxExtras
-                        | merge(
-                            filter.selected|map(s => { ('s-val:' ~ filter.handle ~ '[]'): s })|reduce((a, b) => a|merge(b), {})
-                          ) %}
-                    {% endfor %}
-
                     {% set extraAttrs = {
                       's-val:limit': limit,
                       's-val:sort': sort,
                       'formSelector': '#filters-form'
-                    } | merge(checkboxExtras) %}
+                    } %}
+
+                    {% if filter.handle == 'season' %}
+                      {% set extraAttrs = extraAttrs
+                        | merge(season|map(s => {'s-val:season[]': s})|reduce((a, b) => a|merge(b), {})) %}
+                    {% elseif filter.handle == 'genre' %}
+                      {% set extraAttrs = extraAttrs
+                        | merge(genre|map(g => {'s-val:genre[]': g})|reduce((a, b) => a|merge(b), {})) %}
+                    {% endif %}
 
                     {{ checkboxFilter.renderFilter(
                       filter.handle|capitalize ~ 's',
