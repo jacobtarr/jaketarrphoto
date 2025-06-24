@@ -24,12 +24,21 @@
   @apply md:px-5 md:pt-5 md:pb-8 md:bg-lighterGray space-y-8 md:space-y-0;
 
   &__mobile-nav {
-    @apply px-5 md:px-0 pt-5 md:pt-0 flex justify-between items-center md:hidden;
+    @apply px-4 md:px-0 pt-4 md:pt-0 flex justify-between items-center md:hidden;
+  }
+
+  &__footer {
+    @apply flex md:hidden absolute bottom-0 left-0 right-0 p-4 bg-lighterGray border-t border-lightGray;
+  }
+
+  &::after {
+    content: '';
+    @apply md:content-none pointer-events-none absolute bottom-[66px] left-0 right-0 h-10 bg-gradient-to-t from-lighterGray to-transparent;
   }
 }
 
 .c-filter-sections-container {
-  @apply px-5 md:px-0 max-h-[calc(100dvh-88px)] md:max-h-none pb-12 md:pb-0 overflow-y-auto md:overflow-visible md:max-h-none relative;
+  @apply px-4 md:px-0 max-h-[calc(100dvh-84px-66px)] md:max-h-none pb-12 md:pb-0 overflow-y-auto md:overflow-visible md:max-h-none relative;
 }
 
 .c-filter-sections {
@@ -38,7 +47,7 @@
 
 .c-filter-section {
   &__title {
-    @apply text-sm font-bold text-darkGray pb-2 border-b border-lightGray;
+    @apply text-base font-bold text-darkGray pb-2 border-b border-lightGray;
 
     html.u-dark-mode & {
       @apply border-offBlack;

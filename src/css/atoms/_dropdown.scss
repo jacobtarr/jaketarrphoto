@@ -1,6 +1,6 @@
 .c-dropdown {
   position: relative;
-  display: inline-block;
+  display: flex;
   width: 100%;
   cursor: pointer;
   padding: 0;
@@ -52,6 +52,8 @@
   outline: none;
   border: 0;
   padding: 0;
+
+  @apply font-medium text-sm md:text-base;
 }
 
 .c-dropdown__arrow {
