@@ -1,11 +1,11 @@
 fill: null
 format: null
 handle: squareSmall
-height: 600
-interlace: none
+height: 400
+interlace: line
 mode: crop
-name: 'Square Small'
+name: Square--Small
 position: center-center
-quality: null
+quality: 80
 upscale: true
-width: 600
+width: 400

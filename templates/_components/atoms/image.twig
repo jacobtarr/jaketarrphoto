@@ -1,53 +1,34 @@
 {% macro renderImage(image, smallWidth, largeWidth, altText, transform = null) %}
   {% if image %}
-    {% set isObject = image is defined and image is iterable and image is not string %}
+    {% set isObject = image is iterable and image is not string %}
 
-    {% if transform %}
-      {% if isObject %}
-        <img 
-          src="{{ image.getUrl(transform) }}"
-          srcset="{{ image.getUrl(transform) }} {{ largeWidth }}w"
-          sizes="100vw"
-          alt="{{ altText }}"
-          loading="lazy"
-          class="w-full h-full object-cover"
-        >
-      {% else %}
-        <img 
-          src="{{ image }}"
-          srcset="{{ image }} {{ largeWidth }}w"
-          sizes="100vw"
-          alt="{{ altText }}"
-          loading="lazy"
-          class="w-full h-full object-cover"
-        >
-      {% endif %}
+    {% if transform and isObject %}
+      {% set webpSrc = image.getUrl({ transform: transform, format: 'webp' }) %}
+      {% set jpegSrc = image.getUrl({ transform: transform }) %}
+    {% elseif isObject %}
+      {% set webpSrc = image.getUrl({ width: largeWidth, format: 'webp' }) %}
+      {% set jpegSrc = image.getUrl({ width: largeWidth }) %}
     {% else %}
-      {% if isObject %}
-        <img 
-          src="{{ image.getUrl({ width: largeWidth, format: 'webp' }) }}"
-          srcset="
-            {{ image.getUrl({ width: smallWidth, format: 'webp' }) }} {{ smallWidth }}w,
-            {{ image.getUrl({ width: largeWidth, format: 'webp' }) }} {{ largeWidth }}w
-          "
-          sizes="(max-width: 768px) 100vw, 50vw"
-          alt="{{ altText }}"
-          loading="lazy"
-          class="w-full h-full object-cover"
-        >
-      {% else %}
-        <img 
-          src="{{ image }}"
-          srcset="
-            {{ image }} {{ smallWidth }}w,
-            {{ image }} {{ largeWidth }}w
-          "
-          sizes="(max-width: 768px) 100vw, 50vw"
-          alt="{{ altText }}"
-          loading="lazy"
-          class="w-full h-full object-cover"
-        >
-      {% endif %}
+      {# fallback if image is just a string url #}
+      {% set webpSrc = image %}
+      {% set jpegSrc = image %}
     {% endif %}
+
+    <picture>
+      <source srcset="{{ webpSrc }}" type="image/webp">
+      <img 
+        src="{{ jpegSrc }}"
+        srcset="{% if isObject and not transform %}
+          {{ image.getUrl({ width: smallWidth }) }} {{ smallWidth }}w,
+          {{ jpegSrc }} {{ largeWidth }}w
+        {% else %}
+          {{ jpegSrc }} {{ largeWidth }}w
+        {% endif %}"
+        sizes="(max-width: 768px) 100vw, 50vw"
+        alt="{{ altText }}"
+        loading="lazy"
+        class="w-full h-full object-cover"
+      >
+    </picture>
   {% endif %}
 {% endmacro %}

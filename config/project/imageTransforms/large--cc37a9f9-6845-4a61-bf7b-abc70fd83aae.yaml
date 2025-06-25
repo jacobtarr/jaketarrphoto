@@ -2,10 +2,10 @@ fill: null
 format: null
 handle: large
 height: null
-interlace: none
+interlace: line
 mode: crop
 name: Large
 position: center-center
-quality: 100
+quality: 80
 upscale: true
 width: 2000

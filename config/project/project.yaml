@@ -1,4 +1,4 @@
-dateModified: 1750885013
+dateModified: 1750887836
 email:
   fromEmail: $CRAFT_EMAIL_SYSTEM
   fromName: $CRAFT_EMAIL_SYSTEM
@@ -43,6 +43,7 @@ meta:
     1a07dfa1-6719-409b-aae0-4355938489fa: Overview # Overview
     1b42544d-e667-4d35-81de-804526420b34: 'Page Builder Option: Left Column Width' # Page Builder Option: Left Column Width
     01f1709e-90b6-4a73-a760-fd999f43b328: 'Featured Image' # Featured Image
+    02cac0e4-26ca-4050-b482-32fe31d3fd05: Square--Small # Square--Small
     03abafd4-804b-4730-a878-f77b4520e502: 'Page Gallery Images' # Page Gallery Images
     3d0151b1-3180-4665-8e2f-be7c0d1f1452: 'Two Column Block Layout' # Two Column Block Layout
     3d2ab139-6eab-4ce4-a7c7-023881701cfd: 'Page Builder: Right Column Content' # Page Builder: Right Column Content
@@ -91,7 +92,7 @@ meta:
     b4bc8ded-4c1d-49ff-9fa2-e5f3dba0fe78: New # New
     b6b3dfbf-a51c-4b72-a0f4-13156ea28fe1: 'Page Builder: Spacer Block' # Page Builder: Spacer Block
     b28d4120-dd8f-47c8-9968-e484ce2daf49: 'Page Builder: Split Content Row' # Page Builder: Split Content Row
-    c739ea72-3a35-47c8-b515-facc9fa28521: 'Square Small' # Square Small
+    c739ea72-3a35-47c8-b515-facc9fa28521: Square--Medium # Square--Medium
     cb27dbe3-1802-4914-bbe2-7a4a53f42e1d: 'Featured Works Photos' # Featured Works Photos
     cc37a9f9-6845-4a61-bf7b-abc70fd83aae: Large # Large
     cf585ce0-229d-46cc-ba10-76f2824fd3f7: 'Page Buttons' # Page Buttons
