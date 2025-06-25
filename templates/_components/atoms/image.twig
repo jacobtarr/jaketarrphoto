@@ -1,4 +1,4 @@
-{% macro renderImage(image, smallWidth, largeWidth, altText, transform = null) %}
+{% macro renderImage(image, smallWidth, largeWidth, altText, transform = null, loading = 'lazy') %}
   {% if image %}
     {% set isObject = image is iterable and image is not string %}
 
@@ -26,7 +26,9 @@
         {% endif %}"
         sizes="(max-width: 768px) 100vw, 50vw"
         alt="{{ altText }}"
-        loading="lazy"
+        loading="{{ loading }}"
+        width="{{ largeWidth }}"
+        height="auto"
         class="w-full h-full object-cover"
       >
     </picture>
