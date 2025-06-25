@@ -9,42 +9,52 @@
 {% set limit = limit ?? 9 %}
 {% set nextOffset = offset + limit %}
 {% set state = (reset is defined) ? '' : (state ?? '') %}
-{% set genre = genre is iterable ? genre : (genre ? [genre] : []) %}
-{% set season = season is iterable ? season : (season ? [season] : []) %}
+{% set checkboxFilters = [
+  { handle: 'season', selected: season },
+  { handle: 'genre', selected: genre }
+] %}
+{% for filter in checkboxFilters %}
+  {% set _ = attribute(_context, filter.handle) is iterable
+    ? null
+    : craft.app.view.setTemplateVariable(filter.handle, attribute(_context, filter.handle) ? [attribute(_context, filter.handle)] : [])
+  %}
+{% endfor %}
 {% set selectedFilterCount = (state ? 1 : 0) + season|length + genre|length %}
 {% set sort = (reset is defined) ? '' : (sort ?? '') %}
 
 {# Fetch the available categories for filters #}
 {% set states = craft.categories.group('state').all() %}
-{% set checkboxFilters = [
-  { handle: 'season', selected: season },
-  { handle: 'genre', selected: genre }
-] %}
 
 <div
   class="c-portfolio md:space-y-12"
   x-data="{
     filterOpen: $persist(false).as('portfolioFilterOpen'),
-    toggleBodyScroll() {
+    toggleBodyScroll(value = this.filterOpen) {
       const isMobile = window.matchMedia('(max-width: 767px)').matches;
       if (isMobile) {
-        document.body.classList.toggle('overflow-hidden', this.filterOpen);
+        document.body.classList.toggle('overflow-hidden', value);
       } else {
         document.body.classList.remove('overflow-hidden');
       }
     }
   }"
-  x-init="$watch('filterOpen', value => toggleBodyScroll(value))"
->
-  {% set portfolioHeroImageData = {
-    '' : { image: '/dist/images/portfolio-hero/base.jpg', heading: '' },
-    'arizona': { image: '/dist/images/portfolio-hero/arizona.jpg', heading: 'Arizona' },
-    'utah': { image: '/dist/images/portfolio-hero/utah.jpg', heading: 'Utah' },
-    'colorado': { image: '/dist/images/portfolio-hero/colorado.jpg', heading: 'Colorado' },
-    'new-mexico': { image: '/dist/images/portfolio-hero/new-mexico.jpg', heading: 'New Mexico' },
-    'nevada': { image: '/dist/images/portfolio-hero/nevada.jpg', heading: 'Nevada' }
-  } %}
+  x-init="
+    toggleBodyScroll(filterOpen);
+    $watch('filterOpen', value => toggleBodyScroll(value));
+    window.addEventListener('resize', () => toggleBodyScroll());
 
+    // Restore scroll after sort/reset
+    const stored = sessionStorage.getItem('sortScrollTop') || sessionStorage.getItem('resetScrollTop');
+    if (stored !== null) {
+      window.scrollTo({ top: parseInt(stored), behavior: 'auto' });
+      sessionStorage.removeItem('sortScrollTop');
+      sessionStorage.removeItem('resetScrollTop');
+    }
+  "
+  @sprig:success.window="if (window.innerWidth < 768) filterOpen = false"
+>
+
+  {% set portfolioHeroImageData = craft.app.config.getConfigFromFile('portfolioHeroImageData') %}
   {% set portfolioHero = portfolioHeroImageData[state] ?? portfolioHeroImageData[''] %}
 
   {% include '_components/molecules/hero.twig' with {
@@ -59,22 +69,12 @@
     <div class="c-filter-nav">
       <div class="hidden md:flex items-center gap-x-5 relative">
         <h4 class="text-2xl font-semibold">Filters</h4>
-        {% if state or season|length > 0 or genre|length > 0 %}
+        {% set hasSelections = checkboxFilters|filter(f => f.selected|length > 0)|length > 0 %}
+        {% if state or hasSelections %}
           <div x-data>
-            {% include '_components/atoms/button.twig' with {
-              button: {
-                tag: 'button',
-                classes: 'c-reset-button',
-                text: 'Reset Filters',
-                icon: 'close',
-                attrs: {
-                  sprig: true,
-                  's-val:reset': '1',
-                  's-val:offset': '0',
-                  's-val:limit': limit,
-                  "x-on:click": "document.querySelectorAll('#filters-form input').forEach(input => { if (input.type === 'checkbox') input.checked = false; if (input.type === 'radio') input.checked = input.value === ''; }); const url = new URL(window.location); url.search = ''; window.history.replaceState({}, '', url); document.querySelector('#filters-form').requestSubmit();"
-                }
-              }
+            {% include '_components/molecules/reset-button.twig' with {
+              limit: limit,
+              selectedFilterCount: selectedFilterCount
             } %}
           </div>
         {% endif %}
@@ -93,31 +93,41 @@
         } %}
       </div>
 
-      <div class="c-filter-nav__col c-filter-nav__sort-by">
+      <div class="c-filter-nav__col c-filter-nav__sort-by" x-data="{ sort: '{{ sort }}' }">
         <h4 class="text-2xl font-semibold hidden md:block">Sort by</h4>
-        {% include '_components/atoms/dropdown.twig' with {
-          dropdown: {
-            name: 'sort',
-            selected: sort,
-            prepend_text: 'Sort by:',
-            options: [
-              { value: '', label: 'Newest First' },
-              { value: 'oldest', label: 'Oldest First' },
-              { value: 'titleAsc', label: 'Title (A–Z)' },
-              { value: 'titleDesc', label: 'Title (Z–A)' }
-            ],
-            classes: 'c-dropdown--sort-by',
-            icon: 'sort-by',
-            attrs: {
-              sprig: true,
-              's-val:offset': 0,
-              's-val:limit': limit,
-              's-val:state': state
-            }
-            | merge(season|map(s => {('s-val:season[]'): s})|reduce((a, b) => a|merge(b), {}))
-            | merge(genre|map(g => {('s-val:genre[]'): g})|reduce((a, b) => a|merge(b), {}))
+        <div class="c-dropdown-container w-full md:w-auto" x-data x-init="
+          const stored = sessionStorage.getItem('sortScrollTop');
+          if (stored !== null) {
+            window.scrollTo({ top: parseInt(stored), behavior: 'auto' });
+            sessionStorage.removeItem('sortScrollTop');
           }
-        } %}
+        ">
+          {% include '_components/atoms/dropdown.twig' with {
+            dropdown: {
+              name: 'sort',
+              selected: sort,
+              prepend_text: 'Sort by:',
+              options: [
+                { value: '', label: 'Newest First' },
+                { value: 'oldest', label: 'Oldest First' },
+                { value: 'titleAsc', label: 'Title (A–Z)' },
+                { value: 'titleDesc', label: 'Title (Z–A)' }
+              ],
+              classes: 'c-dropdown--sort-by',
+              icon: 'sort-by',
+              attrs: {
+              'x-model': 'sort',
+              'x-on:change': "
+                const scrollTop = window.scrollY;
+                sessionStorage.setItem('sortScrollTop', scrollTop);
+                const url = new URL(window.location.href);
+                url.searchParams.set('sort', sort);
+                document.querySelector('#filters-form').requestSubmit();
+                "
+              }
+            }
+          } %}
+        </div>
       </div>
       {# end .c-portfolio__sort-by-section #}
     </div>
@@ -134,7 +144,8 @@
         x-transition:leave-end="opacity-0"
         class="fixed inset-0 bg-black/90 z-[90] md:hidden"
         @click="filterOpen = false"
-      ></div>
+      >
+      </div>
       <div
         x-show="filterOpen"
         x-transition:enter="transition transform ease-in duration-175 delay-50"
@@ -150,119 +161,144 @@
           <div class="c-filter-box">
             <div class="c-filter-box__mobile-nav">
               <h4 class="text-2xl font-semibold">Filters</h4>
-              {% if state or season|length > 0 or genre|length > 0 %}
+              {% set hasSelections = checkboxFilters|filter(f => f.selected|length > 0)|length > 0 %}
+              {% if state or hasSelections %}
                 <div x-data>
-                  {% include '_components/atoms/button.twig' with {
-                    button: {
-                      tag: 'button',
-                      classes: 'c-reset-button',
-                      text: 'Reset Filters',
-                      icon: 'close',
-                      attrs: {
-                        sprig: true,
-                        's-val:reset': '1',
-                        's-val:offset': '0',
-                        's-val:limit': limit,
-                        "x-on:click": "document.querySelectorAll('#filters-form input').forEach(input => { if (input.type === 'checkbox') input.checked = false; if (input.type === 'radio') input.checked = input.value === ''; }); const url = new URL(window.location); url.search = ''; window.history.replaceState({}, '', url); document.querySelector('#filters-form').requestSubmit();"
-                      }
-                    }
+                  {% include '_components/molecules/reset-button.twig' with {
+                    limit: limit,
+                    selectedFilterCount: selectedFilterCount
                   } %}
                 </div>
               {% endif %}
-            </div>
+            </div>{# end .c-filter-box__mobile-nav #}
             <div
-            x-data="{
-              visible: false,
-              saveScroll() {
-                sessionStorage.setItem('filterScrollTop', this.$refs.scroll.scrollTop);
-              },
-              restoreScroll() {
-                this.$nextTick(() => {
-                  const scrollTop = sessionStorage.getItem('filterScrollTop');
-                  if (this.$refs.scroll && scrollTop) {
-                    this.$refs.scroll.scrollTop = parseInt(scrollTop);
+              x-data="{
+                visible: false,
+                saveScroll() {
+                  if (this.$refs.scroll) {
+                    sessionStorage.setItem('filterScrollTop', this.$refs.scroll.scrollTop);
                   }
-                });
-              }
-            }"
-            x-init="if (window.innerWidth < 768) { setTimeout(() => { visible = true; restoreScroll(); }, 200); } else { visible = true; }"
-            @sprig:success.window="if (window.innerWidth < 768) { setTimeout(() => { visible = true; restoreScroll(); }, 200); } else { visible = true; }"
-            class="c-filter-sections-wrapper"
-          >
-            <form
-              sprig
-              id="filters-form"
-              x-ref="scroll"
-              @scroll.debounce.150ms="saveScroll"
-              class="c-filter-sections-container"
+                },
+                restoreScroll() {
+                  this.$nextTick(() => {
+                    const scrollTop = sessionStorage.getItem('filterScrollTop');
+                    if (this.$refs.scroll && scrollTop) {
+                      this.$refs.scroll.scrollTop = parseInt(scrollTop);
+                    }
+                  });
+                }
+              }"
+              x-init="if (window.innerWidth < 768) { setTimeout(() => { visible = true; restoreScroll(); }, 200); } else { visible = true; }"
+              @sprig:success.window="if (window.innerWidth < 768) { setTimeout(() => { visible = true; restoreScroll(); }, 200); } else { visible = true; }"
+              class="c-filter-sections-wrapper"
             >
-              <div
-                x-show="visible"
-                x-cloak
-                x-transition:enter="transition-opacity duration-1000 ease-in-out"
-                x-transition:enter-start="opacity-0"
-                x-transition:enter-end="opacity-100"
-                x-transition:leave="transition-opacity duration-500 ease-in"
-                x-transition:leave-start="opacity-100"
-                x-transition:leave-end="opacity-0"
-                class="c-filter-sections"
+
+              {# start #filters-form #}
+              {% set isMobile = 'Mobile' in craft.app.request.userAgent %}
+              <form
+                sprig
+                id="filters-form"
+                @scroll.debounce.150ms="saveScroll()"
+                x-ref="scroll"
+                {{ not isMobile ? 's-preserve' }}
+                class="c-filter-sections-container"
               >
-                {% set allStates = [{ title: 'All States', slug: '' }] | merge(states) %}
-                
-                {# Prepare s-val extras (exclude checkbox filters to avoid duplication) #}
-                {% set checkboxFilterHandles = checkboxFilters|map(f => f.handle) %}
-                {% set extraVals = {
-                  'season': season,
-                  'genre': genre,
-                  'offset': offset,
-                  'limit': limit,
-                  'sort': sort
-                }|filter((val, key) => key not in checkboxFilterHandles) %}
-                {{ radioFilter.renderFilter(
-                  'States',
-                  allStates,
-                  state,
-                  'state',    
-                  limit,
-                  sort,
-                  extraVals
-                ) }}
-                {% for filter in checkboxFilters %}
-                  {% set categories = craft.categories.group(filter.handle).all() %}
-                  {{ checkboxFilter.renderFilter(
-                    filter.handle|capitalize ~ 's',
-                    categories,
-                    filter.selected,
-                    filter.handle,
-                    {
+                <div
+                  x-show="visible"
+                  x-cloak
+                  x-transition:enter="transition-opacity duration-1000 ease-in-out"
+                  x-transition:enter-start="opacity-0"
+                  x-transition:enter-end="opacity-100"
+                  x-transition:leave="transition-opacity duration-500 ease-in"
+                  x-transition:leave-start="opacity-100"
+                  x-transition:leave-end="opacity-0"
+                  class="c-filter-sections"
+                >
+                  {% set allStates = [{ title: 'All States', slug: '' }] | merge(states) %}
+                  
+                  {# Prepare s-val extras (exclude checkbox filters to avoid duplication) #}
+                  {% set checkboxFilterHandles = checkboxFilters|map(f => f.handle) %}
+                  {% set extraVals = {
+                    'season': season,
+                    'genre': genre,
+                    'offset': offset,
+                    'limit': limit,
+                    'sort': sort
+                  }|filter((val, key) => key not in checkboxFilterHandles) %}
+                  {{ radioFilter.renderFilter(
+                    'States',
+                    allStates,
+                    state,
+                    'state',    
+                    limit,
+                    sort,
+                    extraVals
+                  ) }}
+                  {% for filter in checkboxFilters %}
+                    {% set categories = craft.categories.group(filter.handle).all() %}
+                    {% set checkboxExtras = {} %}
+                    {% for filter in checkboxFilters %}
+                      {% set checkboxExtras = checkboxExtras
+                        | merge(
+                            filter.selected|map(s => { ('s-val:' ~ filter.handle ~ '[]'): s })|reduce((a, b) => a|merge(b), {})
+                          ) %}
+                    {% endfor %}
+
+                    {% set extraAttrs = {
                       's-val:limit': limit,
                       's-val:sort': sort,
                       'formSelector': '#filters-form'
+                    } | merge(checkboxExtras) %}
+
+                    {{ checkboxFilter.renderFilter(
+                      filter.handle|capitalize ~ 's',
+                      categories,
+                      filter.selected,
+                      filter.handle,
+                      extraAttrs
+                    ) }}
+                  {% endfor %}
+                  
+
+                </div>{# end .c-filter-sections #}
+              </form>{# end #filters-form #}
+              <div
+                x-data="{
+                  resultsCount: 0,
+                  updateCount() {
+                    const el = document.getElementById('results-count');
+                    this.resultsCount = el ? parseInt(el.value) : 0;
+                  }
+                }"
+                x-init="updateCount()"
+                @sprig:success.window="updateCount()"
+                class="c-filter-box__footer"
+              >
+                {% include '_components/atoms/button.twig' with {
+                  button: {
+                    tag: 'button',
+                    classes: 'o-button--primary w-full justify-center text-center',
+                    attrs: {
+                      type: 'submit',
+                      '@click': 'filterOpen = false',
+                      'x-text': '\'Show \' + resultsCount + \' Result\' + (resultsCount === 1 ? \'\' : \'s\')'
                     }
-                    | merge(season|map(s => {'s-val:season[]': s})|reduce((a, b) => a|merge(b), {}))
-                    | merge(genre|map(g => {'s-val:genre[]': g})|reduce((a, b) => a|merge(b), {}))
-                  ) }}
+                  }
+                } %}
+              </div>
+            </div>{# end .c-filter-sections-wrapper #}
 
-                {% endfor %}
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      {# end .c-filter-sidebar #}
-
-      <div class="c-portfolio__results col-span-1 md:col-span-3">
-        {% set query = craft.entries().section('photos') %}
-        {% if sort == 'oldest' %}
-          {% set query = query.orderBy('postDate ASC') %}
-        {% elseif sort == 'titleAsc' %}
-          {% set query = query.orderBy('title ASC') %}
-        {% elseif sort == 'titleDesc' %}
-          {% set query = query.orderBy('title DESC') %}
-        {% else %}
-          {% set query = query.orderBy('postDate DESC') %}
-        {% endif %}
+          </div>{# end .c-filter-box #}
+        </div>{# end .c-filter-box-container #}
+      </div>{# end .c-filter-sidebar #}
+      
+      <div class="c-portfolio__results col-span-1 md:col-span-3" x-data='{"sort": {{ sort|default('')|json_encode|raw }} }'>
+        {% set sortOptions = {
+          'oldest': 'postDate ASC',
+          'titleAsc': 'title ASC',
+          'titleDesc': 'title DESC'
+        } %}
+        {% set query = craft.entries().section('photos').orderBy(sortOptions[sort] ?? 'postDate DESC') %}
         
         {% set relatedConditions = [] %}
 
@@ -278,28 +314,28 @@
 
         {# Handle checkbox filters #}
         {% for filter in checkboxFilters %}
-          {% set selectedSlugs = filter.selected|filter(v => v|length) %}
+          {% set selectedSlugs = filter.selected %}
           {% if selectedSlugs|length %}
-            {% for slug in selectedSlugs %}
-              {% set cat = craft.categories().group(filter.handle).slug(slug).one() %}
-              {% if cat %}
-                {% set query = query.relatedTo({ field: filter.handle, targetElement: cat }) %}
-              {% endif %}
-            {% endfor %}
+            {% set cats = craft.categories().group(filter.handle).slug(selectedSlugs).all() %}
+            {% if cats|length %}
+              {% set relatedConditions = relatedConditions|merge([
+                {
+                  field: filter.handle,
+                  targetElement: cats
+                }
+              ]) %}
+            {% endif %}
           {% endif %}
         {% endfor %}
 
         {% if relatedConditions|length %}
-          <pre>
-          {{ dump(relatedConditions) }}
-          </pre>
-          {% set query = query.relatedTo(relatedConditions) %}
+          {% set query = query.relatedTo(['and']|merge(relatedConditions)) %}
         {% endif %}
-
 
         {% set total = query.count() %}
         {% set entries = query.offset(offset).limit(limit).all() %}
         {% set isLastPage = nextOffset >= total %}
+        <input type="hidden" id="results-count" value="{{ total }}">
 
         {% if entries|length %}
           <div id="photo-grid" class="c-portfolio-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
@@ -334,8 +370,17 @@
             s-swap-oob="true"
           {% endif %}
           class="c-portfolio-grid__footer"
+          x-data
         >
           {% if not isLastPage %}
+            {% set boundAttrs = checkboxFilters
+              | map(filter => (
+                filter.selected
+                  | map(item => { ('x-bind:s-val:' ~ filter.handle ~ '[]'): item|json_encode })
+                  | reduce((a, b) => a|merge(b), {})
+              ))
+              | reduce((a, b) => a|merge(b), {})
+            %}
             {% include '_components/atoms/button.twig' with {
               button: {
                 text: 'Load More',
@@ -347,21 +392,19 @@
                   's-val:offset': nextOffset,
                   's-val:limit': limit,
                   's-val:state': state,
-                  's-val:sort': sort,
                   's-select': '.c-photo-block-container, #load-more-wrapper',
                   's-target': '#photo-grid',
                   's-swap': 'beforeend',
-                }
-                | merge(season|map(s => {('s-val:season[]'): s})|reduce((a, b) => a|merge(b), {}))
-                | merge(genre|map(g => {('s-val:genre[]'): g})|reduce((a, b) => a|merge(b), {}))
+                  ':s-val:sort': 'sort'
+                } | merge(boundAttrs)
               }
             } %}
           {% else %}
             <button id="load-more-button" style="display: none;"></button>
           {% endif %}
         </div>
-      </div>
-      {# end .c-portfolio__results #}
+      </div>{# end .c-portfolio__results #}
+
     </div>
   </div>
 
