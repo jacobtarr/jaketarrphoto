@@ -1,0 +1,11 @@
+fill: null
+format: null
+handle: squareSmall
+height: 600
+interlace: none
+mode: crop
+name: 'Square Small'
+position: center-center
+quality: null
+upscale: true
+width: 600

@@ -1,5 +1,9 @@
 @use './_button' as button;
 
+.c-form-group {
+  @apply space-y-4;
+}
+
 .c-radio-label {
   @apply flex font-medium items-center gap-4 cursor-pointer;
 }

@@ -2,7 +2,7 @@
   {% set formSelector = extraAttrs['formSelector'] ?? '#filters-form' %}
   <div class="c-filter-section space-y-5">
     <div class="c-filter-section__title">{{ title }}</div>
-    <div class="c-filter-section__form-group c-checkbox-group space-y-5">
+    <div class="c-filter-section__form-group c-form-group">
       {% for option in options %}
         <label class="c-checkbox">
           <input 
