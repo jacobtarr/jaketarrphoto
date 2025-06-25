@@ -5,29 +5,29 @@
     {% if transform and isObject %}
       {% set webpSrc = image.getUrl({ transform: transform, format: 'webp' }) %}
       {% set jpegSrc = image.getUrl({ transform: transform }) %}
+
+      {# Get actual transform width to use in srcset #}
+      {% set transformObj = craft.app.imageTransforms.getTransformByHandle(transform) %}
+      {% set width = transformObj.width ?? largeWidth %}
     {% elseif isObject %}
       {% set webpSrc = image.getUrl({ width: largeWidth, format: 'webp' }) %}
       {% set jpegSrc = image.getUrl({ width: largeWidth }) %}
+      {% set width = largeWidth %}
     {% else %}
-      {# fallback if image is just a string url #}
       {% set webpSrc = image %}
       {% set jpegSrc = image %}
+      {% set width = largeWidth %}
     {% endif %}
 
     <picture>
       <source srcset="{{ webpSrc }}" type="image/webp">
       <img 
         src="{{ jpegSrc }}"
-        srcset="{% if isObject and not transform %}
-          {{ image.getUrl({ width: smallWidth }) }} {{ smallWidth }}w,
-          {{ jpegSrc }} {{ largeWidth }}w
-        {% else %}
-          {{ jpegSrc }} {{ largeWidth }}w
-        {% endif %}"
+        srcset="{{ jpegSrc }} {{ width }}w"
         sizes="(max-width: 768px) 100vw, 50vw"
         alt="{{ altText }}"
         loading="{{ loading }}"
-        width="{{ largeWidth }}"
+        width="{{ width }}"
         height="auto"
         class="w-full h-full object-cover"
       >
