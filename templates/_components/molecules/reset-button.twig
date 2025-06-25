@@ -1,0 +1,28 @@
+{% set selectedFilterCount = selectedFilterCount ?? 0 %}
+{% set limit = limit ?? 9 %}
+
+{% include '_components/atoms/button.twig' with {
+  button: {
+    tag: 'button',
+    classes: 'c-reset-button',
+    text: 'Reset Filters',
+    icon: 'close',
+    attrs: {
+      sprig: true,
+      's-val:reset': '1',
+      's-val:offset': '0',
+      's-val:limit': limit,
+      'x-on:click': "
+        sessionStorage.setItem('resetScrollTop', window.scrollY);
+        document.querySelectorAll('#filters-form input').forEach(input => {
+          if (input.type === 'checkbox') input.checked = false;
+          if (input.type === 'radio') input.checked = input.value === '';
+        });
+        const url = new URL(window.location);
+        url.search = '';
+        window.history.replaceState({}, '', url);
+        document.querySelector('#filters-form').requestSubmit();
+      "
+    }
+  }
+} %}
