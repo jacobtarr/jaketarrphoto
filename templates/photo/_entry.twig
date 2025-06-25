@@ -15,22 +15,22 @@
 				<div class="c-photo-page-photo sm:col-span-1 lg:col-span-8">
 					<div class="sticky top-4">
 						{% if entry.featuredImage.one() %}
-								{% include '_components/molecules/photo-block.twig' with {
-									"photo": {
-										"classes": "c-photo-block--gallery has-lightbox-gallery",
-										"image": entry.featuredImage.one(),
-										"url": entry.featuredImage.one().url,
-										"title": entry.featuredImage.one().title,
-										"caption": 'Expand',
-										"target": "_blank",
-										"icon": "expand",
-										"attrs": {
-											"data-pswp-width": entry.featuredImage.one().width ?? 1600,
-											"data-pswp-height": entry.featuredImage.one().height ?? 1067,
-											
-										}
+							{% include '_components/molecules/photo-block.twig' with {
+								"photo": {
+									"classes": "c-photo-block--gallery has-lightbox-gallery",
+									"image": entry.featuredImage.one(),
+									"url": entry.featuredImage.one().url,
+									"title": entry.featuredImage.one().title,
+									"caption": 'Expand',
+									"target": "_blank",
+									"icon": "expand",
+									"attrs": {
+										"data-pswp-width": entry.featuredImage.one().width ?? 1600,
+										"data-pswp-height": entry.featuredImage.one().height ?? 1067,
+										
 									}
-								} %}
+								}
+							} %}
 						{% endif %}
 					</div>
 				</div>

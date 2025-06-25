@@ -2,40 +2,32 @@
   {% if image %}
     {% set isObject = image is iterable and image is not string %}
 
-    {% if isObject %}
-      {# Use transform handle if it's a string, or use transform config #}
-      {% set transformHandle = transform is string ? transform : null %}
-      {% set transformConfig = transform is not string and transform is not null ? transform : null %}
-
-      {% set jpegSrc = image.getUrl({
-        transform: transformHandle ?? transformConfig,
-        format: 'jpg'
-      }) %}
-      {% set webpSrc = image.getUrl({
-        transform: transformHandle ?? transformConfig,
-        format: 'webp'
-      }) %}
-
-      {% set width = transformHandle 
-        ? (craft.app.imageTransforms.getTransformByHandle(transformHandle).width ?? largeWidth)
-        : (transformConfig.width ?? largeWidth) 
-      %}
+    {% if transform and isObject %}
+      {% set webpSrc = image.getUrl({ transform: transform, format: 'webp' }) %}
+      {% set jpegSrc = image.getUrl({ transform: transform }) %}
+    {% elseif isObject %}
+      {% set webpSrc = image.getUrl({ width: largeWidth, format: 'webp' }) %}
+      {% set jpegSrc = image.getUrl({ width: largeWidth }) %}
     {% else %}
-      {% set jpegSrc = image %}
+      {# fallback if image is just a string url #}
       {% set webpSrc = image %}
-      {% set width = largeWidth %}
+      {% set jpegSrc = image %}
     {% endif %}
 
     <picture>
       <source srcset="{{ webpSrc }}" type="image/webp">
-      <source srcset="{{ jpegSrc }}" type="image/jpeg">
       <img 
         src="{{ jpegSrc }}"
-        srcset="{{ jpegSrc }} {{ width }}w"
+        srcset="{% if isObject and not transform %}
+          {{ image.getUrl({ width: smallWidth }) }} {{ smallWidth }}w,
+          {{ jpegSrc }} {{ largeWidth }}w
+        {% else %}
+          {{ jpegSrc }} {{ largeWidth }}w
+        {% endif %}"
         sizes="(max-width: 768px) 100vw, 50vw"
         alt="{{ altText }}"
         loading="{{ loading }}"
-        width="{{ width }}"
+        width="{{ largeWidth }}"
         height="auto"
         class="w-full h-full object-cover"
       >
