@@ -33,32 +33,37 @@ export function sliderData() {
     slides: [],
     flickity: null,
 
-    init() {
-      // Initialize Flickity
-      this.flickity = initializeFlickity();
+    async init() {
+      const { default: Flickity } = await import('flickity');
+      await import('flickity/css/flickity.css');
 
-      // Collect slide data
-      this.slides = Array.from(document.querySelectorAll('.c-slide')).map((cell) => ({
-        title: cell.dataset.title,
-        location: cell.dataset.location,
-        url: cell.dataset.url, // Include URL for each slide
+      this.flickity = new Flickity('.c-slider', {
+        cellAlign: 'left',
+        contain: false,
+        wrapAround: true,
+        pageDots: false,
+        prevNextButtons: true,
+        lazyLoad: 5,
+      });
+
+      this.slides = [...document.querySelectorAll('.c-slide')].map(el => ({
+        title: el.dataset.title,
+        location: el.dataset.location,
+        url: el.dataset.url,
       }));
 
-      // Listen to slide change events
-      document.addEventListener('flickity-slide-changed', (event) => {
-        const { index } = event.detail;
+      this.updateActiveContent();
+
+      this.flickity.on('change', (index) => {
         this.currentIndex = index;
         this.updateActiveContent();
       });
-
-      // Set initial content
-      this.updateActiveContent();
     },
 
     updateActiveContent() {
-      const activeSlide = this.slides[this.currentIndex];
-      document.querySelector('.c-active-title').innerText = activeSlide.title;
-      document.querySelector('.c-active-location').innerText = activeSlide.location;
+      const active = this.slides[this.currentIndex];
+      document.querySelector('.c-active-title').textContent = active?.title || '';
+      document.querySelector('.c-active-location').textContent = active?.location || '';
     },
   };
 }

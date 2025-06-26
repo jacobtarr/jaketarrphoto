@@ -2,7 +2,7 @@ import Alpine from 'alpinejs';
 import persist from '@alpinejs/persist'
 import intersect from '@alpinejs/intersect'
 import '../css/index.scss';
-import { initializeFlickity, sliderData } from './flickitySetup';
+import { sliderData } from './flickitySetup';
 import { initializePageGalleryComponent } from './pageGalleryComponent';
 
 function headerState() {
