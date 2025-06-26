@@ -1,6 +1,6 @@
 .c-hero {
   &__image {
-    @apply h-[200px] md:h-[250px] relative;
+    @apply h-[200px] md:h-[250px] w-full relative overflow-hidden;
 
     &::before {
       content: '';
@@ -14,7 +14,7 @@
     }
 
     img {
-      height: 100%;
+      @apply w-full h-full object-cover block;
     }
   }
 
