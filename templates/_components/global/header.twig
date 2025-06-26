@@ -18,7 +18,11 @@
 
     <div class="c-header__mobile-wrapper">
       <div class="c-header__icons">
-        <button @click="toggleDarkMode()" class="text-black focus:outline-none">
+        <button
+          @click="toggleDarkMode()"
+          class="text-black focus:outline-none"
+          aria-label="Toggle dark mode"
+        >
           <template x-if="darkMode">
             {% include '_components/atoms/icons/icon-light-mode.svg' %}
           </template>
@@ -35,8 +39,9 @@
             :class="{ 'is-active': open }"
             class="hamburger hamburger--squeeze"
             type="button"
-            aria-label="Menu"
-            aria-controls="navigation">
+            aria-label="Main navigation menu"
+            :aria-expanded="open.toString()"
+            aria-controls="mobile-nav">
             <span class="hamburger-box">
               <span class="hamburger-inner"></span>
             </span>
@@ -46,9 +51,11 @@
         {% set mobileLinkClasses = "text-4xl font-semibold text-white hover:text-red" %}
 
         <div
+          id="mobile-nav"
           x-show="open"
           x-transition.opacity.duration.150ms
-          class="c-mobile-nav flex md:hidden">
+          class="c-mobile-nav flex md:hidden"
+          aria-label="Mobile site links">
           <div class="c-mobile-nav__inner container space-y-15">
             <ul class="c-mobile-nav__list space-y-2">
               <li>
