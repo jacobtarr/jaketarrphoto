@@ -35,14 +35,18 @@ function headerState() {
 // Attach Alpine.js components to the window object
 window.Alpine = Alpine;
 window.headerState = headerState;
-window.sliderData = sliderData;
 
 // Initialize Alpine.js
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   Alpine.data('headerState', headerState);
-  Alpine.data('sliderData', sliderData);
   Alpine.plugin(intersect);
   Alpine.plugin(persist);
+
+  if (document.querySelector('.c-slider')) {
+    const { sliderData } = await import('./flickitySetup');
+    Alpine.data('sliderData', sliderData);
+  }
+
   Alpine.start();
   initializePageGalleryComponent();
 });
