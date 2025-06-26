@@ -5,12 +5,19 @@
     {% if transform and isObject %}
       {% set jpegSrc = image.getUrl({ transform: transform }) %}
       {% set webpSrc = image.getUrl({ transform: transform, format: 'webp' }) %}
+      {% set transformObj = craft.app.imageTransforms.getTransformByHandle(transform) %}
+      {% set imgWidth = transformObj.width ?? largeWidth %}
+      {% set imgHeight = transformObj.height ?? ((image.getHeight() * (imgWidth / image.getWidth()))|round) %}
     {% elseif isObject %}
       {% set jpegSrc = image.getUrl({ width: largeWidth }) %}
       {% set webpSrc = image.getUrl({ width: largeWidth, format: 'webp' }) %}
+      {% set imgWidth = largeWidth %}
+      {% set imgHeight = (image.getHeight() * (largeWidth / image.getWidth()))|round %}
     {% else %}
       {% set jpegSrc = image|replace({ '.webp': '.jpg' }) %}
       {% set webpSrc = image %}
+      {% set imgWidth = largeWidth %}
+      {% set imgHeight = 'auto' %}
     {% endif %}
 
     <picture>
@@ -18,16 +25,17 @@
       <source srcset="{{ jpegSrc }}" type="image/jpeg">
       <img 
         src="{{ jpegSrc }}"
+        onload="this.classList.add('is-loaded')"
         {% if isObject and not transform %}
           srcset="{{ image.getUrl({ width: smallWidth }) }} {{ smallWidth }}w, {{ jpegSrc }} {{ largeWidth }}w"
         {% else %}
-          srcset="{{ jpegSrc }} {{ largeWidth }}w"
+          srcset="{{ jpegSrc }} {{ imgWidth }}w"
         {% endif %}
         sizes="(max-width: 768px) 100vw, 50vw"
         alt="{{ altText }}"
         {% if loading %}loading="lazy"{% else %}fetchpriority="high"{% endif %}
-        width="{{ largeWidth }}"
-        height="auto"
+        width="{{ imgWidth }}"
+        height="{{ imgHeight }}"
         class="w-full h-full object-cover"
       >
     </picture>
