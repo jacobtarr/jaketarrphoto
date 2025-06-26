@@ -43,5 +43,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     Alpine.data('sliderData', sliderData);
   }
 
+  if (document.querySelector('.has-lightbox-gallery')) {
+    const { initializePageGalleryComponent } = await import('./pageGalleryComponent');
+    initializePageGalleryComponent();
+  }
+
   Alpine.start();
 });

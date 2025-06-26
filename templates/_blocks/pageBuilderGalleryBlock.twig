@@ -9,13 +9,7 @@
     layout == 'layout4' ? 'grid-cols-2' :
     'grid-cols-2' %}
 
-  <div 
-    class="c-page-gallery"
-    {% if block.pageGalleryLightboxToggle %}
-      x-data
-      x-init="import('/js/pageGalleryComponent.js').then(m => m.initializePageGalleryComponent())"
-    {% endif %}
-  >
+  <div class="c-page-gallery">
     <div class="c-page-gallery__grid grid grid-cols-1 {{ gridClass }} gap-5">
       {% for image in block.pageGalleryImages %}
         {% set colSpan = layout == 'layout4' and loop.first ? 'col-span-2' : 'col-span-1' %}
@@ -34,6 +28,7 @@
                 "attrs": {
                   "data-pswp-width": image.width ?? 1600,
                   "data-pswp-height": image.height ?? 1067,
+                  
                 }
               }
             } %}
