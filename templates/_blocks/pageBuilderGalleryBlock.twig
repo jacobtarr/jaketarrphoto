@@ -13,7 +13,7 @@
     class="c-page-gallery"
     {% if block.pageGalleryLightboxToggle %}
       x-data
-      x-init="import('/src/js/pageGalleryComponent').then(m => m.initializePageGalleryComponent())"
+      x-init="import('/js/pageGalleryComponent.js').then(m => m.initializePageGalleryComponent())"
     {% endif %}
   >
     <div class="c-page-gallery__grid grid grid-cols-1 {{ gridClass }} gap-5">
