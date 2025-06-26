@@ -54,16 +54,18 @@
   @sprig:success.window="if (window.innerWidth < 768) filterOpen = false"
 >
 
-  {% set portfolioHeroImageData = craft.app.config.getConfigFromFile('portfolioHeroImageData') %}
-  {% set portfolioHero = portfolioHeroImageData[state] ?? portfolioHeroImageData[''] %}
+  <s-replace>
+    {% set portfolioHeroImageData = craft.app.config.getConfigFromFile('portfolioHeroImageData') %}
+    {% set portfolioHero = portfolioHeroImageData[state] ?? portfolioHeroImageData[''] %}
 
-  {% include '_components/molecules/hero.twig' with {
-    hero: {
-      image: portfolioHero.image,
-      heading: 'Portfolio',
-      secondary_heading: portfolioHero.heading
-    }
-  } %}
+    {% include '_components/molecules/hero.twig' with {
+      hero: {
+        image: portfolioHero.image,
+        heading: 'Portfolio',
+        secondary_heading: portfolioHero.heading
+      }
+    } %}
+  </s-replace>
 
   <div class="container space-y-5">
     <div class="c-filter-nav">

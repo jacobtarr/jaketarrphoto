@@ -1,32 +1,31 @@
-{% macro renderImage(image, smallWidth, largeWidth, altText, transform = null, loading = 'lazy') %}
+{% macro renderImage(image, smallWidth, largeWidth, altText, transform = null, loading = true) %}
   {% if image %}
     {% set isObject = image is iterable and image is not string %}
 
     {% if transform and isObject %}
-      {% set webpSrc = image.getUrl({ transform: transform, format: 'webp' }) %}
       {% set jpegSrc = image.getUrl({ transform: transform }) %}
+      {% set webpSrc = image.getUrl({ transform: transform, format: 'webp' }) %}
     {% elseif isObject %}
-      {% set webpSrc = image.getUrl({ width: largeWidth, format: 'webp' }) %}
       {% set jpegSrc = image.getUrl({ width: largeWidth }) %}
+      {% set webpSrc = image.getUrl({ width: largeWidth, format: 'webp' }) %}
     {% else %}
-      {# fallback if image is just a string url #}
+      {% set jpegSrc = image|replace({ '.webp': '.jpg' }) %}
       {% set webpSrc = image %}
-      {% set jpegSrc = image %}
     {% endif %}
 
     <picture>
       <source srcset="{{ webpSrc }}" type="image/webp">
+      <source srcset="{{ jpegSrc }}" type="image/jpeg">
       <img 
         src="{{ jpegSrc }}"
-        srcset="{% if isObject and not transform %}
-          {{ image.getUrl({ width: smallWidth }) }} {{ smallWidth }}w,
-          {{ jpegSrc }} {{ largeWidth }}w
+        {% if isObject and not transform %}
+          srcset="{{ image.getUrl({ width: smallWidth }) }} {{ smallWidth }}w, {{ jpegSrc }} {{ largeWidth }}w"
         {% else %}
-          {{ jpegSrc }} {{ largeWidth }}w
-        {% endif %}"
+          srcset="{{ jpegSrc }} {{ largeWidth }}w"
+        {% endif %}
         sizes="(max-width: 768px) 100vw, 50vw"
         alt="{{ altText }}"
-        loading="{{ loading }}"
+        {% if loading %}loading="lazy"{% else %}fetchpriority="high"{% endif %}
         width="{{ largeWidth }}"
         height="auto"
         class="w-full h-full object-cover"
