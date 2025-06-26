@@ -8,7 +8,15 @@
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 		<meta
 		name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://use.typekit.net/ziu3lge.css" />
+    <!-- Preconnect to Typekit -->
+		<link rel="preconnect" href="https://use.typekit.net" crossorigin>
+		<link rel="preconnect" href="https://p.typekit.net" crossorigin>
+
+		<!-- Preload the stylesheet (non-blocking load) -->
+		<link rel="preload" href="https://use.typekit.net/ziu3lge.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+		<!-- Fallback for no-JS -->
+		<noscript><link rel="stylesheet" href="https://use.typekit.net/ziu3lge.css"></noscript>
 		
 		{# Fonts #}
 		{{ include ('_components/fonts', ignore_missing = true) }}

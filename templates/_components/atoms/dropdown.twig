@@ -9,6 +9,7 @@
     {% for key, value in attrs %}
       {{ key }}="{{ value }}"
     {% endfor %}
+    aria-label="{{ dropdown.prepend_text ?? 'Sort dropdown' }}"
   >
     {% for option in options %}
       <option 
