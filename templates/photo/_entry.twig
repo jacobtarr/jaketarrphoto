@@ -3,7 +3,11 @@
 
 {% block site %}
 
-	<section class="c-photo-page c-page container">
+	<section
+		class="c-photo-page c-page container"
+		x-data
+		x-init="import('/src/js/pageGalleryComponent').then(m => m.initializePageGalleryComponent())"
+	>
 		<div class="c-photo-page-row space-y-12">
 			{% include '_components/atoms/heading.twig' with {
 				"heading": {

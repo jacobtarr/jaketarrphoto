@@ -2,7 +2,6 @@ import Alpine from 'alpinejs';
 import persist from '@alpinejs/persist'
 import intersect from '@alpinejs/intersect'
 import '../css/index.scss';
-import { initializePageGalleryComponent } from './pageGalleryComponent';
 
 function headerState() {
   return {
@@ -29,8 +28,6 @@ function headerState() {
   };
 }
 
-
-
 // Attach Alpine.js components to the window object
 window.Alpine = Alpine;
 window.headerState = headerState;
@@ -47,5 +44,4 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   Alpine.start();
-  initializePageGalleryComponent();
 });
