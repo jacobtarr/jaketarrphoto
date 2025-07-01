@@ -1,7 +1,5 @@
 .c-photo-block {
-  position: relative;
-  overflow: hidden;
-  display: flex;
+  @apply relative overflow-hidden flex;
 
   &::before {
     content: '';
@@ -18,12 +16,14 @@
   }
 
   &__caption {
+    @apply font-sans flex items-end;
+    
     position: absolute;
     font-weight: 700;
     color: #fff;
     bottom: 12.5px;
     left: 0;
-    padding: 0 20px;
+    padding: 0 15px;
     z-index: 5;
     width: 100%;
     line-height: 1.25;
@@ -33,6 +33,8 @@
     clip-path: inset(100% 0 0 0);
     
     span {
+      @apply flex-1;
+
       display: inline;
       align-items: center;
       vertical-align: middle;
@@ -42,7 +44,8 @@
       display: inline;
       width: 20px;
       height: 20px;
-      margin-left: 10px;
+
+      @apply ml-4;
     }
   }
 
@@ -94,8 +97,7 @@
 
     .c-photo-block__caption {
       text-align: right;
-      padding: 0 12.5px 0 20px;
-      @apply text-sm font-sans;
+      @apply font-sans;
       svg {
         path {
           fill: #fff;
@@ -108,6 +110,7 @@
     .c-photo-block__caption {
       font-size: 12px;
       padding: 0 10px;
+      bottom: 10px;
 
       svg {
         width: 15px;

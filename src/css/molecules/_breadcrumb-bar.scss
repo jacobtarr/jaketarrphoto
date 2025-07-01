@@ -1,0 +1,21 @@
+.c-breadcrumb-bar {
+  @apply bg-lighterGray border-b border-lightGray;
+}
+
+.c-breadcrumbs {
+  @apply flex items-center gap-2 text-sm;
+
+  > li {
+    + li {
+      @apply border-l border-lightGray;
+    }
+    > a {
+      @apply block font-bold text-darkGray text-sm md:text-base p-4 md:p-5;
+    }
+    &:first-of-type {
+      > a {
+        @apply pl-0 text-darkGrayOpposite;
+      }
+    }
+  }
+}

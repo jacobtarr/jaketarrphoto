@@ -3,14 +3,24 @@
 
 {% block site %}
 
+	{% include '_components/molecules/breadcrumb-bar.twig' with {
+		breadcrumbBar: {
+			showBackButton: true,
+			backTarget: '/portfolio',
+			backText: '← Back to Portfolio',
+			refMatch: '/portfolio',
+			items: [
+				entry.state.one() ? {
+					text: entry.state.one().title,
+					url: siteUrl('portfolio') ~ '?state=' ~ entry.state.one().slug
+				} : null
+			]|filter
+		}
+	} %}
+
 	<section class="c-photo-page c-page container">
 		<div class="c-photo-page-row space-y-12">
-			{% include '_components/atoms/heading.twig' with {
-				"heading": {
-					"text": entry.title,
-					"classes": 'o-heading--sticky'
-				}
-			} %}
+			
 			<div class="c-photo-page-content-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-16 o-page-gap">
 				<div class="c-photo-page-photo sm:col-span-1 lg:col-span-8">
 					<div class="sticky top-4">
@@ -36,6 +46,12 @@
 				</div>
 				
 				<div class="c-photo-page-content sm:col-span-1 lg:col-span-8 space-y-15">
+					{% include '_components/atoms/heading.twig' with {
+						"heading": {
+							"text": entry.title,
+							"classes": 'o-heading--sticky'
+						}
+					} %}
 					{% if entry.overview %}
 						<div class="c-page-section c-photo-intro u-drop-cap">
 							{{ entry.overview }}

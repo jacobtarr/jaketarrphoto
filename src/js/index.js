@@ -28,6 +28,20 @@ function headerState() {
   };
 }
 
+function breadcrumbBar({ backTarget = '/', backText = '← Back', refMatch = backTarget } = {}) {
+  return {
+    backHref: '',
+    backText,
+
+    init() {
+      const referrer = document.referrer;
+      const shouldUseHistory = referrer.includes(refMatch);
+
+      this.backHref = shouldUseHistory ? 'javascript:history.back()' : backTarget;
+    }
+  };
+}
+
 // Attach Alpine.js components to the window object
 window.Alpine = Alpine;
 window.headerState = headerState;
@@ -37,6 +51,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   Alpine.data('headerState', headerState);
   Alpine.plugin(intersect);
   Alpine.plugin(persist);
+  Alpine.data('breadcrumbBar', breadcrumbBar);
 
   if (document.querySelector('.c-slider')) {
     const { sliderData } = await import('./flickitySetup');

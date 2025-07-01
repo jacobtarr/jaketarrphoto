@@ -42,7 +42,7 @@ export default {
       },
       colors: {
         primary: '#000', // Main color
-        red: '#D63031', // Secondary red
+        red: '#D63031', // Secondary color - red
         lightRed: '#FFEAEA', // Light red
         lightGray: '#DCDCDC', // Light gray for underline or similar
         lighterGray: '#F5F5F5', // Background of callout boxes

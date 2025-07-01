@@ -1,0 +1,40 @@
+{% set backTarget = breadcrumbBar.backTarget ?? '/' %}
+{% set backText = breadcrumbBar.backText ?? '← Back' %}
+{% set refMatch = breadcrumbBar.refMatch ?? backTarget %}
+{% set additionalClasses = breadcrumbBar.classes is defined and breadcrumbBar.classes ? ' ' ~ breadcrumbBar.classes : '' %}
+{% set attrs = breadcrumbBar.attrs ?? {} %}
+
+<div
+  x-data="breadcrumbBar({ backTarget: '{{ backTarget }}', backText: '{{ backText }}', refMatch: '{{ refMatch }}' })"
+  class="c-breadcrumb-bar{{ additionalClasses }}"
+  {% for key, value in attrs %}
+    {{ key }}="{{ value is iterable ? value|join(',') : value }}"
+  {% endfor %}
+>
+  <div class="container">
+    <ul class="c-breadcrumbs">
+      
+      {% if breadcrumbBar.showBackButton ?? false %}
+        <li x-show="backHref" x-transition>
+          <a :href="backHref" x-text="backText"></a>
+        </li>
+      {% endif %}
+
+      {% for item in breadcrumbBar.items ?? [] %}
+        {% set tag = item.tag ?? 'a' %}
+        {% set href = item.url ?? '#' %}
+        {% set target = item.target ?? '_self' %}
+        <li>
+          <{{ tag }}
+            href="{{ href }}"
+            target="{{ target }}"
+            class="{{ item.classes ?? '' }}"
+          >
+            {{ item.text ?? '' }}
+          </{{ tag }}>
+        </li>
+      {% endfor %}
+
+    </ul>
+  </div>
+</div>
