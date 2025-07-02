@@ -4,16 +4,16 @@
   width: 100%;
   cursor: pointer;
   padding: 0;
-  border: 1px solid #000;
   border-radius: 3px;
   background-color: #fff;
   transition: 0.15s all ease-in-out;
   overflow: hidden;
 
+  @apply border border-gray-900;
+
   &:hover, &:focus {
-    border-color: #000;
+    @apply border-gray-900 bg-gray-900;
     outline: none;
-    background-color: #000;
     color: #fff;
 
     .c-dropdown__arrow {

@@ -20,15 +20,15 @@
         <h1 class="text-6xl font-bold leading-none mb-20">
           {% for word in titleWords %}
             {% if loop.last %}
-              <span class="text-red">{{ word|raw }}</span>
+              <span class="text-red-500">{{ word|raw }}</span>
             {% else %}
               {{ word|raw }}
             {% endif %}
           {% endfor %}
         </h1>
-        <div class="c-hero__tagline flex items-end gap-6 pt-4 border-t border-lightgray">
+        <div class="c-hero__tagline flex items-end gap-6 pt-4 border-t border-gray-200">
           <p class="font-sans text-3xl leading-tight">{{ block.heroBlockTagline|raw }}</p>
-          <a href="#" class="text-black hover:text-red-500">
+          <a href="#" class="text-gray-900 hover:text-red-500-500">
             {% include '_components/atoms/icons/icon-down-arrow-big.svg' %}
           </a>
         </div>

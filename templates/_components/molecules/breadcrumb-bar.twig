@@ -1,5 +1,6 @@
 {% set backTarget = breadcrumbBar.backTarget ?? '/' %}
-{% set backText = breadcrumbBar.backText ?? '← Back' %}
+{% set backText = breadcrumbBar.backText ?? 'Back' %}
+{% set backIcon = breadcrumbBar.backIcon ?? null %}
 {% set refMatch = breadcrumbBar.refMatch ?? backTarget %}
 {% set additionalClasses = breadcrumbBar.classes is defined and breadcrumbBar.classes ? ' ' ~ breadcrumbBar.classes : '' %}
 {% set attrs = breadcrumbBar.attrs ?? {} %}
@@ -15,8 +16,13 @@
     <ul class="c-breadcrumbs">
       
       {% if breadcrumbBar.showBackButton ?? false %}
-        <li x-show="backHref" x-transition>
-          <a :href="backHref" x-text="backText"></a>
+        <li class="c-breadcrumb c-breadcrumb--back-button" x-show="backHref" x-transition>
+          <a :href="backHref" class="o-kicker">
+            {% if backIcon %}
+              {% include '_components/atoms/icons/icon-' ~ backIcon ~ '.svg' %}
+            {% endif %}
+            <span x-text="backText"></span>
+          </a>
         </li>
       {% endif %}
 
@@ -24,11 +30,14 @@
         {% set tag = item.tag ?? 'a' %}
         {% set href = item.url ?? '#' %}
         {% set target = item.target ?? '_self' %}
-        <li>
+        {% set classes = item.classes is defined and item.classes ? ' ' ~ item.classes : '' %}
+        <li class="c-breadcrumb">
           <{{ tag }}
-            href="{{ href }}"
-            target="{{ target }}"
-            class="{{ item.classes ?? '' }}"
+            {% if tag == 'a' %}
+              href="{{ href }}"
+              target="{{ target }}"
+            {% endif %}
+            class="o-kicker{{ classes }}"
           >
             {{ item.text ?? '' }}
           </{{ tag }}>

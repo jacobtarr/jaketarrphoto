@@ -1,4 +1,4 @@
-<footer class="c-footer-container w-full pt-8 pb-12 border-t border-lightgray bg-white">
+<footer class="c-footer-container w-full pt-8 pb-12 border-t border-gray-200 bg-white">
   <div class="container space-y-7 md:space-y-12">
     <div class="c-footer mx-auto grid grid-cols-16 items-center justify-between">
       {% include '_components/atoms/logo.twig' with {
@@ -7,10 +7,10 @@
         }
       } %}
       <nav class="c-footer__navigation col-span-12 flex justify-end items-center space-x-14">
-        <a href="/about" class="hidden md:flex text-lg font-semibold hover:text-red">About</a>
-        <a href="/portfolio" class="hidden md:flex text-lg font-semibold hover:text-red">Portfolio</a>
-        <a href="/blog" class="hidden md:flex text-lg font-semibold hover:text-red">Blog</a>
-        <a href="/contact" class="hidden md:flex text-lg font-semibold hover:text-red">Contact</a>
+        <a href="/about" class="hidden md:flex text-lg font-semibold hover:text-red-500">About</a>
+        <a href="/portfolio" class="hidden md:flex text-lg font-semibold hover:text-red-500">Portfolio</a>
+        <a href="/blog" class="hidden md:flex text-lg font-semibold hover:text-red-500">Blog</a>
+        <a href="/contact" class="hidden md:flex text-lg font-semibold hover:text-red-500">Contact</a>
         <div class="">
           {% include '_components/atoms/button.twig' with {
             "button": {
@@ -24,10 +24,10 @@
     {# I may or may not keep this depending on if I make header fixed #}
     <div class="c-footer__mobile-nav flex md:hidden">
       <ul class="space-y-2">
-        <li><a href="/about" class="text-xl font-semibold hover:text-red">About</a></li>
-        <li><a href="/portfolio" class="text-xl font-semibold hover:text-red">Portfolio</a></li>
-        <li><a href="/blog" class="text-xl font-semibold hover:text-red">Blog</a></li>
-        <li><a href="/contact" class="text-xl font-semibold hover:text-red">Contact</a></li>
+        <li><a href="/about" class="text-xl font-semibold hover:text-red-500">About</a></li>
+        <li><a href="/portfolio" class="text-xl font-semibold hover:text-red-500">Portfolio</a></li>
+        <li><a href="/blog" class="text-xl font-semibold hover:text-red-500">Blog</a></li>
+        <li><a href="/contact" class="text-xl font-semibold hover:text-red-500">Contact</a></li>
       </ul>
     </div>
     <div class="c-footer__bottom mx-auto grid grid-cols-16">

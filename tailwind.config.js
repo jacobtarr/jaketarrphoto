@@ -29,12 +29,10 @@ export default {
     },
     extend: {
       gridTemplateColumns: {
-        '18': 'repeat(18, minmax(0, 1fr))',
         '16': 'repeat(16, minmax(0, 1fr))',
       },
       gridColumn: {
         'span-16': 'span 16 / span 16',  // To allow columns to span 16 in an 18-column grid
-        'span-18': 'span 18 / span 18',  // Full width option
       },
       gap: {
         // Define a custom gutter for the grid (20px = 1.25rem in Tailwind units)
@@ -42,14 +40,37 @@ export default {
       },
       colors: {
         primary: '#000', // Main color
-        red: '#D63031', // Secondary color - red
-        lightRed: '#FFEAEA', // Light red
-        lightGray: '#DCDCDC', // Light gray for underline or similar
-        lighterGray: '#F5F5F5', // Background of callout boxes
-        darkGray: '#999999', // Dark gray for callout box titles
-        mediumGray: '#BBBBBB', // Rarely used gray
-        darkGrayOpposite: '#666666', // Opposite of darkGray
-        offBlack: '#232323', // Opposite of lightGray
+        secondary: '#CC3D33', // Secondary color - red; Brick
+        // red: '#D63031', // Secondary color - red
+        //lightRed: '#FDE2DF', // Light red
+
+        // Shades of Red
+        red: {
+          100: '#FDE2DF', // light wash
+          400: '#E05E4E', // hover red
+          500: '#CC3D33', // primary red; Brick
+        },
+
+        // Shades of Gray
+        gray: {
+          100: '#F5F5F5',
+          200: '#E0E0E0',
+          300: '#B8B8B8',
+          400: '#929292',
+          500: '#6E6E6E',
+          600: '#4B4B4B',
+          700: '#3A3A3A',
+          800: '#272727',
+          900: '#1A1A1A'
+        },
+
+        // Shades of Beige 
+        beige: {
+          'base-1': '#F5EBDD',     // warm beige – primary background
+          'base': '#E9DBC2',       // almond milk – cards, sections
+          'base+1': '#8A735A',     // stone brown – text over warm beige
+        },
+
         brands: {
           facebook: '#1877f2',
           twitter: '#1da1f2',
@@ -116,27 +137,16 @@ export default {
         sans: [
           '"neue-haas-grotesk-display"',
           'ui-sans-serif',
-          'system-ui',
-          '-apple-system',
-          'BlinkMacSystemFont',
-          '"Segoe UI"',
-          'Roboto',
-          '"Helvetica Neue"',
-          'Arial',
-          '"Noto Sans"',
-          'sans-serif',
-          '"Apple Color Emoji"',
-          '"Segoe UI Emoji"',
-          '"Segoe UI Symbol"',
-          '"Noto Color Emoji"',
+          'system-ui'
         ],
         serif: [
           '"freight-text-pro"',
           'Georgia',
-          'Cambria',
-          '"Times New Roman"',
-          'Times',
-          'serif',
+          'Cambria'
+        ],
+        founders: [
+          '"Founders Grotesk"',
+          'sans-serif'
         ],
       },
     },

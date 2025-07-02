@@ -17,7 +17,7 @@
   .pswp__counter {
     text-shadow: none;
 
-    @apply text-lightGray text-xl font-bold;
+    @apply text-gray-200 text-xl font-bold;
   }
 
   .pswp__button--zoom,
@@ -63,11 +63,11 @@
     &:hover {
       svg {
         circle {
-          stroke: #000;
+          @apply stroke-gray-900;
           fill: #fff;
         }
         path {
-          fill: #000;
+          @apply fill-gray-900;
         }
       }
     }

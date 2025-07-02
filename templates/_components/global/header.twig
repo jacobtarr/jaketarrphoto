@@ -10,17 +10,17 @@
       }
     } %}
     <nav class="c-nav">
-      <a href="/about" up-target="main" @click="setActivePage('/about')" class="px-7 text-lg font-semibold hover:text-red" :class="{'text-red': isActive('/about')}">About</a>
-      <a href="/portfolio" up-target="main" @click="setActivePage('/portfolio')" class="px-7 text-lg font-semibold hover:text-red" :class="{'text-red': isActive('/portfolio')}">Portfolio</a>
-      <a href="/blog" up-target="main" @click="setActivePage('/blog')" class="px-7 text-lg font-semibold hover:text-red" :class="{'text-red': isActive('/blog')}">Blog</a>
-      <a href="/contact" up-target="main" @click="setActivePage('/contact')" class="px-7 text-lg font-semibold hover:text-red" :class="{'text-red': isActive('/contact')}">Contact</a>
+      <a href="/about" up-target="main" @click="setActivePage('/about')" class="px-7 text-lg font-semibold hover:text-red-500" :class="{'text-red-500': isActive('/about')}">About</a>
+      <a href="/portfolio" up-target="main" @click="setActivePage('/portfolio')" class="px-7 text-lg font-semibold hover:text-red-500" :class="{'text-red-500': isActive('/portfolio')}">Portfolio</a>
+      <a href="/blog" up-target="main" @click="setActivePage('/blog')" class="px-7 text-lg font-semibold hover:text-red-500" :class="{'text-red-500': isActive('/blog')}">Blog</a>
+      <a href="/contact" up-target="main" @click="setActivePage('/contact')" class="px-7 text-lg font-semibold hover:text-red-500" :class="{'text-red-500': isActive('/contact')}">Contact</a>
     </nav>
 
     <div class="c-header__mobile-wrapper">
       <div class="c-header__icons">
         <button
           @click="toggleDarkMode()"
-          class="text-black focus:outline-none"
+          class="text-gray-900 focus:outline-none"
           aria-label="Toggle dark mode"
         >
           <template x-if="darkMode">
@@ -48,7 +48,7 @@
           </button>
         </div>
 
-        {% set mobileLinkClasses = "text-4xl font-semibold text-white hover:text-red" %}
+        {% set mobileLinkClasses = "text-4xl font-semibold text-white hover:text-red-500" %}
 
         <div
           id="mobile-nav"
@@ -60,16 +60,16 @@
           <div class="c-mobile-nav__inner container space-y-15">
             <ul class="c-mobile-nav__list space-y-2">
               <li>
-                <a href="/about" @click="setActivePage('/about')" class="{{ mobileLinkClasses }}" :class="{'text-red': isActive('/about')}">About</a>
+                <a href="/about" @click="setActivePage('/about')" class="{{ mobileLinkClasses }}" :class="{'text-red-500': isActive('/about')}">About</a>
               </li>
               <li>
-                <a href="/portfolio" @click="setActivePage('/portfolio')" class="{{ mobileLinkClasses }}" :class="{'text-red': isActive('/portfolio')}">Portfolio</a>
+                <a href="/portfolio" @click="setActivePage('/portfolio')" class="{{ mobileLinkClasses }}" :class="{'text-red-500': isActive('/portfolio')}">Portfolio</a>
               </li>
               <li>
-                <a href="/blog" @click="setActivePage('/blog')" class="{{ mobileLinkClasses }}" :class="{'text-red': isActive('/blog')}">Blog</a>
+                <a href="/blog" @click="setActivePage('/blog')" class="{{ mobileLinkClasses }}" :class="{'text-red-500': isActive('/blog')}">Blog</a>
               </li>
               <li>
-                <a href="/contact" @click="setActivePage('/contact')" class="{{ mobileLinkClasses }}" :class="{'text-red': isActive('/contact')}">Contact</a>
+                <a href="/contact" @click="setActivePage('/contact')" class="{{ mobileLinkClasses }}" :class="{'text-red-500': isActive('/contact')}">Contact</a>
               </li>
             </ul>
             <div class="c-mobile-nav__footer space-y-2">
@@ -82,8 +82,8 @@
                 }
               } %}
               <ul class="space-y-2">
-                <li><a class="text-3xl font-bold leading-tight text-darkGrayOpposite hover:text-red" href="#">Instagram</a></li>
-                <li><a class="text-3xl font-bold leading-tight text-darkGrayOpposite hover:text-red" href="#">Facebook</a></li>
+                <li><a class="text-3xl font-bold leading-tight text-gray-500 hover:text-red-500" href="#">Instagram</a></li>
+                <li><a class="text-3xl font-bold leading-tight text-gray-500 hover:text-red-500" href="#">Facebook</a></li>
               </ul>
             </div>
           </div>

@@ -7,16 +7,18 @@
 		breadcrumbBar: {
 			showBackButton: true,
 			backTarget: '/portfolio',
-			backText: '← Back to Portfolio',
+			backText: 'Portfolio',
 			refMatch: '/portfolio',
+			backIcon: 'left-arrow',
 			items: [
 				entry.state.one() ? {
 					text: entry.state.one().title,
-					url: siteUrl('portfolio') ~ '?state=' ~ entry.state.one().slug
+					tag: 'span',
 				} : null
 			]|filter
 		}
 	} %}
+
 
 	<section class="c-photo-page c-page container">
 		<div class="c-photo-page-row space-y-12">

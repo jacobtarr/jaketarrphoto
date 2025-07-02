@@ -1,7 +1,7 @@
 .c-filter-sidebar {
   @apply md:px-5 md:pb-8 md:px-0 md:pt-0 md:pb-0 space-y-5 
   fixed top-0 left-0 h-full w-[80vw]
-  bg-lighterGray md:bg-transparent md:h-auto md:static md:block md:col-span-1 z-[100];
+  bg-gray-100 md:bg-transparent md:h-auto md:static md:block md:col-span-1 z-[100];
 
   @media (min-width: 768px) {
     display: block !important;
@@ -12,7 +12,7 @@
   }
 
   html.u-dark-mode & {
-    @apply bg-offBlack;
+    @apply bg-gray-800;
   }
 }
 
@@ -21,19 +21,19 @@
 }
 
 .c-filter-box {
-  @apply md:px-5 md:pt-5 md:pb-8 md:bg-lighterGray space-y-8 md:space-y-0;
+  @apply md:pb-8 md:bg-beige-base-1 space-y-8 md:space-y-0;
 
   &__mobile-nav {
     @apply px-4 md:px-0 pt-4 md:pt-0 flex justify-between items-center md:hidden;
   }
 
   &__footer {
-    @apply flex md:hidden absolute bottom-0 left-0 right-0 p-4 bg-lighterGray border-t border-lightGray;
+    @apply flex md:hidden absolute bottom-0 left-0 right-0 p-4 bg-gray-100 border-t border-gray-200;
   }
 
   &::after {
     content: '';
-    @apply md:content-none pointer-events-none absolute bottom-[66px] left-0 right-0 h-10 bg-gradient-to-t from-lighterGray to-transparent;
+    @apply md:content-none pointer-events-none absolute bottom-[66px] left-0 right-0 h-10 bg-gradient-to-t from-gray-100 to-transparent;
   }
 }
 
@@ -47,10 +47,10 @@
 
 .c-filter-section {
   &__title {
-    @apply text-base font-bold text-darkGray pb-2 border-b border-lightGray;
+    @apply text-base font-bold text-gray-400 pb-2 border-b border-gray-200;
 
     html.u-dark-mode & {
-      @apply border-offBlack;
+      @apply border-gray-800;
     }
   }
 }

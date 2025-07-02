@@ -1,20 +1,43 @@
 .c-breadcrumb-bar {
-  @apply bg-lighterGray border-b border-lightGray;
+  @apply bg-gray-800 border-b border-gray-200;
 }
 
 .c-breadcrumbs {
-  @apply flex items-center gap-2 text-sm;
+  @apply flex items-center text-sm;
 
   > li {
     + li {
-      @apply border-l border-lightGray;
+      @apply relative;
+
+      &::before {
+        content: '';
+        z-index: 80;
+        
+        @apply w-[1px] h-6 absolute top-1/2 -translate-y-1/2 left-0 bg-gray-500;
+      }
     }
-    > a {
-      @apply block font-bold text-darkGray text-sm md:text-base p-4 md:p-5;
+    > * {
+      @apply block text-gray-300 p-4 md:p-5;
     }
     &:first-of-type {
       > a {
-        @apply pl-0 text-darkGrayOpposite;
+        @apply pl-0 text-beige-base;
+      }
+    }
+  }
+}
+
+.c-breadcrumb {
+  &--back-button {
+    > a {
+      @apply flex items-center gap-4;
+
+      svg {
+        @apply flex-1 w-[14px];
+
+        path {
+          @apply fill-beige-base;
+        }
       }
     }
   }

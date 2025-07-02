@@ -13,7 +13,7 @@
         {% if loop.last %}
           {% if titleWords|length > 1 %}
             {% if highlightLast %}
-              <span class="text-red">{{ word|raw ~ '.' }}</span>
+              <span class="text-red-500">{{ word|raw ~ '.' }}</span>
             {% else %}
               {{ word|raw }}
             {% endif %}

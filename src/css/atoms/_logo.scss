@@ -2,7 +2,7 @@
   @apply flex items-center gap-4 md:gap-5 relative z-[70];
 
   &__image {
-    @apply p-4 md:p-5 bg-white border-r border-lightGray;
+    @apply py-4 pl-4 md:pl-5 md:py-5;
 
     svg {
       @apply h-[23px] w-[48.3px] md:w-[52.5px] md:h-[25px];

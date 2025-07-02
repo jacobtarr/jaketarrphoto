@@ -21,6 +21,6 @@
   {% if button.icon is defined %}
     {% include '_components/atoms/icons/icon-' ~ button.icon ~ '.svg' %}
   {% elseif button.includeIcon is not defined or button.includeIcon %}
-    {% include '_components/atoms/icons/icon-button-up-arrow-v2.svg' %}
+    {% include '_components/atoms/icons/icon-button-up-arrow.svg' %}
   {% endif %}
 </{{ tag }}>

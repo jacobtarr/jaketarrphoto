@@ -28,7 +28,7 @@ function headerState() {
   };
 }
 
-function breadcrumbBar({ backTarget = '/', backText = '← Back', refMatch = backTarget } = {}) {
+function breadcrumbBar({ backTarget = '/', backText = 'Back', refMatch = backTarget } = {}) {
   return {
     backHref: '',
     backText,

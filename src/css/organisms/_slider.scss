@@ -107,10 +107,10 @@
   @apply md:h-[400px];
 
   &__number {
-    @apply text-lightGray leading-none font-bold self-start w-full hidden md:block;
+    @apply text-gray-200 leading-none font-bold self-start w-full hidden md:block;
 
     html.u-dark-mode & {
-      @apply text-darkGray;
+      @apply text-gray-400;
     }
   }
 
@@ -124,10 +124,10 @@
 }
 
 .c-active-location {
-  @apply text-mediumGray;
+  @apply text-gray-300;
 
   html.u-dark-mode & {
-    @apply text-darkGray;
+    @apply text-gray-400;
   }
 }
 

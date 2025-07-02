@@ -6,10 +6,10 @@
   border: 1px solid black;
   border-radius: 35px;
   transition: 0.15s all ease-in-out;
-  @apply font-medium text-sm md:text-base py-[5px] px-4 md:py-[7px] md:px-5 font-sans bg-white text-black;
+  @apply font-medium text-sm md:text-base py-[5px] px-4 md:py-[7px] md:px-5 font-sans bg-white text-gray-900;
 
   html.u-dark-mode & {
-    @apply border-white bg-black text-white;
+    @apply border-white bg-gray-900 text-white;
   }
 
   svg {
