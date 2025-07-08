@@ -27,9 +27,10 @@
     {# Content Block #}
     <div class="c-two-column-block__content md:col-span-{{ leftSpan }}{{ contentStart }} {{ contentOrderMobile }} {{ contentOrderDesktop }}">
       <div>
-        {% include '_components/atoms/subheading.twig' with {
-          "subheading": {
-            "tag": "h3",
+        {% include '_components/atoms/heading.twig' with {
+          "heading": {
+            "classes": 'o-heading--h3',
+            "tag": 'h3',
             "underline": false,
             "text": block.title
           }

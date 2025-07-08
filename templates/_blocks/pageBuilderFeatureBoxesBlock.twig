@@ -1,0 +1,19 @@
+{% extends '_base/_basePageBlock.twig' %}
+
+{% block pageBlockContent %}
+  {% set featureBoxes = [] %}
+  {% for box in block.pageFeatureBoxes %}
+    {% set featureBoxes = featureBoxes | merge([{
+      title: box.pageHeading,
+      description: box.pageContent,
+      pageButtons: box.pageButtons ?? []
+    }]) %}
+  {% endfor %}
+
+  {% include '_components/molecules/feature-boxes.twig' with {
+    "featureBox": {
+      "boxes": 3,
+      "featureBoxes": featureBoxes
+    }
+  } %}
+{% endblock %}

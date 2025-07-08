@@ -1,12 +1,12 @@
 {% set additionalClasses = kicker.classes is defined and kicker.classes ? ' ' ~ kicker.classes : '' %}
 {% set attrs = kicker.attrs ?? {} %}
 
-<div class="o-kicker{{ additionalClasses }}"
-  {% for key, value in attrs %}
-    {{ key }}="{{ value is iterable ? value|join(',') : value }}"
-  {% endfor %}
->
-  {% if kicker.text is defined %}
+{% if kicker.text is defined %}
+  <div class="o-kicker{{ additionalClasses }}"
+    {% for key, value in attrs %}
+      {{ key }}="{{ value is iterable ? value|join(',') : value }}"
+    {% endfor %}
+  >
     <span>{{ kicker.text }}</span>
-  {% endif %}
-</div>
+  </div>
+{% endif %}

@@ -1,4 +1,4 @@
-dateModified: 1750887836
+dateModified: 1751650988
 email:
   fromEmail: $CRAFT_EMAIL_SYSTEM
   fromName: $CRAFT_EMAIL_SYSTEM
@@ -72,7 +72,7 @@ meta:
     86ad037a-07c7-4d8f-90d3-e4fa9a31c7ef: 'Portfolio Images' # Portfolio Images
     90c2cf62-2b6c-444e-b313-13461f103649: Photos # Photos
     298cea5e-e970-4f91-91b6-21ba893e3458: Photo # Photo
-    450da273-b412-48fc-bc9e-70a49eb8e206: 'Page Subtitle' # Page Subtitle
+    450da273-b412-48fc-bc9e-70a49eb8e206: 'Page Heading' # Page Heading
     481a7e66-9921-4b62-9821-8aa4e542ff38: 'Featured Works Link' # Featured Works Link
     1204bcc0-8378-4dd4-ab64-a4ae43ad533c: Square # Square
     7034c2c9-2683-438f-bf87-296f2b9783a3: 'Two Column Block Link' # Two Column Block Link
@@ -81,11 +81,11 @@ meta:
     68416f2f-16cf-49ab-83e7-e6b4b097e19d: 'Two Column Block Mobile Layout' # Two Column Block Mobile Layout
     70434c25-7ead-44db-ac04-32c85ac27e21: Homepage # Homepage
     99253d82-2d49-4285-8539-155472cf8207: 'Page Builder: Left Column Content' # Page Builder: Left Column Content
-    452561b9-4d58-4e06-abbb-ec181d217e97: 'Page Builder: Subtitle with Content Block' # Page Builder: Subtitle with Content Block
-    758857ca-7d33-49af-810b-cb347619a61f: 'Page Callout Columns' # Page Callout Columns
+    452561b9-4d58-4e06-abbb-ec181d217e97: 'Page Builder: Heading with Content Block' # Page Builder: Heading with Content Block
+    758857ca-7d33-49af-810b-cb347619a61f: 'Page Feature Boxes' # Page Feature Boxes
     01914777-7aec-4ffe-b263-513b6e67154f: 'Page Content' # Page Content
     8612363b-d7c9-43e9-993a-b6454190280c: Genre # Genre
-    33982884-3ffc-4b10-ab0f-7acce9c2f4e6: 'Page Builder: Callout Box Block' # Page Builder: Callout Box Block
+    33982884-3ffc-4b10-ab0f-7acce9c2f4e6: 'Page Builder: Feature Boxes Block' # Page Builder: Feature Boxes Block
     a985436b-09b0-444a-b956-d68913d3b05e: State # State
     a1898536-62a3-49b5-946b-baae1b1c79fa: Location # Location
     ac26babf-e061-425b-851b-465499715d7f: 'Date Taken' # Date Taken

@@ -33,6 +33,7 @@
 									"image": entry.featuredImage.one(),
 									"url": entry.featuredImage.one().url,
 									"title": entry.featuredImage.one().title,
+									"transform": 'small',
 									"caption": 'Expand',
 									"target": "_blank",
 									"icon": "expand",
@@ -44,6 +45,13 @@
 								}
 							} %}
 						{% endif %}
+						<div class="c-page-gallery__caption">
+							{% include '_components/molecules/kicker.twig' with {
+								"kicker": {
+									"text": 'Share'
+								}
+							} %}
+						</div>
 					</div>
 				</div>
 				
@@ -60,10 +68,10 @@
 						</div>
 					{% endif %}
 
-					{% include '_components/molecules/callout-box.twig' with {
-						"calloutBox": {
-							"columns": 3,
-							"calloutBoxColumns": [
+					{% include '_components/molecules/feature-boxes.twig' with {
+						"featureBox": {
+							"boxes": 3,
+							"featureBoxes": [
 								{
 									title: 'Date Taken',
 									description: entry.dateTaken ? entry.dateTaken|date('F j, Y') : ''
@@ -85,8 +93,10 @@
 					} %}
 
 					<div class="c-page-section">
-						{% include '_components/atoms/subheading.twig' with {
-							"subheading": {
+						{% include '_components/atoms/heading.twig' with {
+							"heading": {
+								"classes": 'o-heading--h3',
+        				"tag": 'h3',
 								"text": "Share this photo"
 							}
 						} %}
@@ -127,8 +137,10 @@
 
 					{% if relatedEntries|length %}
 						<div class="c-page-section">
-							{% include '_components/atoms/subheading.twig' with {
-								"subheading": {
+							{% include '_components/atoms/heading.twig' with {
+								"heading": {
+									"classes": 'o-heading--h3',
+        					"tag": 'h3',
 									"text": "More from " ~ entry.state.one().title
 								}
 							} %}

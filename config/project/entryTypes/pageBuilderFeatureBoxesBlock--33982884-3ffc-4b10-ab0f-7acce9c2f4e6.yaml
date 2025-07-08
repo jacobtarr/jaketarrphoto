@@ -38,7 +38,7 @@ fieldLayouts:
           -
             dateAdded: '2024-09-07T03:03:00+00:00'
             elementCondition: null
-            fieldUid: 758857ca-7d33-49af-810b-cb347619a61f # Page Callout Columns
+            fieldUid: 758857ca-7d33-49af-810b-cb347619a61f # Page Feature Boxes
             handle: null
             includeInCards: false
             instructions: null
@@ -54,10 +54,10 @@ fieldLayouts:
         name: Content
         uid: 75abc727-4402-4627-8aa2-2da74e42d93a
         userCondition: null
-handle: pageBuilderCalloutBoxBlock
+handle: pageBuilderFeatureBoxesBlock
 hasTitleField: true
 icon: cube
-name: 'Page Builder: Callout Box Block'
+name: 'Page Builder: Feature Boxes Block'
 showSlugField: true
 showStatusField: true
 slugTranslationKeyFormat: null

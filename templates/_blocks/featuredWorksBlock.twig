@@ -4,9 +4,10 @@
   <div class="c-featured-grid__top grid grid-cols-2 md:grid-cols-16 gap-4">
     <div class="c-featured-grid__first-col col-span-4">
       <div class="c-featured-grid__content w-[80%]">
-        {% include '_components/atoms/subheading.twig' with {
-          "subheading": {
-            "tag": "h3",
+        {% include '_components/atoms/heading.twig' with {
+          "heading": {
+            "classes": 'o-heading--h3',
+            "tag": 'h3',
             "underline": false,
             "text": block.title
           }

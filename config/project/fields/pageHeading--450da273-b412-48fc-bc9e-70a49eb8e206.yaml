@@ -1,7 +1,7 @@
 columnSuffix: null
-handle: pageSubtitle
+handle: pageHeading
 instructions: null
-name: 'Page Subtitle'
+name: 'Page Heading'
 searchable: false
 settings:
   byteLimit: null

@@ -1,0 +1,11 @@
+.c-feature-box {
+  @apply bg-beige-base-1;
+
+  &__title {
+    @apply text-beige-base+1 py-4 px-5 bg-beige-base;
+  }
+
+  &__content {
+    @apply bg-beige-base-1 px-5 pb-7;
+  }
+}

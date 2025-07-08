@@ -3,8 +3,10 @@
 {% block pageSectionContent %}
   {% import '_components/atoms/image.twig' as img %}
   <div x-data="sliderData()" class="c-slider-block space-y-8">
-    {% include '_components/atoms/subheading.twig' with {
-      "subheading": {
+    {% include '_components/atoms/heading.twig' with {
+      "heading": {
+        "classes": 'o-heading--h3',
+        "tag": 'h3',
         "text": 'Newest Photos',
         "button": {
           "url": '/portfolio',

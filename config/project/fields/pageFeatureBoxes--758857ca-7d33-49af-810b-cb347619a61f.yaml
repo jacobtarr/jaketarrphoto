@@ -1,12 +1,12 @@
 columnSuffix: null
-handle: pageCalloutColumns
+handle: pageFeatureBoxes
 instructions: null
-name: 'Page Callout Columns'
+name: 'Page Feature Boxes'
 searchable: false
 settings:
   createButtonLabel: 'Add Page Callout Column'
   entryTypes:
-    - 452561b9-4d58-4e06-abbb-ec181d217e97 # Page Builder: Subtitle with Content Block
+    - 452561b9-4d58-4e06-abbb-ec181d217e97 # Page Builder: Heading with Content Block
   includeTableView: false
   maxEntries: null
   minEntries: null

@@ -1,6 +1,11 @@
 {% macro renderFilter(title, options, selectedValue, inputName, limit, sort, extraVals) %}
-  <div class="c-filter-section space-y-5">
-    <div class="c-filter-section__title">{{ title }}</div>
+  <div class="c-filter-section space-y-4">
+    {% include '_components/molecules/kicker.twig' with {
+      kicker: {
+        text: title,
+        classes: 'c-filter-section__title'
+      }
+    } %}
     <div class="c-filter-section__form-group c-form-group">
       {% for option in options %}
         <label class="c-radio-label">

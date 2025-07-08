@@ -21,7 +21,7 @@
 }
 
 .c-filter-box {
-  @apply md:pb-8 md:bg-beige-base-1 space-y-8 md:space-y-0;
+  @apply md:pb-5 md:bg-beige-base-1 space-y-8 md:space-y-0;
 
   &__mobile-nav {
     @apply px-4 md:px-0 pt-4 md:pt-0 flex justify-between items-center md:hidden;
@@ -42,15 +42,19 @@
 }
 
 .c-filter-sections {
-  @apply space-y-8 md:space-y-10;
+  @apply space-y-5 md:space-y-7;
 }
 
 .c-filter-section {
   &__title {
-    @apply text-base font-bold text-gray-400 pb-2 border-b border-gray-200;
+    @apply text-beige-base+1 py-4 px-5 bg-beige-base;
 
     html.u-dark-mode & {
       @apply border-gray-800;
     }
+  }
+
+  &__form-group {
+    @apply px-5;
   }
 }

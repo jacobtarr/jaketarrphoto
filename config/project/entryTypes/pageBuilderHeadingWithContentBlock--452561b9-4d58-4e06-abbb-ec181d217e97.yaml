@@ -38,7 +38,7 @@ fieldLayouts:
           -
             dateAdded: '2024-09-07T03:00:38+00:00'
             elementCondition: null
-            fieldUid: 450da273-b412-48fc-bc9e-70a49eb8e206 # Page Subtitle
+            fieldUid: 450da273-b412-48fc-bc9e-70a49eb8e206 # Page Heading
             handle: null
             includeInCards: false
             instructions: null
@@ -86,10 +86,10 @@ fieldLayouts:
         name: Content
         uid: f151dc3a-c891-4d7f-9f5a-efdcf6a61065
         userCondition: null
-handle: pageBuilderSubtitleWithContentBlock
+handle: pageBuilderHeadingWithContentBlock
 hasTitleField: true
 icon: cube
-name: 'Page Builder: Subtitle with Content Block'
+name: 'Page Builder: Heading with Content Block'
 showSlugField: true
 showStatusField: true
 slugTranslationKeyFormat: null
