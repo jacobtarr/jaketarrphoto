@@ -1,3 +1,13 @@
+.c-gallery {
+  &__caption {
+    @apply text-gray-400 border-t border-gray-200 pt-3 mt-5;
+
+    &--photo {
+      @apply text-gray-300;
+    }
+  }
+}
+
 .pswp--custom-gallery {
   .pswp__bg {
     opacity: 0.9;

@@ -1,3 +1,53 @@
 .o-kicker {
-  @apply uppercase tracking-widest text-sm font-founders font-semibold leading-4;
+  @apply uppercase tracking-widest text-sm font-founders font-semibold leading-4
+  flex items-center gap-3;
+
+  svg {
+    @apply h-4;
+
+    path {
+      @apply fill-beige-base+1;
+    }
+  }
+
+  &--swapped-text {
+    @apply relative left-5 min-w-[70vw];
+  }
+
+  &__animated-text {
+    @apply top-1/2 absolute left-0 inline-block opacity-0 invisible;
+    transform: translateY(-50%);
+
+    .has-interacted & {
+      transition: transform 0.25s ease-in-out, opacity 0.25s ease-in-out;
+    }
+
+    &.is-initial {
+      transform: translateY(-50%);
+      opacity: 0;
+      visibility: hidden;
+      transition: none;
+    }
+
+    &.is-active {
+      @apply opacity-100 visible;
+      transform: translateY(-50%);
+    }
+
+    &.is-hidden-up {
+      transform: translateY(calc(-50% - 20px));
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    &.is-hidden-down {
+      transform: translateY(calc(-50% + 20px));
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+}
+
+[x-cloak] {
+  display: none !important;
 }

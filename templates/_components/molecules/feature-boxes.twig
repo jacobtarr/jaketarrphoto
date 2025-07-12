@@ -1,22 +1,23 @@
-<div class="c-feature-boxes grid lg:grid-cols-{{ featureBox.boxes|default(3) }} gap-4">
-  {% for box in featureBox.featureBoxes %}
+<div class="c-feature-boxes grid lg:grid-cols-{{ boxes|default(3) }} gap-4">
+  {% for box in featureBoxes %}
     <div class="c-feature-box col-span-{{ box.colSpan|default('1') }}">
       {% include '_components/molecules/kicker.twig' with {
         kicker: {
+          icon: attribute(box, 'icon') ?? null,
           text: box.title,
           classes: 'c-feature-box__title'
         }
       } %}
-      <div class="c-feature-box__content mt-4 space-y-5">
-        <div class="o-rte font-serif leading-5">{{ box.description|raw }}</div>
+      <div class="c-feature-box__content space-y-5">
+        <div class="o-rte font-sans text-beige-base+1 font-medium leading-4">{{ box.description|raw }}</div>
         {% if box.pageButtons is defined and box.pageButtons|length > 0 %}
           <div class="flex flex-wrap gap-5">
             {% for button in box.pageButtons %}
               {% include '_components/atoms/button.twig' with {
-                "button": {
-                  "url": button.url,
-                  "text": button.text,
-                  "target": button.target
+                button: {
+                  url: button.url,
+                  text: button.text,
+                  target: button.target
                 }
               } %}
             {% endfor %}

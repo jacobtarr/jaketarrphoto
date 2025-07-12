@@ -1,3 +1,4 @@
+{% extends '_base/_basePageBlock.twig' %}
 {% block pageBlockContent %}
   {% import '_components/atoms/image.twig' as img %}
   {% set layout = block.pageGalleryLayout ?? 'layout1' %}
@@ -9,12 +10,12 @@
     layout == 'layout4' ? 'grid-cols-2' :
     'grid-cols-2' %}
 
-  <div class="c-page-gallery">
-    <div class="c-page-gallery__grid grid grid-cols-1 {{ gridClass }} gap-5">
+  <div class="c-gallery">
+    <div class="c-gallery__grid grid grid-cols-1 {{ gridClass }} gap-4 md:gap-5">
       {% for image in block.pageGalleryImages %}
         {% set colSpan = layout == 'layout4' and loop.first ? 'col-span-2' : 'col-span-1' %}
         {% set showLightbox = block.pageGalleryLightboxToggle %}
-        <div class="c-page-gallery__image {{ colSpan }}">
+        <div class="c-gallery__image {{ colSpan }}">
           {% if showLightbox %}
             {% include '_components/molecules/photo-block.twig' with {
               "photo": {
@@ -39,10 +40,10 @@
       {% endfor %}
     </div>
 
-    <div class="c-page-gallery__caption">
+    <div class="c-gallery__caption">
       {% include '_components/atoms/rich-text.twig' with {
         "richText": {
-          "classes": 'text-gray-400 border-t border-gray-200 pt-3 mt-5',
+          "classes": '',
           "content": block.pageGalleryCaption
         }
       } %}

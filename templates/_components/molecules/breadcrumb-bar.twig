@@ -4,14 +4,33 @@
 {% set refMatch = breadcrumbBar.refMatch ?? backTarget %}
 {% set additionalClasses = breadcrumbBar.classes is defined and breadcrumbBar.classes ? ' ' ~ breadcrumbBar.classes : '' %}
 {% set attrs = breadcrumbBar.attrs ?? {} %}
+{% set showProgressBar = breadcrumbBar.showProgressBar is defined ? breadcrumbBar.showProgressBar : true %}
+{% set swapTextOnScroll = breadcrumbBar.swapTextOnScroll ?? false %}
+{% set photoTitle = breadcrumbBar.photoTitle ?? '' %}
 
 <div
-  x-data="breadcrumbBar({ backTarget: '{{ backTarget }}', backText: '{{ backText }}', refMatch: '{{ refMatch }}' })"
+  x-data="breadcrumbBar({
+    backTarget: '{{ backTarget }}',
+    backText: '{{ backText }}',
+    refMatch: '{{ refMatch }}',
+    swapTextOnScroll: {{ swapTextOnScroll ? 'true' : 'false' }},
+    photoTitle: '{{ photoTitle|e('js') }}'
+  })"
   class="c-breadcrumb-bar{{ additionalClasses }}"
   {% for key, value in attrs %}
     {{ key }}="{{ value is iterable ? value|join(',') : value }}"
   {% endfor %}
 >
+
+  {% if showProgressBar %}
+    <div class="c-progress-bar">
+      <div
+        class="c-progress-bar__bg"
+        :style="`width: ${scrollPercent}%`"
+      ></div>
+    </div>
+  {% endif %}
+
   <div class="container">
     <ul class="c-breadcrumbs">
       
@@ -39,7 +58,33 @@
             {% endif %}
             class="o-kicker{{ classes }}"
           >
-            {{ item.text ?? '' }}
+            {% if swapTextOnScroll %}
+              <span
+                x-cloak
+                class="o-kicker__animated-text"
+                :class="{
+                  'is-initial': !hasInteracted,
+                  'is-hidden-up': hasInteracted && showPhotoTitle,
+                  'is-active': hasInteracted && !showPhotoTitle
+                }"
+              >
+                {{ item.text }}
+              </span>
+
+              <span
+                x-cloak
+                class="o-kicker__animated-text"
+                :class="{
+                  'is-initial': !hasInteracted,
+                  'is-hidden-down': hasInteracted && !showPhotoTitle,
+                  'is-active': hasInteracted && showPhotoTitle
+                }"
+              >
+                {{ photoTitle }}
+              </span>
+            {% else %}
+              {{ item.text ?? '' }}
+            {% endif %}
           </{{ tag }}>
         </li>
       {% endfor %}
