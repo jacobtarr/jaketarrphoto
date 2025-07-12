@@ -55,23 +55,24 @@ function breadcrumbBar({
         const titleEl = document.querySelector('[data-photo-title-trigger]');
         if (titleEl) {
           const observer = new IntersectionObserver(([entry]) => {
-            this.hasInteracted = true;
-            this.showPhotoTitle = !entry.isIntersecting;
+            // only allow animation *after* scroll interaction
+            if (!this.hasInteracted) {
+              const rect = titleEl.getBoundingClientRect();
+              const isOutOfView = rect.bottom < 0 || rect.top > window.innerHeight;
 
-            // Add class to DOM to enable transitions
+              // Set initial state with no animation
+              this.showPhotoTitle = isOutOfView;
+            } else {
+              // Trigger animated transition
+              this.showPhotoTitle = !entry.isIntersecting;
+            }
+
+            // Mark user as having scrolled/interacted
+            this.hasInteracted = true;
             this.$el.classList.add('has-interacted');
           }, { threshold: 0 });
 
           observer.observe(titleEl);
-
-          requestAnimationFrame(() => {
-            const rect = titleEl.getBoundingClientRect();
-            if (rect.bottom < 0 || rect.top > window.innerHeight) {
-              this.hasInteracted = false;
-              this.showPhotoTitle = true;
-              this.$el.classList.remove('has-interacted');
-            }
-          });
         }
       }
     },
