@@ -21,14 +21,14 @@
   }
 
   &__mobile-wrapper {
-    @apply h-full relative space-x-4 md:space-x-8 md:space-x-0 flex justify-end items-center;
+    @apply h-full relative md:space-x-8 md:space-x-0 flex justify-end items-center;
   }
   
   &__icons {
-    @apply h-full flex items-center;
+    @apply md:w-[65px] h-full flex items-center;
 
     button {
-      @apply h-full md:p-5 md:bg-gray-900;
+      @apply h-full p-4 md:p-5 md:bg-gray-900;
 
       svg path {
         @apply md:stroke-white;

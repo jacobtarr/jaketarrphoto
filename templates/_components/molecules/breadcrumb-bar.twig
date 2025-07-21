@@ -8,13 +8,25 @@
 {% set swapTextOnScroll = breadcrumbBar.swapTextOnScroll ?? false %}
 {% set photoTitle = breadcrumbBar.photoTitle ?? '' %}
 
+{% set vars = {
+  backTarget: breadcrumbBar.backTarget ?? '/',
+  backText: breadcrumbBar.backText ?? 'Back',
+  backIcon: breadcrumbBar.backIcon ?? null,
+  refMatch: breadcrumbBar.refMatch ?? (breadcrumbBar.backTarget ?? '/'),
+  showProgressBar: breadcrumbBar.showProgressBar is defined ? breadcrumbBar.showProgressBar : true,
+  swapTextOnScroll: breadcrumbBar.swapTextOnScroll ?? false,
+  photoTitle: breadcrumbBar.photoTitle ?? '',
+  additionalClasses: breadcrumbBar.classes is defined and breadcrumbBar.classes ? ' ' ~ breadcrumbBar.classes : '',
+  attrs: breadcrumbBar.attrs ?? {}
+} %}
+
 <div
   x-data="breadcrumbBar({
-    backTarget: '{{ backTarget }}',
-    backText: '{{ backText }}',
-    refMatch: '{{ refMatch }}',
-    swapTextOnScroll: {{ swapTextOnScroll ? 'true' : 'false' }},
-    photoTitle: '{{ photoTitle|e('js') }}'
+    backTarget: '{{ vars.backTarget }}',
+    backText: '{{ vars.backText }}',
+    refMatch: '{{ vars.refMatch }}',
+    swapTextOnScroll: {{ vars.swapTextOnScroll ? 'true' : 'false' }},
+    photoTitle: '{{ vars.photoTitle|e('js') }}'
   })"
   class="c-breadcrumb-bar{{ additionalClasses }}"
   {% for key, value in attrs %}
@@ -49,8 +61,9 @@
         {% set tag = item.tag ?? 'a' %}
         {% set href = item.url ?? '#' %}
         {% set target = item.target ?? '_self' %}
+        {% set parentClasses = item.parentClasses is defined and item.parentClasses ? ' ' ~ item.parentClasses : '' %}
         {% set classes = item.classes is defined and item.classes ? ' ' ~ item.classes : '' %}
-        <li class="c-breadcrumb">
+        <li class="c-breadcrumb{{ parentClasses }}">
           <{{ tag }}
             {% if tag == 'a' %}
               href="{{ href }}"

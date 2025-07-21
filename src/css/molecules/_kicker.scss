@@ -15,39 +15,30 @@
   }
 
   &__animated-text {
-    @apply absolute top-1/2 left-0 inline-block opacity-0 invisible;
-  transform: translateY(-50%);
+    @apply top-1/2 -translate-y-1/2 absolute left-0 inline-block opacity-0 invisible;
 
-  .has-interacted & {
-    transition: transform 0.25s ease, opacity 0.25s ease;
-  }
+    .has-interacted & {
+      transition: transform 0.25s ease-in-out, opacity 0.25s ease-in-out;
+    }
 
-  &.is-initial {
-    transform: translateY(-50%);
-    opacity: 1;
-    visibility: visible;
-    transition: none;
-  }
+    &.is-initial {
+      @apply -translate-y-1/2 opacity-0 invisible transition-none;
+    }
 
-  &.is-active {
-    @apply opacity-100 visible;
-    transform: translateY(-50%);
-  }
+    &.is-active {
+      @apply -translate-y-1/2 opacity-100 visible;
+    }
 
-  &.is-hidden-up {
-    transform: translateY(calc(-50% - 20px));
-    opacity: 0;
-    visibility: hidden;
-  }
+    &.is-hidden-up {
+      transform: translateY(calc(-50% - 20px));
 
-  &.is-hidden-down {
-    transform: translateY(calc(-50% + 20px));
-    opacity: 0;
-    visibility: hidden;
-  }
-  }
-}
+      @apply opacity-0 invisible;
+    }
 
-[x-cloak] {
-  display: none !important;
+    &.is-hidden-down {
+      transform: translateY(calc(-50% + 20px));
+      
+      @apply opacity-0 invisible;
+    }
+  }
 }
