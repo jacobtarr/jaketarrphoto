@@ -1,0 +1,20 @@
+columnSuffix: null
+handle: pageSlides
+instructions: null
+name: 'Page Slides'
+searchable: false
+settings:
+  createButtonLabel: 'New slide'
+  entryTypes:
+    - 594c3566-f197-48c8-98a0-6b8ef76133df # Page Builder: Slide Block
+  includeTableView: false
+  maxEntries: 6
+  minEntries: null
+  pageSize: 50
+  propagationKeyFormat: null
+  propagationMethod: all
+  showCardsInGrid: false
+  viewMode: cards
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Matrix

@@ -1,0 +1,12 @@
+columnSuffix: null
+handle: heroBlockFullBleed
+instructions: 'Enable this to stretch the hero image edge-to-edge, flush with the top of the screen (behind the nav).'
+name: 'Hero Block Full Bleed'
+searchable: false
+settings:
+  default: false
+  offLabel: null
+  onLabel: null
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Lightswitch

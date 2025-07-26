@@ -4,9 +4,9 @@
   {% set featureBoxes = [] %}
   {% for box in block.pageFeatureBoxes %}
     {% set featureBoxes = featureBoxes | merge([{
-      title: box.pageHeading,
-      description: box.pageContent,
-      pageButtons: box.pageButtons ?? []
+      title: box.contentHeading,
+      description: box.contentBody,
+      contentLink: box.contentLink
     }]) %}
   {% endfor %}
 

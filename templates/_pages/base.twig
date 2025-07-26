@@ -41,7 +41,10 @@
       {% elseif row.type == 'pageBuilderFullContentRow' %}
         <div class="c-page-row c-page-row--full-content space-y-10">
           {% for block in row.pageBuilderFullColumnContent.all() %}
-            {% include '_blocks/' ~ block.type ~ '.twig' with { block: block } %}
+            {% include '_blocks/' ~ block.type ~ '.twig' with {
+              block: block,
+              parentMatrix: 'pageBuilderFullColumnContent'
+            } %}
           {% endfor %}
         </div>
       {% endif %}

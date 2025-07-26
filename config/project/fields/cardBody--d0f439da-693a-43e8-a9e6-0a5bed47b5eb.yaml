@@ -1,0 +1,21 @@
+columnSuffix: null
+handle: cardBody
+instructions: null
+name: 'Card Body'
+searchable: false
+settings:
+  availableTransforms: '*'
+  availableVolumes: '*'
+  ckeConfig: 8b610edc-f2dd-46b6-9597-96fcbb6d302a # Simple
+  createButtonLabel: null
+  defaultTransform: null
+  enableSourceEditingForNonAdmins: false
+  purifierConfig: null
+  purifyHtml: true
+  showUnpermittedFiles: false
+  showUnpermittedVolumes: false
+  showWordCount: true
+  wordLimit: 50
+translationKeyFormat: null
+translationMethod: none
+type: craft\ckeditor\Field

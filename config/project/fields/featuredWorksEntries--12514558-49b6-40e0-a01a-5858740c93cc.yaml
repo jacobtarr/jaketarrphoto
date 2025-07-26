@@ -1,0 +1,22 @@
+columnSuffix: null
+handle: featuredWorksEntries
+instructions: null
+name: 'Featured Works Entries'
+searchable: false
+settings:
+  allowSelfRelations: false
+  branchLimit: null
+  maintainHierarchy: false
+  maxRelations: 5
+  minRelations: null
+  selectionLabel: 'Add Entry'
+  showCardsInGrid: false
+  showSiteMenu: true
+  sources:
+    - 'section:90c2cf62-2b6c-444e-b313-13461f103649' # Photos
+  targetSiteId: null
+  validateRelatedElements: false
+  viewMode: list
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Entries

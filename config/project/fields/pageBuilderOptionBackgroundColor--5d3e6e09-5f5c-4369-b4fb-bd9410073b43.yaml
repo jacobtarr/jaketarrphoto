@@ -1,0 +1,43 @@
+columnSuffix: null
+handle: pageBuilderOptionBackgroundColor
+instructions: null
+name: 'Page Builder Option: Background Color'
+searchable: false
+settings:
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - White
+        -
+          - value
+          - white
+        -
+          - default
+          - '1'
+    -
+      __assoc__:
+        -
+          - label
+          - Beige
+        -
+          - value
+          - beige
+        -
+          - default
+          - ''
+    -
+      __assoc__:
+        -
+          - label
+          - Black
+        -
+          - value
+          - black
+        -
+          - default
+          - ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\RadioButtons

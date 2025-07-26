@@ -47,7 +47,7 @@
 
 .c-filter-section {
   &__title {
-    @apply text-beige-base+1 py-4 px-5 bg-beige-base;
+    @apply text-beige-base+2 py-4 px-5 bg-beige-base;
 
     html.u-dark-mode & {
       @apply border-gray-800;

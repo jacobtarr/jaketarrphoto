@@ -208,12 +208,12 @@
                 <div
                   x-show="visible"
                   x-cloak
-                  x-transition:enter="transition-opacity duration-1000 ease-in-out"
+                  {# x-transition:enter="transition-opacity duration-1000 ease-in-out"
                   x-transition:enter-start="opacity-0"
                   x-transition:enter-end="opacity-100"
                   x-transition:leave="transition-opacity duration-500 ease-in"
                   x-transition:leave-start="opacity-100"
-                  x-transition:leave-end="opacity-0"
+                  x-transition:leave-end="opacity-0" #}
                   class="c-filter-sections"
                 >
                   {% set allStates = [{ title: 'All States', slug: '' }] | merge(states) %}

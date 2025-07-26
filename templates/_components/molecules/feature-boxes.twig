@@ -9,18 +9,17 @@
         }
       } %}
       <div class="c-feature-box__content space-y-5">
-        <div class="o-rte font-sans text-beige-base+1 font-medium leading-4">{{ box.description|raw }}</div>
-        {% if box.pageButtons is defined and box.pageButtons|length > 0 %}
+        <div class="o-rte font-sans font-medium leading-4">{{ box.description|raw }}</div>
+        {% set link = box.contentLink is defined and box.contentLink|length ? box.contentLink[0] : null %}
+        {% if link %}
           <div class="flex flex-wrap gap-5">
-            {% for button in box.pageButtons %}
-              {% include '_components/atoms/button.twig' with {
-                button: {
-                  url: button.url,
-                  text: button.text,
-                  target: button.target
-                }
-              } %}
-            {% endfor %}
+            {% include '_components/atoms/button.twig' with {
+              button: {
+                url: link.linkValue,
+                text: link.linkText,
+                target: link.target
+              }
+            } %}
           </div>
         {% endif %}
       </div>

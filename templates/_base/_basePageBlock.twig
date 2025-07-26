@@ -1,5 +1,24 @@
 {% set handle = block.type.handle|replace({'pageBuilder': '', 'Block': ''})|kebab %}
-<div class="c-page-block c-page-block--{{ handle }}{{ additionalClasses|default('') ? ' ' ~ additionalClasses : '' }}">
-  {% block pageBlockContent %}
-  {% endblock %}
+{% set bgColor = block.pageBuilderOptionBackgroundColor ?? 'white' %}
+{% set isFullColumn = parentMatrix is defined and parentMatrix == 'pageBuilderFullColumnContent' %}
+
+{% set layout = block.splitMediaBlockLayout.value ?? null %}
+{% set additionalClasses = layout in ['layout3', 'layout4'] ? 'c-page-block--full-height' : '' %}
+
+{% set blockContent %}
+  {% block pageBlockContent %}{% endblock %}
+{% endset %}
+
+<div class="c-page-block 
+            c-page-block--{{ handle }} 
+            c-page-block--bg-{{ bgColor }}
+            {{ additionalClasses }}
+            {{ isFullColumn ? 'c-page-block--full-width' }}">
+  {% if isFullColumn %}
+    <div class="c-page-block__container container">
+      {{ blockContent }}
+    </div>
+  {% else %}
+    {{ blockContent }}
+  {% endif %}
 </div>

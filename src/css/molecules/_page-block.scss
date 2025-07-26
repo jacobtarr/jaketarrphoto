@@ -1,0 +1,17 @@
+.c-page-block {
+  &--full-width {
+    @apply md:py-20;
+  }
+
+  &--full-height {
+    @apply md:py-0;
+  }
+
+  &--bg-black {
+    @apply bg-gray-900;
+  }
+
+  &--bg-beige {
+    @apply bg-beige-base-1;
+  }
+}

@@ -1,0 +1,21 @@
+columnSuffix: null
+handle: pageSlideContent
+instructions: null
+name: 'Page Slide: Content'
+searchable: false
+settings:
+  availableTransforms: '*'
+  availableVolumes: '*'
+  ckeConfig: 8b610edc-f2dd-46b6-9597-96fcbb6d302a # Simple
+  createButtonLabel: null
+  defaultTransform: null
+  enableSourceEditingForNonAdmins: false
+  purifierConfig: null
+  purifyHtml: true
+  showUnpermittedFiles: false
+  showUnpermittedVolumes: false
+  showWordCount: false
+  wordLimit: 300
+translationKeyFormat: null
+translationMethod: none
+type: craft\ckeditor\Field

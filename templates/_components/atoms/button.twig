@@ -14,8 +14,11 @@
     {{ key }}="{{ value is iterable ? value|join(',') : value }}"
   {% endfor %}
 >
+  
   {% if button.text is defined %}
-    <span>{{ button.text }}</span>
+    <span {{ button.spanAttrs is defined ? attr(button.spanAttrs) }}>
+      {{ button.text ?? '' }}
+    </span>
   {% endif %}
 
   {% if button.icon is defined %}

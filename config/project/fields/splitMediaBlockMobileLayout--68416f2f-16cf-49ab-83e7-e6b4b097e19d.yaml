@@ -1,0 +1,12 @@
+columnSuffix: null
+handle: splitMediaBlockMobileLayout
+instructions: 'Choose whether or not to have the content or image appear first in mobile. Content will always be first by default.'
+name: 'Split Media Block Mobile Layout'
+searchable: false
+settings:
+  default: true
+  offLabel: 'Image First'
+  onLabel: 'Content First'
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Lightswitch

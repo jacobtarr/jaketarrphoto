@@ -1,0 +1,147 @@
+color: null
+fieldLayouts:
+  0bd601af-22a2-49f8-887c-af9e8f3e5e21:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2025-07-23T00:50:34+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            includeInCards: false
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            providesThumbs: false
+            readonly: false
+            requirable: false
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: 3c3ea119-49b7-4720-a470-7fb3bdb1ee6f
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-07-23T01:04:34+00:00'
+            elementCondition: null
+            fieldUid: bdfb1af2-11cc-45d1-89a6-681f3135ce8f # Hero Block Title
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 7ca257e6-202d-454b-8c31-f33114ba8933
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-07-23T01:04:34+00:00'
+            elementCondition: null
+            fieldUid: 6d57d86c-b925-4adb-8c28-e7a590992c8f # Hero Block Image
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 8d27490e-d4c9-4d3e-91d4-1dd480805473
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-07-23T01:04:34+00:00'
+            elementCondition: null
+            fieldUid: b5e63234-1898-41aa-81dc-3b124de23d0e # Hero Block Content
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 81ed28d3-9b59-4cc3-898e-4bd2e965c3f6
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-07-23T01:08:57+00:00'
+            elementCondition: null
+            fieldUid: e7625aa0-c051-4e54-b5a6-412c76a644c5 # Hero Block Link
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 062d8340-b593-448f-828b-15746f729b41
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-07-23T01:04:34+00:00'
+            elementCondition: null
+            fieldUid: 1a38f531-c12e-4fba-8507-a45a164876be # Hero Block Full Bleed
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 04395abf-0b99-4539-bea8-36ead69c0c90
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-07-23T01:04:34+00:00'
+            elementCondition: null
+            fieldUid: 00e29050-57a6-4df7-b274-b36a66e19736 # Page Builder: Full Column Content
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 8b6e40e8-f94a-4f6b-8cd0-e7901fc35d67
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: b1f8e308-a369-4157-a5cd-8062e5986761
+        userCondition: null
+handle: landingPageLayout
+hasTitleField: true
+icon: table-layout
+name: 'Landing Page Layout'
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: ''
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

@@ -48,8 +48,9 @@ export function sliderData() {
 
       this.slides = [...document.querySelectorAll('.c-slide')].map(el => ({
         title: el.dataset.title,
-        location: el.dataset.location,
-        url: el.dataset.url,
+        content: el.dataset.content,
+        linkUrl: el.dataset.linkUrl,
+        linkText: el.dataset.linkText,
       }));
 
       this.updateActiveContent();
@@ -63,7 +64,7 @@ export function sliderData() {
     updateActiveContent() {
       const active = this.slides[this.currentIndex];
       document.querySelector('.c-active-title').textContent = active?.title || '';
-      document.querySelector('.c-active-location').textContent = active?.location || '';
+      document.querySelector('.c-active-content').textContent = active?.content || '';
     },
   };
 }

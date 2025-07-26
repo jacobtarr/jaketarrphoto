@@ -32,7 +32,7 @@ export default {
         '16': 'repeat(16, minmax(0, 1fr))',
       },
       gridColumn: {
-        'span-16': 'span 16 / span 16',  // To allow columns to span 16 in an 18-column grid
+        'span-16': 'span 16 / span 16',
       },
       gap: {
         // Define a custom gutter for the grid (20px = 1.25rem in Tailwind units)
@@ -68,7 +68,8 @@ export default {
         beige: {
           'base-1': '#F5EBDD',     // warm beige – primary background
           'base': '#E9DBC2',       // almond milk – cards, sections
-          'base+1': '#8A735A',     // stone brown – text over warm beige
+          'base+1': '#BFA98B',     // toasted almond – text over warm beige
+          'base+2': '#7A624B',     // mocha mist – dark text over warm beige
         },
 
         brands: {
@@ -82,6 +83,9 @@ export default {
           pinterest: '#e60023',
           tiktok: '#ff0050',
         },
+      },
+      boxShadow: {
+        'card-soft': '0 3px 6px rgba(122, 98, 75, 0.5)', // mocha mist at 50%
       },
       spacing: {
         0: '0px',

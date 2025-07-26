@@ -8,8 +8,26 @@
   transition: 0.15s all ease-in-out;
   @apply font-medium text-sm md:text-base py-[5px] px-4 md:py-[7px] md:px-5 font-sans bg-white text-gray-900;
 
-  html.u-dark-mode & {
+  &--black,
+  html.u-dark-mode &,
+  .c-page-block--bg-black & {
     @apply border-white bg-gray-900 text-white;
+
+    svg path {
+      fill: white;
+      stroke: white;
+    }
+
+    &:hover,
+    &:focus {
+      color: black;
+      background-color: white;
+
+      svg path {
+        fill: black;
+        stroke: black;
+      }
+    }
   }
 
   svg {
@@ -18,11 +36,6 @@
 
     path {
       transition: 0.15s all ease-in-out;
-
-      html.u-dark-mode & {
-        fill: white;
-        stroke: white;
-      }
     }
   }
 
@@ -31,18 +44,9 @@
     color: white;
     background-color: black;
 
-    html.u-dark-mode & {
-      color: black;
-      background-color: white;
-    }
-
     svg path {
       fill: white;
       stroke: white;
-
-      html.u-dark-mode & {
-        fill: black;
-      }
     }
   }
 }

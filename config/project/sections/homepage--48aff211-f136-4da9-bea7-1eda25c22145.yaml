@@ -1,7 +1,7 @@
 defaultPlacement: end
 enableVersioning: true
 entryTypes:
-  - 70434c25-7ead-44db-ac04-32c85ac27e21 # Homepage
+  - de8ef2f0-9242-4d0a-b533-296aad578983 # Landing Page Layout
 handle: homepage
 maxAuthors: 1
 name: Homepage
@@ -12,11 +12,11 @@ previewTargets:
         - label
         - 'Primary entry page'
       -
-        - refresh
-        - '1'
-      -
         - urlFormat
         - '{url}'
+      -
+        - refresh
+        - '1'
 propagationMethod: all
 siteSettings:
   08c386f4-5a41-4c9f-8282-f6785af06bfc: # $CRAFT_SITE_NAME

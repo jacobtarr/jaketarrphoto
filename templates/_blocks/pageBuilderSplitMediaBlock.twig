@@ -1,0 +1,62 @@
+{% extends '_base/_basePageBlock.twig' %}
+{% import '_components/atoms/image.twig' as img %}
+
+{% block pageBlockContent %}
+  {# <pre style="font-size: 12px;">
+    {{ dump(block.getFieldValues()) }}
+  </pre> #}
+
+  {% set layout = block.splitMediaBlockLayout.value %}
+  {% set layoutClass = layout %}
+
+  <div class="c-split-media c-split-media--{{ layoutClass }}">
+
+    {# Image Block #}
+    <div class="c-split-media__image">
+      {% if block.splitMediaBlockImage|length %}
+        {{ img.renderImage(block.splitMediaBlockImage[0], 800, 1600, block.splitMediaBlockImage[0].title) }}
+      {% else %}
+        <p>No image found.</p>
+      {% endif %}
+    </div>
+
+    <div class="c-split-media__content">
+      <div class="c-card">
+        <div class="flex flex-col h-full">
+          <div class="space-y-4 md:space-y-8">
+            {% include '_components/molecules/kicker.twig' with {
+              "kicker": {
+                "text": block.cardKicker,
+              }
+            } %}
+            <div class="space-y-5">
+              {% include '_components/atoms/heading.twig' with {
+                "heading": {
+                  "classes": 'o-heading--h3',
+                  "tag": 'h3',
+                  "underline": false,
+                  "text": block.cardHeading
+                }
+              } %}
+
+              {% include '_components/atoms/rich-text.twig' with {
+                "richText": {
+                  "classes": '',
+                  "content": block.cardBody
+                }
+              } %}
+            </div>
+          </div>
+          {% include '_components/atoms/link.twig' with {
+            "link": {
+              "classes": 'md:mt-auto justify-end',
+              "url": block.cardLink.url,
+              "text": block.cardLink.text
+            }
+          } %}
+        </div>
+      </div>
+    </div>
+
+  </div>
+{% endblock %}

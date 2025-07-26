@@ -1,0 +1,32 @@
+columnSuffix: null
+handle: featuredWorksLayout
+instructions: null
+name: 'Featured Works Layout'
+searchable: false
+settings:
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - 'Layout 1 (Default): Mosaic Grid'
+        -
+          - value
+          - layout1
+        -
+          - default
+          - '1'
+    -
+      __assoc__:
+        -
+          - label
+          - 'Layout 2: Single Row'
+        -
+          - value
+          - layout2
+        -
+          - default
+          - ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\RadioButtons

@@ -3,11 +3,24 @@
   flex items-center gap-3;
 
   svg {
-    @apply h-4;
+    @apply w-4;
 
     path {
-      @apply fill-beige-base+1;
+      @apply fill-beige-base+2;
+
+      .c-page-block--bg-beige & {
+        @apply fill-beige-base+2;
+      }
     }
+  }
+
+  .c-page-block--bg-black &,
+  &--beige {
+    @apply text-beige-base;
+  }
+
+  .c-page-block--bg-beige & {
+    @apply text-beige-base+2;
   }
 
   &--swapped-text {

@@ -1,4 +1,12 @@
 {% set additionalClasses = richText.classes is defined and richText.classes ? ' ' ~ richText.classes : '' %}
+{% set attrs = richText.attrs ?? {} %}
+
 {% if richText.content %}
-  <div class="o-rte font-serif space-y-5{{ additionalClasses }}">{{ richText.content|raw }}</div>
+  <div class="o-rte font-serif space-y-5{{ additionalClasses }}"
+    {% for key, value in attrs %}
+      {{ key }}="{{ value is iterable ? value|join(',') : value }}"
+    {% endfor %}
+  >
+    {{ richText.content|raw }}
+  </div>
 {% endif %}

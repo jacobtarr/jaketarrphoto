@@ -1,0 +1,54 @@
+columnSuffix: null
+handle: splitMediaBlockLayout
+instructions: null
+name: 'Split Media Block Layout'
+searchable: false
+settings:
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - 'Layout 1: Image Left, Card Right, Overlap'
+        -
+          - value
+          - layout1
+        -
+          - default
+          - '1'
+    -
+      __assoc__:
+        -
+          - label
+          - 'Layout 2: Image Right, Card Left, Overlap'
+        -
+          - value
+          - layout2
+        -
+          - default
+          - ''
+    -
+      __assoc__:
+        -
+          - label
+          - 'Layout 3: Full Screen Image Left, Card Right, No Overlap'
+        -
+          - value
+          - layout3
+        -
+          - default
+          - ''
+    -
+      __assoc__:
+        -
+          - label
+          - 'Layout 4: Full Screen Image Right, Card Left, No Overlap'
+        -
+          - value
+          - layout4
+        -
+          - default
+          - ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\RadioButtons
