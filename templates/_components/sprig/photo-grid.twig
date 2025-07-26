@@ -183,12 +183,12 @@
                 },
                 restoreScroll() {
                   requestAnimationFrame(() => {
-  const scrollTop = sessionStorage.getItem('filterScrollTop');
-  if ($refs.scroll && scrollTop) {
-    $refs.scroll.scrollTop = parseInt(scrollTop);
-    sessionStorage.removeItem('filterScrollTop');
-  }
-});
+                    const scrollTop = sessionStorage.getItem('filterScrollTop');
+                    if ($refs.scroll && scrollTop) {
+                      $refs.scroll.scrollTop = parseInt(scrollTop);
+                      sessionStorage.removeItem('filterScrollTop');
+                    }
+                  });
                 }
               }"
               x-init="
