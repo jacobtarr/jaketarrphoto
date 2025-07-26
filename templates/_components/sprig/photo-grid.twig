@@ -174,26 +174,35 @@
               {% endif %}
             </div>{# end .c-filter-box__mobile-nav #}
             <div
-  x-data="{
-    visible: false,
-    saveScroll() {
-      if (this.$refs.scroll) {
-        sessionStorage.setItem('filterScrollTop', this.$refs.scroll.scrollTop);
-      }
-    },
-    restoreScroll() {
-      this.$nextTick(() => {
-        const scrollTop = sessionStorage.getItem('filterScrollTop');
-        if (this.$refs.scroll && scrollTop) {
-          this.$refs.scroll.scrollTop = parseInt(scrollTop);
-        }
-      });
-    }
-  }"
-  x-init="visible = true; restoreScroll()"
-  @sprig:success.window="visible = true; restoreScroll()"
-  class="c-filter-sections-wrapper"
->
+              x-data="{
+                visible: false,
+                saveScroll() {
+                  if (this.$refs.scroll) {
+                    sessionStorage.setItem('filterScrollTop', this.$refs.scroll.scrollTop);
+                  }
+                },
+                restoreScroll() {
+                  requestAnimationFrame(() => {
+  const scrollTop = sessionStorage.getItem('filterScrollTop');
+  if ($refs.scroll && scrollTop) {
+    $refs.scroll.scrollTop = parseInt(scrollTop);
+    sessionStorage.removeItem('filterScrollTop');
+  }
+});
+                }
+              }"
+              x-init="
+                visible = true;
+                requestAnimationFrame(() => {
+                  const scrollTop = sessionStorage.getItem('filterScrollTop');
+                  if ($refs.scroll && scrollTop) {
+                    $refs.scroll.scrollTop = parseInt(scrollTop);
+                  }
+                });
+              "
+              @sprig:success.window="if (window.innerWidth < 768) { setTimeout(() => { visible = true; restoreScroll(); }, 200); } else { visible = true; }"
+              class="c-filter-sections-wrapper"
+            >
 
               {# start #filters-form #}
               {% set isMobile = 'Mobile' in craft.app.request.userAgent %}
@@ -206,9 +215,9 @@
                 class="c-filter-sections-container"
               >
                 <div
-                  x-show="visible"
-                  x-cloak
-                  class="c-filter-sections"
+                    x-cloak
+  class="c-filter-sections"
+  x-ref="scrollContainer"
                 >
                   {% set allStates = [{ title: 'All States', slug: '' }] | merge(states) %}
                   

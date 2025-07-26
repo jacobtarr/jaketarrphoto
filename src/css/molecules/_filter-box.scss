@@ -58,3 +58,7 @@
     @apply px-5;
   }
 }
+
+[x-cloak] {
+  display: none !important;
+}
