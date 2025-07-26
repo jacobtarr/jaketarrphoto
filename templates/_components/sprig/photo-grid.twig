@@ -144,7 +144,7 @@
         x-transition:leave="transition-opacity ease-in duration-175 delay-75"
         x-transition:leave-start="opacity-100"
         x-transition:leave-end="opacity-0"
-        class="fixed inset-0 bg-gray-900/90 z-[90] md:hidden"
+        class="fixed inset-0 bg-black/90 z-[90] md:hidden"
         @click="filterOpen = false"
       >
       </div>
@@ -174,26 +174,26 @@
               {% endif %}
             </div>{# end .c-filter-box__mobile-nav #}
             <div
-              x-data="{
-                visible: false,
-                saveScroll() {
-                  if (this.$refs.scroll) {
-                    sessionStorage.setItem('filterScrollTop', this.$refs.scroll.scrollTop);
-                  }
-                },
-                restoreScroll() {
-                  this.$nextTick(() => {
-                    const scrollTop = sessionStorage.getItem('filterScrollTop');
-                    if (this.$refs.scroll && scrollTop) {
-                      this.$refs.scroll.scrollTop = parseInt(scrollTop);
-                    }
-                  });
-                }
-              }"
-              x-init="if (window.innerWidth < 768) { setTimeout(() => { visible = true; restoreScroll(); }, 200); } else { visible = true; }"
-              @sprig:success.window="if (window.innerWidth < 768) { setTimeout(() => { visible = true; restoreScroll(); }, 200); } else { visible = true; }"
-              class="c-filter-sections-wrapper"
-            >
+  x-data="{
+    visible: false,
+    saveScroll() {
+      if (this.$refs.scroll) {
+        sessionStorage.setItem('filterScrollTop', this.$refs.scroll.scrollTop);
+      }
+    },
+    restoreScroll() {
+      this.$nextTick(() => {
+        const scrollTop = sessionStorage.getItem('filterScrollTop');
+        if (this.$refs.scroll && scrollTop) {
+          this.$refs.scroll.scrollTop = parseInt(scrollTop);
+        }
+      });
+    }
+  }"
+  x-init="visible = true; restoreScroll()"
+  @sprig:success.window="visible = true; restoreScroll()"
+  class="c-filter-sections-wrapper"
+>
 
               {# start #filters-form #}
               {% set isMobile = 'Mobile' in craft.app.request.userAgent %}
@@ -208,12 +208,6 @@
                 <div
                   x-show="visible"
                   x-cloak
-                  {# x-transition:enter="transition-opacity duration-1000 ease-in-out"
-                  x-transition:enter-start="opacity-0"
-                  x-transition:enter-end="opacity-100"
-                  x-transition:leave="transition-opacity duration-500 ease-in"
-                  x-transition:leave-start="opacity-100"
-                  x-transition:leave-end="opacity-0" #}
                   class="c-filter-sections"
                 >
                   {% set allStates = [{ title: 'All States', slug: '' }] | merge(states) %}
