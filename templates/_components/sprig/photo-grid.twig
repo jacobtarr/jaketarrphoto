@@ -50,6 +50,16 @@
       sessionStorage.removeItem('sortScrollTop');
       sessionStorage.removeItem('resetScrollTop');
     }
+
+    // Patch the URL manually so Sprig state matches checkbox values
+    const url = new URL(window.location.href);
+    ['season', 'genre'].forEach(name => {
+      url.searchParams.delete(name + '[]');
+      document.querySelectorAll('#filters-form input[name=\'' + name + '[]\']:checked').forEach(cb => {
+        url.searchParams.append(name + '[]', cb.value);
+      });
+    });
+    window.history.replaceState({}, '', url);
   "
   @sprig:success.window="if (window.innerWidth < 768) filterOpen = false"
 >
@@ -133,7 +143,7 @@
       </div>
       {# end .c-portfolio__sort-by-section #}
     </div>
-    <div class="c-portfolio-grid grid md:grid-cols-4 gap-5">
+    <div class="c-portfolio-grid grid md:grid-cols-4 gap-4 md:gap-5">
 
       {# start .c-filter-sidebar #}
       <div
@@ -343,7 +353,7 @@
         <input type="hidden" id="results-count" value="{{ total }}">
 
         {% if entries|length %}
-          <div id="photo-grid" class="c-portfolio-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+          <div id="photo-grid" class="c-portfolio-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-5">
             {% for photoEntry in entries %}
               <div class="col-span-1 c-photo-block-container">
                 {% include '_components/molecules/photo-block.twig' with {

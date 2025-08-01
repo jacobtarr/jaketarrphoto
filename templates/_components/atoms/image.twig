@@ -1,4 +1,4 @@
-{% macro renderImage(image, smallWidth, largeWidth, altText, transform = null, loading = true) %}
+{% macro renderImage(image, smallWidth, largeWidth, altText, transform = null, loading = true, imgClass = '') %}
   {% if image %}
     {% set isObject = image is iterable and image is not string %}
 
@@ -36,7 +36,7 @@
         {% if loading %}loading="lazy"{% else %}fetchpriority="high"{% endif %}
         width="{{ imgWidth }}"
         height="{{ imgHeight }}"
-        class="w-full h-full object-cover"
+        class="w-full h-full object-cover {{ imgClass|default('') }}"
       >
     </picture>
   {% endif %}

@@ -1,3 +1,23 @@
 .c-card {
   @apply bg-beige-base p-7 shadow-card-soft;
+
+  &__inner {
+    @apply flex flex-col h-full;
+  }
+
+  &__link {
+    @apply pt-4 md:pt-8 md:mt-auto justify-end;
+  }
+
+  &__text {
+    @apply text-base;
+    
+    p {
+      @apply text-base;
+    }
+  }
+
+  &--mobile-flat {
+    @apply bg-transparent lg:bg-beige-base p-0 lg:p-7 shadow-none lg:shadow-card-soft;
+  }
 }

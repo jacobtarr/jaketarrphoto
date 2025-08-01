@@ -1,5 +1,5 @@
 .o-link {
-  @apply uppercase tracking-widest text-sm font-founders font-semibold leading-4
+  @apply uppercase tracking-widest text-xs md:text-sm font-founders font-semibold leading-4
   flex items-center gap-3;
 
   .c-page-block--bg-black & {
@@ -11,7 +11,7 @@
   }
 
   svg {
-    @apply w-4 rotate-180;
+    @apply w-3 md:w-4 rotate-180;
 
     path {
       @apply fill-beige-base;

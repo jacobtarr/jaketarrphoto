@@ -21,41 +21,17 @@
     </div>
 
     <div class="c-split-media__content">
-      <div class="c-card">
-        <div class="flex flex-col h-full">
-          <div class="space-y-4 md:space-y-8">
-            {% include '_components/molecules/kicker.twig' with {
-              "kicker": {
-                "text": block.cardKicker,
-              }
-            } %}
-            <div class="space-y-5">
-              {% include '_components/atoms/heading.twig' with {
-                "heading": {
-                  "classes": 'o-heading--h3',
-                  "tag": 'h3',
-                  "underline": false,
-                  "text": block.cardHeading
-                }
-              } %}
-
-              {% include '_components/atoms/rich-text.twig' with {
-                "richText": {
-                  "classes": '',
-                  "content": block.cardBody
-                }
-              } %}
-            </div>
-          </div>
-          {% include '_components/atoms/link.twig' with {
-            "link": {
-              "classes": 'md:mt-auto justify-end',
-              "url": block.cardLink.url,
-              "text": block.cardLink.text
-            }
-          } %}
-        </div>
-      </div>
+      {% include '_components/molecules/card.twig' with {
+        card: {
+          kicker: block.cardKicker,
+          heading: block.cardHeading,
+          body: block.cardBody,
+          link: {
+            url: block.cardLink.url,
+            text: block.cardLink.text
+          }
+        }
+      } %}
     </div>
 
   </div>

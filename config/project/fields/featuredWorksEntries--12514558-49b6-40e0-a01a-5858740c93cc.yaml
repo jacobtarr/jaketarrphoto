@@ -7,7 +7,7 @@ settings:
   allowSelfRelations: false
   branchLimit: null
   maintainHierarchy: false
-  maxRelations: 5
+  maxRelations: 4
   minRelations: null
   selectionLabel: 'Add Entry'
   showCardsInGrid: false

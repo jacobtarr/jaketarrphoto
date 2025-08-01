@@ -2,7 +2,7 @@
 {% set attrs = richText.attrs ?? {} %}
 
 {% if richText.content %}
-  <div class="o-rte font-serif space-y-5{{ additionalClasses }}"
+  <div class="o-rte font-body space-y-5{{ additionalClasses }}"
     {% for key, value in attrs %}
       {{ key }}="{{ value is iterable ? value|join(',') : value }}"
     {% endfor %}

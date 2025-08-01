@@ -9,7 +9,7 @@
     {{ key }}="{{ value }}"
   {% endfor %}
 >
-  {{ img.renderImage(photo.image, 800, 1600, photo.title, photo.transform|default(null)) }}
+  {{ img.renderImage(photo.image, 800, 1600, photo.title, photo.transform|default(null), true, photo.imgClass ?? '') }}
 
   {% if photo.caption is defined and photo.caption is not empty %}
     {% set icon = photo.icon is defined and photo.icon is not empty 

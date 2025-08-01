@@ -1,25 +1,35 @@
 .c-split-media {
   @apply grid md:grid-cols-12 gap-5 items-center;
 
+  &--layout3,
+  &--layout4 {
+    @apply gap-7;
+  }
+
   &__image {
     img {
-      @apply md:min-h-[550px] max-h-[660px];
+      @apply md:min-h-[550px] max-h-[540px];
+
+      .c-split-media--layout3 &,
+      .c-split-media--layout4 & {
+        @apply md:min-h-[0] max-h-[540px];
+      }
     }
 
     .c-split-media--layout1 & {
-      @apply xl:col-start-3 xl:col-span-5;
+      @apply xl:col-start-2 xl:col-span-7;
     }
 
     .c-split-media--layout2 & {
-      @apply xl:col-span-5 xl:-translate-x-[25%];
+      @apply xl:col-span-7 xl:-translate-x-[15%];
     }
 
     .c-split-media--layout3 & {
-      @apply xl:col-span-6;
+      @apply md:col-span-8 xl:col-span-7;
     }
 
     .c-split-media--layout4 & {
-
+      @apply md:col-span-8 xl:col-span-7;
     }
   }
 
@@ -31,15 +41,15 @@
     }
 
     .c-split-media--layout2 & {
-      @apply -order-1 xl:col-start-3 xl:col-span-4 relative z-[5];
+      @apply -order-1 xl:col-start-2 xl:col-span-4 relative z-[5];
     }
 
    .c-split-media--layout3 & {
-      @apply xl:col-span-6;
+      @apply md:col-span-4;  
     }
 
     .c-split-media--layout4 & {
-      
+      @apply -order-1 xl:col-start-2 md:col-span-4;
     }
   }
 

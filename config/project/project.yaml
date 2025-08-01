@@ -1,4 +1,4 @@
-dateModified: 1753453649
+dateModified: 1753738971
 email:
   fromEmail: $CRAFT_EMAIL_SYSTEM
   fromName: $CRAFT_EMAIL_SYSTEM
@@ -43,6 +43,7 @@ meta:
     00e29050-57a6-4df7-b274-b36a66e19736: 'Page Builder: Full Column Content' # Page Builder: Full Column Content
     1a07dfa1-6719-409b-aae0-4355938489fa: Overview # Overview
     1a38f531-c12e-4fba-8507-a45a164876be: 'Hero Block Full Bleed' # Hero Block Full Bleed
+    1a51e95b-fcfb-4f21-9a25-6b6cdfecb0c6: Medium # Medium
     1b42544d-e667-4d35-81de-804526420b34: 'Page Builder Option: Left Column Width' # Page Builder Option: Left Column Width
     01f1709e-90b6-4a73-a760-fd999f43b328: 'Featured Image' # Featured Image
     02cac0e4-26ca-4050-b482-32fe31d3fd05: Square--Small # Square--Small
@@ -57,6 +58,7 @@ meta:
     6a2e7606-6a81-4adb-8538-b27df2adb73e: 'Page Slides' # Page Slides
     6d57d86c-b925-4adb-8c28-e7a590992c8f: 'Hero Block Image' # Hero Block Image
     7b662bcd-ea91-4c91-86ce-c60348c664d1: Pages # Pages
+    7c7bcfc3-5f33-4783-bbc1-0211262d9549: 'Aspect Ratio: 4x5' # Aspect Ratio: 4x5
     7cfa1850-34c5-4ccc-9135-a2d131dc732e: 'Page Builder: Split Media Block' # Page Builder: Split Media Block
     8b610edc-f2dd-46b6-9597-96fcbb6d302a: Simple # Simple
     08c386f4-5a41-4c9f-8282-f6785af06bfc: $CRAFT_SITE_NAME # $CRAFT_SITE_NAME
@@ -74,6 +76,7 @@ meta:
     83c34dc7-2085-49ef-ba2c-a0f4f898807c: 'Card Heading' # Card Heading
     84be3a2d-0c5d-45d4-97e8-59d0d499c25f: 'Page Slide: Image' # Page Slide: Image
     86ad037a-07c7-4d8f-90d3-e4fa9a31c7ef: 'Portfolio Images' # Portfolio Images
+    88bfd0ba-dfcd-4987-a614-e9d142d0417c: 'Aspect Ratio: 16x9' # Aspect Ratio: 16x9
     90c2cf62-2b6c-444e-b313-13461f103649: Photos # Photos
     298cea5e-e970-4f91-91b6-21ba893e3458: Photo # Photo
     450da273-b412-48fc-bc9e-70a49eb8e206: 'Content Heading' # Content Heading
@@ -87,6 +90,7 @@ meta:
     99253d82-2d49-4285-8539-155472cf8207: 'Page Builder: Left Column Content' # Page Builder: Left Column Content
     452561b9-4d58-4e06-abbb-ec181d217e97: 'Page Builder: Content Block' # Page Builder: Content Block
     758857ca-7d33-49af-810b-cb347619a61f: 'Page Feature Boxes' # Page Feature Boxes
+    921510a6-634a-4235-8ccf-7c94ac73d06a: 'Aspect Ratio: 5x4' # Aspect Ratio: 5x4
     01914777-7aec-4ffe-b263-513b6e67154f: 'Content Body' # Content Body
     8612363b-d7c9-43e9-993a-b6454190280c: Genre # Genre
     12514558-49b6-40e0-a01a-5858740c93cc: 'Featured Works Entries' # Featured Works Entries

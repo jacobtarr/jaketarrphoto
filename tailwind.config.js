@@ -10,6 +10,14 @@ const generateGridClasses = () => {
   );
 };
 
+const generateColSpans = () => {
+  const spans = Array.from({ length: 13 }, (_, i) => `col-span-${i}`);
+  return spans.flatMap(span => [
+    span,
+    ...['sm', 'md', 'lg', 'xl', '2xl'].map(bp => `${bp}:${span}`)
+  ]);
+};
+
 export default {
   theme: {
     container: {
@@ -127,7 +135,7 @@ export default {
         'sm': '0.875rem', // 14
         'base': '1rem', // 16
         'lg': '1.125rem', // 18
-        'xl': '1.25rem', // 20
+        'xl': '1.375rem', // 22
         '2xl': '1.5rem', // 24
         '3xl': '1.75rem', // 28
         '4xl': '2rem', // 32
@@ -144,10 +152,9 @@ export default {
           'ui-sans-serif',
           'system-ui'
         ],
-        serif: [
-          '"freight-text-pro"',
-          'Georgia',
-          'Cambria'
+        body: [
+          '"source-serif-pro"',
+          'serif',
         ],
         founders: [
           '"Founders Grotesk"',
@@ -161,6 +168,7 @@ export default {
   ],
   safelist: [
     ...generateGridClasses(),
+    ...generateColSpans(),
     // 🍔 Hamburger classes
     'hamburger',
     'hamburger--arrow',

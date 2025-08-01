@@ -1,6 +1,22 @@
 .c-page-block {
   &--full-width {
-    @apply md:py-20;
+    @apply py-10 md:py-20;
+
+    &.c-page-block--stacked {
+      @apply py-10;
+
+      &.c-page-block--stack-start {
+        @apply pt-10 md:pt-20;
+
+        + .c-page-block--stacked:not(.c-page-block--stack-end) {
+          @apply pt-0 md:py-10;
+        }
+      }
+
+      &.c-page-block--stack-end {
+        @apply pt-0 pb-10 md:pt-10 md:pb-20;
+      }
+    }
   }
 
   &--full-height {

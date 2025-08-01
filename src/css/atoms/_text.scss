@@ -1,9 +1,9 @@
 body {
-  @apply antialiased;
+  @apply antialiased text-gray-900;
 }
 
 p {
-  @apply font-serif;
+  @apply font-body;
 }
 
 
@@ -12,7 +12,7 @@ p {
 }
 
 .o-rte, p {
-  line-height: 1.33;
+  @apply leading-[1.35] xl:leading-snug text-base xl:text-lg;
 }
 
 .o-rte {

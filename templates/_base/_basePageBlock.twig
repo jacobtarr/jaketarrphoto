@@ -1,9 +1,9 @@
 {% set handle = block.type.handle|replace({'pageBuilder': '', 'Block': ''})|kebab %}
 {% set bgColor = block.pageBuilderOptionBackgroundColor ?? 'white' %}
 {% set isFullColumn = parentMatrix is defined and parentMatrix == 'pageBuilderFullColumnContent' %}
-
-{% set layout = block.splitMediaBlockLayout.value ?? null %}
-{% set additionalClasses = layout in ['layout3', 'layout4'] ? 'c-page-block--full-height' : '' %}
+{% set isStacked = isStacked ?? false %}
+{% set isStackStart = isStackStart ?? false %}
+{% set isStackEnd = isStackEnd ?? false %}
 
 {% set blockContent %}
   {% block pageBlockContent %}{% endblock %}
@@ -12,8 +12,10 @@
 <div class="c-page-block 
             c-page-block--{{ handle }} 
             c-page-block--bg-{{ bgColor }}
-            {{ additionalClasses }}
-            {{ isFullColumn ? 'c-page-block--full-width' }}">
+            {{ isFullColumn ? 'c-page-block--full-width' }}
+            {{ isStacked ? 'c-page-block--stacked' }}
+            {{ isStackStart ? 'c-page-block--stack-start' }}
+            {{ isStackEnd ? 'c-page-block--stack-end' }}">
   {% if isFullColumn %}
     <div class="c-page-block__container container">
       {{ blockContent }}
