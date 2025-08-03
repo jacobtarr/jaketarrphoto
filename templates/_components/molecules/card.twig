@@ -14,13 +14,14 @@
       {% endif %}
 
       <div class="space-y-3 md:space-y-5">
-        {% if card.heading is defined %}
+        {% if card.heading is defined or card.headingAttrs is defined %}
           {% include '_components/atoms/heading.twig' with {
             heading: {
-              classes: 'o-heading--h3',
+              classes: 'o-heading--h3' ~ (card.headingClass is defined ? ' ' ~ card.headingClass : ''),
               tag: 'h3',
               underline: false,
-              text: card.heading
+              text: card.heading ?? '',
+              attrs: card.headingAttrs ?? {}
             }
           } %}
         {% endif %}

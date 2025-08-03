@@ -10,16 +10,6 @@
       {{ key }}="{{ value is iterable ? value|join(',') : value }}"
     {% endfor %}
   >
-    {% for word in titleWords %}
-      {% if loop.last %}
-        {% if titleWords|length > 1 %}
-          <span class="text-red-500">{{ word|raw ~ '.' }}</span>
-        {% else %}
-          {{ word|raw ~ '.' }}
-        {% endif %}
-      {% else %}
-        {{ word|raw }}
-      {% endif %}
-    {% endfor %}
+    {{ heading.text|raw }}
   </{{ headingTag }}>
 {% endif %}

@@ -10,10 +10,10 @@
       }
     } %}
     <nav class="c-nav">
-      <a href="/about" up-target="main" @click="setActivePage('/about')" class="font-founders uppercase tracking-widest px-7 text-sm font-semibold hover:text-red-500" :class="{'text-red-500': isActive('/about')}">About</a>
-      <a href="/portfolio" up-target="main" @click="setActivePage('/portfolio')" class="font-founders uppercase tracking-widest px-7 text-sm font-semibold hover:text-red-500" :class="{'text-red-500': isActive('/portfolio')}">Portfolio</a>
-      <a href="/blog" up-target="main" @click="setActivePage('/blog')" class="font-founders uppercase tracking-widest px-7 text-sm font-semibold hover:text-red-500" :class="{'text-red-500': isActive('/blog')}">Blog</a>
-      <a href="/contact" up-target="main" @click="setActivePage('/contact')" class="font-founders uppercase tracking-widest px-7 text-sm font-semibold hover:text-red-500" :class="{'text-red-500': isActive('/contact')}">Contact</a>
+      <a href="/about" up-target="main" @click="setActivePage('/about')" class="c-nav__link" :class="{'text-red-500': isActive('/about')}">About</a>
+      <a href="/portfolio" up-target="main" @click="setActivePage('/portfolio')" class="c-nav__link" :class="{'text-red-500': isActive('/portfolio')}">Portfolio</a>
+      <a href="/blog" up-target="main" @click="setActivePage('/blog')" class="c-nav__link" :class="{'text-red-500': isActive('/blog')}">Blog</a>
+      <a href="/contact" up-target="main" @click="setActivePage('/contact')" class="c-nav__link" :class="{'text-red-500': isActive('/contact')}">Contact</a>
     </nav>
 
     <div class="c-header__mobile-wrapper">

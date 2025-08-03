@@ -31,7 +31,7 @@ settings:
       __assoc__:
         -
           - label
-          - 'Layout 3: Full Screen Image Left, Card Right, No Overlap'
+          - 'Layout 3: 50% Image Left, 50% Card Right, No Overlap'
         -
           - value
           - layout3
@@ -42,7 +42,7 @@ settings:
       __assoc__:
         -
           - label
-          - 'Layout 4: Full Screen Image Right, Card Left, No Overlap'
+          - 'Layout 4: 50% Image Right, 50% Card Left, No Overlap'
         -
           - value
           - layout4

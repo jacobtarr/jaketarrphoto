@@ -9,8 +9,18 @@
     }
   }
 
+  &__j {
+    .hero-is-full-bleed .c-header & {
+      @apply fill-gray-100;
+    }
+  }
+
   &__text {
     @apply text-xs md:text-base lg:text-xl font-bold leading-3 md:leading-4 lg:leading-3;
+
+    .hero-is-full-bleed .c-header & {
+      @apply text-gray-100;
+    }
 
     br {
       @apply md:hidden;
@@ -19,7 +29,7 @@
 
   html.u-dark-mode & {
     &__j {
-      fill: white;
+      @apply fill-gray-100;
     }
   }
 }

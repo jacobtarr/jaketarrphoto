@@ -2,6 +2,14 @@
   @apply uppercase tracking-widest text-xs md:text-sm font-founders font-semibold leading-4
   flex items-center gap-3;
 
+  &--slider-mobile {
+    @apply flex text-sm sm:hidden;
+  }
+
+  &--slider-desktop {
+    @apply hidden sm:flex;
+  }
+
   svg {
     @apply w-4;
 

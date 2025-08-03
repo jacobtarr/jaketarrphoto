@@ -1,5 +1,9 @@
 .c-header {
-  @apply relative h-[55px] md:h-[63px] w-full bg-white;
+  @apply relative z-20 h-[55px] md:h-[63px] w-full bg-transparent;
+
+  .hero-is-full-bleed & {
+    @apply bg-gray-900/30 backdrop-blur-[10px];
+  }
 
   &__inner {
     @apply h-full flex items-center justify-between;
@@ -14,6 +18,10 @@
     z-index: 80;
     
     @apply bg-gray-200;
+
+    .hero-is-full-bleed & {
+      @apply bg-gray-400/50;
+    }
   }
 
   html.u-dark-mode & {

@@ -1,11 +1,20 @@
 {% extends '_layouts/global.twig' %}
 
-{% block site %}
+{% set hero = {
+  image: entry.heroBlockImage.one(),
+  heading: entry.heroBlockTitle,
+  text: entry.heroBlockContent,
+  isFullBleed: entry.heroBlockFullBleed
+} %}
 
+{% set bodyClass = hero.isFullBleed ? 'hero-is-full-bleed' : '' %}
+
+{% block site %}
   <section class="c-landing-page">
-  {# <pre style="font-size: 12px">
-    {{ dump(entry.pageBuilderFullColumnContent.all()) }}
-  </pre> #}
+    {# <pre style="font-size: 12px">
+      {{ dump(entry.getFieldValues()) }}
+    </pre> #}
+    {% include '_components/molecules/hero.twig' with { hero: hero } %}
     {% set blocks = entry.pageBuilderFullColumnContent.all() %}
 
     {% for block in blocks %}
@@ -18,6 +27,12 @@
       {% set isStackStart = (currentColor != prevColor) and (currentColor == nextColor) %}
       {% set isStackEnd = (currentColor == prevColor) and (currentColor != nextColor) %}
 
+      {# Open wrapper if this is the start of a stack #}
+      {% if isStackStart %}
+        <div class="c-page-block-stack c-page-block-stack--bg-{{ currentColor }}">
+      {% endif %}
+
+      {# Render the block as normal #}
       {% include '_blocks/' ~ block.type ~ '.twig' with {
         block: block,
         parentMatrix: 'pageBuilderFullColumnContent',
@@ -25,7 +40,16 @@
         isStackStart: isStackStart,
         isStackEnd: isStackEnd
       } %}
+
+      {# Close wrapper if this is the end of a stack #}
+      {% if isStackEnd %}
+        </div>
+      {% endif %}
+
+      {# Handle single stacked block (start and end are same if it's a 2-block stack) #}
+      {% if isStackStart and isStackEnd %}
+        </div>
+      {% endif %}
     {% endfor %}
   </section>
-
 {% endblock %}

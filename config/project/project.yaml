@@ -1,4 +1,4 @@
-dateModified: 1753738971
+dateModified: 1754185918
 email:
   fromEmail: $CRAFT_EMAIL_SYSTEM
   fromName: $CRAFT_EMAIL_SYSTEM
@@ -123,7 +123,6 @@ meta:
     f0a7b6f4-0e83-455e-aba3-24ce98fa11dc: 'Page Builder: Header Block' # Page Builder: Header Block
     f7ba018a-381c-4d09-8f22-6a1ab3e317cd: 'Blog Images' # Blog Images
     f68a3386-e428-4757-9750-aa0f8cc133d1: 'Slide Content' # Slide Content
-    fa0732ba-e924-456d-8e2c-4666006edb64: 'Split Media Block Reverse' # Split Media Block Reverse
     fbdf5212-75c7-4c55-a84d-1fe336d63dfc: 'Page Builder' # Page Builder
     fcd2475b-f27b-406f-a8a4-96b0bf65fab9: 'Page Spacer' # Page Spacer
 plugins:

@@ -63,8 +63,8 @@ export function sliderData() {
 
     updateActiveContent() {
       const active = this.slides[this.currentIndex];
-      document.querySelector('.c-active-title').textContent = active?.title || '';
-      document.querySelector('.c-active-content').textContent = active?.content || '';
+      document.querySelector('.c-slide-title').textContent = active?.title || '';
+      document.querySelector('.c-slide-text').textContent = active?.content || '';
     },
   };
 }

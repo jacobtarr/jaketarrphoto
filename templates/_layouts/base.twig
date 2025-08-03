@@ -50,12 +50,23 @@
 
 	</head>
 
-	<body>
+	<body class="{{ bodyClass ?? '' }}">
 
 		{% block body %}{% endblock %}
 
 		{# Sprig script required for AJAX-based functionality #}
     {% do sprig.registerScript() %}
+
+		{# {% if craft.app.env == 'dev' %}
+			<div class="fixed bottom-0 left-0 z-50 bg-black text-white text-[15px] px-2 py-1 pointer-events-none">
+				<span class="block sm:hidden">screen: xs</span>
+				<span class="hidden sm:block md:hidden">screen: sm</span>
+				<span class="hidden md:block lg:hidden">screen: md</span>
+				<span class="hidden lg:block xl:hidden">screen: lg</span>
+				<span class="hidden xl:block 2xl:hidden">screen: xl</span>
+				<span class="hidden 2xl:block">screen: 2xl</span>
+			</div>
+		{% endif %} #}
 
 	</body>
 

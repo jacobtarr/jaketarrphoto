@@ -19,7 +19,7 @@
     @apply snap-start lg:snap-none min-w-[200px] lg:min-h-0 col-span-1;
 
     &.row-span-1 {
-      @apply lg:h-[252px];
+      @apply xl:min-h-[252px] xl:max-h-[300px];
 
       .c-photo-block {
         picture {

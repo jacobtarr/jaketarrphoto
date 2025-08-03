@@ -30,4 +30,8 @@
   &--bg-beige {
     @apply bg-beige-base-1;
   }
+
+  &--slider {
+    overflow-x: hidden;
+  }
 }
