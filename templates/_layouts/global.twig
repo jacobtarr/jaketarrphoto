@@ -1,5 +1,18 @@
 {% extends '_layouts/base' %}
 
+{% set extraClasses = hero is defined and hero.isFullBleed ? ['hero-is-full-bleed'] : [] %}
+
+{% set bodyClass = (
+    entry is defined
+        ? (entry.section.handle is defined ? ['post-type-' ~ entry.section.handle] : [])
+            |merge(entry.type.handle is defined ? ['type-' ~ entry.type.handle] : [])
+            |merge(['page-' ~ entry.slug])
+        : ['page-' ~ (craft.app.request.getSegment(1) ?: 'home')]
+) 
+|merge(currentUser ? ['logged-in'] : []) 
+|merge(extraClasses) 
+|join(' ') %}
+
 {% set vars = {
 	class: {
 		siteMargin: {

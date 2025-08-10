@@ -3,7 +3,10 @@
 {% set hero = {
   image: entry.heroBlockImage.one(),
   heading: entry.heroBlockTitle,
+  headingClasses: 'o-heading--hero',
   text: entry.heroBlockContent,
+  link: entry.heroBlockLink,
+  imgTransform: 'extraLarge',
   isFullBleed: entry.heroBlockFullBleed
 } %}
 
@@ -12,7 +15,7 @@
 {% block site %}
   <section class="c-landing-page">
     {# <pre style="font-size: 12px">
-      {{ dump(entry.getFieldValues()) }}
+      {{ dump(entry.getFieldValue) }}
     </pre> #}
     {% include '_components/molecules/hero.twig' with { hero: hero } %}
     {% set blocks = entry.pageBuilderFullColumnContent.all() %}

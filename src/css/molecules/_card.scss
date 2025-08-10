@@ -25,7 +25,7 @@
     }
     
     p {
-      @apply text-sm lg:text-base;
+      @apply text-base lg:text-base;
 
       .c-card--plain & {
         @apply sm:text-sm lg:text-base;

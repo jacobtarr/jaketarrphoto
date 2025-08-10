@@ -1,4 +1,4 @@
-dateModified: 1754185918
+dateModified: 1754693320
 email:
   fromEmail: $CRAFT_EMAIL_SYSTEM
   fromName: $CRAFT_EMAIL_SYSTEM
@@ -51,7 +51,6 @@ meta:
     3d0151b1-3180-4665-8e2f-be7c0d1f1452: 'Split Media Block Layout' # Split Media Block Layout
     3d2ab139-6eab-4ce4-a7c7-023881701cfd: 'Page Builder: Right Column Content' # Page Builder: Right Column Content
     3df712b7-085b-48cc-8a30-26fe0cf880fd: 'Content Image' # Content Image
-    3fcb2dc7-3cac-463f-8974-4e785982bdd6: 'Page Slide: Content' # Page Slide: Content
     4b0cd134-c5fc-4773-9cca-86b5a0b1ae69: 'Page Builder Option: Column Stickiness' # Page Builder Option: Column Stickiness
     5d3e6e09-5f5c-4369-b4fb-bd9410073b43: 'Page Builder Option: Background Color' # Page Builder Option: Background Color
     5f67fcef-4f51-4832-a46c-d1f9fe66abc0: 'Page Form' # Page Form
@@ -74,14 +73,12 @@ meta:
     80e8622f-26e3-4121-8be3-3716c04cd508: Season # Season
     82a2a030-6246-4333-af89-a21865e574c4: 'Page Builder: Full Content Row' # Page Builder: Full Content Row
     83c34dc7-2085-49ef-ba2c-a0f4f898807c: 'Card Heading' # Card Heading
-    84be3a2d-0c5d-45d4-97e8-59d0d499c25f: 'Page Slide: Image' # Page Slide: Image
     86ad037a-07c7-4d8f-90d3-e4fa9a31c7ef: 'Portfolio Images' # Portfolio Images
     88bfd0ba-dfcd-4987-a614-e9d142d0417c: 'Aspect Ratio: 16x9' # Aspect Ratio: 16x9
     90c2cf62-2b6c-444e-b313-13461f103649: Photos # Photos
     298cea5e-e970-4f91-91b6-21ba893e3458: Photo # Photo
     450da273-b412-48fc-bc9e-70a49eb8e206: 'Content Heading' # Content Heading
     479fc44e-aa39-410b-9c74-5e1ae5c00c7e: 'Split Media Block Image' # Split Media Block Image
-    593d9a38-4c34-4463-a511-a486fe855967: 'Page Slide: Link' # Page Slide: Link
     594c3566-f197-48c8-98a0-6b8ef76133df: 'Page Builder: Slide Block' # Page Builder: Slide Block
     1204bcc0-8378-4dd4-ab64-a4ae43ad533c: Square # Square
     7556ecfe-e429-4d78-baa4-ec9d0e89aaec: 'Page Gallery Lightbox Toggle' # Page Gallery Lightbox Toggle
@@ -121,6 +118,7 @@ meta:
     e7625aa0-c051-4e54-b5a6-412c76a644c5: 'Hero Block Link' # Hero Block Link
     eb0ea69f-509b-47a6-87cb-c9f3ad376908: 'Page Builder: Form Block' # Page Builder: Form Block
     f0a7b6f4-0e83-455e-aba3-24ce98fa11dc: 'Page Builder: Header Block' # Page Builder: Header Block
+    f1b1591d-43df-4ef4-a7c2-504f08d84cab: 'Extra Large' # Extra Large
     f7ba018a-381c-4d09-8f22-6a1ab3e317cd: 'Blog Images' # Blog Images
     f68a3386-e428-4757-9750-aa0f8cc133d1: 'Slide Content' # Slide Content
     fbdf5212-75c7-4c55-a84d-1fe336d63dfc: 'Page Builder' # Page Builder

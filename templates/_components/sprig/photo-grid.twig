@@ -354,7 +354,7 @@
         <input type="hidden" id="results-count" value="{{ total }}">
 
         {% if entries|length %}
-          <div id="photo-grid" class="c-portfolio-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-5">
+          <div id="photo-grid" class="c-portfolio-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-2 md:gap-3">
             {% for photoEntry in entries %}
               <div class="col-span-1 c-photo-block-container">
                 {% include '_components/molecules/photo-block.twig' with {

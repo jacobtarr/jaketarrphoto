@@ -1,9 +1,9 @@
 // Define the mixin
 @mixin o-button {
-  @apply inline-flex items-center gap-3 py-[12px] px-[24px] md:py-[14px] md:px-[28px] 
-    font-founders uppercase tracking-widest text-xs md:text-sm 
+  @apply inline-flex items-center gap-3 py-[12px] px-[24px] lg:py-[14px] lg:px-[28px] 
+    font-founders uppercase tracking-widest text-xs lg:text-sm 
     font-semibold leading-4 bg-beige-base+2 text-beige-base-1 
-    transition-all duration-150 ease-in-out border-0 rounded-full;
+    transition-colors duration-150 ease-in-out border-0 rounded-full;
 
   &--black,
   html.u-dark-mode &,
@@ -23,6 +23,20 @@
       svg path {
         fill: black;
         stroke: black;
+      }
+    }
+  }
+
+  &--secondary {
+    @apply bg-transparent border-2 border-solid text-beige-base border-beige-base;
+
+    &:hover {
+      @apply bg-beige-base text-beige-base+2;
+
+      svg {
+        path {
+          @apply fill-beige-base+2;
+        }
       }
     }
   }

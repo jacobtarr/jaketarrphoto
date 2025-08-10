@@ -8,7 +8,7 @@
   @apply space-y-4 lg:space-y-0;
 
   &__entry-grid {
-    @apply flex overflow-x-auto -mr-4 lg:mr-0 pr-4 lg:pr-0 scroll-pr-4 snap-x snap-mandatory lg:snap-none lg:overflow-visible lg:grid grid-cols-3 gap-4 lg:gap-5;
+    @apply flex overflow-x-auto -mr-4 lg:mr-0 pr-4 lg:pr-0 scroll-pr-4 snap-x snap-mandatory lg:snap-none lg:overflow-visible lg:grid grid-cols-3 gap-3 lg:gap-5;
   }
 
   &__card-col {
@@ -16,7 +16,7 @@
   }
 
   &__entry-col {
-    @apply snap-start lg:snap-none min-w-[200px] lg:min-h-0 col-span-1;
+    @apply min-w-[200px] lg:min-h-0 col-span-1;
 
     &.row-span-1 {
       @apply xl:min-h-[252px] xl:max-h-[300px];
@@ -36,11 +36,11 @@
 
 .c-single-row-grid {
   &__entry-grid {
-    @apply flex overflow-x-auto -mr-4 md:mr-0 pr-4 md:pr-0 scroll-pr-4 snap-x snap-mandatory md:snap-none md:overflow-visible md:grid grid-cols-12 gap-4 md:gap-5;
+    @apply flex overflow-x-auto -mr-4 md:mr-0 pr-4 md:pr-0 scroll-pr-4 md:overflow-visible md:grid grid-cols-12 gap-3 md:gap-5;
   }
 
   &__entry-col {
-    @apply snap-start md:snap-none min-w-[200px] md:min-h-0;
+    @apply min-w-[200px] md:min-h-0;
   }
 
   .c-card__link {

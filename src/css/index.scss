@@ -38,11 +38,11 @@ html.u-dark-mode {
 
   body {
     color: #fff;
-    background-color: black;
+    @apply bg-gray-900;
   }
 
   .bg-white {
-    background-color: black;
+    @apply bg-gray-900;
   }
 }
 

@@ -28,17 +28,21 @@
 		{{ craft.vite.inline('@webroot/dist/favicons/webapp.html') }}
 
 		{% if hero is defined and hero.image is defined and hero.image %}
+			{# pick a sensible transform you actually use in the hero #}
+			{% set preloadUrl = hero.image.getUrl({ width: 1600 }) %}
 			<link
 				rel="preload"
 				as="image"
-				href="{{ hero.image }}"
-				{% if hero.image ends with '.webp' %}
-					type="image/webp"
-				{% elseif hero.image ends with '.jpg' %}
-					type="image/jpeg"
-				{% endif %}
+				href="{{ hero.image.getUrl({ width: 1600, format: 'webp' }) }}"
+				imagesrcset="
+					{{ hero.image.getUrl({ width: 640,  format: 'webp' }) }} 640w,
+					{{ hero.image.getUrl({ width: 1024, format: 'webp' }) }} 1024w,
+					{{ hero.image.getUrl({ width: 1600, format: 'webp' }) }} 1600w
+				"
+				imagesizes="100vw"
+				type="image/webp"
 				fetchpriority="high"
-			>
+			/>
 		{% endif %}
 
 		{# AlpineJS "blip" Fix #}

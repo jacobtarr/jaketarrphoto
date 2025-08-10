@@ -3,17 +3,32 @@
     {% set isObject = image is iterable and image is not string %}
 
     {% if transform and isObject %}
-      {% set jpegSrc = image.getUrl({ transform: transform }) %}
-      {% set webpSrc = image.getUrl({ transform: transform, format: 'webp' }) %}
-      {% set transformObj = craft.app.imageTransforms.getTransformByHandle(transform) %}
-      {% set imgWidth = transformObj.width ?? largeWidth %}
-      {% set imgHeight = transformObj.height ?? ((image.getHeight() * (imgWidth / image.getWidth()))|round) %}
+      {# transform can be a handle (string) or an array #}
+      {% set isHandle = transform is not iterable %}
+      {% set base = isHandle ? { transform: transform } : transform %}
+
+      {# URLs #}
+      {% set jpegSrc = image.getUrl(base) %}
+      {% set webpSrc = image.getUrl(base|merge({ format: 'webp' })) %}
+
+      {# Dimensions for width/height attrs #}
+      {% if isHandle %}
+        {% set t = craft.app.imageTransforms.getTransformByHandle(transform) %}
+        {% set imgWidth  = t.width  ?? largeWidth %}
+        {% set imgHeight = t.height ?? ((image.getHeight() * (imgWidth / image.getWidth()))|round) %}
+      {% else %}
+        {% set imgWidth  = transform.width  ?? largeWidth %}
+        {% set imgHeight = transform.height ?? ((image.getHeight() * (imgWidth / image.getWidth()))|round) %}
+      {% endif %}
+
     {% elseif isObject %}
       {% set jpegSrc = image.getUrl({ width: largeWidth }) %}
       {% set webpSrc = image.getUrl({ width: largeWidth, format: 'webp' }) %}
       {% set imgWidth = largeWidth %}
       {% set imgHeight = (image.getHeight() * (largeWidth / image.getWidth()))|round %}
+
     {% else %}
+      {# image was a string URL #}
       {% set jpegSrc = image|replace({ '.webp': '.jpg' }) %}
       {% set webpSrc = image %}
       {% set imgWidth = largeWidth %}
@@ -23,7 +38,7 @@
     <picture>
       <source srcset="{{ webpSrc }}" type="image/webp">
       <source srcset="{{ jpegSrc }}" type="image/jpeg">
-      <img 
+      <img
         src="{{ jpegSrc }}"
         onload="this.classList.add('is-loaded')"
         {% if isObject and not transform %}

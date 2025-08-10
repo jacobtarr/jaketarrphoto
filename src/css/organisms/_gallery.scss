@@ -1,6 +1,10 @@
 .c-gallery {
   &__caption {
-    @apply text-gray-400 border-t border-gray-200 pt-3 mt-5;
+    @apply font-founders text-gray-400 mt-2 xl:mt-3;
+
+    .o-rte, p {
+      @apply font-founders leading-tight text-base xl:text-lg;
+    }
 
     &--photo {
       @apply text-gray-300;
