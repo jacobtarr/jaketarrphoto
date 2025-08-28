@@ -16,7 +16,7 @@
   }
 
   &__entry-col {
-    @apply min-w-[200px] lg:min-h-0 col-span-1;
+    @apply min-w-[250px] md:min-w-[200px] lg:min-h-0 col-span-1;
 
     &.row-span-1 {
       @apply xl:min-h-[252px] xl:max-h-[300px];
@@ -40,7 +40,7 @@
   }
 
   &__entry-col {
-    @apply min-w-[200px] md:min-h-0;
+    @apply min-w-[250px] md:min-w-[200px] md:min-h-0;
   }
 
   .c-card__link {

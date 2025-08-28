@@ -4,7 +4,6 @@
 {% set attrs = heading.attrs ?? {} %}
 
 {% if heading.text %}
-  {% set titleWords = heading.text|split(' ') %}
   <{{ headingTag }} class="o-heading{{ underlineClass }}{{ additionalClasses }}"
     {% for key, value in attrs %}
       {{ key }}="{{ value is iterable ? value|join(',') : value }}"

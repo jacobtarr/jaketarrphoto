@@ -1,5 +1,5 @@
 .c-breadcrumb-bar {
-  @apply bg-gray-700 mt-[1px] sticky top-0 z-[50] border-b-[3px] border-gray-900 h-[51px] md:h-[59px];
+  @apply bg-gray-100 mt-[1px] sticky top-0 z-[50] border-b-[1px] border-gray-200 h-[51px] md:h-[59px];
 
   .o-kicker {
     @apply text-xs md:text-sm;
@@ -17,15 +17,15 @@
         content: '';
         z-index: 20;
         
-        @apply w-[1px] h-6 absolute top-1/2 -translate-y-1/2 left-0 bg-gray-500;
+        @apply w-[1px] h-6 absolute top-1/2 -translate-y-1/2 left-0 bg-gray-200;
       }
     }
     > * {
-      @apply block text-gray-300 p-4 md:p-5;
+      @apply block text-gray-400 p-4 md:p-5;
     }
     &:first-of-type {
       > a {
-        @apply pl-0 text-beige-base;
+        @apply pl-0 text-gray-600;
       }
     }
   }
@@ -40,7 +40,7 @@
         @apply flex-1 w-[14px];
 
         path {
-          @apply fill-beige-base;
+          @apply fill-gray-600;
         }
       }
     }

@@ -61,7 +61,7 @@ export default {
 
         // Shades of Gray
         gray: {
-          100: '#F5F5F5',
+          100: '#F3F3F3',
           200: '#E0E0E0',
           300: '#B8B8B8',
           400: '#929292',

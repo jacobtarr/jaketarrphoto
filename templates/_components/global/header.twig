@@ -1,5 +1,4 @@
 <header
-  up-id="global-header"
   x-data="headerState" 
   x-init="init(); $watch('open', value => document.body.classList.toggle('mobile-menu-is-active', value))" 
   class="c-header">
@@ -9,28 +8,27 @@
         classes: ''
       }
     } %}
-    <nav class="c-nav">
-      <a href="/about" up-target="main" @click="setActivePage('/about')" class="c-nav__link" :class="{'text-red-500': isActive('/about')}">About</a>
-      <a href="/portfolio" up-target="main" @click="setActivePage('/portfolio')" class="c-nav__link" :class="{'text-red-500': isActive('/portfolio')}">Portfolio</a>
-      <a href="/blog" up-target="main" @click="setActivePage('/blog')" class="c-nav__link" :class="{'text-red-500': isActive('/blog')}">Blog</a>
-      <a href="/contact" up-target="main" @click="setActivePage('/contact')" class="c-nav__link" :class="{'text-red-500': isActive('/contact')}">Contact</a>
+    {% set navLinks = [
+      { href: '/about',     label: 'About' },
+      { href: '/portfolio', label: 'Portfolio' },
+      { href: '/blog',      label: 'Blog' },
+      { href: '/contact',   label: 'Contact' },
+    ] %}
+
+    <nav class="c-nav" aria-label="Primary">
+      {% include '_components/molecules/nav-group.twig' with {
+        navGroup: {
+          links: navLinks,
+          useActive: true
+        }
+      } %}
     </nav>
 
-    <div class="c-header__mobile-wrapper">
-      <div class="c-header__icons">
-        <button
-          @click="toggleDarkMode()"
-          class="text-gray-900 focus:outline-none"
-          aria-label="Toggle dark mode"
-        >
-          <template x-if="darkMode">
-            {% include '_components/atoms/icons/icon-light-mode.svg' %}
-          </template>
-          <template x-if="!darkMode">
-            {% include '_components/atoms/icons/icon-dark-mode.svg' %}
-          </template>
-        </button>
-      </div>
+    <div class="c-header__right-content">
+      {% include '_components/atoms/switch.twig' with {
+        switch: { }
+      } %}
+      
 
       <div :class="{ 'is-active': open }" class="c-mobile-menu">
         <div class="c-hamburger flex md:hidden">
@@ -48,8 +46,6 @@
           </button>
         </div>
 
-        {% set mobileLinkClasses = "text-4xl font-semibold text-white hover:text-red-500" %}
-
         <div
           id="mobile-nav"
           x-show="open"
@@ -58,20 +54,12 @@
           role="navigation"
           aria-label="Mobile site links">
           <div class="c-mobile-nav__inner container space-y-15">
-            <ul class="c-mobile-nav__list space-y-2">
-              <li>
-                <a href="/about" @click="setActivePage('/about')" class="{{ mobileLinkClasses }}" :class="{'text-red-500': isActive('/about')}">About</a>
-              </li>
-              <li>
-                <a href="/portfolio" @click="setActivePage('/portfolio')" class="{{ mobileLinkClasses }}" :class="{'text-red-500': isActive('/portfolio')}">Portfolio</a>
-              </li>
-              <li>
-                <a href="/blog" @click="setActivePage('/blog')" class="{{ mobileLinkClasses }}" :class="{'text-red-500': isActive('/blog')}">Blog</a>
-              </li>
-              <li>
-                <a href="/contact" @click="setActivePage('/contact')" class="{{ mobileLinkClasses }}" :class="{'text-red-500': isActive('/contact')}">Contact</a>
-              </li>
-            </ul>
+            {% include '_components/molecules/nav-group.twig' with {
+              navGroup: {
+                links: navLinks,
+                classes: 'c-nav-group--mobile'
+              }
+            } %}
             <div class="c-mobile-nav__footer space-y-2">
               {% include '_components/atoms/heading.twig' with {
                 "heading": {

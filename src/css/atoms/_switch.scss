@@ -1,0 +1,31 @@
+.c-switch {
+  &__label {
+    @apply flex items-center select-none;
+  }
+
+  &__button {
+    @apply border-[1px] border-solid border-gray-900
+    relative inline-flex h-8 w-14 items-center rounded-full transition bg-transparent
+    focus:outline-none focus-visible:ring focus-visible:ring-offset-2;
+
+    &--off {
+      @apply border-gray-900
+    }
+
+    &--on {
+      @apply border-gray-100
+    }
+  }
+
+  &__knob {
+    @apply inline-block h-6 w-6 transform rounded-full bg-gray-900 transition;
+
+    &--off {
+      @apply translate-x-1;
+    }
+
+    &--on {
+      @apply translate-x-[26px] bg-gray-100;
+    }
+  }
+}

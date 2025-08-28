@@ -1,0 +1,30 @@
+{# Expects:
+   switch = {
+     darkMode?: boolean   # bound via Alpine in headerState
+   }
+#}
+
+<div x-cloak class="c-switch">
+  <label class="c-switch__label">
+    <span class="sr-only">Toggle dark mode</span>
+
+    <input type="checkbox"
+           class="hidden"
+           :checked="darkMode"
+           @change="toggleDarkMode()">
+
+    <button
+      type="button"
+      role="switch"
+      :aria-checked="darkMode"
+      @click="toggleDarkMode()"
+      class="c-switch__button"
+      :class="darkMode ? 'c-switch__button--on' : 'c-switch__button--off'"
+    >
+      <span
+        aria-hidden="true"
+        class="c-switch__knob"
+        :class="darkMode ? 'c-switch__knob--on' : 'c-switch__knob--off'"></span>
+    </button>
+  </label>
+</div>

@@ -1,12 +1,12 @@
 .c-header {
-  @apply relative z-20 h-[55px] md:h-[63px] w-full bg-transparent;
+  @apply relative z-[80] h-[55px] md:h-[63px] w-full bg-transparent;
 
   .hero-is-full-bleed & {
     @apply bg-gray-900/30 backdrop-blur-[10px];
   }
 
   &__inner {
-    @apply h-full flex items-center justify-between;
+    @apply h-full flex items-center justify-between md:px-6;
   }
 
   &::after {
@@ -28,8 +28,8 @@
     @apply bg-gray-900 border-gray-800;
   }
 
-  &__mobile-wrapper {
-    @apply h-full relative md:space-x-8 md:space-x-0 flex justify-end items-center;
+  &__right-content {
+    @apply ml-12 h-full relative md:space-x-8 md:space-x-0 flex justify-end items-center;
   }
   
   &__icons {

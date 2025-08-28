@@ -8,6 +8,18 @@
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 		<meta
 		name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<style>
+			html[data-theme-boot] * { transition: none !important; }
+		</style>
+		<script>
+			// set theme class before paint to avoid flash/jump
+			(function () {
+				var stored = localStorage.getItem('darkMode');
+				var on = stored !== null ? JSON.parse(stored)
+																: window.matchMedia('(prefers-color-scheme: dark)').matches;
+				document.documentElement.classList.toggle('u-dark-mode', on);
+			})();
+		</script>
     <!-- Preconnect to Typekit -->
 		<link rel="preconnect" href="https://use.typekit.net" crossorigin>
 		<link rel="preconnect" href="https://p.typekit.net" crossorigin>

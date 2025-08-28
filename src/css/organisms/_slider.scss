@@ -98,7 +98,7 @@
   opacity: 0.2;
   transition: opacity 0.3s ease-in-out;
 
-  @apply w-[275px] md:w-[360px] lg:w-[400px] mr-3 md:mr-5;
+  @apply w-[250px] md:w-[360px] lg:w-[400px] mr-3 md:mr-5;
 
   &.is-selected {
     opacity: 1;

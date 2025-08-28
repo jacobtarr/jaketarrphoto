@@ -8,6 +8,7 @@
 @use './atoms/_layout';
 @use './atoms/_link';
 @use './atoms/_logo';
+@use './atoms/_switch';
 @use './atoms/_text';
 @use './atoms/_utility';
 @use './molecules/_alert';
@@ -18,6 +19,7 @@
 @use './molecules/_icon-group';
 @use './molecules/_kicker';
 @use './molecules/_nav';
+@use './molecules/_nav-group.scss';
 @use './molecules/_page-block';
 @use './molecules/_photo-block';
 @use './molecules/_split-media';

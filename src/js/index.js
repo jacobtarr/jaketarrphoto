@@ -6,13 +6,19 @@ import '../css/index.scss';
 function headerState() {
   return {
     open: false,
-    darkMode: JSON.parse(localStorage.getItem('darkMode')) || false,
+    darkMode: false,
 
     init() {
+      const stored = localStorage.getItem('darkMode');
+      this.darkMode = stored !== null
+        ? JSON.parse(stored)
+        : window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+      // This won't flicker because we pass the boolean
       document.documentElement.classList.toggle('u-dark-mode', this.darkMode);
 
-      this.$watch('open', value => {
-        document.body.classList.toggle('mobile-menu-is-active', value);
+      this.$watch('open', v => {
+        document.body.classList.toggle('mobile-menu-is-active', v);
       });
     },
 

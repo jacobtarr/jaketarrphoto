@@ -14,9 +14,6 @@
 
 {% block site %}
   <section class="c-landing-page">
-    {# <pre style="font-size: 12px">
-      {{ dump(entry.getFieldValue) }}
-    </pre> #}
     {% include '_components/molecules/hero.twig' with { hero: hero } %}
     {% set blocks = entry.pageBuilderFullColumnContent.all() %}
 
