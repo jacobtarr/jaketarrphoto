@@ -1,30 +1,77 @@
 {# Expects:
    switch = {
-     darkMode?: boolean   # bound via Alpine in headerState
+     classes?: string                      # extra classes on wrapper
+     srLabel?: string                      # a11y label (default 'Toggle')
+     attrs?: { ... }                       # extra attrs for <button>
+
+     # State wiring (with Alpine)
+     bind?: string                         # Alpine boolean expr, e.g. 'darkMode'
+     onClick?: string                      # Alpine click handler, e.g. 'toggleDarkMode()'
+
+     # Icons
+     includeIcons?: bool                   # default true
+     iconOn?: string                       # name after 'icon-' include (default 'moon')
+     iconOff?: string                      # default 'sun'
    }
 #}
 
-<div x-cloak class="c-switch">
-  <label class="c-switch__label">
-    <span class="sr-only">Toggle dark mode</span>
+{% set switch = switch ?? {} %}
+{% set additionalClasses = switch.classes is defined and switch.classes ? ' ' ~ switch.classes : '' %}
+{% set sr = switch.srLabel ?? 'Toggle' %}
+{% set bind = switch.bind ?? 'darkMode' %}
+{% set onClick = switch.onClick ?? 'toggleDarkMode()' %}
+{% set includeIcons = switch.includeIcons is defined ? switch.includeIcons : true %}
+{% set iconOn = switch.iconOn ?? 'moon' %}
+{% set iconOff = switch.iconOff ?? 'sun' %}
+{% set name = switch.name ?? 'switch' %}
+{% set id = switch.id ?? ('switch-' ~ random()) %}
+{% set attrs = switch.attrs ?? {} %}
 
-    <input type="checkbox"
-           class="hidden"
-           :checked="darkMode"
-           @change="toggleDarkMode()">
+<div x-cloak class="c-switch{{ additionalClasses }}">
+  <label class="c-switch__label" for="{{ id }}">
+    <span class="sr-only">{{ sr }}</span>
+
+    {# hidden checkbox mirrors state for a11y/forms #}
+    <input type="hidden" name="{{ name|default('switch') }}" value="false">
+    <input
+      id="{{ id }}"
+      name="{{ name|default('switch') }}"
+      type="checkbox"
+      class="sr-only"
+      x-model="{{ bind }}"
+      value="true"
+      @change="{{ onClick }}"
+    >
 
     <button
+      class="c-switch__button"
       type="button"
       role="switch"
-      :aria-checked="darkMode"
-      @click="toggleDarkMode()"
-      class="c-switch__button"
-      :class="darkMode ? 'c-switch__button--on' : 'c-switch__button--off'"
+      :aria-checked="{{ bind }}"
+      @click="{{ onClick }}"
+      :class="{{ bind }} ? 'c-switch__button--on' : 'c-switch__button--off'"
+      {% for key, value in attrs %}
+        {{ key }}="{{ value is iterable ? value|join(',') : value }}"
+      {% endfor %}
     >
       <span
-        aria-hidden="true"
         class="c-switch__knob"
-        :class="darkMode ? 'c-switch__knob--on' : 'c-switch__knob--off'"></span>
+        :class="{{ bind }} ? 'c-switch__knob--on' : 'c-switch__knob--off'"
+        aria-hidden="true"
+      >
+        {% if includeIcons %}
+          <span class="c-switch__icon c-switch__icon--off"
+            :class="{{ bind }} ? 'opacity-0' : 'opacity-100'"
+            aria-hidden="true">
+            {% include '_components/atoms/icons/icon-' ~ iconOff ~ '.svg' %}
+          </span>
+          <span class="c-switch__icon c-switch__icon--on"
+            :class="{{ bind }} ? 'opacity-100' : 'opacity-0'"
+            aria-hidden="true">
+            {% include '_components/atoms/icons/icon-' ~ iconOn ~ '.svg' %}
+          </span>
+        {% endif %}
+      </span>
     </button>
   </label>
 </div>

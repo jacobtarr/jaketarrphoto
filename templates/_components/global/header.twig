@@ -26,7 +26,11 @@
 
     <div class="c-header__right-content">
       {% include '_components/atoms/switch.twig' with {
-        switch: { }
+        switch: {
+          srLabel: 'Toggle dark mode',
+          iconOff: 'moon',
+          iconOn:  'sun',
+        }
       } %}
       
 
