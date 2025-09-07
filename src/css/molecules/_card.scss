@@ -1,5 +1,5 @@
 .c-card {
-  @apply bg-beige-base p-7 shadow-card-soft;
+  @apply bg-beige-base p-7 shadow-card-soft rounded-[4px];
 
   &--plain {
     @apply bg-transparent p-0 shadow-none w-full sm:w-auto;

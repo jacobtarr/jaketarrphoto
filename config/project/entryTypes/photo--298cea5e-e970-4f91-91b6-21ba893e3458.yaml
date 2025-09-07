@@ -36,6 +36,22 @@ fieldLayouts:
             warning: null
             width: 100
           -
+            dateAdded: '2025-08-29T19:26:30+00:00'
+            elementCondition: null
+            fieldUid: eff60100-75d6-4b77-baeb-bda8c616ac3f # Post Teaser
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: dda95a85-1f96-46b2-8593-b6c79a45fb44
+            userCondition: null
+            warning: null
+            width: 100
+          -
             dateAdded: '2024-09-06T15:31:54+00:00'
             elementCondition: null
             fieldUid: 01f1709e-90b6-4a73-a760-fd999f43b328 # Featured Image
@@ -48,54 +64,6 @@ fieldLayouts:
             tip: null
             type: craft\fieldlayoutelements\CustomField
             uid: d79093a4-1724-4f94-9d3c-f07c96ab789a
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2024-09-06T15:31:54+00:00'
-            elementCondition: null
-            fieldUid: a985436b-09b0-444a-b956-d68913d3b05e # State
-            handle: null
-            includeInCards: false
-            instructions: null
-            label: null
-            providesThumbs: false
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: f3e27bad-1ed1-4667-a6d1-716c1bdee80e
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2024-09-06T15:31:54+00:00'
-            elementCondition: null
-            fieldUid: d8fc1056-7a49-4f87-8315-2dde5562d9f7 # Season
-            handle: null
-            includeInCards: false
-            instructions: null
-            label: null
-            providesThumbs: false
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 860a9a1a-6bf1-4577-9ea2-6767a1dc8fc8
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2024-09-06T15:31:54+00:00'
-            elementCondition: null
-            fieldUid: 9e513de1-d75e-4e1c-b23d-38cdbe24f060 # Genre
-            handle: null
-            includeInCards: false
-            instructions: null
-            label: null
-            providesThumbs: false
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: ed61705e-26d9-4760-bf42-ebb4a2efee82
             userCondition: null
             warning: null
             width: 100
@@ -150,6 +118,60 @@ fieldLayouts:
         name: Content
         uid: 8cbc394b-7827-445f-9748-9353278048b4
         userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2024-09-06T15:31:54+00:00'
+            elementCondition: null
+            fieldUid: a985436b-09b0-444a-b956-d68913d3b05e # State
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: f3e27bad-1ed1-4667-a6d1-716c1bdee80e
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2024-09-06T15:31:54+00:00'
+            elementCondition: null
+            fieldUid: d8fc1056-7a49-4f87-8315-2dde5562d9f7 # Season
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 860a9a1a-6bf1-4577-9ea2-6767a1dc8fc8
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2024-09-06T15:31:54+00:00'
+            elementCondition: null
+            fieldUid: 9e513de1-d75e-4e1c-b23d-38cdbe24f060 # Genre
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: ed61705e-26d9-4760-bf42-ebb4a2efee82
+            userCondition: null
+            warning: null
+            width: 100
+        name: Categories
+        uid: 7bce0410-0773-4948-b5b8-3a2216f61c36
+        userCondition: null
 handle: photo
 hasTitleField: true
 icon: image
@@ -158,6 +180,6 @@ showSlugField: true
 showStatusField: true
 slugTranslationKeyFormat: null
 slugTranslationMethod: site
-titleFormat: null
+titleFormat: ''
 titleTranslationKeyFormat: null
 titleTranslationMethod: site

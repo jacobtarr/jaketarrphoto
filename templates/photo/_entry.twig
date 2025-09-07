@@ -2,34 +2,14 @@
 {% import '_components/atoms/image.twig' as img %}
 
 {% block site %}
-	
-	{% include '_components/molecules/breadcrumb-bar.twig' with {
-		breadcrumbBar: {
-			showBackButton: true,
-			backTarget: '/portfolio',
-			backText: 'Portfolio',
-			refMatch: '/portfolio',
-			backIcon: 'arrow',
-			swapTextOnScroll: true,
-			photoTitle: entry.title,
-			showProgressBar: true,
-			items: [
-				entry.state.one() ? {
-					text: entry.state.one().title,
-					tag: 'span',
-					parentClasses: 'hidden sm:block',
-					classes: 'o-kicker--swapped-text'
-				} : null
-			]|filter
-		}
-	} %}
 
+	{% set state = entry.state.one() %}
 
 	<section class="c-photo-page c-page container">
 		<div class="c-photo-page-row space-y-12">
 			
-			<div class="c-photo-page-content-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-16 o-page-gap">
-				<div class="c-photo-page-photo-col sm:col-span-1 lg:col-span-8">
+			<div class="c-photo-page-content-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 o-page-gap">
+				<div class="c-photo-page-photo-col sm:col-span-1 lg:col-span-6">
 					<div class="c-photo-page-photo">
 						{% if entry.featuredImage.one() %}
 							{% include '_components/molecules/photo-block.twig' with {
@@ -50,54 +30,24 @@
 								}
 							} %}
 						{% endif %}
-						<div class="c-gallery__caption c-gallery__caption--photo text-right flex justify-end">
-							{% include '_components/molecules/kicker.twig' with {
-								"kicker": {
-									"text": 'Share:',
-									"classes": 'mr-4',
-								}
-							} %}
-							{% include '_components/molecules/icon-group.twig' with {
-								iconGroup: {
-									classes: 'c-icon-group--share',
-									icons: [
-										{
-											name: 'facebook',
-											tag: 'a',
-											url: 'https://www.facebook.com/sharer/sharer.php?u=' ~ craft.app.request.url|url_encode,
-											target: '_blank',
-											classes: 'h-4'
-										},
-										{
-											name: 'pinterest',
-											tag: 'a',
-											url: 'https://pinterest.com/pin/create/button/?url=' ~ craft.app.request.url,
-											target: '_blank',
-											classes: 'h-4'
-										},
-										{
-											name: 'x',
-											tag: 'a',
-											url: 'https://twitter.com/intent/tweet?text=Check this out: ' ~ craft.app.request.url,
-											target: '_blank',
-											classes: 'h-4'
-										}
-									]
-								}
-							} %}
-						</div>
 					</div>
 				</div>
 				
-				<div class="c-photo-page-content sm:col-span-1 lg:col-span-8 space-y-15">
-					{% include '_components/atoms/heading.twig' with {
-						"heading": {
-							"text": entry.title,
-							"attrs": {
-								'data-photo-title-trigger': true
+				<div class="c-photo-page-content sm:col-span-1 lg:col-span-6 space-y-8">
+					<div class="space-y-3">
+						{% include '_components/atoms/kicker.twig' with {
+							kicker: {
+								classes: 'text-gray-500',
+								text: state,
 							}
-						}
-					} %}
+						} %}
+						{% include '_components/atoms/heading.twig' with {
+							"heading": {
+								"text": entry.title
+							}
+						} %}
+					</div>
+					
 					{% if entry.overview %}
 						<div class="c-page-section c-photo-intro u-drop-cap">
 							{{ entry.overview }}

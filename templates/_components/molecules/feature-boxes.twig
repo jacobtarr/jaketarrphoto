@@ -1,7 +1,7 @@
 <div class="c-feature-boxes grid lg:grid-cols-{{ boxes|default(3) }} gap-4">
   {% for box in featureBoxes %}
     <div class="c-feature-box col-span-{{ box.colSpan|default('1') }}">
-      {% include '_components/molecules/kicker.twig' with {
+      {% include '_components/atoms/kicker.twig' with {
         kicker: {
           icon: attribute(box, 'icon') ?? null,
           text: box.title,

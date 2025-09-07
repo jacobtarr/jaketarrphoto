@@ -1,4 +1,4 @@
-dateModified: 1754693320
+dateModified: 1756507373
 email:
   fromEmail: $CRAFT_EMAIL_SYSTEM
   fromName: $CRAFT_EMAIL_SYSTEM
@@ -117,6 +117,7 @@ meta:
     e558cbdd-03de-4723-a362-60fa829e85b3: 'Card Link' # Card Link
     e7625aa0-c051-4e54-b5a6-412c76a644c5: 'Hero Block Link' # Hero Block Link
     eb0ea69f-509b-47a6-87cb-c9f3ad376908: 'Page Builder: Form Block' # Page Builder: Form Block
+    eff60100-75d6-4b77-baeb-bda8c616ac3f: 'Post Teaser' # Post Teaser
     f0a7b6f4-0e83-455e-aba3-24ce98fa11dc: 'Page Builder: Header Block' # Page Builder: Header Block
     f1b1591d-43df-4ef4-a7c2-504f08d84cab: 'Extra Large' # Extra Large
     f7ba018a-381c-4d09-8f22-6a1ab3e317cd: 'Blog Images' # Blog Images

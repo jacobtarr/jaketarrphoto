@@ -37,7 +37,17 @@ fieldLayouts:
             width: 100
           -
             dateAdded: '2025-07-22T20:51:32+00:00'
-            elementCondition: null
+            elementCondition:
+              class: craft\elements\conditions\entries\EntryCondition
+              conditionRules:
+                -
+                  class: craft\elements\conditions\entries\MatrixFieldConditionRule
+                  operator: in
+                  uid: dd8d21ea-fac6-4c38-b59f-245aa1dc6eb3
+                  values:
+                    - 00e29050-57a6-4df7-b274-b36a66e19736 # Page Builder: Full Column Content
+              elementType: craft\elements\Entry
+              fieldContext: global
             fieldUid: 5d3e6e09-5f5c-4369-b4fb-bd9410073b43 # Page Builder Option: Background Color
             handle: null
             includeInCards: false

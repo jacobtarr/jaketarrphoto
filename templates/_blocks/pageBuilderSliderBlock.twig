@@ -4,7 +4,7 @@
   {% import '_components/atoms/image.twig' as img %}
   <div class="c-slider-section" x-data="sliderData()">
     <div class="c-slider-grid grid grid-cols-12 gap-4 sm:gap-5">
-      {% include '_components/molecules/kicker.twig' with {
+      {% include '_components/atoms/kicker.twig' with {
         "kicker": {
           "classes": 'o-kicker--slider-mobile',
           "text": block.title,
@@ -18,7 +18,7 @@
             <div class="c-card c-card--plain c-slide-content__info">
               <div class="c-card__inner">
                 <div class="sm:space-y-2 md:space-y-3">
-                  {% include '_components/molecules/kicker.twig' with {
+                  {% include '_components/atoms/kicker.twig' with {
                     "kicker": {
                       "classes": 'o-kicker--slider-desktop',
                       "text": block.title,

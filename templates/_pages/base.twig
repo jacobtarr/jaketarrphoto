@@ -2,7 +2,7 @@
 
 {% block site %}
 
-  <section class="c-page container">
+  <section class="c-page">
     {% for row in entry.pageBuilder.all() %}
       {% if row.type == 'pageBuilderSplitContentRow' %}
         {% set leftColumnWidth = row.pageBuilderOptionLeftColumnWidth|number %}
@@ -20,7 +20,7 @@
         {% set leftStickyClass = sticky == 'leftColumn' ? ' sticky top-4' : '' %}
         {% set rightStickyClass = sticky == 'rightColumn' ? ' sticky top-4' : '' %}
 
-        <div class="c-page-row c-page-row--split-content grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-16 o-page-gap">
+        <div class="c-page-row c-page-row--split-content container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-16 o-page-gap">
           <div class="c-page-left-column col-span-1{{ leftColClass }}">
             <div class="c-page-left-column__inner{{ leftStickyClass }}">
               {% for block in row.pageBuilderLeftColumnContent.all() %}
@@ -39,8 +39,9 @@
         </div>
 
       {% elseif row.type == 'pageBuilderFullContentRow' %}
+        {% set blocks = row.pageBuilderFullColumnContent.all() %}
         <div class="c-page-row c-page-row--full-content space-y-10">
-          {% for block in row.pageBuilderFullColumnContent.all() %}
+          {% for block in blocks %}
             {% set i = loop.index0 %}
             {% set currentColor = block.pageBuilderOptionBackgroundColor %}
             {% set prevColor = i > 0 ? blocks[i - 1].pageBuilderOptionBackgroundColor : null %}

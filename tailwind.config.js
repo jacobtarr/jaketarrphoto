@@ -49,8 +49,6 @@ export default {
       colors: {
         primary: '#000', // Main color
         secondary: '#CC3D33', // Secondary color - red; Brick
-        // red: '#D63031', // Secondary color - red
-        //lightRed: '#FDE2DF', // Light red
 
         // Shades of Red
         red: {

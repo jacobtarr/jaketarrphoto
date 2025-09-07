@@ -6,10 +6,12 @@ searchable: false
 settings:
   availableTransforms: ''
   availableVolumes: ''
-  ckeConfig: null
+  ckeConfig: 8b610edc-f2dd-46b6-9597-96fcbb6d302a # Simple
   createButtonLabel: null
   defaultTransform: null
   enableSourceEditingForNonAdmins: false
+  entryTypes:
+    - b28d4120-dd8f-47c8-9968-e484ce2daf49 # Page Builder: Split Content Row
   purifierConfig: null
   purifyHtml: true
   showUnpermittedFiles: false
