@@ -1,0 +1,14 @@
+.c-features {
+  @apply bg-gray-100;
+}
+
+.c-feature {
+
+  &__title {
+    @apply py-4 px-5;
+  }
+
+  &__content {
+    @apply p-5;
+  }
+}

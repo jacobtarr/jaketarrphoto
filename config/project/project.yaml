@@ -1,4 +1,4 @@
-dateModified: 1756507373
+dateModified: 1757266723
 email:
   fromEmail: $CRAFT_EMAIL_SYSTEM
   fromName: $CRAFT_EMAIL_SYSTEM
@@ -86,12 +86,12 @@ meta:
     73947b58-b537-41b4-9b72-3b3069626f8b: 'Page Builder: Featured Works Block' # Page Builder: Featured Works Block
     99253d82-2d49-4285-8539-155472cf8207: 'Page Builder: Left Column Content' # Page Builder: Left Column Content
     452561b9-4d58-4e06-abbb-ec181d217e97: 'Page Builder: Content Block' # Page Builder: Content Block
-    758857ca-7d33-49af-810b-cb347619a61f: 'Page Feature Boxes' # Page Feature Boxes
+    758857ca-7d33-49af-810b-cb347619a61f: 'Page Features' # Page Features
     921510a6-634a-4235-8ccf-7c94ac73d06a: 'Aspect Ratio: 5x4' # Aspect Ratio: 5x4
     01914777-7aec-4ffe-b263-513b6e67154f: 'Content Body' # Content Body
     8612363b-d7c9-43e9-993a-b6454190280c: Genre # Genre
     12514558-49b6-40e0-a01a-5858740c93cc: 'Featured Works Entries' # Featured Works Entries
-    33982884-3ffc-4b10-ab0f-7acce9c2f4e6: 'Page Builder: Feature Boxes Block' # Page Builder: Feature Boxes Block
+    33982884-3ffc-4b10-ab0f-7acce9c2f4e6: 'Page Builder: Features Block' # Page Builder: Features Block
     a985436b-09b0-444a-b956-d68913d3b05e: State # State
     a1898536-62a3-49b5-946b-baae1b1c79fa: Location # Location
     ac26babf-e061-425b-851b-465499715d7f: 'Date Taken' # Date Taken

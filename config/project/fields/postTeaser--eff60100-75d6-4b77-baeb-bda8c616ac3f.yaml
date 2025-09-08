@@ -10,7 +10,7 @@ settings:
   initialRows: 4
   multiline: false
   placeholder: null
-  uiMode: normal
+  uiMode: enlarged
 translationKeyFormat: null
 translationMethod: none
 type: craft\fields\PlainText

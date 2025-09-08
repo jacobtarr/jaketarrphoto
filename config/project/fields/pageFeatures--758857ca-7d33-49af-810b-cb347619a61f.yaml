@@ -1,10 +1,10 @@
 columnSuffix: null
-handle: pageFeatureBoxes
+handle: pageFeatures
 instructions: null
-name: 'Page Feature Boxes'
+name: 'Page Features'
 searchable: false
 settings:
-  createButtonLabel: 'Add Page Callout Column'
+  createButtonLabel: 'Add Page Feature'
   entryTypes:
     - 452561b9-4d58-4e06-abbb-ec181d217e97 # Page Builder: Content Block
   includeTableView: false

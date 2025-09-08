@@ -8,9 +8,10 @@
 	<section class="c-photo-page c-page container">
 		<div class="c-photo-page-row space-y-12">
 			
-			<div class="c-photo-page-content-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 o-page-gap">
-				<div class="c-photo-page-photo-col sm:col-span-1 lg:col-span-6">
-					<div class="c-photo-page-photo">
+			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 o-page-gap">
+				<div class="sm:col-span-1 lg:col-span-6">
+					
+					<div class="c-photo">
 						{% if entry.featuredImage.one() %}
 							{% include '_components/molecules/photo-block.twig' with {
 								"photo": {
@@ -31,9 +32,10 @@
 							} %}
 						{% endif %}
 					</div>
+
 				</div>
 				
-				<div class="c-photo-page-content sm:col-span-1 lg:col-span-6 space-y-8">
+				<div class="sm:col-span-1 lg:col-span-6 space-y-8">
 					<div class="space-y-3">
 						{% include '_components/atoms/kicker.twig' with {
 							kicker: {
@@ -47,16 +49,10 @@
 							}
 						} %}
 					</div>
-					
-					{% if entry.overview %}
-						<div class="c-page-section c-photo-intro u-drop-cap">
-							{{ entry.overview }}
-						</div>
-					{% endif %}
 
-					{% include '_components/molecules/feature-boxes.twig' with {
-						boxes: 3,
-						featureBoxes: [
+					{% include '_components/molecules/features.twig' with {
+						columns: 3,
+						features: [
 							{
 								title: 'Date Taken',
 								icon: 'calendar',
@@ -78,6 +74,14 @@
 							}
 						]
 					} %}
+					
+					{% if entry.overview %}
+						<div class="c-page-section c-photo-intro u-drop-cap">
+							{{ entry.overview }}
+						</div>
+					{% endif %}
+
+					
 
 					{% set relatedEntries = craft.entries()
 						.section('photos')
