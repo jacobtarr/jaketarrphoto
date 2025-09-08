@@ -1,6 +1,6 @@
 color: null
 fieldLayouts:
-  d4b012cb-2fae-4fb9-ad59-1018bcb1286a:
+  6a9981d4-7d12-4503-b119-8c213b153a1b:
     tabs:
       -
         elementCondition: null
@@ -10,7 +10,7 @@ fieldLayouts:
             autocomplete: false
             autocorrect: true
             class: null
-            dateAdded: '2025-06-01T20:35:47+00:00'
+            dateAdded: '2024-09-07T02:59:41+00:00'
             disabled: false
             elementCondition: null
             id: null
@@ -31,14 +31,14 @@ fieldLayouts:
             tip: null
             title: null
             type: craft\fieldlayoutelements\entries\EntryTitleField
-            uid: 8a61594c-604f-44ea-9b7a-03fe38b58c35
+            uid: e4ea45d4-662d-4dea-b948-13cca994574c
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2025-06-01T20:37:23+00:00'
+            dateAdded: '2024-09-07T03:03:00+00:00'
             elementCondition: null
-            fieldUid: fcd2475b-f27b-406f-a8a4-96b0bf65fab9 # Page Spacer
+            fieldUid: 758857ca-7d33-49af-810b-cb347619a61f # Page Features
             handle: null
             includeInCards: false
             instructions: null
@@ -47,17 +47,17 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 28ae7b41-22bd-4bfb-80d9-71c517a95e1c
+            uid: 75671d9a-f1cf-42c8-97c0-a469f83a50ad
             userCondition: null
             warning: null
             width: 100
         name: Content
-        uid: 65b39d7f-90e2-4eb9-8153-2c8326e4a6b5
+        uid: 75abc727-4402-4627-8aa2-2da74e42d93a
         userCondition: null
-handle: pageBuilderSpacerBlock
+handle: blockFeatures
 hasTitleField: true
 icon: cube
-name: 'Page Builder: Spacer Block'
+name: 'Block: Features'
 showSlugField: true
 showStatusField: true
 slugTranslationKeyFormat: null

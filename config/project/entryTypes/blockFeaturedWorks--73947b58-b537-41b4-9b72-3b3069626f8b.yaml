@@ -1,6 +1,6 @@
 color: null
 fieldLayouts:
-  b247bbe4-9a5f-4d72-ba70-54f5f5f3cf2b:
+  37b6245f-9790-4ac5-9636-b4c9b825adfd:
     tabs:
       -
         elementCondition: null
@@ -10,7 +10,7 @@ fieldLayouts:
             autocomplete: false
             autocorrect: true
             class: null
-            dateAdded: '2024-09-06T22:50:19+00:00'
+            dateAdded: '2025-07-22T17:37:02+00:00'
             disabled: false
             elementCondition: null
             id: null
@@ -31,13 +31,23 @@ fieldLayouts:
             tip: null
             title: null
             type: craft\fieldlayoutelements\entries\EntryTitleField
-            uid: 507c546b-d7eb-4a7f-9cb1-699fab88aff0
+            uid: 939c50d7-a10d-4d57-a14d-f1207beb1ad9
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2025-07-23T22:31:43+00:00'
-            elementCondition: null
+            dateAdded: '2025-07-22T20:51:32+00:00'
+            elementCondition:
+              class: craft\elements\conditions\entries\EntryCondition
+              conditionRules:
+                -
+                  class: craft\elements\conditions\entries\MatrixFieldConditionRule
+                  operator: in
+                  uid: dd8d21ea-fac6-4c38-b59f-245aa1dc6eb3
+                  values:
+                    - 00e29050-57a6-4df7-b274-b36a66e19736 # Page Builder: Full Column Content
+              elementType: craft\elements\Entry
+              fieldContext: global
             fieldUid: 5d3e6e09-5f5c-4369-b4fb-bd9410073b43 # Page Builder Option: Background Color
             handle: null
             includeInCards: false
@@ -47,12 +57,12 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 85f5e90d-7811-4cc5-92ac-cba785a7349e
+            uid: fa828645-37b4-4b41-8383-b9755d98183d
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2025-07-22T19:16:01+00:00'
+            dateAdded: '2025-07-22T17:59:20+00:00'
             elementCondition: null
             fieldUid: 0c378192-32e9-4634-a22f-5a0646bbe23e # Card Kicker
             handle: null
@@ -63,12 +73,12 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 901a20d7-08d7-4568-9368-6f8760f2f21e
+            uid: 54b4ef8a-e3c4-4ed8-b79b-934ed46daa50
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2025-07-23T00:12:08+00:00'
+            dateAdded: '2025-07-23T00:16:09+00:00'
             elementCondition: null
             fieldUid: 83c34dc7-2085-49ef-ba2c-a0f4f898807c # Card Heading
             handle: null
@@ -79,12 +89,12 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: d408564e-a99b-4d0f-a71d-ad5f1d348aa0
+            uid: 10e128b8-9ee2-4970-ab10-7e466961e575
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2025-07-23T00:12:08+00:00'
+            dateAdded: '2025-07-23T00:16:09+00:00'
             elementCondition: null
             fieldUid: d0f439da-693a-43e8-a9e6-0a5bed47b5eb # Card Body
             handle: null
@@ -95,12 +105,12 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 34bfeb37-6ec1-4ca1-b2d8-fc68c84d1c07
+            uid: 199d1ac5-36fa-4dc2-9ebc-5fbb82c36339
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2025-07-23T00:12:08+00:00'
+            dateAdded: '2025-07-23T00:16:09+00:00'
             elementCondition: null
             fieldUid: e558cbdd-03de-4723-a362-60fa829e85b3 # Card Link
             handle: null
@@ -111,14 +121,14 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 364c4564-3d90-4c00-ad82-bd3dec3365d7
+            uid: 26c755e5-e428-4e1c-8fa0-8b7a3329014f
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2025-07-23T00:12:08+00:00'
+            dateAdded: '2025-07-22T19:01:35+00:00'
             elementCondition: null
-            fieldUid: 479fc44e-aa39-410b-9c74-5e1ae5c00c7e # Split Media Block Image
+            fieldUid: b94fe730-955c-4213-9c8b-37178fbd0e25 # Card Position
             handle: null
             includeInCards: false
             instructions: null
@@ -127,14 +137,14 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 6bb0eccc-ccec-4ca7-89ba-be84e88c62c0
+            uid: c8505b74-7f77-431d-9d11-14d2bca16ef6
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2024-09-07T00:28:08+00:00'
+            dateAdded: '2025-07-22T17:59:20+00:00'
             elementCondition: null
-            fieldUid: 3d0151b1-3180-4665-8e2f-be7c0d1f1452 # Split Media Block Layout
+            fieldUid: 61b701ed-160d-4f78-8ee6-f775dc98e7ac # Featured Works Layout
             handle: null
             includeInCards: false
             instructions: null
@@ -143,14 +153,14 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: 58ddb52d-26b9-42cb-baa4-5cc48533c9ec
+            uid: ad6b5b81-6b13-4736-b68b-d7b5dcceb817
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2025-05-31T20:09:26+00:00'
+            dateAdded: '2025-07-22T17:59:20+00:00'
             elementCondition: null
-            fieldUid: 68416f2f-16cf-49ab-83e7-e6b4b097e19d # Split Media Block Mobile Layout
+            fieldUid: 12514558-49b6-40e0-a01a-5858740c93cc # Featured Works Entries
             handle: null
             includeInCards: false
             instructions: null
@@ -159,17 +169,17 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: c4dbeac2-a6b5-442e-90a1-ead8eada679c
+            uid: a51e58aa-2832-4510-8d97-84c3e4d593f5
             userCondition: null
             warning: null
             width: 100
         name: Content
-        uid: 58285e04-91ab-489e-b54b-ac4cbe4db201
+        uid: a681aeb3-767c-409e-83b6-a8091dd14fea
         userCondition: null
-handle: pageBuilderSplitMediaBlock
+handle: blockFeaturedWorks
 hasTitleField: true
 icon: cube
-name: 'Page Builder: Split Media Block'
+name: 'Block: Featured Works'
 showSlugField: true
 showStatusField: true
 slugTranslationKeyFormat: null

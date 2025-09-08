@@ -16,7 +16,8 @@
     "spacecatninja/imager-x": "5.0.2",
     "verbb/formie": "^3.0",
     "verbb/hyper": "2.0.4",
-    "vlucas/phpdotenv": "^5.4.0"
+    "vlucas/phpdotenv": "^5.4.0",
+    "wbrowar/craft-admin-bar": "5.0.0"
   },
   "require-dev": {
     "craftcms/generator": "^2.0.0",
