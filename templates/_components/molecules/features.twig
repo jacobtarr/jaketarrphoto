@@ -1,17 +1,17 @@
 <div class="c-features">
-  <div class="grid lg:grid-cols-{{ columns|default(3) }} gap-4">
+  <div class="grid lg:grid-cols-{{ columns|default(3) }} gap-5">
     {% for feature in features %}
-      <div class="c-feature col-span-{{ feature.colSpan|default('1') }}">
+      <div class="c-feature space-y-3 col-span-{{ feature.colSpan|default('1') }}">
         {% include '_components/atoms/kicker.twig' with {
           kicker: {
             icon: attribute(feature, 'icon') ?? null,
             text: feature.title,
             classes: 'c-feature__title',
-            iconClasses: 'w-5 h-5 text-gray-100' 
+            iconClasses: 'w-5 h-5 text-gray-500' 
           }
         } %}
         <div class="c-feature__content space-y-5">
-          <div class="o-rte font-sans font-medium leading-4">{{ feature.description|raw }}</div>
+          <div class="o-rte font-sans font-medium">{{ feature.description|raw }}</div>
           {% set link = feature.contentLink is defined and feature.contentLink|length ? feature.contentLink[0] : null %}
           {% if link %}
             <div class="flex flex-wrap gap-5">

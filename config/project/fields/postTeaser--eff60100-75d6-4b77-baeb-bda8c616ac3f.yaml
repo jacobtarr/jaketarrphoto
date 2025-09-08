@@ -7,10 +7,10 @@ settings:
   byteLimit: null
   charLimit: 256
   code: false
-  initialRows: 4
-  multiline: false
+  initialRows: 2
+  multiline: true
   placeholder: null
-  uiMode: enlarged
+  uiMode: normal
 translationKeyFormat: null
 translationMethod: none
 type: craft\fields\PlainText

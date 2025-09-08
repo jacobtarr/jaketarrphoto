@@ -60,12 +60,12 @@
         aria-hidden="true"
       >
         {% if includeIcons %}
-          <span class="c-switch__icon c-switch__icon--off"
+          <span class="c-switch__icon c-switch__icon--off text-gray-100"
             :class="{{ bind }} ? 'opacity-0' : 'opacity-100'"
             aria-hidden="true">
             {% include '_components/atoms/icons/icon-' ~ iconOff ~ '.svg' %}
           </span>
-          <span class="c-switch__icon c-switch__icon--on"
+          <span class="c-switch__icon c-switch__icon--on text-gray-900"
             :class="{{ bind }} ? 'opacity-100' : 'opacity-0'"
             aria-hidden="true">
             {% include '_components/atoms/icons/icon-' ~ iconOn ~ '.svg' %}

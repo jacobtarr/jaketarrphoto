@@ -91,7 +91,7 @@ export default {
         },
       },
       boxShadow: {
-        'card-soft': '0 3px 6px rgba(122, 98, 75, 0.5)', // mocha mist at 50%
+        'card-soft': '0 3px 6px rgb(var(--shadow-color, 0 0 0) / 0.5)',
       },
       spacing: {
         0: '0px',
@@ -133,7 +133,7 @@ export default {
         'sm': '0.875rem', // 14
         'base': '1rem', // 16
         'lg': '1.125rem', // 18
-        'xl': '1.375rem', // 22
+        'xl': '1.25rem', // 20
         '2xl': '1.5rem', // 24
         '3xl': '1.75rem', // 28
         '4xl': '2rem', // 32
@@ -162,7 +162,51 @@ export default {
     },
   },
   plugins: [
-    require('@tailwindcss/aspect-ratio')
+    require('@tailwindcss/aspect-ratio'),
+    function ({ addUtilities, theme }) {
+      const colors = theme('colors');
+      const utils = {};
+
+      function flatten(obj, prefix = '') {
+        return Object.entries(obj).flatMap(([k, v]) => {
+          const key = prefix ? `${prefix}-${k}` : k;
+          return typeof v === 'string' ? [[key, v]] : flatten(v, key);
+        });
+      }
+
+      // Make a SAFE class token: no + . / spaces, etc.
+      // Example: 'beige-base+2' -> 'beige-base-plus-2'
+      function safeToken(name) {
+        return name
+          .replace(/\+/g, '-plus-')
+          .replace(/\./g, '-')    // just in case
+          .replace(/\s+/g, '-')   // normalize spaces
+          .replace(/[^a-zA-Z0-9_-]/g, ''); // strip anything else weird
+      }
+
+      // Convert #rgb or #rrggbb to "r g b"
+      function hexToRgbTriplet(hex) {
+        if (typeof hex !== 'string') return null;
+        const m = hex.trim().match(/^#([0-9a-f]{3}|[0-9a-f]{6})$/i);
+        if (!m) return null;
+        let h = m[1];
+        if (h.length === 3) h = h.split('').map(ch => ch + ch).join('');
+        const r = parseInt(h.slice(0, 2), 16);
+        const g = parseInt(h.slice(2, 4), 16);
+        const b = parseInt(h.slice(4, 6), 16);
+        return `${r} ${g} ${b}`;
+      }
+
+      for (const [name, val] of flatten(colors)) {
+        const rgb = hexToRgbTriplet(val);
+        if (!rgb) continue; // skip non-hex tokens like 'transparent', etc.
+        const token = safeToken(name);
+        utils[`.shadowc-${token}`] = { '--shadow-color': rgb };
+      }
+
+      // Ensure utilities layer so @apply can find them
+      addUtilities(utils, { layer: 'utilities' });
+    },
   ],
   safelist: [
     ...generateGridClasses(),

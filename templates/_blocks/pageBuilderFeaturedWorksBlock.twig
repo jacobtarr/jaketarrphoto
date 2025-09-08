@@ -2,11 +2,6 @@
 {% import '_components/atoms/image.twig' as img %}
 
 {% block pageBlockContent %}
-  {# <pre style="font-size: 12px;">
-    {{ dump(block.getFieldValues()) }}
-    <br>
-    {{ dump(block.featuredWorksEntries|length) }}
-  </pre> #}
 
   {% set layout = block.featuredWorksLayout.value ?? 'layout2' %}
 

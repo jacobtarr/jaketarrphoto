@@ -21,7 +21,7 @@
 }
 
 .c-filter-box {
-  @apply md:pb-5 bg-beige-base-1 space-y-8 md:space-y-0 shadow-card-soft;
+  @apply md:pb-5 bg-beige-base-1 space-y-8 md:space-y-0 shadow-card-soft shadowc-beige-base-plus-2;
 
   &__mobile-nav {
     @apply px-4 md:px-0 pt-4 md:pt-0 flex justify-between items-center md:hidden;

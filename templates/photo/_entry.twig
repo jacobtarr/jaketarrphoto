@@ -5,8 +5,8 @@
 
 	{% set state = entry.state.one() %}
 
-	<section class="c-photo-page c-page container">
-		<div class="c-photo-page-row space-y-12">
+	<section class="c-photo-page c-page">
+		<div class="c-photo-page-row space-y-12 container">
 			
 			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 o-page-gap">
 				<div class="sm:col-span-1 lg:col-span-6">
@@ -36,36 +36,43 @@
 				</div>
 				
 				<div class="sm:col-span-1 lg:col-span-6 space-y-8">
-					<div class="space-y-3">
-						{% include '_components/atoms/kicker.twig' with {
-							kicker: {
-								classes: 'text-gray-500',
-								text: state,
-							}
-						} %}
-						{% include '_components/atoms/heading.twig' with {
-							"heading": {
-								"text": entry.title
+					<div class="space-y-4">
+						<div class="space-y-3">
+							{% include '_components/atoms/kicker.twig' with {
+								kicker: {
+									classes: 'text-gray-500',
+									text: state,
+								}
+							} %}
+							{% include '_components/atoms/heading.twig' with {
+								"heading": {
+									"text": entry.title
+								}
+							} %}
+							
+						</div>
+						{% include '_components/molecules/post-teaser.twig' with {
+							postTeaser: {
+								classes: '',
+								content: entry.postTeaser
 							}
 						} %}
 					</div>
+					
 
 					{% include '_components/molecules/features.twig' with {
 						columns: 3,
 						features: [
 							{
-								title: 'Date Taken',
-								icon: 'calendar',
-								description: entry.dateTaken ? '<div class="test">' ~ entry.dateTaken|date('F j, Y') ~ '</div>' : ''
-							},
-							{
 								title: 'Location',
-								icon: 'location',
 								description: entry.location
 							},
 							{
+								title: 'Date Taken',
+								description: entry.dateTaken ? '<div class="test">' ~ entry.dateTaken|date('F j, Y') ~ '</div>' : ''
+							},
+							{
 								title: 'Tags',
-								icon: 'tags',
 								description: [
 									entry.state.one() ? entry.state.one().title : '',
 									entry.season.one() ? entry.season.one().title : '',
@@ -81,53 +88,30 @@
 						</div>
 					{% endif %}
 
-					
-
-					{% set relatedEntries = craft.entries()
-						.section('photos')
-						.relatedTo({
-							targetElement: entry.state.one(),
-							field: 'state'
-						})
-						.id('not ' ~ entry.id)
-						.limit(3)
-						.all()
-					%}
-
-					{% if relatedEntries|length %}
-						<div class="c-page-section">
-							{% include '_components/atoms/heading.twig' with {
-								"heading": {
-									"classes": 'o-heading--h3',
-        					"tag": 'h3',
-									"text": "More from " ~ entry.state.one().title
-								}
-							} %}
-							<div class="c-page-section__content">
-								<div class="grid grid-cols-3 gap-5">
-									{% for relatedEntry in relatedEntries %}
-										<div class="col-span-1">
-											{% include '_components/molecules/photo-block.twig' with {
-												"photo": {
-													"classes": 'c-photo-block--small',
-													"image": relatedEntry.featuredImage.one(),
-													"url": relatedEntry.url,
-													"title": relatedEntry.title,
-													"caption": relatedEntry.title,
-													"transform": 'squareSmall'
-												}
-											} %}
-										</div>
-									{% endfor %}
-								</div>
-							</div>
-						</div>
-					{% endif %}
-						
-
 				</div>
+
 			</div>
+
+		
 		</div>
+
+		{% set relatedEntries = craft.entries()
+			.section('photos')
+			.relatedTo({ targetElement: entry.state.one(), field: 'state' })
+			.id('not ' ~ entry.id)
+			.limit(4)
+			.all()
+		%}
+
+		{% include '_blocks/pageBuilderMediaGridBlock.twig' with {
+			block: {
+				pageBuilderOptionBackgroundColor: 'beige'
+			},
+			relatedEntries: relatedEntries,
+			isFullColumn: true
+		} %}
+
+		
 	</section>
 
 {% endblock %}

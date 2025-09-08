@@ -1,5 +1,9 @@
-{% set handle = block.type.handle|replace({'pageBuilder': '', 'Block': ''})|kebab %}
-{% set bgColor = block.pageBuilderOptionBackgroundColor ?? 'white' %}
+{% set handle = (block is defined and block.type is defined and block.type.handle is defined) 
+  ? block.type.handle|replace({'pageBuilder': '', 'Block': ''})|kebab 
+  : 'custom' %}
+{% set bgColor = (block is defined and block.pageBuilderOptionBackgroundColor is defined) 
+  ? block.pageBuilderOptionBackgroundColor 
+  : 'white' %}
 {% set isFullColumn = parentMatrix is defined and parentMatrix == 'pageBuilderFullColumnContent' %}
 {% set isStacked = isStacked ?? false %}
 {% set isStackStart = isStackStart ?? false %}

@@ -1,14 +1,14 @@
 .c-features {
-  @apply bg-gray-100;
+  @apply bg-gray-100 p-6 rounded-[4px] shadow-card-soft shadowc-gray-400;
 }
 
 .c-feature {
 
   &__title {
-    @apply py-4 px-5;
+    @apply text-gray-500;
   }
 
   &__content {
-    @apply p-5;
+    @apply text-gray-500;
   }
 }

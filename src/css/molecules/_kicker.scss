@@ -12,14 +12,6 @@
 
   svg {
     @apply w-4;
-
-    path {
-      @apply fill-beige-base+2;
-
-      .c-page-block--bg-beige & {
-        @apply fill-beige-base+2;
-      }
-    }
   }
 
   .c-page-block--bg-black &,

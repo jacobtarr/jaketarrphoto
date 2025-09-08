@@ -1,0 +1,38 @@
+{% extends '_base/_basePageBlock.twig' %}
+{% import '_components/atoms/image.twig' as img %}
+
+{% block pageBlockContent %}
+
+  {% if relatedEntries|length %}
+    {% set transform = 'aspectRatio4x5' %}
+
+    <div class="c-page-section container">
+      {% include '_components/atoms/heading.twig' with {
+        "heading": {
+          "classes": 'o-heading--h3',
+          "tag": 'h3',
+          "text": "More from " ~ entry.state.one().title
+        }
+      } %}
+      <div class="c-page-section__content">
+        <div class="grid grid-cols-4 gap-5">
+          {% for relatedEntry in relatedEntries %}
+            <div class="col-span-1">
+              {% include '_components/molecules/photo-block.twig' with {
+                "photo": {
+                  "classes": 'c-photo-block',
+                  "image": relatedEntry.featuredImage.one(),
+                  "url": relatedEntry.url,
+                  "title": relatedEntry.title,
+                  "caption": relatedEntry.title,
+                  "transform": transform
+                }
+              } %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+{% endblock %}
