@@ -30,7 +30,7 @@
   }
 
   &--bg-beige {
-    @apply bg-beige-base-1;
+    @apply bg-beige-100;
   }
 
   &--slider {
@@ -42,14 +42,14 @@
   @apply relative z-10;
 
   &--bg-beige {
-    @apply bg-beige-base-1;
+    @apply bg-beige-100;
 
     > * {
       @apply relative z-10 bg-transparent;
     }
 
     &::before {
-      @apply content-[''] absolute left-0 right-0 top-1/4 h-1/4 z-[5] bg-gradient-to-b from-beige-base-1 to-beige-base-1/0;
+      @apply content-[''] absolute left-0 right-0 top-1/4 h-1/4 z-[5] bg-gradient-to-b from-beige-100 to-beige-100/0;
     }
 
     &::after {

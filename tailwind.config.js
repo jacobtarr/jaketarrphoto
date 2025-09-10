@@ -175,7 +175,7 @@ export default {
       }
 
       // Make a SAFE class token: no + . / spaces, etc.
-      // Example: 'beige-base+2' -> 'beige-base-plus-2'
+      // Example: 'beige-400' -> 'beige-200-plus-2'
       function safeToken(name) {
         return name
           .replace(/\+/g, '-plus-')

@@ -3,21 +3,21 @@
   flex items-center gap-3;
 
   .block--bg-black & {
-    @apply text-beige-base;
+    @apply text-beige-200;
   }
 
   .block--bg-beige & {
-    @apply text-beige-base+2;
+    @apply text-beige-400;
   }
 
   svg {
     @apply w-3 md:w-4;
 
     path {
-      @apply fill-beige-base;
+      @apply fill-beige-200;
 
       .block--bg-beige & {
-        @apply fill-beige-base+2;
+        @apply fill-beige-400;
       }
     }
   }

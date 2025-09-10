@@ -50,11 +50,11 @@
     }
 
     &--beige {
-      @apply text-beige-base bg-beige-base+2;
+      @apply text-beige-200 bg-beige-400;
 
       svg {
         path {
-          @apply fill-beige-base;
+          @apply fill-beige-200;
         }
       }
     }
@@ -116,28 +116,28 @@
 
     &--beige,
     .block--bg-beige & {
-      @apply text-beige-base+2 border-beige-base+2;
+      @apply text-beige-400 border-beige-400;
 
       .o-button__icon-wrap {
-        @apply bg-beige-base+2;
+        @apply bg-beige-400;
       }
 
       svg {
         path {
-          @apply fill-beige-base-1;
+          @apply fill-beige-100;
         }
       }
 
       &:hover {
-        @apply text-beige-base-1 
-        bg-beige-base+2;
+        @apply text-beige-100 
+        bg-beige-400;
 
         .o-button__icon-wrap--left {
-          @apply bg-beige-base-1;
+          @apply bg-beige-100;
 
           svg {
             path {
-              @apply fill-beige-base+2;
+              @apply fill-beige-400;
             }
           }
         }

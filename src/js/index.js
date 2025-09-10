@@ -1,7 +1,6 @@
 import Alpine from 'alpinejs';
 import persist from '@alpinejs/persist'
 import intersect from '@alpinejs/intersect'
-import '../css/index.scss';
 
 function headerState() {
   return {
