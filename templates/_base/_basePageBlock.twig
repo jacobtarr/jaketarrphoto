@@ -18,15 +18,15 @@
   {% block pageBlockContent %}{% endblock %}
 {% endset %}
 
-<div class="c-page-block 
-            c-page-block--{{ handle }} 
-            c-page-block--bg-{{ bgColor }}
-            {{ isFullColumn ? 'c-page-block--full-width' }}
-            {{ isStacked ? 'c-page-block--stacked' }}
-            {{ isStackStart ? 'c-page-block--stack-start' }}
-            {{ isStackEnd ? 'c-page-block--stack-end' }}">
+<div class="block 
+            block--{{ handle }} 
+            block--bg-{{ bgColor }}
+            {{ isFullColumn ? 'block--full-width' }}
+            {{ isStacked ? 'block--stacked' }}
+            {{ isStackStart ? 'block--stack-start' }}
+            {{ isStackEnd ? 'block--stack-end' }}">
   {% if isFullColumn %}
-    <div class="c-page-block__container container">
+    <div class="block__container container">
       {{ blockContent }}
     </div>
   {% else %}

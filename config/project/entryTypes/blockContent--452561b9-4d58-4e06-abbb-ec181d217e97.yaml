@@ -105,7 +105,7 @@ fieldLayouts:
 handle: blockContent
 hasTitleField: true
 icon: cube
-name: 'Block: Content Block'
+name: 'Block: Content'
 showSlugField: true
 showStatusField: true
 slugTranslationKeyFormat: null

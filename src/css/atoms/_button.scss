@@ -12,7 +12,7 @@
 
   &--black,
   html.u-dark-mode &,
-  .c-page-block--bg-black & {
+  .block--bg-black & {
     @apply border-white bg-gray-900 text-white;
 
     svg path {
@@ -114,20 +114,9 @@
       }
     }
 
-    &--beige {
+    &--beige,
+    .block--bg-beige & {
       @apply text-beige-base+2 border-beige-base+2;
-
-      &:hover {
-        @apply text-beige-base-1 bg-beige-base+2;
-
-        .o-button__icon-wrap--left {
-          svg {
-            path {
-              @apply fill-beige-base+2;
-            }
-          }
-        }
-      }
 
       .o-button__icon-wrap {
         @apply bg-beige-base+2;
@@ -136,6 +125,21 @@
       svg {
         path {
           @apply fill-beige-base-1;
+        }
+      }
+
+      &:hover {
+        @apply text-beige-base-1 
+        bg-beige-base+2;
+
+        .o-button__icon-wrap--left {
+          @apply bg-beige-base-1;
+
+          svg {
+            path {
+              @apply fill-beige-base+2;
+            }
+          }
         }
       }
     }

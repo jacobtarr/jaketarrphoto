@@ -2,11 +2,11 @@
   @apply uppercase tracking-widest text-xs md:text-sm font-founders font-semibold leading-4
   flex items-center gap-3;
 
-  .c-page-block--bg-black & {
+  .block--bg-black & {
     @apply text-beige-base;
   }
 
-  .c-page-block--bg-beige & {
+  .block--bg-beige & {
     @apply text-beige-base+2;
   }
 
@@ -16,7 +16,7 @@
     path {
       @apply fill-beige-base;
 
-      .c-page-block--bg-beige & {
+      .block--bg-beige & {
         @apply fill-beige-base+2;
       }
     }

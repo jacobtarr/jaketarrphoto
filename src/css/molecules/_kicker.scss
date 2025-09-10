@@ -14,12 +14,12 @@
     @apply w-4;
   }
 
-  .c-page-block--bg-black &,
+  .block--bg-black &,
   &--beige {
     @apply text-beige-base;
   }
 
-  .c-page-block--bg-beige & {
+  .block--bg-beige & {
     @apply text-beige-base+2;
   }
 

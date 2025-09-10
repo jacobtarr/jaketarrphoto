@@ -1,21 +1,21 @@
-.c-page-block {
+.block {
   @apply space-y-4;
 
   &--full-width {
     @apply py-12 md:py-20;
 
-    &.c-page-block--stacked {
+    &.block--stacked {
       @apply py-12;
 
-      &.c-page-block--stack-start {
+      &.block--stack-start {
         @apply pt-12 md:pt-20;
 
-        + .c-page-block--stacked:not(.c-page-block--stack-end) {
+        + .block--stacked:not(.block--stack-end) {
           @apply pt-0 md:py-10;
         }
       }
 
-      &.c-page-block--stack-end {
+      &.block--stack-end {
         @apply pt-0 pb-12 md:pt-10 md:pb-20;
       }
     }
@@ -38,7 +38,7 @@
   }
 }
 
-.c-page-block-stack {
+.block-stack {
   @apply relative z-10;
 
   &--bg-beige {

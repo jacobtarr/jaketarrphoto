@@ -1,38 +1,64 @@
 {% extends '_base/_basePageBlock.twig' %}
 {% import '_components/atoms/image.twig' as img %}
 
+{% set kickerText     = block.contentKicker ?? null %}
+{% set kickerClasses  = block.contentKickerClasses ?? null %}
+{% set headingText    = block.contentHeading ?? null %}
+{% set link           = block.contentLink ?? null %}
+{% set linkClasses    = block.contentLinkClasses ?? null %}
+{% set images         = block.images ?? [] %}
+{% set cols           = block.cols ?? 4 %}
+{% set transform      = block.transform ?? 'aspectRatio4x5' %}
+{% set gridClasses    = block.gridClasses ?? '' %}
+{% set imageField     = block.imageField ?? 'featuredImage' %}
+
 {% block pageBlockContent %}
-
-  {% if relatedEntries|length %}
-    {% set transform = 'aspectRatio4x5' %}
-
-    <div class="c-page-section container">
-      {% include '_components/atoms/heading.twig' with {
-        "heading": {
-          "classes": 'o-heading--h3',
-          "tag": 'h3',
-          "text": "More from " ~ entry.state.one().title
+  {% if images|length %}
+    <div class="space-y-6">
+      {% include '_components/molecules/section-heading.twig' with {
+        sectionHeading: {
+          kickerText: kickerText,
+          kickerClasses: kickerClasses,
+          headingText: headingText,
+          link: link,
+          linkClasses: linkClasses
         }
       } %}
-      <div class="c-page-section__content">
-        <div class="grid grid-cols-4 gap-5">
-          {% for relatedEntry in relatedEntries %}
+
+      <div class="grid grid-cols-{{ cols }} gap-3 md:gap-4 {{ gridClasses }}">
+        {% for image in images %}
+          {% set hasField = attribute(image, imageField, [], 'any', true) %}
+          {% if hasField %}
+            {# Entry with an image field #}
+            {% set asset = attribute(image, imageField).one() %}
+            {% set href  = image.url ?? null %}
+            {% set title = image.title ?? '' %}
+          {% elseif image.kind is defined %}
+            {# Asset directly #}
+            {% set asset = image %}
+            {% set href  = image.url ?? null %}
+            {% set title = image.title ?? '' %}
+          {% else %}
+            {% set asset = null %}
+          {% endif %}
+
+          {% if asset %}
             <div class="col-span-1">
               {% include '_components/molecules/photo-block.twig' with {
-                "photo": {
-                  "classes": 'c-photo-block',
-                  "image": relatedEntry.featuredImage.one(),
-                  "url": relatedEntry.url,
-                  "title": relatedEntry.title,
-                  "caption": relatedEntry.title,
-                  "transform": transform
+                photo: {
+                  classes: 'c-photo-block',
+                  image: asset,
+                  url: href,
+                  title: title,
+                  caption: title,
+                  transform: transform
                 }
               } %}
             </div>
-          {% endfor %}
-        </div>
+          {% endif %}
+        {% endfor %}
       </div>
+
     </div>
   {% endif %}
-
 {% endblock %}

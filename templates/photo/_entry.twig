@@ -11,7 +11,7 @@
 			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 o-page-gap">
 				<div class="sm:col-span-1 lg:col-span-6">
 					
-					<div class="c-photo">
+					<div class="c-photo sticky top-4">
 						{% if entry.featuredImage.one() %}
 							{% include '_components/molecules/photo-block.twig' with {
 								"photo": {
@@ -83,7 +83,7 @@
 					} %}
 					
 					{% if entry.overview %}
-						<div class="c-page-section c-photo-intro u-drop-cap">
+						<div class="c-page-section c-photo-intro u-drop-cap space-y-6">
 							{{ entry.overview }}
 						</div>
 					{% endif %}
@@ -103,11 +103,22 @@
 			.all()
 		%}
 
-		{% include '_blocks/pageBuilderMediaGridBlock.twig' with {
+		{% include '_blocks/blockMediaGrid.twig' with {
 			block: {
-				pageBuilderOptionBackgroundColor: 'beige'
+				pageBuilderOptionBackgroundColor: 'beige',
+				contentKicker: 'Related Photos',
+				contentHeading: "More from " ~ entry.state.one().title,
+				contentLink: {
+					text: 'See more',
+					url: url('portfolio', { state: state ? state.slug : null })
+				},
+				contentLinkClasses: 'hidden md:inline-flex',
+				images: relatedEntries,
+				cols: 4,
+				transform: 'aspectRatio4x5',
+				gridClasses: '',
+				imageField: 'featuredImage'
 			},
-			relatedEntries: relatedEntries,
 			isFullColumn: true
 		} %}
 

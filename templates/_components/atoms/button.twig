@@ -4,6 +4,13 @@
 {% set variantClass = ' o-button--' ~ variant %}
 {% set attrs = button.attrs ?? {} %}
 
+{# Default logic for includeIcon depends on variant #}
+{% if button.includeIcon is defined %}
+  {% set includeIcon = button.includeIcon %}
+{% else %}
+  {% set includeIcon = variant != 'primary' %}
+{% endif %}
+
 {% if tag == 'a' %}
   {% set attrs = attrs|merge({
     href: button.url ?? '#',
@@ -21,24 +28,22 @@
       <div class="o-button__icon-wrap o-button__icon-wrap--left">
         {% include '_components/atoms/icons/icon-' ~ button.icon ~ '.svg' %}
       </div>
-    {% elseif button.includeIcon is not defined or button.includeIcon %}
+    {% elseif includeIcon %}
       <div class="o-button__icon-wrap o-button__icon-wrap--left">
         {% include '_components/atoms/icons/icon-arrow.svg' %}
       </div>
     {% endif %}
   {% endif %}
-  
+
   {% if button.text is defined %}
-    <span {{ button.spanAttrs is defined ? attr(button.spanAttrs) }}>
-      {{ button.text ?? '' }}
-    </span>
+    <span {{ button.spanAttrs is defined ? attr(button.spanAttrs) }}>{{ button.text ?? '' }}</span>
   {% endif %}
 
   {% if button.icon is defined %}
     <div class="o-button__icon-wrap">
       {% include '_components/atoms/icons/icon-' ~ button.icon ~ '.svg' %}
     </div>
-  {% elseif button.includeIcon is not defined or button.includeIcon %}
+  {% elseif includeIcon %}
     <div class="o-button__icon-wrap">
       {% include '_components/atoms/icons/icon-arrow.svg' %}
     </div>
