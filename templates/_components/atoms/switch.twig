@@ -49,23 +49,23 @@
       role="switch"
       :aria-checked="{{ bind }}"
       @click="{{ onClick }}"
-      :class="{{ bind }} ? 'c-switch__button--on' : 'c-switch__button--off'"
+      :class="{{ bind }} ? 'button-on' : 'button-off'"
       {% for key, value in attrs %}
         {{ key }}="{{ value is iterable ? value|join(',') : value }}"
       {% endfor %}
     >
       <span
         class="c-switch__knob"
-        :class="{{ bind }} ? 'c-switch__knob--on' : 'c-switch__knob--off'"
+        :class="{{ bind }} ? 'knob-on' : 'knob-off'"
         aria-hidden="true"
       >
         {% if includeIcons %}
-          <span class="c-switch__icon c-switch__icon--off text-gray-100"
+          <span class="c-switch__icon icon-off text-gray-100"
             :class="{{ bind }} ? 'opacity-0' : 'opacity-100'"
             aria-hidden="true">
             {% include '_components/atoms/icons/icon-' ~ iconOff ~ '.svg' %}
           </span>
-          <span class="c-switch__icon c-switch__icon--on text-gray-900"
+          <span class="c-switch__icon icon-on text-gray-900"
             :class="{{ bind }} ? 'opacity-100' : 'opacity-0'"
             aria-hidden="true">
             {% include '_components/atoms/icons/icon-' ~ iconOn ~ '.svg' %}

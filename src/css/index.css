@@ -12,9 +12,19 @@
 
 @utility container {
   @apply w-full mx-auto px-4 md:px-5;
-  @media (min-width: 1024px) { max-width: var(--container-lg); }
-  @media (min-width: 1280px) { max-width: var(--container-xl); }
-  @media (min-width: 1536px) { max-width: var(--container-2xl); }
+  max-width: none;
+
+  @media (min-width: 1140px) {
+    max-width: var(--container-lg);
+  }
+
+  @media (min-width: 1340px) {
+    max-width: var(--container-xl);
+  }
+
+  @media (min-width: 1536px) {
+    max-width: var(--container-2xl);
+  }
 }
 
 /* Vendor + component styles */
@@ -27,26 +37,26 @@
 @import "./atoms/icon.css";
 @import "./atoms/link.css";
 @import "./atoms/logo.css";
-/* @import "./atoms/switch.css"; */
+@import "./atoms/switch.css";
 @import "./atoms/text.css";
 @import "./atoms/utility.css";
 
 @import "./molecules/alert.css";
 @import "./molecules/card.css";
 @import "./molecules/features.css";
-/* @import "./molecules/filter-box.css"; */
+@import "./molecules/filter-box.css";
 @import "./molecules/icon-group.css";
 @import "./molecules/kicker.css";
-/* @import "./molecules/nav.css"; */
-/* @import "./molecules/nav-group.css"; */
-/* @import "./molecules/page-block.css"; */
-/* @import "./molecules/photo-block.css"; */
+@import "./molecules/nav.css";
+@import "./molecules/nav-group.css";
+@import "./molecules/block.css";
+@import "./molecules/photo-block.css";
 /* @import "./molecules/split-media.css"; */
 
-/* @import "./organisms/featured-works.css"; */
+@import "./organisms/featured-works.css";
 @import "./organisms/footer.css";
 @import "./organisms/gallery.css";
-/* @import "./organisms/header.css"; */
+@import "./organisms/header.css";
 /* @import "./organisms/hero.css"; */
 @import "./organisms/page.css";
 /* @import "./organisms/portfolio.css"; */

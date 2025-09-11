@@ -138,7 +138,7 @@ html.u-dark-mode .o-button,
   svg path { @apply fill-gray-900; }
 }
 
-
+/* Primarily used for hero */
 .o-button--secondary--large {
   span {
     @apply lg:pt-[15px] lg:pb-[15px] lg:pr-[22px];

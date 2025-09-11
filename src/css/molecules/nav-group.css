@@ -1,31 +1,31 @@
 .c-nav-group {
   @apply flex gap-12;
+}
 
-  &__link {
-    @apply font-semibold;
+.c-nav-group__link {
+  @apply font-semibold;
 
-    .hero-is-full-bleed & {
-      @apply text-gray-100;
-
-      &:hover {
-        @apply text-red-400;
-      }
-    }
+  .hero-is-full-bleed & {
+    @apply text-gray-100;
 
     &:hover {
       @apply text-red-400;
     }
   }
 
-  &--mobile {
-    @apply flex-col gap-6;
+  &:hover {
+    @apply text-red-400;
+  }
+}
 
-    .c-nav-group__item {
-      @apply leading-[1];
-    }
+.c-nav-group--mobile {
+  @apply flex-col gap-6;
 
-    .c-nav-group__link {
-      @apply text-lg text-gray-100;
-    }
+  .c-nav-group__item {
+    @apply leading-[1];
+  }
+
+  .c-nav-group__link {
+    @apply text-lg text-gray-100;
   }
 }

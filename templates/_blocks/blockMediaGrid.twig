@@ -9,7 +9,6 @@
 {% set images         = block.images ?? [] %}
 {% set cols           = block.cols ?? 4 %}
 {% set transform      = block.transform ?? 'aspectRatio4x5' %}
-{% set gridClasses    = block.gridClasses ?? '' %}
 {% set imageField     = block.imageField ?? 'featuredImage' %}
 
 {% block pageBlockContent %}
@@ -25,7 +24,10 @@
         }
       } %}
 
-      <div class="grid grid-cols-{{ cols }} gap-3 md:gap-4 {{ gridClasses }}">
+      <div
+        class="grid gap-3 md:gap-4 [grid-template-columns:repeat(var(--cols),minmax(0,1fr))]"
+        style="--cols: {{ cols }}"
+      >
         {% for image in images %}
           {% set hasField = attribute(image, imageField, [], 'any', true) %}
           {% if hasField %}
