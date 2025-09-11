@@ -26,7 +26,7 @@
 }
 
 .c-header__right-content {
-  @apply ml-12 h-full relative md:space-x-8 md:space-x-0 flex justify-end items-center;
+  @apply ml-12 h-full relative flex justify-end items-center;
 }
 
 .c-header__inner {
