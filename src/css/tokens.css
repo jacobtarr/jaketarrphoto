@@ -33,6 +33,9 @@
   --color-beige-300: #BFA98B;
   --color-beige-400: #7A624B;
 
+  /* “soft” shadow geometry */
+  --shadow-card-soft: 0 3px 6px;
+
   /* Spacing (subset, you can keep full set if you like) */
   --spacing-0: 0px;
   --spacing-1: 0.25rem;
@@ -89,3 +92,31 @@
   --font-body: "source-serif-pro", serif;
   --font-founders: "Founders Grotesk", sans-serif;
 }
+
+/* 1) The “soft” shadow geometry */
+@utility shadow-card-soft {
+  box-shadow: var(--shadow-card-soft)
+              color-mix(in oklch, var(--shadow-color, var(--color-gray-900)) 50%, transparent);
+}
+
+/* 2) Shadow color setters — set --shadow-color */
+@utility shadowc-gray-100  { --shadow-color: var(--color-gray-100); }
+@utility shadowc-gray-200  { --shadow-color: var(--color-gray-200); }
+@utility shadowc-gray-300  { --shadow-color: var(--color-gray-300); }
+@utility shadowc-gray-400  { --shadow-color: var(--color-gray-400); }
+@utility shadowc-gray-500  { --shadow-color: var(--color-gray-500); }
+@utility shadowc-gray-600  { --shadow-color: var(--color-gray-600); }
+@utility shadowc-gray-700  { --shadow-color: var(--color-gray-700); }
+@utility shadowc-gray-800  { --shadow-color: var(--color-gray-800); }
+@utility shadowc-gray-900  { --shadow-color: var(--color-gray-900); }
+
+/* Beige variants */
+@utility shadowc-beige-100 { --shadow-color: var(--color-beige-100); }
+@utility shadowc-beige-200 { --shadow-color: var(--color-beige-200); }
+@utility shadowc-beige-300 { --shadow-color: var(--color-beige-300); }
+@utility shadowc-beige-400 { --shadow-color: var(--color-beige-400); }
+
+/* Reds (since you have a red scale too) */
+@utility shadowc-red-100   { --shadow-color: var(--color-red-100); }
+@utility shadowc-red-400   { --shadow-color: var(--color-red-400); }
+@utility shadowc-red-500   { --shadow-color: var(--color-red-500); }

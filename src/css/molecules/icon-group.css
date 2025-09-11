@@ -1,0 +1,23 @@
+.c-icon-group {
+  @apply flex gap-3;
+}
+
+.c-icon-group--share {
+  .o-icon {
+    svg {
+      @apply h-full;
+
+      path {
+        @apply fill-gray-300;
+      }
+    }
+
+    &:hover, &:focus {
+      svg {
+        path {
+          @apply fill-red-500;
+        }
+      }
+    }
+  }
+}

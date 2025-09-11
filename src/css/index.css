@@ -20,42 +20,37 @@
 /* Vendor + component styles */
 @import "./vendor/_hamburgers.css";
 
-
 @import "./atoms/button.css";
-/* @import "./atoms/_dropdown.scss";
-@import "./atoms/_form.scss";
-@import "./atoms/_headings.scss";
-@import "./atoms/_icon.scss";
-@import "./atoms/_layout.scss";
-@import "./atoms/_link.scss";
-@import "./atoms/_logo.scss";
-@import "./atoms/_switch.scss";
-@import "./atoms/_text.scss";
-@import "./atoms/_utility.scss"; */
+@import "./atoms/dropdown.css";
+/* @import "./atoms/form.css"; */
+@import "./atoms/heading.css";
+@import "./atoms/icon.css";
+@import "./atoms/link.css";
+@import "./atoms/logo.css";
+/* @import "./atoms/switch.css"; */
+@import "./atoms/text.css";
+@import "./atoms/utility.css";
 
-
-/* @import "./molecules/_alert.scss";
-@import "./molecules/_card.scss"; */
+@import "./molecules/alert.css";
+@import "./molecules/card.css";
 @import "./molecules/features.css";
-/* @import "./molecules/_filter-box.scss";
-@import "./molecules/_icon-group.scss";
-@import "./molecules/_kicker.scss";
-@import "./molecules/_nav.scss";
-@import "./molecules/_nav-group.scss";
-@import "./molecules/_page-block.scss";
-@import "./molecules/_photo-block.scss";
-@import "./molecules/_split-media.scss"; */
+/* @import "./molecules/filter-box.css"; */
+@import "./molecules/icon-group.css";
+@import "./molecules/kicker.css";
+/* @import "./molecules/nav.css"; */
+/* @import "./molecules/nav-group.css"; */
+/* @import "./molecules/page-block.css"; */
+/* @import "./molecules/photo-block.css"; */
+/* @import "./molecules/split-media.css"; */
 
-/* 
-@import "./organisms/_featured-works.scss";
-@import "./organisms/_footer.scss";
-@import "./organisms/_gallery.scss";
-@import "./organisms/_header.scss";
-@import "./organisms/_hero.scss";
-@import "./organisms/_homepage.scss";
-@import "./organisms/_page.scss";
-@import "./organisms/_portfolio.scss";
-@import "./organisms/_slider.scss"; */
+/* @import "./organisms/featured-works.css"; */
+@import "./organisms/footer.css";
+@import "./organisms/gallery.css";
+/* @import "./organisms/header.css"; */
+/* @import "./organisms/hero.css"; */
+@import "./organisms/page.css";
+/* @import "./organisms/portfolio.css"; */
+/* @import "./organisms/slider.css"; */
 
 /* Dark mode */
 html.u-dark-mode {
@@ -78,4 +73,8 @@ html.u-dark-mode {
   to {
     opacity: 1;
   }
+}
+
+[x-cloak] {
+  display: none !important;
 }

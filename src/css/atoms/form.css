@@ -56,7 +56,6 @@
   stroke: white;
 }
 
-// Formie classes
 .fui-btn.fui-submit {
   @include button.o-button;
 }

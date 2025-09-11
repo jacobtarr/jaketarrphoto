@@ -1,0 +1,25 @@
+.o-kicker {
+  @apply uppercase tracking-widest text-xs md:text-sm font-founders font-semibold leading-4
+  flex items-center gap-3;
+
+  svg {
+    @apply w-4;
+  }
+}
+
+.o-kicker__slider-mobile {
+  @apply flex text-sm sm:hidden;
+}
+
+.o-kicker__slider-desktop {
+  @apply hidden sm:flex;
+}
+
+.o-kicker--beige,
+.block--bg-black .o-kicker {
+  @apply text-beige-200;
+}
+
+.block--bg-beige .o-kicker {
+  @apply text-beige-400;
+}

@@ -6,7 +6,6 @@ p {
   @apply font-body;
 }
 
-
 .u-drop-cap:first-letter {
   @apply text-7xl font-bold float-left leading-[58px] mr-4 text-red-500;
 }

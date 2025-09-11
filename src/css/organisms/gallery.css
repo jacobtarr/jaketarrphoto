@@ -1,26 +1,21 @@
 .c-gallery {
-  &__caption {
-    @apply font-founders text-gray-400 mt-2 xl:mt-3;
+}
 
-    .o-rte, p {
-      @apply font-founders leading-tight text-base xl:text-lg;
-    }
+.c-gallery__caption {
+  @apply font-founders text-gray-400 mt-2 xl:mt-3;
 
-    &--photo {
-      @apply text-gray-300;
-    }
+  .o-rte, p {
+    @apply font-founders leading-tight text-base xl:text-lg;
   }
+}
+
+.c-gallery__caption--photo {
+  @apply text-gray-300;
 }
 
 .pswp--custom-gallery {
   .pswp__bg {
     opacity: 0.9;
-  }
-
-  &.pswp--zoomed-in {
-    .pswp__top-bar {
-      background-color: rgba(#000, 0.5);
-    }
   }
 
   .pswp__top-bar {
@@ -108,6 +103,12 @@
         transition: 0.15s all ease-in-out;
       }
     }
+  }
+}
+
+.pswp--custom-gallery.pswp--zoomed-in {
+  .pswp__top-bar {
+    background-color: rgba(0,0,0, 0.5);
   }
 }
 

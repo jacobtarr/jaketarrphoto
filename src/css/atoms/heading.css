@@ -1,0 +1,30 @@
+@layer base {
+  /* Global heading defaults */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-sans font-bold leading-[1.15];
+  }
+
+  h1 { @apply lg:leading-[1.2] text-3xl lg:text-5xl; }
+  h2 { @apply text-2xl lg:text-4xl; }
+  h3 { @apply text-xl  lg:text-3xl; }
+  h4 { @apply text-lg  lg:text-2xl; }
+  h5 { @apply text-base lg:text-xl; }
+  h6 { @apply text-base lg:text-lg; }
+}
+
+@layer utilities {
+  /* Hero variant */
+  .o-heading--hero { @apply leading-[1.15] xl:leading-[1.05] xl:text-7xl; }
+
+  /* Explicit overrides — classes take precedence over element defaults */
+  .o-heading--h1 { @apply leading-[1.15] lg:leading-[1.2] text-3xl lg:text-5xl; }
+  .o-heading--h2 { @apply leading-[1.15] text-2xl lg:text-4xl; }
+  .o-heading--h3 { @apply leading-[1.15] text-xl  lg:text-3xl; }
+  .o-heading--h4 { @apply leading-[1.15] text-lg  lg:text-2xl; }
+  .o-heading--h5 { @apply leading-[1.15] text-base lg:text-xl; }
+  .o-heading--h6 { @apply leading-[1.15] text-base lg:text-lg; }
+
+  .o-subheading--underline { @apply pb-3 border-b border-gray-200; }
+}
+
+html.u-dark-mode .o-subheading--underline { @apply border-gray-800; }

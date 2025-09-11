@@ -1,8 +1,6 @@
 .c-features {
-  @apply bg-gray-100 p-6 rounded-[4px];
+  @apply bg-gray-100 p-6 rounded-[4px] shadow-card-soft shadowc-gray-400;
 }
-
-/* shadow-card-soft shadowc-gray-400 */
 
 .c-feature__title {
   @apply text-gray-500;
