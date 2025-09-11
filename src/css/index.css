@@ -21,7 +21,7 @@
 @import "./vendor/_hamburgers.css";
 
 
-@import "./atoms/_button.css";
+@import "./atoms/button.css";
 /* @import "./atoms/_dropdown.scss";
 @import "./atoms/_form.scss";
 @import "./atoms/_headings.scss";
@@ -31,22 +31,22 @@
 @import "./atoms/_logo.scss";
 @import "./atoms/_switch.scss";
 @import "./atoms/_text.scss";
-@import "./atoms/_utility.scss";
+@import "./atoms/_utility.scss"; */
 
 
-@import "./molecules/_alert.scss";
-@import "./molecules/_card.scss";
-@import "./molecules/_features.scss";
-@import "./molecules/_filter-box.scss";
+/* @import "./molecules/_alert.scss";
+@import "./molecules/_card.scss"; */
+@import "./molecules/features.css";
+/* @import "./molecules/_filter-box.scss";
 @import "./molecules/_icon-group.scss";
 @import "./molecules/_kicker.scss";
 @import "./molecules/_nav.scss";
 @import "./molecules/_nav-group.scss";
 @import "./molecules/_page-block.scss";
 @import "./molecules/_photo-block.scss";
-@import "./molecules/_split-media.scss";
+@import "./molecules/_split-media.scss"; */
 
-
+/* 
 @import "./organisms/_featured-works.scss";
 @import "./organisms/_footer.scss";
 @import "./organisms/_gallery.scss";
