@@ -1,3 +1,7 @@
+button, [role=button] {
+  @apply cursor-pointer;
+}
+
 .o-button {
   @apply inline-flex items-center font-sans border-0 leading-4 rounded-full
          transition-colors duration-150 ease-in-out;
