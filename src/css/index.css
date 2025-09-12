@@ -32,7 +32,7 @@
 
 @import "./atoms/button.css";
 @import "./atoms/dropdown.css";
-/* @import "./atoms/form.css"; */
+@import "./atoms/form.css";
 @import "./atoms/heading.css";
 @import "./atoms/icon.css";
 @import "./atoms/link.css";
@@ -51,7 +51,7 @@
 @import "./molecules/nav-group.css";
 @import "./molecules/block.css";
 @import "./molecules/photo-block.css";
-/* @import "./molecules/split-media.css"; */
+@import "./molecules/split-media.css";
 
 @import "./organisms/featured-works.css";
 @import "./organisms/footer.css";
@@ -59,7 +59,7 @@
 @import "./organisms/header.css";
 /* @import "./organisms/hero.css"; */
 @import "./organisms/page.css";
-/* @import "./organisms/portfolio.css"; */
+@import "./organisms/portfolio.css";
 /* @import "./organisms/slider.css"; */
 
 /* Dark mode */

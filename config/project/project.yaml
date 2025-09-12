@@ -1,4 +1,4 @@
-dateModified: 1757433087
+dateModified: 1757646781
 email:
   fromEmail: $CRAFT_EMAIL_SYSTEM
   fromName: $CRAFT_EMAIL_SYSTEM
@@ -112,6 +112,7 @@ meta:
     d0f439da-693a-43e8-a9e6-0a5bed47b5eb: 'Card Body' # Card Body
     d8fc1056-7a49-4f87-8315-2dde5562d9f7: Season # Season
     d99bf7af-1eb1-4b77-814e-624eeec1a0e3: $CRAFT_SITE_NAME # $CRAFT_SITE_NAME
+    dd78bdbf-3b91-4778-bae3-8b09ac060032: 'Page Builder Option: Background Image Toggle' # Page Builder Option: Background Image Toggle
     de8ef2f0-9242-4d0a-b533-296aad578983: 'Landing Page Layout' # Landing Page Layout
     e2e8232d-7a91-4520-9f64-0d0c97df5efc: 'Block: Gallery' # Block: Gallery
     e58d17c3-400b-4997-bc46-5215587c062b: Small # Small

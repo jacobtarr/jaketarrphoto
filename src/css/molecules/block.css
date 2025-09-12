@@ -42,7 +42,7 @@
   @apply relative z-10;
 }
 
-.block--bg-beige {
+.block-stack--bg-beige {
   @apply bg-beige-100;
 
   > * {
@@ -58,3 +58,67 @@
     bg-[url(dist/images/bg-topo-pattern-beige-mobile.svg)] md:bg-[url(dist/images/bg-topo-pattern-beige.svg)];
   }
 }
+
+/* .block {
+  @apply space-y-4;
+
+  &--full-width {
+    @apply py-12 md:py-20;
+
+    &.block--stacked {
+      @apply py-12;
+
+      &.block--stack-start {
+        @apply pt-12 md:pt-20;
+
+        + .block--stacked:not(.block--stack-end) {
+          @apply pt-0 md:py-10;
+        }
+      }
+
+      &.block--stack-end {
+        @apply pt-0 pb-12 md:pt-10 md:pb-20;
+      }
+    }
+  }
+
+  &--full-height {
+    @apply md:py-0;
+  }
+
+  &--bg-black {
+    @apply bg-gray-900;
+  }
+
+  &--bg-beige {
+    @apply bg-beige-base-1;
+  }
+
+  &--slider {
+    overflow-x: hidden;
+  }
+}
+
+.block-stack {
+  @apply relative z-10;
+
+  &--bg-beige {
+    @apply bg-beige-base-1;
+
+    > * {
+      @apply relative z-10 bg-transparent;
+    }
+
+    &::before {
+      @apply content-[''] absolute left-0 right-0 top-1/4 h-1/4 z-[5] bg-gradient-to-b from-beige-base-1 to-beige-base-1/0;
+    }
+
+    &::after {
+      @apply content-[''] absolute left-0 right-0 bottom-0 h-3/4 w-full
+      bg-[url(dist/images/bg-topo-pattern-beige-mobile.svg)] md:bg-[url(dist/images/bg-topo-pattern-beige.svg)];
+    }
+
+    
+  }
+}
+   */

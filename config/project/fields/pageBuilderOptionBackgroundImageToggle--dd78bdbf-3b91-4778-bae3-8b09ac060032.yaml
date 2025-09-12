@@ -1,0 +1,12 @@
+columnSuffix: null
+handle: pageBuilderOptionBackgroundImageToggle
+instructions: 'Choose whether or not to display the background image for this block.'
+name: 'Page Builder Option: Background Image Toggle'
+searchable: false
+settings:
+  default: false
+  offLabel: null
+  onLabel: null
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Lightswitch
