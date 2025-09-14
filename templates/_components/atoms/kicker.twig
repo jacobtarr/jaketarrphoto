@@ -26,7 +26,7 @@
 {% set iconAttrs = kicker.iconAttrs ?? {} %}
 
 {% if kicker.text is defined and kicker.text %}
-  <div class="o-kicker inline-flex items-center gap-2 align-middle{{ additionalClasses }}"
+  <div class="o-kicker items-center gap-2 align-middle{{ additionalClasses }}"
     {% for key, value in attrs %}
       {{ key }}="{{ value is iterable ? value|join(',') : value }}"
     {% endfor %}

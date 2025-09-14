@@ -17,7 +17,7 @@
 }
 
 .c-filter-nav__sort-by {
-  @apply pl-4 md:pl-0 text-right justify-end gap-x-5 relative flex border-l border-gray-200 md:border-0;
+  @apply pl-4 md:pl-0 text-right justify-end gap-x-5 relative flex items-center border-l border-gray-200 md:border-0;
 }
 
 .c-filter-nav__col {

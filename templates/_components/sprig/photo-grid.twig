@@ -26,7 +26,7 @@
 {% set states = craft.categories.group('state').all() %}
 
 <div
-  class="c-portfolio md:space-y-12"
+  class="c-portfolio md:flex md:flex-col md:gap-12"
   x-data="{
     filterOpen: $persist(false).as('portfolioFilterOpen'),
     toggleBodyScroll(value = this.filterOpen) {

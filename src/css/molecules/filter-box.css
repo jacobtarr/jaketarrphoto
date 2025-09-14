@@ -1,5 +1,5 @@
 .c-filter-sidebar {
-  @apply md:px-5 md:pb-8 md:px-0 md:pt-0 md:pb-0 space-y-5 
+  @apply md:pb-8 md:px-0 md:pt-0 md:pb-0 space-y-5 
   fixed top-0 left-0 h-full w-[80vw]
   bg-beige-100 md:bg-transparent md:h-auto md:static md:block md:col-span-1 z-[150];
 

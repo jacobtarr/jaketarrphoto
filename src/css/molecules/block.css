@@ -42,8 +42,9 @@
   @apply relative z-10;
 }
 
-.block-stack--bg-beige {
-  @apply bg-beige-100;
+.block-stack--bg-beige,
+.block--has-bg-image:not(.block--stacked) {
+  @apply relative bg-beige-100;
 
   > * {
     @apply relative z-10 bg-transparent;
@@ -55,70 +56,18 @@
 
   &::after {
     @apply content-[''] absolute left-0 right-0 bottom-0 h-3/4 w-full
-    bg-[url(dist/images/bg-topo-pattern-beige-mobile.svg)] md:bg-[url(dist/images/bg-topo-pattern-beige.svg)];
+    bg-[url(/dist/images/bg-topo-pattern-beige-mobile.svg)] md:bg-[url(/dist/images/bg-topo-pattern-beige.svg)];
   }
 }
 
-/* .block {
-  @apply space-y-4;
-
-  &--full-width {
-    @apply py-12 md:py-20;
-
-    &.block--stacked {
-      @apply py-12;
-
-      &.block--stack-start {
-        @apply pt-12 md:pt-20;
-
-        + .block--stacked:not(.block--stack-end) {
-          @apply pt-0 md:py-10;
-        }
-      }
-
-      &.block--stack-end {
-        @apply pt-0 pb-12 md:pt-10 md:pb-20;
-      }
-    }
-  }
-
-  &--full-height {
-    @apply md:py-0;
-  }
-
-  &--bg-black {
-    @apply bg-gray-900;
-  }
-
-  &--bg-beige {
-    @apply bg-beige-base-1;
-  }
-
-  &--slider {
-    overflow-x: hidden;
-  }
-}
-
-.block-stack {
-  @apply relative z-10;
-
-  &--bg-beige {
-    @apply bg-beige-base-1;
+.block--media-grid {
+  [class*="grid"] {
+    @apply overflow-x-auto md:overflow-visible
+    [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden
+    -mr-4 md:mr-0 pr-4 md:pr-0 scroll-pr-4 ;
 
     > * {
-      @apply relative z-10 bg-transparent;
+      @apply min-w-[250px] md:min-w-[0] md:min-h-0;
     }
-
-    &::before {
-      @apply content-[''] absolute left-0 right-0 top-1/4 h-1/4 z-[5] bg-gradient-to-b from-beige-base-1 to-beige-base-1/0;
-    }
-
-    &::after {
-      @apply content-[''] absolute left-0 right-0 bottom-0 h-3/4 w-full
-      bg-[url(dist/images/bg-topo-pattern-beige-mobile.svg)] md:bg-[url(dist/images/bg-topo-pattern-beige.svg)];
-    }
-
-    
   }
 }
-   */

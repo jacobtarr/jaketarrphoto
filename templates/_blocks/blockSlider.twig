@@ -6,7 +6,7 @@
     <div class="c-slider-grid grid grid-cols-12 gap-4 sm:gap-5">
       {% include '_components/atoms/kicker.twig' with {
         "kicker": {
-          "classes": 'o-kicker--slider-mobile',
+          "classes": 'flex text-sm sm:hidden',
           "text": block.title,
         }
       } %}
@@ -20,7 +20,7 @@
                 <div class="sm:space-y-2 md:space-y-3">
                   {% include '_components/atoms/kicker.twig' with {
                     "kicker": {
-                      "classes": 'o-kicker--slider-desktop',
+                      "classes": 'hidden sm:flex',
                       "text": block.title,
                     }
                   } %}

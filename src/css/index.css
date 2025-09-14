@@ -47,6 +47,7 @@
 @import "./molecules/filter-box.css";
 @import "./molecules/icon-group.css";
 @import "./molecules/kicker.css";
+@import "./molecules/media-grid.css";
 @import "./molecules/nav.css";
 @import "./molecules/nav-group.css";
 @import "./molecules/block.css";
@@ -57,10 +58,10 @@
 @import "./organisms/footer.css";
 @import "./organisms/gallery.css";
 @import "./organisms/header.css";
-/* @import "./organisms/hero.css"; */
+@import "./organisms/hero.css";
 @import "./organisms/page.css";
 @import "./organisms/portfolio.css";
-/* @import "./organisms/slider.css"; */
+@import "./organisms/slider.css";
 
 /* Dark mode */
 html.u-dark-mode {

@@ -10,15 +10,7 @@
     @apply text-beige-400;
   }
 
-  svg {
-    @apply w-3 md:w-4;
-
-    path {
-      @apply fill-beige-200;
-
-      .block--bg-beige & {
-        @apply fill-beige-400;
-      }
-    }
+  .block--bg-white & {
+    @apply text-beige-400;
   }
 }

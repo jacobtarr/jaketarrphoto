@@ -1,19 +1,20 @@
 {% extends '_base/_basePageBlock.twig' %}
 {% import '_components/atoms/image.twig' as img %}
 
-{% set kickerText     = block.contentKicker ?? null %}
-{% set kickerClasses  = block.contentKickerClasses ?? null %}
-{% set headingText    = block.contentHeading ?? null %}
-{% set link           = block.contentLink ?? null %}
-{% set linkClasses    = block.contentLinkClasses ?? null %}
-{% set images         = block.images ?? [] %}
-{% set cols           = block.cols ?? 4 %}
-{% set transform      = block.transform ?? 'aspectRatio4x5' %}
-{% set imageField     = block.imageField ?? 'featuredImage' %}
+{% set kickerText         = block.contentKicker ?? null %}
+{% set kickerClasses      = block.contentKickerClasses ?? null %}
+{% set headingText        = block.contentHeading ?? null %}
+{% set link               = block.contentLink ?? null %}
+{% set linkClasses        = block.contentLinkClasses ?? null %}
+{% set mobileLinkClasses  = block.contentMobileLinkClasses ?? null %}
+{% set images             = block.images ?? [] %}
+{% set cols               = block.cols ?? 4 %}
+{% set transform          = block.transform ?? 'aspectRatio4x5' %}
+{% set imageField         = block.imageField ?? 'featuredImage' %}
 
 {% block pageBlockContent %}
   {% if images|length %}
-    <div class="space-y-6">
+    <div class="space-y-6 text-right">
       {% include '_components/molecules/section-heading.twig' with {
         sectionHeading: {
           kickerText: kickerText,
@@ -25,7 +26,7 @@
       } %}
 
       <div
-        class="grid gap-3 md:gap-4 [grid-template-columns:repeat(var(--cols),minmax(0,1fr))]"
+        class="flex md:grid gap-3 md:gap-4 [grid-template-columns:repeat(var(--cols),minmax(0,1fr))]"
         style="--cols: {{ cols }}"
       >
         {% for image in images %}
@@ -60,6 +61,18 @@
           {% endif %}
         {% endfor %}
       </div>
+
+      {% if link and (link.text ?? null) %}
+        {% include '_components/atoms/button.twig' with {
+          button: {
+            url: link.url,
+            text: link.text ?? '',
+            target: link.target ?? null,
+            variant: 'secondary',
+            classes: mobileLinkClasses ?? null
+          }
+        } %}
+      {% endif %}
 
     </div>
   {% endif %}

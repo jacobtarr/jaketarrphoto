@@ -5,8 +5,8 @@
 
 	{% set state = entry.state.one() %}
 
-	<section class="c-photo-page c-page">
-		<div class="c-photo-page-row space-y-12 container">
+	<section class="c-photo-page c-page space-y-12 md:space-y-20">
+		<div class="space-y-12 container">
 			
 			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 o-page-gap">
 				<div class="sm:col-span-1 lg:col-span-6">
@@ -40,7 +40,7 @@
 						<div class="space-y-3">
 							{% include '_components/atoms/kicker.twig' with {
 								kicker: {
-									classes: 'text-gray-500',
+									classes: 'text-red-500',
 									text: state,
 								}
 							} %}
@@ -87,12 +87,41 @@
 							{{ entry.overview }}
 						</div>
 					{% endif %}
+					
+					{% set allCats = [] %}
+					{% for group in ['state', 'season', 'genre'] %}
+						{% set allCats = allCats|merge(attribute(entry, group).all()) %}
+					{% endfor %}
+
+					{% if allCats|length %}
+						<div class="border-t border-gray-200 pt-8 space-y-3 md:space-y-4">
+							{% include '_components/atoms/kicker.twig' with {
+								kicker: {
+									classes: 'text-gray-500',
+									text: 'Categories',
+								}
+							} %}
+							<div class="flex flex-wrap gap-4">
+								{% for group in ['state', 'season', 'genre'] %}
+									{% set cats = attribute(entry, group).all() %}
+									{% for cat in cats %}
+										{% include '_components/atoms/button.twig' with {
+											button: {
+												url: url('portfolio', { 
+													(group == 'state' ? 'state' : group ~ '[]'): cat.slug 
+												}),
+												text: cat.title
+											}
+										} %}
+									{% endfor %}
+								{% endfor %}
+							</div>
+							
+						</div>
+					{% endif %}
 
 				</div>
-
 			</div>
-
-		
 		</div>
 
 		{% set relatedEntries = craft.entries()
@@ -103,23 +132,31 @@
 			.all()
 		%}
 
-		{% include '_blocks/blockMediaGrid.twig' with {
-			block: {
-				pageBuilderOptionBackgroundColor: 'beige',
-				contentKicker: 'Related Photos',
-				contentHeading: "More from " ~ entry.state.one().title,
-				contentLink: {
-					text: 'See more',
-					url: url('portfolio', { state: state ? state.slug : null })
+		{% if relatedEntries|length %}
+			{% include '_blocks/blockMediaGrid.twig' with {
+				block: {
+					pageBuilderOptionBackgroundColor: 'beige',
+					pageBuilderOptionBackgroundImageToggle: true,
+					type: {
+						handle: 'media-grid',
+					},
+					contentKicker: 'Related Photos',
+					contentKickerClasses: 'text-beige-400',
+					contentHeading: "More from " ~ entry.state.one().title,
+					contentLink: {
+						text: 'See more',
+						url: url('portfolio', { state: state ? state.slug : null })
+					},
+					contentLinkClasses: 'hidden md:inline-flex',
+					contentMobileLinkClasses: 'inline-flex md:hidden',
+					images: relatedEntries,
+					cols: 4,
+					transform: 'aspectRatio4x5',
+					imageField: 'featuredImage'
 				},
-				contentLinkClasses: 'hidden md:inline-flex',
-				images: relatedEntries,
-				cols: 4,
-				transform: 'aspectRatio4x5',
-				imageField: 'featuredImage'
-			},
-			isFullColumn: true
-		} %}
+				isFullColumn: true
+			} %}
+		{% endif %}
 
 		
 	</section>
