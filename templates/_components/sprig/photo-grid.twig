@@ -93,7 +93,7 @@
         {% endif %}
       </div>
       <div class="c-filter-nav__col c-filter-nav__mobile-buttons">
-        {% include '_components/atoms/button.twig' with {
+        {% include '_components/button/button.twig' with {
           button: {
             text: 'Filters' ~ (selectedFilterCount > 0 ? ' (' ~ selectedFilterCount ~ ')' : ''),
             icon: 'filter',
@@ -290,7 +290,7 @@
                 @sprig:success.window="updateCount()"
                 class="c-filter-box__footer"
               >
-                {% include '_components/atoms/button.twig' with {
+                {% include '_components/button/button.twig' with {
                   button: {
                     tag: 'button',
                     classes: 'o-button--primary w-full justify-center text-center',
@@ -397,7 +397,7 @@
               ))
               | reduce((a, b) => a|merge(b), {})
             %}
-            {% include '_components/atoms/button.twig' with {
+            {% include '_components/button/button.twig' with {
               button: {
                 text: 'Load More',
                 tag: 'button',

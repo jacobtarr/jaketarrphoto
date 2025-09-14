@@ -22,7 +22,7 @@
     } %}
   </div>
   {% if link and (link.text ?? null) %}
-    {% include '_components/atoms/button.twig' with {
+    {% include '_components/button/button.twig' with {
       button: {
         url: link.url,
         text: link.text ?? '',

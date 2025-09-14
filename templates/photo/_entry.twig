@@ -105,7 +105,7 @@
 								{% for group in ['state', 'season', 'genre'] %}
 									{% set cats = attribute(entry, group).all() %}
 									{% for cat in cats %}
-										{% include '_components/atoms/button.twig' with {
+										{% include '_components/button/button.twig' with {
 											button: {
 												url: url('portfolio', { 
 													(group == 'state' ? 'state' : group ~ '[]'): cat.slug 

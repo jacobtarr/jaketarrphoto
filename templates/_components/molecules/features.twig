@@ -15,7 +15,7 @@
           {% set link = feature.contentLink is defined and feature.contentLink|length ? feature.contentLink[0] : null %}
           {% if link %}
             <div class="flex flex-wrap gap-5">
-              {% include '_components/atoms/button.twig' with {
+              {% include '_components/button/button.twig' with {
                 button: {
                   url: link.linkValue,
                   text: link.linkText,

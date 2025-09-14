@@ -1,3 +1,7 @@
+@reference "../../../src/css/tokens.css";
+@reference "tailwindcss";
+
+
 button, [role=button] {
   @apply cursor-pointer;
 }

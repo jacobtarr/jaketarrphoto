@@ -30,7 +30,6 @@
 /* Vendor + component styles */
 @import "./vendor/_hamburgers.css";
 
-@import "./atoms/button.css";
 @import "./atoms/dropdown.css";
 @import "./atoms/form.css";
 @import "./atoms/heading.css";
