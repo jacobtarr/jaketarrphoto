@@ -51,7 +51,6 @@
 @import "./molecules/nav-group.css";
 @import "./molecules/block.css";
 @import "./molecules/photo-block.css";
-@import "./molecules/split-media.css";
 
 @import "./organisms/featured-works.css";
 @import "./organisms/footer.css";

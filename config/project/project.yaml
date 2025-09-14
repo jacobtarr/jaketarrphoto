@@ -1,4 +1,4 @@
-dateModified: 1757646781
+dateModified: 1757868618
 email:
   fromEmail: $CRAFT_EMAIL_SYSTEM
   fromName: $CRAFT_EMAIL_SYSTEM
@@ -86,7 +86,7 @@ meta:
     68416f2f-16cf-49ab-83e7-e6b4b097e19d: 'Split Media Block Mobile Layout' # Split Media Block Mobile Layout
     73947b58-b537-41b4-9b72-3b3069626f8b: 'Block: Featured Works' # Block: Featured Works
     99253d82-2d49-4285-8539-155472cf8207: 'Page Builder: Left Column Content' # Page Builder: Left Column Content
-    452561b9-4d58-4e06-abbb-ec181d217e97: 'Block: Content' # Block: Content
+    452561b9-4d58-4e06-abbb-ec181d217e97: 'Block: Text Content' # Block: Text Content
     758857ca-7d33-49af-810b-cb347619a61f: 'Page Features' # Page Features
     921510a6-634a-4235-8ccf-7c94ac73d06a: 'Aspect Ratio: 5x4' # Aspect Ratio: 5x4
     01914777-7aec-4ffe-b263-513b6e67154f: 'Content Body' # Content Body

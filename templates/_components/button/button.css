@@ -1,9 +1,11 @@
-@reference "../../../src/css/tokens.css";
 @reference "tailwindcss";
+@reference "../../../src/css/tokens.css";
 
-
-button, [role=button] {
-  @apply cursor-pointer;
+@layer base {
+  button,
+  [role="button"] {
+    @apply cursor-pointer;
+  }
 }
 
 @layer components {

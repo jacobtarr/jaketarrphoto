@@ -33,7 +33,7 @@
       {% endif %}
 
       {# Render the block as normal #}
-      {% include '_blocks/' ~ block.type ~ '.twig' with {
+      {% include '_blocks/' ~ block.type.handle ~ '/index.twig' with {
         block: block,
         parentMatrix: 'pageBuilderFullColumnContent',
         isStacked: isStacked,

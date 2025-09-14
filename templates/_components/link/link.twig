@@ -1,0 +1,29 @@
+{% set tag = link.tag ?? 'a' %}
+{% set additionalClasses = link.classes is defined and link.classes ? ' ' ~ link.classes : '' %}
+{% set attrs = link.attrs ?? {} %}
+
+{% if tag == 'a' %}
+  {% set attrs = attrs|merge({
+    href: link.url ?? '#',
+    target: link.target ?? '_self'
+  }) %}
+{% endif %}
+
+<{{ tag }} class="c-link{{ additionalClasses }}"
+  {% for key, value in attrs %}
+    {{ key }}="{{ value is iterable ? value|join(',') : value }}"
+  {% endfor %}
+>
+  
+  {% if link.text is defined %}
+    <span {{ link.spanAttrs is defined ? attr(link.spanAttrs) }}>
+      {{ link.text ?? '' }}
+    </span>
+  {% endif %}
+
+  {% if link.icon is defined %}
+    {% include '_components/atoms/icons/icon-' ~ link.icon ~ '.svg' %}
+  {% elseif link.includeIcon is not defined or link.includeIcon %}
+    {% include '_components/atoms/icons/icon-arrow.svg' %}
+  {% endif %}
+</{{ tag }}>
