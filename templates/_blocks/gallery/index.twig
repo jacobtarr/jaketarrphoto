@@ -1,4 +1,4 @@
-{% extends '_base/_baseBlock.twig' %}
+{% extends '_blocks/_base/block.twig' %}
 {% block blockContent %}
   {% import '_components/atoms/image.twig' as img %}
   {% set layout = block.pageGalleryLayout ?? 'layout1' %}
@@ -17,7 +17,7 @@
         {% set showLightbox = block.pageGalleryLightboxToggle %}
         <div class="c-gallery__image {{ colSpan }}">
           {% if showLightbox %}
-            {% include '_components/molecules/photo-block.twig' with {
+            {% include '_components/photo-block/photo-block.twig' with {
               "photo": {
                 "classes": "c-photo-block--gallery has-lightbox-gallery",
                 "image": image,

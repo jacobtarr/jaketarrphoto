@@ -1,4 +1,4 @@
-{% extends '_base/_baseBlock.twig' %}
+{% extends '_blocks/_base/block.twig' %}
 {% import '_components/atoms/image.twig' as img %}
 
 {% set kickerText         = block.contentKicker ?? null %}
@@ -47,7 +47,7 @@
 
           {% if asset %}
             <div class="col-span-1">
-              {% include '_components/molecules/photo-block.twig' with {
+              {% include '_components/photo-block/photo-block.twig' with {
                 photo: {
                   classes: 'c-photo-block',
                   image: asset,

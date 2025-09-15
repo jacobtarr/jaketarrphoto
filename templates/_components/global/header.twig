@@ -25,7 +25,7 @@
     </nav>
 
     <div class="c-header__right-content">
-      {% include '_components/atoms/switch.twig' with {
+      {% include '_components/switch/switch.twig' with {
         switch: {
           srLabel: 'Toggle dark mode',
           iconOff: 'moon',
@@ -65,7 +65,7 @@
               }
             } %}
             <div class="c-mobile-nav__footer space-y-2">
-              {% include '_components/atoms/heading.twig' with {
+              {% include '_components/heading/heading.twig' with {
                 "heading": {
                   "classes": 'o-heading--h3',
                   "tag": "h5",

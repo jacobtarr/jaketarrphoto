@@ -1,3 +1,6 @@
+@reference "tailwindcss";
+@reference "../../../src/css/tokens.css";
+
 .block {
   @apply space-y-4;
 }

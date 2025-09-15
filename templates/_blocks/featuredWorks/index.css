@@ -1,3 +1,6 @@
+@reference "tailwindcss";
+@reference "../../../src/css/tokens.css";
+
 .c-featured-grid__mobile-card-link {
   @apply col-span-12 text-right block lg:hidden;
 }
@@ -10,6 +13,7 @@
   @apply flex lg:grid grid-cols-3 gap-3 lg:gap-5
   -mr-4 lg:mr-0 pr-4 lg:pr-0
   overflow-x-auto lg:overflow-visible
+  [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden
   scroll-pr-4 snap-x snap-mandatory lg:snap-none;
 }
 
@@ -44,6 +48,7 @@
 .c-single-row-grid__entry-grid {
   @apply flex md:grid grid-cols-12 gap-3 md:gap-5
   overflow-x-auto md:overflow-visible
+  [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden
   -mr-4 md:mr-0 pr-4 md:pr-0 scroll-pr-4;
 }
 

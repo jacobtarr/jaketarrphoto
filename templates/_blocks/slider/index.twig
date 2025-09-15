@@ -1,10 +1,10 @@
-{% extends '_base/_baseBlock.twig' %}
+{% extends '_blocks/_base/block.twig' %}
 
 {% block blockContent %}
   {% import '_components/atoms/image.twig' as img %}
   <div class="c-slider-section" x-data="sliderData()">
     <div class="c-slider-grid grid grid-cols-12 gap-4 sm:gap-5">
-      {% include '_components/atoms/kicker.twig' with {
+      {% include '_components/kicker/kicker.twig' with {
         "kicker": {
           "classes": 'flex text-sm sm:hidden',
           "text": block.title,
@@ -18,7 +18,7 @@
             <div class="c-card c-card--plain c-slide-content__info">
               <div class="c-card__inner">
                 <div class="sm:space-y-2 md:space-y-3">
-                  {% include '_components/atoms/kicker.twig' with {
+                  {% include '_components/kicker/kicker.twig' with {
                     "kicker": {
                       "classes": 'hidden sm:flex',
                       "text": block.title,
@@ -26,7 +26,7 @@
                   } %}
 
                   <div class="space-y-3 md:space-y-5">
-                    {% include '_components/atoms/heading.twig' with {
+                    {% include '_components/heading/heading.twig' with {
                       "heading": {
                         "classes": 'c-slide-title',
                         "tag": 'h3',

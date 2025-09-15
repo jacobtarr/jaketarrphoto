@@ -1,3 +1,6 @@
+@reference "tailwindcss";
+@reference "../../../src/css/tokens.css";
+
 @layer components {
   .o-kicker {
     @apply uppercase tracking-widest text-xs md:text-sm font-founders font-semibold leading-4

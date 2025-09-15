@@ -1,16 +1,17 @@
-@layer base {
-  /* Global heading defaults */
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-sans font-bold leading-[1.15];
-  }
+@reference "tailwindcss";
+@reference "../../../src/css/tokens.css";
 
-  h1 { @apply lg:leading-[1.2] text-3xl lg:text-5xl; }
-  h2 { @apply text-2xl lg:text-4xl; }
-  h3 { @apply text-xl  lg:text-3xl; }
-  h4 { @apply text-lg  lg:text-2xl; }
-  h5 { @apply text-base lg:text-xl; }
-  h6 { @apply text-base lg:text-lg; }
+/* Global heading defaults */
+h1, h2, h3, h4, h5, h6 {
+  @apply font-sans font-bold leading-[1.15];
 }
+
+h1 { @apply lg:leading-[1.2] text-3xl lg:text-5xl; }
+h2 { @apply text-2xl lg:text-4xl; }
+h3 { @apply text-xl  lg:text-3xl; }
+h4 { @apply text-lg  lg:text-2xl; }
+h5 { @apply text-base lg:text-xl; }
+h6 { @apply text-base lg:text-lg; }
 
 @layer utilities {
   /* Hero variant */

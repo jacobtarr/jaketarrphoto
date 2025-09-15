@@ -1,4 +1,4 @@
-{% extends '_base/_baseBlock.twig' %}
+{% extends '_blocks/_base/block.twig' %}
 {% import '_components/atoms/image.twig' as img %}
 
 {% block blockContent %}
@@ -62,7 +62,7 @@
               {% if item.type == 'entry' and entryIndex < 4 %}
                 {% set rowSpan = layoutOverrides[entryIndex] %}
                 <div class="c-mosaic-grid__entry-col row-span-{{ rowSpan }}">
-                  {% include '_components/molecules/photo-block.twig' with {
+                  {% include '_components/photo-block/photo-block.twig' with {
                     photo: {
                       image: item.entry.featuredImage.one(),
                       classes: 'h-full',
@@ -81,7 +81,7 @@
             {% for item in entryBlocks %}
               {% if item.type == 'entry' %}
                 <div class="c-mosaic-grid__entry-col {{ loop.index == 2 ? 'row-span-2' : 'row-span-1' }}">
-                  {% include '_components/molecules/photo-block.twig' with {
+                  {% include '_components/photo-block/photo-block.twig' with {
                     photo: {
                       image: item.entry.featuredImage.one(),
                       classes: 'h-full',
@@ -191,7 +191,7 @@
           {% set image = entry.featuredImage.one() %}
           {% if image %}
             <div class="c-single-row-grid__entry-col {{ colSpanClass }}">
-              {% include '_components/molecules/photo-block.twig' with {
+              {% include '_components/photo-block/photo-block.twig' with {
                 photo: {
                   classes: 'h-full',
                   image: image,

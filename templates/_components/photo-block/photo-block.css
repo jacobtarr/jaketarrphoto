@@ -1,3 +1,6 @@
+@reference "tailwindcss";
+@reference "../../../src/css/tokens.css";
+
 .c-photo-block {
   @apply relative overflow-hidden flex;
 

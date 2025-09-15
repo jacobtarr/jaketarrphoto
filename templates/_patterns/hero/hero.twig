@@ -15,7 +15,7 @@
 
     {% if isFullBleed %}
       <div class="c-hero__heading c-hero__heading--mobile">
-        {% include '_components/atoms/heading.twig' with {
+        {% include '_components/heading/heading.twig' with {
           heading: {
             classes: headingClasses,
             text: heading|raw,
@@ -30,7 +30,7 @@
     <div class="c-hero__container container">
       <div class="c-hero__content md:space-y-6">
         <div class="c-hero__heading">
-          {% include '_components/atoms/heading.twig' with {
+          {% include '_components/heading/heading.twig' with {
             heading: {
               classes: headingClasses ~ (isFullBleed ? ' hidden md:block' : ''),
               text: heading|raw,
@@ -38,7 +38,7 @@
             }
           } %}
           {% if secondary_heading %}
-            {% include '_components/atoms/heading.twig' with {
+            {% include '_components/heading/heading.twig' with {
               heading: {
                 text: secondary_heading,
                 underline: false,

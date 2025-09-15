@@ -13,7 +13,7 @@
 					
 					<div class="c-photo sticky top-4">
 						{% if entry.featuredImage.one() %}
-							{% include '_components/molecules/photo-block.twig' with {
+							{% include '_components/photo-block/photo-block.twig' with {
 								"photo": {
 									"classes": "c-photo-block--gallery has-lightbox-gallery",
 									"image": entry.featuredImage.one(),
@@ -38,13 +38,13 @@
 				<div class="sm:col-span-1 lg:col-span-6 space-y-8">
 					<div class="space-y-4">
 						<div class="space-y-3">
-							{% include '_components/atoms/kicker.twig' with {
+							{% include '_components/kicker/kicker.twig' with {
 								kicker: {
 									classes: 'text-red-500',
 									text: state,
 								}
 							} %}
-							{% include '_components/atoms/heading.twig' with {
+							{% include '_components/heading/heading.twig' with {
 								"heading": {
 									"text": entry.title
 								}
@@ -95,7 +95,7 @@
 
 					{% if allCats|length %}
 						<div class="border-t border-gray-200 pt-8 space-y-3 md:space-y-4">
-							{% include '_components/atoms/kicker.twig' with {
+							{% include '_components/kicker/kicker.twig' with {
 								kicker: {
 									classes: 'text-gray-500',
 									text: 'Categories',

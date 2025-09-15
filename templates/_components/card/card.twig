@@ -6,7 +6,7 @@
   <div class="c-card__inner{{ innerAdditionalClasses }}">
     <div class="space-y-2 md:space-y-3">
       {% if card.kicker is defined %}
-        {% include '_components/atoms/kicker.twig' with {
+        {% include '_components/kicker/kicker.twig' with {
           kicker: {
             text: card.kicker
           }
@@ -15,7 +15,7 @@
 
       <div class="space-y-3 md:space-y-6">
         {% if card.heading is defined or card.headingAttrs is defined %}
-          {% include '_components/atoms/heading.twig' with {
+          {% include '_components/heading/heading.twig' with {
             heading: {
               classes: 'o-heading--h3' ~ (card.headingClass is defined ? ' ' ~ card.headingClass : ''),
               tag: 'h3',

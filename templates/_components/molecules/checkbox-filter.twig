@@ -1,7 +1,7 @@
 {% macro renderFilter(title, options, selectedOptions, inputName, extraAttrs) %}
   {% set formSelector = extraAttrs['formSelector'] ?? '#filters-form' %}
   <div class="c-filter-section space-y-4">
-    {% include '_components/atoms/kicker.twig' with {
+    {% include '_components/kicker/kicker.twig' with {
       kicker: {
         text: title,
         classes: 'c-filter-section__title'

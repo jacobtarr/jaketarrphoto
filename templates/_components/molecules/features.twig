@@ -2,7 +2,7 @@
   <div class="grid lg:grid-cols-{{ columns|default(3) }} gap-5">
     {% for feature in features %}
       <div class="c-feature space-y-3 col-span-{{ feature.colSpan|default('1') }}">
-        {% include '_components/atoms/kicker.twig' with {
+        {% include '_components/kicker/kicker.twig' with {
           kicker: {
             icon: attribute(feature, 'icon') ?? null,
             text: feature.title,

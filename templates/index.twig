@@ -14,7 +14,7 @@
 
 {% block site %}
   <section class="c-landing-page">
-    {% include '_components/molecules/hero.twig' with { hero: hero } %}
+    {% include '_patterns/hero/hero.twig' with { hero: hero } %}
     {% set blocks = entry.pageBuilderFullColumnContent.all() %}
 
     {% for block in blocks %}
