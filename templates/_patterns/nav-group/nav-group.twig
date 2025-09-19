@@ -4,6 +4,15 @@
      useActive?: boolean  (default false) – add Alpine active bindings
      classes?: string     (extra classes for the <ul>)
    }
+  
+  Example usage: 
+  {% include '_components/molecules/nav-group.twig' with {
+    navGroup: {
+      links: navLinks,
+      useActive: true,
+      classes: ''
+    }
+  } %}
 #}
 
 {% set links = navGroup.links ?? [] %}

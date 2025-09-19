@@ -1,0 +1,52 @@
+{# Example usage #}
+{# {% include '_components/select/select.twig' with {
+  select: {
+    name: 'state',
+    selected: state,
+    options: [{
+      value: '',
+      label: 'All States'
+    }] | merge(
+      states|map(option => {
+        value: option.slug,
+        label: option.title
+      })
+    ),
+    icon: 'chevron-down',
+    attrs: {
+      sprig: true
+    }
+  }
+} %} #}
+
+{% set tag = 'select' %}
+{% set selectedValue = select.selected ?? '' %}
+{% set options = select.options ?? [] %}
+{% set additionalClasses = select.classes is defined and select.classes ? ' ' ~ select.classes : '' %}
+{% set attrs = select.attrs ?? {} %}
+
+<div class="c-select-container{{ additionalClasses }}">
+  <{{ tag }} name="{{ select.name }}" class="c-select"
+    {% for key, value in attrs %}
+      {{ key }}="{{ value }}"
+    {% endfor %}
+    aria-label="{{ select.prepend_text ?? 'Sort dropdown' }}"
+  >
+    {% for option in options %}
+      <option 
+        value="{{ option.value }}" 
+        {% if option.value == selectedValue %}selected{% endif %}
+      >
+        {{ option.label }}
+      </option>
+    {% endfor %}
+  </{{ tag }}>
+
+  <span class="c-select__arrow">
+    {% if select.icon is defined %}
+      {% include '_components/icon/icons/icon-' ~ select.icon ~ '.svg' %}
+    {% elseif select.includeIcon is not defined or select.includeIcon %}
+      {% include '_components/icon/icons/icon-chevron-down.svg' %}
+    {% endif %}
+  </span>
+</div>

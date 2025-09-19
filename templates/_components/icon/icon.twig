@@ -9,12 +9,12 @@
   }) %}
 {% endif %}
 
-<{{ tag }} class="o-icon{{ additionalClasses }}"
+<{{ tag }} class="c-icon{{ additionalClasses }}"
   {% for key, value in attrs %}
     {{ key }}="{{ value is iterable ? value|join(',') : value }}"
   {% endfor %}
 >
   {% if icon.name is defined and icon.name %}
-    {% include '_components/atoms/icons/icon-' ~ icon.name ~ '.svg' ignore missing %}
+    {% include '_components/icon/icons/icon-' ~ icon.name ~ '.svg' ignore missing %}
   {% endif %}
 </{{ tag }}>

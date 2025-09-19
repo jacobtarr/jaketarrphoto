@@ -2,25 +2,25 @@
 @reference "../../../src/css/tokens.css";
 
 @layer components {
-  .o-kicker {
+  .c-kicker {
     @apply uppercase tracking-widest text-xs md:text-sm font-founders font-semibold leading-4
            flex items-center gap-3;
   }
 
-  .o-kicker svg {
+  .c-kicker svg {
     @apply w-4;
   }
 
-  .o-kicker--beige,
-  .block--bg-black .o-kicker {
+  .c-kicker--beige,
+  .block--bg-black .c-kicker {
     @apply text-beige-200;
   }
 
-  .block--bg-beige .o-kicker {
+  .block--bg-beige .c-kicker {
     @apply text-beige-400;
   }
 
-  .block--bg-white .o-kicker {
+  .block--bg-white .c-kicker {
     @apply text-red-500;
   }
 }

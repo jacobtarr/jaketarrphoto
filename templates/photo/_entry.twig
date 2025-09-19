@@ -1,5 +1,5 @@
 {% extends '_layouts/global.twig' %}
-{% import '_components/atoms/image.twig' as img %}
+{% import '_macros/image.twig' as img %}
 
 {% block site %}
 
@@ -51,7 +51,7 @@
 							} %}
 							
 						</div>
-						{% include '_components/molecules/post-teaser.twig' with {
+						{% include '_components/post-teaser/post-teaser.twig' with {
 							postTeaser: {
 								classes: '',
 								content: entry.postTeaser
@@ -60,7 +60,7 @@
 					</div>
 					
 
-					{% include '_components/molecules/features.twig' with {
+					{% include '_patterns/features/features.twig' with {
 						columns: 3,
 						features: [
 							{

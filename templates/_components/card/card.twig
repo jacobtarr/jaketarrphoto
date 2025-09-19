@@ -27,7 +27,7 @@
         {% endif %}
 
         {% if card.body is defined %}
-          {% include '_components/atoms/rich-text.twig' with {
+          {% include '_components/rich-text/rich-text.twig' with {
             richText: {
               classes: 'c-card__text',
               content: card.body

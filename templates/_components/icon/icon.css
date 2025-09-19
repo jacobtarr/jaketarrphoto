@@ -1,4 +1,7 @@
-.o-icon {
+@reference "tailwindcss";
+@reference "../../../src/css/tokens.css";
+
+.c-icon {
   @apply transition-all duration-300 ease-in-out;
   
   svg {

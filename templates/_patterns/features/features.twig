@@ -11,7 +11,7 @@
           }
         } %}
         <div class="c-feature__content space-y-5">
-          <div class="o-rte font-sans font-medium">{{ feature.description|raw }}</div>
+          <div class="c-rte font-sans font-medium">{{ feature.description|raw }}</div>
           {% set link = feature.contentLink is defined and feature.contentLink|length ? feature.contentLink[0] : null %}
           {% if link %}
             <div class="flex flex-wrap gap-5">

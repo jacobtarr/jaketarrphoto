@@ -1,4 +1,4 @@
-{% import '_components/atoms/image.twig' as img %}
+{% import '_macros/image.twig' as img %}
 {% set additionalClasses = photo.classes is defined and photo.classes ? ' ' ~ photo.classes : '' %}
 {% set attrs = photo.attrs ?? {} %}
 
@@ -13,8 +13,8 @@
 
   {% if photo.caption is defined and photo.caption is not empty %}
     {% set icon = photo.icon is defined and photo.icon is not empty 
-      ? '_components/atoms/icons/icon-' ~ photo.icon ~ '.svg' 
-      : '_components/atoms/icons/icon-up-right-small.svg' %}
+      ? '_components/icon/icons/icon-' ~ photo.icon ~ '.svg' 
+      : '_components/icon/icons/icon-up-right-small.svg' %}
     <p class="c-photo-block__caption">
       <span>{{ photo.caption }}</span>
       {% include icon %}

@@ -1,3 +1,6 @@
+@reference "tailwindcss";
+@reference "../../../src/css/tokens.css";
+
 .c-logo {
   @apply flex items-center gap-4 md:gap-5 relative z-[70];
 }

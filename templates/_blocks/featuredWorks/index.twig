@@ -1,5 +1,5 @@
 {% extends '_blocks/_base/block.twig' %}
-{% import '_components/atoms/image.twig' as img %}
+{% import '_macros/image.twig' as img %}
 
 {% block blockContent %}
 
@@ -116,7 +116,7 @@
           {% include '_components/button/button.twig' with {
             button: {
               variant: 'secondary',
-              classes: 'o-button--secondary--beige',
+              classes: 'c-button--secondary--beige',
               url: block.cardLink.url,
               text: block.cardLink.text,
               target: block.cardLink.target,
@@ -211,7 +211,7 @@
         {% include '_components/button/button.twig' with {
           button: {
             variant: 'secondary',
-            classes: 'o-button--secondary--beige',
+            classes: 'c-button--secondary--beige',
             url: block.cardLink.url,
             text: block.cardLink.text,
             target: block.cardLink.target,

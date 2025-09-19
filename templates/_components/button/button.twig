@@ -1,7 +1,7 @@
 {% set tag = button.tag ?? 'a' %}
 {% set additionalClasses = button.classes is defined and button.classes ? ' ' ~ button.classes : '' %}
 {% set variant = (button.variant ?? 'primary')|lower %}
-{% set variantClass = ' o-button--' ~ variant %}
+{% set variantClass = ' c-button--' ~ variant %}
 {% set attrs = button.attrs ?? {} %}
 
 {# Default logic for includeIcon depends on variant #}
@@ -18,19 +18,19 @@
   }) %}
 {% endif %}
 
-<{{ tag }} class="o-button{{ variantClass }}{{ additionalClasses }}"
+<{{ tag }} class="c-button{{ variantClass }}{{ additionalClasses }}"
   {% for key, value in attrs %}
     {{ key }}="{{ value is iterable ? value|join(',') : value }}"
   {% endfor %}
 >
   {% if variant == 'secondary' %}
     {% if button.icon is defined %}
-      <div class="o-button__icon-wrap o-button__icon-wrap--left">
-        {% include '_components/atoms/icons/icon-' ~ button.icon ~ '.svg' %}
+      <div class="c-button__icon-wrap c-button__icon-wrap--left">
+        {% include '_components/icon/icons/icon-' ~ button.icon ~ '.svg' %}
       </div>
     {% elseif includeIcon %}
-      <div class="o-button__icon-wrap o-button__icon-wrap--left">
-        {% include '_components/atoms/icons/icon-arrow.svg' %}
+      <div class="c-button__icon-wrap c-button__icon-wrap--left">
+        {% include '_components/icon/icons/icon-arrow.svg' %}
       </div>
     {% endif %}
   {% endif %}
@@ -40,12 +40,12 @@
   {% endif %}
 
   {% if button.icon is defined %}
-    <div class="o-button__icon-wrap">
-      {% include '_components/atoms/icons/icon-' ~ button.icon ~ '.svg' %}
+    <div class="c-button__icon-wrap">
+      {% include '_components/icon/icons/icon-' ~ button.icon ~ '.svg' %}
     </div>
   {% elseif includeIcon %}
-    <div class="o-button__icon-wrap">
-      {% include '_components/atoms/icons/icon-arrow.svg' %}
+    <div class="c-button__icon-wrap">
+      {% include '_components/icon/icons/icon-arrow.svg' %}
     </div>
   {% endif %}
 </{{ tag }}>

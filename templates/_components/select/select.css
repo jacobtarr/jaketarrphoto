@@ -1,4 +1,7 @@
-.c-dropdown {
+@reference "tailwindcss";
+@reference "../../../src/css/tokens.css";
+
+.c-select-container {
   position: relative;
   display: flex;
   width: 100%;
@@ -16,7 +19,7 @@
     outline: none;
     color: #fff;
 
-    .c-dropdown__arrow {
+    .c-select__arrow {
       svg {
         path {
           fill: #fff;
@@ -30,7 +33,7 @@
   }
 }
 
-.c-dropdown--sort-by {
+.c-select--sort-by {
   width: auto;
   border-radius: 35px;
   font-size: 14px;
@@ -39,7 +42,7 @@
     @apply py-[5px] pl-4 md:pr-[55px] md:py-[7px] md:pl-5;
   }
 
-  .c-dropdown__arrow {
+  .c-select__arrow {
     right: 20px;
   }
 }
@@ -56,7 +59,7 @@
   @apply font-medium text-sm md:text-base;
 }
 
-.c-dropdown__arrow {
+.c-select__arrow {
   position: absolute;
   top: 50%;
   right: 15px;

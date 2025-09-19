@@ -3,7 +3,7 @@
 }
 
 .c-icon-group--share {
-  .o-icon {
+  .c-icon {
     svg {
       @apply h-full;
 

@@ -1,6 +1,6 @@
 {% extends '_blocks/_base/block.twig' %}
 {% block blockContent %}
-  {% import '_components/atoms/image.twig' as img %}
+  {% import '_macros/image.twig' as img %}
   {% set layout = block.pageGalleryLayout ?? 'layout1' %}
 
   {% set gridClass =
@@ -41,7 +41,7 @@
     </div>
 
     <div class="c-gallery__caption">
-      {% include '_components/atoms/rich-text.twig' with {
+      {% include '_components/rich-text/rich-text.twig' with {
         "richText": {
           "classes": '',
           "content": block.pageGalleryCaption

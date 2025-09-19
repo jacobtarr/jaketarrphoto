@@ -22,8 +22,8 @@
   {% endif %}
 
   {% if link.icon is defined %}
-    {% include '_components/atoms/icons/icon-' ~ link.icon ~ '.svg' %}
+    {% include '_components/icon/icons/icon-' ~ link.icon ~ '.svg' %}
   {% elseif link.includeIcon is not defined or link.includeIcon %}
-    {% include '_components/atoms/icons/icon-arrow.svg' %}
+    {% include '_components/icon/icons/icon-arrow.svg' %}
   {% endif %}
 </{{ tag }}>

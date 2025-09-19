@@ -1,6 +1,7 @@
 @reference "tailwindcss";
 @reference "../../../src/css/tokens.css";
 
+
 /* Global heading defaults */
 h1, h2, h3, h4, h5, h6 {
   @apply font-sans font-bold leading-[1.15];
@@ -13,7 +14,8 @@ h4 { @apply text-lg  lg:text-2xl; }
 h5 { @apply text-base lg:text-xl; }
 h6 { @apply text-base lg:text-lg; }
 
-@layer utilities {
+
+@layer components {
   /* Hero variant */
   .o-heading--hero { @apply leading-[1.15] xl:leading-[1.05] xl:text-7xl; }
 

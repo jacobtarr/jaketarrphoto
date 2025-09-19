@@ -1,4 +1,4 @@
-{% import '_components/atoms/image.twig' as img %}
+{% import '_macros/image.twig' as img %}
 {% set image = hero.image ?? null %}
 {% set heading = hero.heading ?? null %}
 {% set headingClasses = hero.headingClasses is defined and hero.headingClasses ? '' ~ hero.headingClasses : '' %}
@@ -49,7 +49,7 @@
           {% endif %}
         </div>
         {% if text %}
-          {% include '_components/atoms/rich-text.twig' with {
+          {% include '_components/rich-text/rich-text.twig' with {
             richText: {
               classes: 'c-hero__text',
               content: text
@@ -62,7 +62,7 @@
         <div class="c-hero__button-wrapper">
           {% include '_components/button/button.twig' with {
             "button": {
-              "classes": 'o-button--secondary--white o-button--secondary--large',
+              "classes": 'c-button--secondary--white c-button--secondary--large',
               "variant": 'secondary',
               "url": link.url,
               "text": link.text,

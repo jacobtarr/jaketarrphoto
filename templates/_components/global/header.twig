@@ -3,7 +3,7 @@
   x-init="init(); $watch('open', value => document.body.classList.toggle('mobile-menu-is-active', value))" 
   class="c-header">
   <div class="c-header__inner">
-    {% include '_components/atoms/logo.twig' with {
+    {% include '_components/logo/logo.twig' with {
       logo: {
         classes: ''
       }
@@ -16,7 +16,7 @@
     ] %}
 
     <nav class="c-nav" aria-label="Primary">
-      {% include '_components/molecules/nav-group.twig' with {
+      {% include '_patterns/nav-group/nav-group.twig' with {
         navGroup: {
           links: navLinks,
           useActive: true
@@ -58,7 +58,7 @@
           role="navigation"
           aria-label="Mobile site links">
           <div class="c-mobile-nav__inner container space-y-15">
-            {% include '_components/molecules/nav-group.twig' with {
+            {% include '_patterns/nav-group/nav-group.twig' with {
               navGroup: {
                 links: navLinks,
                 classes: 'c-nav-group--mobile'

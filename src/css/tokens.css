@@ -92,13 +92,11 @@
   --font-founders: "Founders Grotesk", sans-serif;
 }
 
-/* 1) The “soft” shadow geometry */
 @utility shadow-card-soft {
   box-shadow: var(--shadow-card-soft)
               color-mix(in oklch, var(--shadow-color, var(--color-gray-900)) 50%, transparent);
 }
 
-/* 2) Shadow color setters — set --shadow-color */
 @utility shadowc-gray-100  { --shadow-color: var(--color-gray-100); }
 @utility shadowc-gray-200  { --shadow-color: var(--color-gray-200); }
 @utility shadowc-gray-300  { --shadow-color: var(--color-gray-300); }

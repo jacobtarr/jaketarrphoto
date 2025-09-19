@@ -1,3 +1,6 @@
+@reference "tailwindcss";
+@reference "../../../src/css/tokens.css";
+
 .c-nav-group {
   @apply flex gap-12;
 }

@@ -1,5 +1,5 @@
 {% extends '_blocks/_base/block.twig' %}
-{% import '_components/atoms/image.twig' as img %}
+{% import '_macros/image.twig' as img %}
 
 {% set kickerText         = block.contentKicker ?? null %}
 {% set kickerClasses      = block.contentKickerClasses ?? null %}
@@ -15,7 +15,7 @@
 {% block blockContent %}
   {% if images|length %}
     <div class="space-y-6 text-right">
-      {% include '_components/molecules/section-heading.twig' with {
+      {% include '_patterns/section-heading/section-heading.twig' with {
         sectionHeading: {
           kickerText: kickerText,
           kickerClasses: kickerClasses,

@@ -10,11 +10,11 @@ p {
   @apply text-7xl font-bold float-left leading-[58px] mr-4 text-red-500;
 }
 
-.o-rte, p {
+.c-rte, p {
   @apply leading-[1.4] text-base xl:text-lg;
 }
 
-.o-rte {
+.c-rte {
   ul, ol {
     list-style: inherit;
     padding-left: 1rem;

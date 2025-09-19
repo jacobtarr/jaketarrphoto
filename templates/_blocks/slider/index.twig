@@ -1,7 +1,7 @@
 {% extends '_blocks/_base/block.twig' %}
 
 {% block blockContent %}
-  {% import '_components/atoms/image.twig' as img %}
+  {% import '_macros/image.twig' as img %}
   <div class="c-slider-section" x-data="sliderData()">
     <div class="c-slider-grid grid grid-cols-12 gap-4 sm:gap-5">
       {% include '_components/kicker/kicker.twig' with {
@@ -37,7 +37,7 @@
                         }
                       }
                     } %}
-                    {% include '_components/atoms/rich-text.twig' with {
+                    {% include '_components/rich-text/rich-text.twig' with {
                       "richText": {
                         "classes": 'c-card__text c-slide-text',
                         "content": 'Active Content',

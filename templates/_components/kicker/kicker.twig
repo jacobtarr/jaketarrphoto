@@ -26,20 +26,20 @@
 {% set iconAttrs = kicker.iconAttrs ?? {} %}
 
 {% if kicker.text is defined and kicker.text %}
-  <div class="o-kicker items-center gap-2 align-middle{{ additionalClasses }}"
+  <div class="c-kicker items-center gap-2 align-middle{{ additionalClasses }}"
     {% for key, value in attrs %}
       {{ key }}="{{ value is iterable ? value|join(',') : value }}"
     {% endfor %}
   >
     {% if kicker.icon is defined and kicker.icon|length %}
-      <span class="o-kicker__icon inline-flex"
+      <span class="c-kicker__icon inline-flex"
         {% for key, value in iconAttrs %}
           {{ key }}="{{ value is iterable ? value|join(',') : value }}"
         {% endfor %}
       >
         {# Get the raw SVG markup #}
         {% set iconSvg %}
-          {{ include('_components/atoms/icons/icon-' ~ kicker.icon ~ '.svg', ignoreMissing=true) }}
+          {{ include('_components/icon/icons/icon-' ~ kicker.icon ~ '.svg', ignoreMissing=true) }}
         {% endset %}
 
         {% if iconSvg %}
@@ -54,6 +54,6 @@
       </span>
     {% endif %}
 
-    <span class="o-kicker__text">{{ kicker.text }}</span>
+    <span class="c-kicker__text">{{ kicker.text }}</span>
   </div>
 {% endif %}
