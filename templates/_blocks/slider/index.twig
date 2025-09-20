@@ -15,54 +15,52 @@
         <div class="c-slide-content">
           <div class="c-slide-content__inner">
             {# <div class="c-slide-content__number text-6xl" x-text="(currentIndex + 1).toString().padStart(2, '0')"></div> #}
-            <div class="c-card c-card--plain c-slide-content__info">
-              <div class="c-card__inner">
-                <div class="sm:space-y-2 md:space-y-3">
-                  {% include '_components/kicker/kicker.twig' with {
-                    "kicker": {
-                      "classes": 'hidden sm:flex',
-                      "text": block.title,
-                    }
-                  } %}
-
-                  <div class="space-y-3 md:space-y-5">
-                    {% include '_components/heading/heading.twig' with {
-                      "heading": {
-                        "classes": 'o-heading--h3 c-slide-title',
-                        "tag": 'h3',
-                        "underline": false,
-                        "text": 'Active Title',
-                        attrs: {
-                          'x-html': "slides[currentIndex]?.title"
-                        }
-                      }
-                    } %}
-                    {% include '_components/rich-text/rich-text.twig' with {
-                      "richText": {
-                        "classes": 'c-card__text c-slide-text',
-                        "content": 'Active Content',
-                        attrs: {
-                          'x-html': "slides[currentIndex]?.content"
-                        }
-                      }
-                    } %}
-                  </div>
-                </div>
-
-                {% include '_components/link/link.twig' with {
-                  link: {
-                    classes: 'c-card__link',
-                    includeIcon: true,
-                    text: 'View Entry',
-                    spanAttrs: {
-                      'x-text': "slides[currentIndex]?.linkText || 'View Entry'"
-                    },
-                    attrs: {
-                      'x-bind:href': "slides[currentIndex]?.linkUrl || '#'"
-                    }
+            <div class="c-slide-content__info">
+              <div class="space-y-2 md:space-y-3">
+                {% include '_components/kicker/kicker.twig' with {
+                  "kicker": {
+                    "classes": 'hidden sm:flex',
+                    "text": block.title,
                   }
                 } %}
+
+                <div class="space-y-3 md:space-y-6">
+                  {% include '_components/heading/heading.twig' with {
+                    "heading": {
+                      "classes": 'o-heading--h3 c-slide-title',
+                      "tag": 'h3',
+                      "underline": false,
+                      "text": 'Active Title',
+                      attrs: {
+                        'x-html': "slides[currentIndex]?.title"
+                      }
+                    }
+                  } %}
+                  {% include '_components/rich-text/rich-text.twig' with {
+                    "richText": {
+                      "classes": 'c-slide-text',
+                      "content": 'Active Content',
+                      attrs: {
+                        'x-html': "slides[currentIndex]?.content"
+                      }
+                    }
+                  } %}
+                </div>
               </div>
+
+              {% include '_components/link/link.twig' with {
+                link: {
+                  classes: 'c-slide-content__link',
+                  includeIcon: true,
+                  text: 'View Entry',
+                  spanAttrs: {
+                    'x-text': "slides[currentIndex]?.linkText || 'View Entry'"
+                  },
+                  attrs: {
+                    'x-bind:href': "slides[currentIndex]?.linkUrl || '#'"
+                  }
+                }
+              } %}
             </div>
           </div>
         </div>

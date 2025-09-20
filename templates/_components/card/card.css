@@ -23,12 +23,6 @@
 }
 
 .c-card__text {
-  @apply text-sm lg:text-base;
-
-  p {
-    @apply text-base lg:text-base;
-  }
-
   .c-card--plain & {
     @apply sm:text-sm lg:text-base;
 

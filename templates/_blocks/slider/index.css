@@ -99,10 +99,11 @@
 }
 
 .c-slide-content {
-  display: flex;
-  position: relative;
+  @apply flex relative text-gray-100;
+}
 
-  @apply text-gray-100;
+.c-slide-content__link {
+  @apply pt-4 md:pt-8 md:mt-auto justify-end;
 }
 
 .c-slide-content__inner {
