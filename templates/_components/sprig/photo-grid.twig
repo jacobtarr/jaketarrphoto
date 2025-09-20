@@ -73,6 +73,7 @@
         classes: 'c-hero--small',
         image: portfolioHero.image,
         heading: 'Portfolio',
+        headingClasses: 'test df',
         secondary_heading: portfolioHero.heading
       }
     } %}
@@ -81,7 +82,13 @@
   <div class="container space-y-5">
     <div class="c-filter-nav">
       <div class="hidden md:flex items-center gap-x-5 relative">
-        <h4 class="text-2xl font-semibold">Filters</h4>
+        {% include '_components/heading/heading.twig' with {
+          heading: {
+            text: 'Filters',
+            tag: 'h4',
+            classes: 'font-semibold',
+          }
+        } %}
         {% set hasSelections = checkboxFilters|filter(f => f.selected|length > 0)|length > 0 %}
         {% if state or hasSelections %}
           <div x-data>
@@ -173,7 +180,13 @@
         <div class="c-filter-box-container" @click.stop>
           <div class="c-filter-box">
             <div class="c-filter-box__mobile-nav">
-              <h4 class="text-2xl font-semibold">Filters</h4>
+              {% include '_components/heading/heading.twig' with {
+                heading: {
+                  text: 'Filters',
+                  tag: 'h4',
+                  classes: 'o-heading--h2 font-semibold',
+                }
+              } %}
               {% set hasSelections = checkboxFilters|filter(f => f.selected|length > 0)|length > 0 %}
               {% if state or hasSelections %}
                 <div x-data>

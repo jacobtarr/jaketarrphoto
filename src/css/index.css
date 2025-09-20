@@ -27,21 +27,20 @@
   }
 }
 
+body {
+  @apply antialiased text-gray-900;
+}
+
+p {
+  @apply font-body;
+}
+
 /* Vendor + component styles */
-@import "./vendor/_hamburgers.css";
 
-@import "./atoms/form.css";
-@import "./atoms/text.css";
-@import "./atoms/utility.css";
+@import "./form.css";
 
-@import "./molecules/filter-box.css";
-@import "./molecules/icon-group.css";
-@import "./molecules/nav.css";
-
-@import "./organisms/footer.css";
-@import "./organisms/header.css";
-@import "./organisms/page.css";
-@import "./organisms/portfolio.css";
+@import "./filter-box.css";
+@import "./portfolio.css";
 
 /* Dark mode */
 html.u-dark-mode {

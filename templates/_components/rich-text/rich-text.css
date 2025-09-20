@@ -1,14 +1,5 @@
-body {
-  @apply antialiased text-gray-900;
-}
-
-p {
-  @apply font-body;
-}
-
-.u-drop-cap:first-letter {
-  @apply text-7xl font-bold float-left leading-[58px] mr-4 text-red-500;
-}
+@reference "tailwindcss";
+@reference "../../../src/css/tokens.css";
 
 .c-rte, p {
   @apply leading-[1.4] text-base xl:text-lg;
@@ -24,4 +15,3 @@ p {
     }
   }
 }
-

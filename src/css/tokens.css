@@ -33,7 +33,7 @@
   --color-beige-400: #7A624B;
 
   /* “soft” shadow geometry */
-  --shadow-card-soft: 0 3px 6px;
+  --shadow-card-soft: 0 2px 4px;
 
   /* Spacing (subset, you can keep full set if you like) */
   --spacing-0: 0px;

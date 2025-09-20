@@ -8,7 +8,7 @@
 	<section class="c-photo-page c-page space-y-12 md:space-y-20">
 		<div class="space-y-12 container">
 			
-			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 o-page-gap">
+			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 u-page-gap">
 				<div class="sm:col-span-1 lg:col-span-6">
 					
 					<div class="c-photo sticky top-4">
@@ -81,12 +81,13 @@
 							}
 						]
 					} %}
-					
-					{% if entry.overview %}
-						<div class="c-page-section c-photo-intro u-drop-cap space-y-6">
-							{{ entry.overview }}
-						</div>
-					{% endif %}
+
+					{% include '_components/rich-text/rich-text.twig' with {
+						"richText": {
+							"classes": '',
+							"content": entry.overview
+						}
+					} %}
 					
 					{% set allCats = [] %}
 					{% for group in ['state', 'season', 'genre'] %}

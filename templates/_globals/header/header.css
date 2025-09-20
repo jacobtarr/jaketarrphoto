@@ -1,3 +1,7 @@
+@reference "tailwindcss";
+@reference "../../../src/css/tokens.css";
+@import "../../../src/css/vendor/_hamburgers.css";
+
 .c-header {
   @apply relative z-[80] h-[55px] md:h-[63px] w-full bg-transparent;
 
@@ -31,6 +35,10 @@
 
 .c-header__inner {
   @apply h-full flex items-center justify-between md:px-6;
+}
+
+.c-nav {
+  @apply hidden md:flex items-center justify-center h-full md:ml-auto;
 }
 
 .c-mobile-menu {
@@ -161,4 +169,3 @@ body.mobile-menu-is-active {
   transition-delay: 0.1s;
   @apply mt-[63px] pt-5;
 }
-
