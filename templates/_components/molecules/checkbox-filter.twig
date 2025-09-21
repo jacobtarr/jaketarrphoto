@@ -1,7 +1,7 @@
 {% macro renderFilter(title, options, selectedOptions, inputName, extraAttrs) %}
   {% set formSelector = extraAttrs['formSelector'] ?? '#filters-form' %}
   <div class="c-filter-section space-y-4">
-    {% include '_components/atoms/kicker.twig' with {
+    {% include '_components/kicker/kicker.twig' with {
       kicker: {
         text: title,
         classes: 'c-filter-section__title'
@@ -9,38 +9,18 @@
     } %}
     <div class="c-filter-section__form-group c-form-group">
       {% for option in options %}
-        <label class="c-checkbox">
-          <input 
-            class="c-checkbox__input" 
-            sprig
-            type="checkbox"
-            id="{{ inputName }}-{{ option.id }}"
-            name="{{ inputName }}[]"
-            value="{{ option.slug }}" 
-            {% if option.slug in selectedOptions %} checked {% endif %}
-            {% for attrName, attrVal in extraAttrs %}
-              {% if attrName != 'formSelector' %}
-                {{ attrName }}="{{ attrVal }}"
-              {% endif %}
-            {% endfor %}
-            x-on:change="
-              const url = new URL(window.location.href);
-              const checkboxes = document.querySelectorAll('input[name=\'{{ inputName }}[]\']');
-              url.searchParams.delete('{{ inputName }}[]');
-              checkboxes.forEach(cb => {
-                if (cb.checked) {
-                  url.searchParams.append('{{ inputName }}[]', cb.value);
-                }
-              });
-              window.history.replaceState({}, '', url);
-              document.querySelector('{{ formSelector }}').requestSubmit();
-            "
-          >
-          <span class="c-checkbox__checkmark-icon-container mr-4">
-            {% include '_components/atoms/icons/icon-checkmark.svg' %}
-          </span>
-          {{ option.title }}
-        </label>
+        {% include '_components/checkbox/checkbox.twig' with {
+          checkbox: {
+            id: inputName ~ '-' ~ option.id,
+            name: inputName ~ '[]',
+            value: option.slug,
+            label: option.title,
+            checked: option.slug in selectedOptions,
+            useFacetHelper: true,
+            formSelector: formSelector,
+            attrs: extraAttrs|filter((v,k)=>k!='formSelector')
+          }
+        } %}
       {% endfor %}
     </div>
   </div>

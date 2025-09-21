@@ -1,0 +1,14 @@
+@reference "tailwindcss";
+@reference "../../../src/css/tokens.css";
+
+.c-icon {
+  @apply transition-all duration-300 ease-in-out;
+  
+  svg {
+    @apply w-full h-full;
+  }
+
+  path {
+    @apply transition-all duration-300 ease-in-out;
+  }
+}

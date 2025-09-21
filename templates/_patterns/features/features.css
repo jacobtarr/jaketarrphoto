@@ -1,0 +1,14 @@
+@reference "tailwindcss";
+@reference "../../../src/css/tokens.css";
+
+.c-features {
+  @apply bg-gray-100 p-6 rounded-[4px] shadow-card-soft shadowc-gray-400;
+}
+
+.c-feature__title {
+  @apply text-gray-500;
+}
+
+.c-feature__content {
+  @apply text-gray-500;
+}

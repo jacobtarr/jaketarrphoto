@@ -1,0 +1,63 @@
+{# ------------------------------------------------------
+  Expects:
+    radio = {
+      id?: string
+      name?: string                 # e.g. "state"
+      value?: string                # e.g. "arizona" (use '' for "All")
+      label?: string                # visible label text
+      checked?: bool
+      classes?: string              # extra classes for outer <label>
+      inputClasses?: string         # extra classes for <input>
+      formSelector?: string         # used by helper; default '#filters-form'
+      useFacetHelper?: bool         # when true, sets x-on:change="updateFacet(...)"
+      attrs?: { [key: string]: string|bool|array }  # passthrough (sprig, s-val:*, x-*, etc.)
+    }
+
+  Usage:
+    {% include '_components/radio/radio.twig' with {
+      radio: {
+        id: 'state-' ~ option.id,
+        name: 'state',
+        value: option.slug,           # '' means "All"
+        label: option.title,
+        checked: selectedValue == option.slug,
+        formSelector: '#filters-form',
+        useFacetHelper: true,         # opt-in to helper (optional)
+        attrs: {
+          sprig: true,
+          's-val:limit': limit,
+          's-val:sort': sort
+          # 'x-on:change': '...'      # optional override if not using helper
+        }
+      }
+    } %}
+------------------------------------------------------- #}
+
+{% set radio = radio ?? {} %}
+{% set classes = ['c-radio-label', radio.classes|default('')] | filter | join(' ') %}
+{% set inputClasses = ['c-radio-input', radio.inputClasses|default('')] | filter | join(' ') %}
+{% set formSelector = radio.formSelector|default('#filters-form') %}
+{% set attrs = radio.attrs|default({}) %}
+
+{# If caller opts into the helper, wire it unless caller already set x-on:change #}
+{% if radio.useFacetHelper is defined and radio.useFacetHelper %}
+  {% if (attrs['x-on:change'] ?? '') is empty %}
+    {% set attrs = attrs|merge({ 'x-on:change': 'updateFacet($event.target)' }) %}
+  {% endif %}
+  {% if (attrs['data-form'] ?? '') is empty %}
+    {% set attrs = attrs|merge({ 'data-form': formSelector }) %}
+  {% endif %}
+{% endif %}
+
+<label class="{{ classes }}">
+  <input
+    type="radio"
+    id="{{ radio.id|default('') }}"
+    name="{{ radio.name|default('') }}"
+    value="{{ radio.value|default('') }}"
+    class="{{ inputClasses }}"
+    {{ radio.checked ? 'checked' }}
+    {{ attr(attrs) }}  {# sprig, s-val:*, x-*, etc. #}
+  >
+  <span>{{ radio.label|default('') }}</span>
+</label>

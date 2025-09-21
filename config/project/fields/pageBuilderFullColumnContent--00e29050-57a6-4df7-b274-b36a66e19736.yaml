@@ -6,15 +6,15 @@ searchable: false
 settings:
   createButtonLabel: null
   entryTypes:
-    - f0a7b6f4-0e83-455e-aba3-24ce98fa11dc # Page Builder: Header Block
-    - 452561b9-4d58-4e06-abbb-ec181d217e97 # Page Builder: Content Block
-    - 33982884-3ffc-4b10-ab0f-7acce9c2f4e6 # Page Builder: Features Block
-    - e2e8232d-7a91-4520-9f64-0d0c97df5efc # Page Builder: Gallery Block
-    - eb0ea69f-509b-47a6-87cb-c9f3ad376908 # Page Builder: Form Block
-    - b6b3dfbf-a51c-4b72-a0f4-13156ea28fe1 # Page Builder: Spacer Block
-    - c1d4b79e-28cb-4d81-8156-5fe616ffb2dc # Page Builder: Slider Block
-    - 73947b58-b537-41b4-9b72-3b3069626f8b # Page Builder: Featured Works Block
-    - 7cfa1850-34c5-4ccc-9135-a2d131dc732e # Page Builder: Split Media Block
+    - f0a7b6f4-0e83-455e-aba3-24ce98fa11dc # Block: Header
+    - 452561b9-4d58-4e06-abbb-ec181d217e97 # Block: Text Content
+    - 33982884-3ffc-4b10-ab0f-7acce9c2f4e6 # Block: Features
+    - e2e8232d-7a91-4520-9f64-0d0c97df5efc # Block: Gallery
+    - eb0ea69f-509b-47a6-87cb-c9f3ad376908 # Block: Form
+    - b6b3dfbf-a51c-4b72-a0f4-13156ea28fe1 # Block: Spacer
+    - c1d4b79e-28cb-4d81-8156-5fe616ffb2dc # Block: Slider
+    - 73947b58-b537-41b4-9b72-3b3069626f8b # Block: Featured Works
+    - 7cfa1850-34c5-4ccc-9135-a2d131dc732e # Block: Split Media
   includeTableView: false
   maxEntries: null
   minEntries: null

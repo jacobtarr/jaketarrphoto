@@ -26,7 +26,7 @@
 {% set states = craft.categories.group('state').all() %}
 
 <div
-  class="c-portfolio md:space-y-12"
+  class="c-portfolio md:flex md:flex-col md:gap-12"
   x-data="{
     filterOpen: $persist(false).as('portfolioFilterOpen'),
     toggleBodyScroll(value = this.filterOpen) {
@@ -68,11 +68,12 @@
     {% set portfolioHeroImageData = craft.app.config.getConfigFromFile('portfolioHeroImageData') %}
     {% set portfolioHero = portfolioHeroImageData[state] ?? portfolioHeroImageData[''] %}
 
-    {% include '_components/molecules/hero.twig' with {
+    {% include '_patterns/hero/hero.twig' with {
       hero: {
         classes: 'c-hero--small',
         image: portfolioHero.image,
         heading: 'Portfolio',
+        headingClasses: 'test df',
         secondary_heading: portfolioHero.heading
       }
     } %}
@@ -81,7 +82,13 @@
   <div class="container space-y-5">
     <div class="c-filter-nav">
       <div class="hidden md:flex items-center gap-x-5 relative">
-        <h4 class="text-2xl font-semibold">Filters</h4>
+        {% include '_components/heading/heading.twig' with {
+          heading: {
+            text: 'Filters',
+            tag: 'h4',
+            classes: 'font-semibold',
+          }
+        } %}
         {% set hasSelections = checkboxFilters|filter(f => f.selected|length > 0)|length > 0 %}
         {% if state or hasSelections %}
           <div x-data>
@@ -93,7 +100,7 @@
         {% endif %}
       </div>
       <div class="c-filter-nav__col c-filter-nav__mobile-buttons">
-        {% include '_components/atoms/button.twig' with {
+        {% include '_components/button/button.twig' with {
           button: {
             text: 'Filters' ~ (selectedFilterCount > 0 ? ' (' ~ selectedFilterCount ~ ')' : ''),
             icon: 'filter',
@@ -108,15 +115,15 @@
 
       <div class="c-filter-nav__col c-filter-nav__sort-by" x-data="{ sort: '{{ sort }}' }">
         <h4 class="text-2xl font-semibold hidden md:block">Sort by</h4>
-        <div class="c-dropdown-container w-full md:w-auto" x-data x-init="
+        <div class="w-full md:w-auto" x-data x-init="
           const stored = sessionStorage.getItem('sortScrollTop');
           if (stored !== null) {
             window.scrollTo({ top: parseInt(stored), behavior: 'auto' });
             sessionStorage.removeItem('sortScrollTop');
           }
         ">
-          {% include '_components/atoms/dropdown.twig' with {
-            dropdown: {
+          {% include '_components/select/select.twig' with {
+            select: {
               name: 'sort',
               selected: sort,
               prepend_text: 'Sort by:',
@@ -126,7 +133,7 @@
                 { value: 'titleAsc', label: 'Title (A–Z)' },
                 { value: 'titleDesc', label: 'Title (Z–A)' }
               ],
-              classes: 'c-dropdown--sort-by',
+              classes: 'c-select--sort-by',
               icon: 'sort-by',
               attrs: {
               'x-model': 'sort',
@@ -173,7 +180,13 @@
         <div class="c-filter-box-container" @click.stop>
           <div class="c-filter-box">
             <div class="c-filter-box__mobile-nav">
-              <h4 class="text-2xl font-semibold">Filters</h4>
+              {% include '_components/heading/heading.twig' with {
+                heading: {
+                  text: 'Filters',
+                  tag: 'h4',
+                  classes: 'o-heading--h2 font-semibold',
+                }
+              } %}
               {% set hasSelections = checkboxFilters|filter(f => f.selected|length > 0)|length > 0 %}
               {% if state or hasSelections %}
                 <div x-data>
@@ -183,7 +196,9 @@
                   } %}
                 </div>
               {% endif %}
-            </div>{# end .c-filter-box__mobile-nav #}
+            </div>
+            {# end .c-filter-box__mobile-nav #}
+
             <div
               x-data="{
                 visible: false,
@@ -290,10 +305,10 @@
                 @sprig:success.window="updateCount()"
                 class="c-filter-box__footer"
               >
-                {% include '_components/atoms/button.twig' with {
+                {% include '_components/button/button.twig' with {
                   button: {
                     tag: 'button',
-                    classes: 'o-button--primary w-full justify-center text-center',
+                    classes: 'c-button--primary w-full justify-center text-center',
                     attrs: {
                       type: 'submit',
                       '@click': 'filterOpen = false',
@@ -357,7 +372,7 @@
           <div id="photo-grid" class="c-portfolio-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-2 md:gap-3">
             {% for photoEntry in entries %}
               <div class="col-span-1 c-photo-block-container">
-                {% include '_components/molecules/photo-block.twig' with {
+                {% include '_components/photo-block/photo-block.twig' with {
                   "photo": {
                     "image": photoEntry.featuredImage.one(),
                     "url": photoEntry.url,
@@ -370,7 +385,7 @@
             {% endfor %}
           </div>
         {% else %}
-          {% include '_components/molecules/alert.twig' with {
+          {% include '_components/alert/alert.twig' with {
             alert: {
               text: 'No photos match the current filters.',
               attrs: {
@@ -397,12 +412,12 @@
               ))
               | reduce((a, b) => a|merge(b), {})
             %}
-            {% include '_components/atoms/button.twig' with {
+            {% include '_components/button/button.twig' with {
               button: {
                 text: 'Load More',
                 tag: 'button',
                 variant: 'secondary',
-                classes: 'o-button--arrow-down',
+                classes: 'c-button--arrow-down',
                 attrs: {
                   id: 'load-more-button',
                   sprig: true,

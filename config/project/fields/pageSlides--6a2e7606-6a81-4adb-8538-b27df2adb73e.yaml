@@ -6,7 +6,7 @@ searchable: false
 settings:
   createButtonLabel: 'New slide'
   entryTypes:
-    - 594c3566-f197-48c8-98a0-6b8ef76133df # Page Builder: Slide Block
+    - 594c3566-f197-48c8-98a0-6b8ef76133df # Block: Slide
   includeTableView: false
   maxEntries: 6
   minEntries: null

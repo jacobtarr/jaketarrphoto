@@ -1,16 +1,16 @@
 {% extends '_layouts/global.twig' %}
 
 {% block site %}
-<section class="c-portfolio-page c-page">
+  <section class="c-portfolio-page c-page">
 
-  <!-- Sprig component for filters and photo grid -->
-  {{ sprig('_components/sprig/photo-grid', {
-    offset: 0,
-    limit: 9,
-    state: '',
-    season: [],
-    genre: []
-  }) }}
+    <!-- Sprig component for filters and photo grid -->
+    {{ sprig('_components/sprig/photo-grid', {
+      offset: 0,
+      limit: 9,
+      state: '',
+      season: [],
+      genre: []
+    }) }}
 
-</section>
+  </section>
 {% endblock %}

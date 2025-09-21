@@ -1,45 +1,53 @@
 {% macro renderFilter(title, options, selectedValue, inputName, limit, sort, extraVals) %}
   <div class="c-filter-section space-y-4">
-    {% include '_components/atoms/kicker.twig' with {
+    {% include '_components/kicker/kicker.twig' with {
       kicker: {
         text: title,
         classes: 'c-filter-section__title'
       }
     } %}
+
     <div class="c-filter-section__form-group c-form-group">
       {% for option in options %}
-        <label class="c-radio-label">
-          <input
-            sprig
-            type="radio"
-            class="c-radio-input"
-            name="{{ inputName }}"
-            value="{{ option.slug }}"
-            {% if selectedValue == option.slug %}checked{% endif %}
-            x-on:change="
-              const url = new URL(window.location);
-              if ('{{ option.slug }}' === '') {
-                url.searchParams.delete('{{ inputName }}');
-              } else {
-                url.searchParams.set('{{ inputName }}', '{{ option.slug }}');
-              }
-              window.history.replaceState({}, '', url);
-            "
-            s-val:offset="0"
-            s-val:limit="{{ limit }}"
-            s-val:sort="{{ sort }}"
-            {% for key, val in extraVals %}
-              {% if val is iterable %}
-                {% for item in val %}
-                  s-val:{{ key }}[]='{{ item }}'
-                {% endfor %}
-              {% else %}
-                s-val:{{ key }}='{{ val }}'
-              {% endif %}
-            {% endfor %}
-          />
-          <span>{{ option.title }}</span>
-        </label>
+        {# pick a stable id suffix: id → slug → kebab(title) → loop index #}
+        {% set idSuffix = option.id is defined
+          ? option.id
+          : (option.slug is defined and option.slug|length
+              ? option.slug
+              : (option.title is defined ? option.title|kebab : loop.index)) %}
+
+        {% include '_components/radio/radio.twig' with {
+          radio: {
+            id: inputName ~ '-' ~ idSuffix,
+            name: inputName,
+            value: option.slug ?? '',
+            label: option.title ?? '',
+            checked: selectedValue == (option.slug ?? ''),
+            formSelector: '#filters-form',
+            useFacetHelper: true,
+            attrs: {
+              sprig: true,
+              's-val:offset': 0,
+              's-val:limit': limit,
+              's-val:sort': sort
+            } 
+            | merge(
+              extraVals is iterable
+                ? (
+                    extraVals
+                      | reduce((carry, kv, k) =>
+                        carry
+                        | merge(
+                            kv is iterable
+                              ? { ('s-val:' ~ k ~ '[]'): kv }
+                              : { ('s-val:' ~ k): kv }
+                          )
+                      , {})
+                  )
+                : {}
+            )
+          }
+        } %}
       {% endfor %}
     </div>
   </div>

@@ -3,6 +3,7 @@ import { ViteFaviconsPlugin } from 'vite-plugin-favicon2';
 import ViteRestart from 'vite-plugin-restart';
 import copy from 'rollup-plugin-copy';
 import path from 'path'; // Use to resolve paths for SCSS
+import tailwindcss from '@tailwindcss/vite'
 
 export default ({ command }) => ({
 	base: command === 'serve' ? '' : '/dist/',
@@ -29,7 +30,12 @@ export default ({ command }) => ({
 		host: '0.0.0.0',
 		origin: 'http://localhost:3000',
 		port: 3000,
-		strictPort: true
+		strictPort: true,
+    cors: true,
+		headers: {
+			"Access-Control-Allow-Origin": "*",
+		},
+		allowedHosts: true
 	},
 	css: {
 		preprocessorOptions: {
@@ -40,6 +46,7 @@ export default ({ command }) => ({
 		},
 	},
 	plugins: [
+		tailwindcss(),
 		ViteRestart({
 			reload: [
 				'templates/**/*'

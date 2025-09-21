@@ -6,7 +6,7 @@ searchable: false
 settings:
   createButtonLabel: 'Add Page Feature'
   entryTypes:
-    - 452561b9-4d58-4e06-abbb-ec181d217e97 # Page Builder: Content Block
+    - 452561b9-4d58-4e06-abbb-ec181d217e97 # Block: Text Content
   includeTableView: false
   maxEntries: null
   minEntries: null

@@ -1,0 +1,30 @@
+{% extends '_blocks/_base/block.twig' %}
+{% block blockContent %}
+  {% include '_components/heading/heading.twig' with {
+    "heading": { 
+      "classes": 'o-heading--h3',
+      "tag": 'h3',
+      "text": block.contentHeading
+    }
+  } %}
+  {% include '_components/rich-text/rich-text.twig' with {
+    "richText": {
+      "content": block.contentBody
+    }
+  } %}
+  {% set link = block.contentLink|length ? block.contentLink[0] : null %}
+  {% if link %}
+    <div class="flex flex-wrap gap-5">
+      {% include '_components/button/button.twig' with {
+        "button": {
+          "url": link.url,
+          "text": link.text,
+          "target": link.target
+        }
+      } %}
+    </div>
+  {% endif %}
+  
+  
+
+{% endblock %}

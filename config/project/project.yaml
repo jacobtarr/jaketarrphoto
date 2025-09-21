@@ -1,4 +1,4 @@
-dateModified: 1757333846
+dateModified: 1758320065
 email:
   fromEmail: $CRAFT_EMAIL_SYSTEM
   fromName: $CRAFT_EMAIL_SYSTEM
@@ -58,12 +58,13 @@ meta:
     6d57d86c-b925-4adb-8c28-e7a590992c8f: 'Hero Block Image' # Hero Block Image
     7b662bcd-ea91-4c91-86ce-c60348c664d1: Pages # Pages
     7c7bcfc3-5f33-4783-bbc1-0211262d9549: 'Aspect Ratio: 4x5' # Aspect Ratio: 4x5
-    7cfa1850-34c5-4ccc-9135-a2d131dc732e: 'Page Builder: Split Media Block' # Page Builder: Split Media Block
+    7cfa1850-34c5-4ccc-9135-a2d131dc732e: 'Block: Split Media' # Block: Split Media
     8b610edc-f2dd-46b6-9597-96fcbb6d302a: Simple # Simple
     08c386f4-5a41-4c9f-8282-f6785af06bfc: $CRAFT_SITE_NAME # $CRAFT_SITE_NAME
     8f2032c8-02e3-4646-82b8-4281402bae98: 'Page Gallery Layout' # Page Gallery Layout
     9cdfd6ce-850c-472c-b96c-d077fa573c1b: 'Slide Heading' # Slide Heading
     9e513de1-d75e-4e1c-b23d-38cdbe24f060: Genre # Genre
+    9e602da5-73e6-434a-86a4-ad1378ec1835: 'Content Kicker' # Content Kicker
     19d6d897-1cde-4d59-914a-2bf8a23e7916: 'Public Schema' # Public Schema
     36fcd9d8-6671-40b1-887b-84c395c8c6da: 'Page Gallery Caption' # Page Gallery Caption
     48aff211-f136-4da9-bea7-1eda25c22145: Homepage # Homepage
@@ -79,31 +80,31 @@ meta:
     298cea5e-e970-4f91-91b6-21ba893e3458: Photo # Photo
     450da273-b412-48fc-bc9e-70a49eb8e206: 'Content Heading' # Content Heading
     479fc44e-aa39-410b-9c74-5e1ae5c00c7e: 'Split Media Block Image' # Split Media Block Image
-    594c3566-f197-48c8-98a0-6b8ef76133df: 'Page Builder: Slide Block' # Page Builder: Slide Block
+    594c3566-f197-48c8-98a0-6b8ef76133df: 'Block: Slide' # Block: Slide
     1204bcc0-8378-4dd4-ab64-a4ae43ad533c: Square # Square
     7556ecfe-e429-4d78-baa4-ec9d0e89aaec: 'Page Gallery Lightbox Toggle' # Page Gallery Lightbox Toggle
     68416f2f-16cf-49ab-83e7-e6b4b097e19d: 'Split Media Block Mobile Layout' # Split Media Block Mobile Layout
-    73947b58-b537-41b4-9b72-3b3069626f8b: 'Page Builder: Featured Works Block' # Page Builder: Featured Works Block
+    73947b58-b537-41b4-9b72-3b3069626f8b: 'Block: Featured Works' # Block: Featured Works
     99253d82-2d49-4285-8539-155472cf8207: 'Page Builder: Left Column Content' # Page Builder: Left Column Content
-    452561b9-4d58-4e06-abbb-ec181d217e97: 'Page Builder: Content Block' # Page Builder: Content Block
+    452561b9-4d58-4e06-abbb-ec181d217e97: 'Block: Text Content' # Block: Text Content
     758857ca-7d33-49af-810b-cb347619a61f: 'Page Features' # Page Features
     921510a6-634a-4235-8ccf-7c94ac73d06a: 'Aspect Ratio: 5x4' # Aspect Ratio: 5x4
     01914777-7aec-4ffe-b263-513b6e67154f: 'Content Body' # Content Body
     8612363b-d7c9-43e9-993a-b6454190280c: Genre # Genre
     12514558-49b6-40e0-a01a-5858740c93cc: 'Featured Works Entries' # Featured Works Entries
-    33982884-3ffc-4b10-ab0f-7acce9c2f4e6: 'Page Builder: Features Block' # Page Builder: Features Block
+    33982884-3ffc-4b10-ab0f-7acce9c2f4e6: 'Block: Features' # Block: Features
     a985436b-09b0-444a-b956-d68913d3b05e: State # State
     a1898536-62a3-49b5-946b-baae1b1c79fa: Location # Location
     ac26babf-e061-425b-851b-465499715d7f: 'Date Taken' # Date Taken
     b0801027-28ca-4e94-b7b9-7dd7cb331639: 'Slide Image' # Slide Image
     b4bc8ded-4c1d-49ff-9fa2-e5f3dba0fe78: New # New
     b5e63234-1898-41aa-81dc-3b124de23d0e: 'Hero Block Content' # Hero Block Content
-    b6b3dfbf-a51c-4b72-a0f4-13156ea28fe1: 'Page Builder: Spacer Block' # Page Builder: Spacer Block
+    b6b3dfbf-a51c-4b72-a0f4-13156ea28fe1: 'Block: Spacer' # Block: Spacer
     b28d4120-dd8f-47c8-9968-e484ce2daf49: 'Page Builder: Split Content Row' # Page Builder: Split Content Row
     b94fe730-955c-4213-9c8b-37178fbd0e25: 'Card Position' # Card Position
     bdc28bb9-c07b-4b1e-9999-99312264f08e: 'Slide Link' # Slide Link
     bdfb1af2-11cc-45d1-89a6-681f3135ce8f: 'Hero Block Title' # Hero Block Title
-    c1d4b79e-28cb-4d81-8156-5fe616ffb2dc: 'Page Builder: Slider Block' # Page Builder: Slider Block
+    c1d4b79e-28cb-4d81-8156-5fe616ffb2dc: 'Block: Slider' # Block: Slider
     c739ea72-3a35-47c8-b515-facc9fa28521: Square--Medium # Square--Medium
     c5536bad-aee8-49f4-aa42-0ba6c051dfc0: 'Content Link' # Content Link
     cc37a9f9-6845-4a61-bf7b-abc70fd83aae: Large # Large
@@ -111,20 +112,25 @@ meta:
     d0f439da-693a-43e8-a9e6-0a5bed47b5eb: 'Card Body' # Card Body
     d8fc1056-7a49-4f87-8315-2dde5562d9f7: Season # Season
     d99bf7af-1eb1-4b77-814e-624eeec1a0e3: $CRAFT_SITE_NAME # $CRAFT_SITE_NAME
+    dd78bdbf-3b91-4778-bae3-8b09ac060032: 'Page Builder Option: Background Image Toggle' # Page Builder Option: Background Image Toggle
     de8ef2f0-9242-4d0a-b533-296aad578983: 'Landing Page Layout' # Landing Page Layout
-    e2e8232d-7a91-4520-9f64-0d0c97df5efc: 'Page Builder: Gallery Block' # Page Builder: Gallery Block
+    e2e8232d-7a91-4520-9f64-0d0c97df5efc: 'Block: Gallery' # Block: Gallery
     e58d17c3-400b-4997-bc46-5215587c062b: Small # Small
     e558cbdd-03de-4723-a362-60fa829e85b3: 'Card Link' # Card Link
     e7625aa0-c051-4e54-b5a6-412c76a644c5: 'Hero Block Link' # Hero Block Link
-    eb0ea69f-509b-47a6-87cb-c9f3ad376908: 'Page Builder: Form Block' # Page Builder: Form Block
+    eb0ea69f-509b-47a6-87cb-c9f3ad376908: 'Block: Form' # Block: Form
     eff60100-75d6-4b77-baeb-bda8c616ac3f: 'Post Teaser' # Post Teaser
-    f0a7b6f4-0e83-455e-aba3-24ce98fa11dc: 'Page Builder: Header Block' # Page Builder: Header Block
+    f0a7b6f4-0e83-455e-aba3-24ce98fa11dc: 'Block: Header' # Block: Header
     f1b1591d-43df-4ef4-a7c2-504f08d84cab: 'Extra Large' # Extra Large
     f7ba018a-381c-4d09-8f22-6a1ab3e317cd: 'Blog Images' # Blog Images
     f68a3386-e428-4757-9750-aa0f8cc133d1: 'Slide Content' # Slide Content
     fbdf5212-75c7-4c55-a84d-1fe336d63dfc: 'Page Builder' # Page Builder
     fcd2475b-f27b-406f-a8a4-96b0bf65fab9: 'Page Spacer' # Page Spacer
 plugins:
+  admin-bar:
+    edition: standard
+    enabled: true
+    schemaVersion: 3.1.0
   blitz:
     edition: standard
     enabled: true

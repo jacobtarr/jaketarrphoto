@@ -1,0 +1,35 @@
+{% set kickerText = sectionHeading.kickerText ?? null %}
+{% set kickerClasses = sectionHeading.kickerClasses ?? 'text-gray-500' %}
+{% set headingText = sectionHeading.headingText ?? null %}
+{% set link = sectionHeading.link ?? null %}
+{% set linkClasses = sectionHeading.linkClasses ?? null %}
+{% set additionalClasses = (sectionHeading.classes is defined and sectionHeading.classes) ? ' ' ~ sectionHeading.classes : '' %}
+
+<div class="c-section-heading{{ additionalClasses }} flex justify-between items-end">
+  <div class="space-y-2 md:space-y-3">
+    {% include '_components/kicker/kicker.twig' with {
+      kicker: {
+        classes: kickerClasses,
+        text: kickerText
+      }
+    } %}
+    {% include '_components/heading/heading.twig' with {
+      heading: {
+        classes: 'o-heading--h3',
+        tag: 'h3',
+        text: headingText
+      }
+    } %}
+  </div>
+  {% if link and (link.text ?? null) %}
+    {% include '_components/button/button.twig' with {
+      button: {
+        url: link.url,
+        text: link.text ?? '',
+        target: link.target ?? null,
+        variant: 'secondary',
+        classes: linkClasses ?? null
+      }
+    } %}
+  {% endif %}
+</div>

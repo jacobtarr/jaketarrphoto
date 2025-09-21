@@ -1,0 +1,30 @@
+{# 
+  Expects:
+    postTeaser = {
+      classes?: string                     # extra classes for wrapper
+      attrs?: { [key: string]: string }    # extra attributes for wrapper <div>
+      content: string                      # required — main teaser content (HTML allowed)
+    }
+
+  Example usage:
+    {% include '_components/post-teaser/post-teaser.twig' with {
+      postTeaser: {
+        classes: 'mt-8 text-center',
+        attrs: { id: 'hero-teaser' },
+        content: '<strong>Arizona</strong> &mdash; Sunset at Wotans Throne.'
+      }
+    } %}
+#}
+
+{% set additionalClasses = postTeaser.classes is defined and postTeaser.classes ? ' ' ~ postTeaser.classes : '' %}
+{% set attrs = postTeaser.attrs ?? {} %}
+
+{% if postTeaser.content %}
+  <div class="c-post-teaser text-gray-400 leading-[1.15] text-xl md:text-2xl font-founders space-y-5{{ additionalClasses }}"
+    {% for key, value in attrs %}
+      {{ key }}="{{ value is iterable ? value|join(',') : value }}"
+    {% endfor %}
+  >
+    {{ postTeaser.content|raw }}
+  </div>
+{% endif %}

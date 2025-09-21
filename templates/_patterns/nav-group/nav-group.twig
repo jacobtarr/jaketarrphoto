@@ -1,0 +1,46 @@
+{# Expects:
+   navGroup = {
+     links:   [ { href: '/about', label: 'About' }, ... ],
+     useActive?: boolean  (default false) – add Alpine active bindings
+     classes?: string     (extra classes for the <ul>)
+   }
+  
+  Example usage: 
+  {% include '_components/molecules/nav-group.twig' with {
+    navGroup: {
+      links: navLinks,
+      useActive: true,
+      classes: ''
+    }
+  } %}
+#}
+
+{% set links = navGroup.links ?? [] %}
+{% set useActive = navGroup.useActive is defined ? navGroup.useActive : false %}
+{% set additionalClasses = (navGroup.classes is defined and navGroup.classes) ? ' ' ~ navGroup.classes : '' %}
+
+<ul class="c-nav-group{{ additionalClasses }}">
+  {% for link in links %}
+    <li class="c-nav-group__item">
+      {% set attrs = { href: link.href } %}
+
+      {% if useActive %}
+        {% set attrs = attrs|merge({
+          '@click': "setActivePage('" ~ link.href ~ "')",
+          ':class': "{ 'text-red-500': isActive('" ~ link.href ~ "') }",
+          ':aria-current': "isActive('" ~ link.href ~ "') ? 'page' : null"
+        }) %}
+      {% endif %}
+
+      {% include '_components/heading/heading.twig' with {
+        heading: {
+          tag: 'a',
+          underline: false,
+          classes: 'c-nav-group__link o-heading--h6',
+          text: link.label,
+          attrs: attrs
+        }
+      } %}
+    </li>
+  {% endfor %}
+</ul>

@@ -1,0 +1,17 @@
+@reference "tailwindcss";
+@reference "../../../src/css/tokens.css";
+
+.c-rte, p {
+  @apply leading-[1.4] text-base xl:text-lg;
+}
+
+.c-rte {
+  ul, ol {
+    list-style: inherit;
+    padding-left: 1rem;
+
+    > * + * {
+      margin-top: 0.5rem;
+    }
+  }
+}

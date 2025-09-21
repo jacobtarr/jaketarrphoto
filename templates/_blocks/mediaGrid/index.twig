@@ -1,0 +1,79 @@
+{% extends '_blocks/_base/block.twig' %}
+{% import '_macros/image.twig' as img %}
+
+{% set kickerText         = block.contentKicker ?? null %}
+{% set kickerClasses      = block.contentKickerClasses ?? null %}
+{% set headingText        = block.contentHeading ?? null %}
+{% set link               = block.contentLink ?? null %}
+{% set linkClasses        = block.contentLinkClasses ?? null %}
+{% set mobileLinkClasses  = block.contentMobileLinkClasses ?? null %}
+{% set images             = block.images ?? [] %}
+{% set cols               = block.cols ?? 4 %}
+{% set transform          = block.transform ?? 'aspectRatio4x5' %}
+{% set imageField         = block.imageField ?? 'featuredImage' %}
+
+{% block blockContent %}
+  {% if images|length %}
+    <div class="space-y-6 text-right">
+      {% include '_patterns/section-heading/section-heading.twig' with {
+        sectionHeading: {
+          kickerText: kickerText,
+          kickerClasses: kickerClasses,
+          headingText: headingText,
+          link: link,
+          linkClasses: linkClasses
+        }
+      } %}
+
+      <div
+        class="flex md:grid gap-3 md:gap-4 [grid-template-columns:repeat(var(--cols),minmax(0,1fr))]"
+        style="--cols: {{ cols }}"
+      >
+        {% for image in images %}
+          {% set hasField = attribute(image, imageField, [], 'any', true) %}
+          {% if hasField %}
+            {# Entry with an image field #}
+            {% set asset = attribute(image, imageField).one() %}
+            {% set href  = image.url ?? null %}
+            {% set title = image.title ?? '' %}
+          {% elseif image.kind is defined %}
+            {# Asset directly #}
+            {% set asset = image %}
+            {% set href  = image.url ?? null %}
+            {% set title = image.title ?? '' %}
+          {% else %}
+            {% set asset = null %}
+          {% endif %}
+
+          {% if asset %}
+            <div class="col-span-1">
+              {% include '_components/photo-block/photo-block.twig' with {
+                photo: {
+                  classes: 'c-photo-block',
+                  image: asset,
+                  url: href,
+                  title: title,
+                  caption: title,
+                  transform: transform
+                }
+              } %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      {% if link and (link.text ?? null) %}
+        {% include '_components/button/button.twig' with {
+          button: {
+            url: link.url,
+            text: link.text ?? '',
+            target: link.target ?? null,
+            variant: 'secondary',
+            classes: mobileLinkClasses ?? null
+          }
+        } %}
+      {% endif %}
+
+    </div>
+  {% endif %}
+{% endblock %}

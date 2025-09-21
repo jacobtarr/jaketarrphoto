@@ -1,0 +1,9 @@
+{% extends '_blocks/_base/block.twig' %}
+
+{% block blockContent %}
+  {% include '_components/heading/heading.twig' with {
+    "heading": {
+      "text": block.title
+    }
+  } %}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% set additionalClasses = alert.classes is defined and alert.classes ? ' ' ~ alert.classes : '' %}
+{% set attrs = alert.attrs ?? {} %}
+
+{% if alert.text %}
+  <div class="c-alert{{ additionalClasses }}"
+    {% for key, value in attrs %}
+      {{ key }}="{{ value is iterable ? value|join(',') : value }}"
+    {% endfor %}
+  >
+    {# {% if alert.icon is defined %}
+      {% include '_components/icon/icons/icon-' ~ alert.icon ~ '.svg' %}
+    {% endif %} #}
+    <p>{{ alert.text }}</p>
+  </div>
+{% endif %}

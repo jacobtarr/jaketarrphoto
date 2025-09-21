@@ -1,0 +1,70 @@
+@source "../../templates/**/*.twig";
+@source "../js/**/*.js";
+
+/* Tailwind v4 core */
+@import "tailwindcss";
+
+/* Your design tokens (same folder as this file) */
+@import "./tokens.css";
+
+/* Tailwind plugins */
+@plugin "@tailwindcss/typography";
+
+@utility container {
+  @apply w-full mx-auto px-4 md:px-5;
+  max-width: none;
+
+  @media (min-width: 1140px) {
+    max-width: var(--container-lg);
+  }
+
+  @media (min-width: 1340px) {
+    max-width: var(--container-xl);
+  }
+
+  @media (min-width: 1536px) {
+    max-width: var(--container-2xl);
+  }
+}
+
+body {
+  @apply antialiased text-gray-900;
+}
+
+p {
+  @apply font-body;
+}
+
+/* Vendor + component styles */
+
+@import "./form.css";
+
+@import "./filter-box.css";
+@import "./portfolio.css";
+
+/* Dark mode */
+html.u-dark-mode {
+  body {
+    color: #fff;
+    @apply bg-gray-900;
+  }
+  .bg-white {
+    @apply bg-gray-900;
+  }
+}
+
+/* Animations */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.4s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+[x-cloak] {
+  display: none !important;
+}

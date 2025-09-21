@@ -1,0 +1,37 @@
+@reference "tailwindcss";
+@reference "../../../src/css/tokens.css";
+
+.c-logo {
+  @apply flex items-center gap-4 md:gap-5 relative z-[70];
+}
+
+.c-logo__image {
+  @apply py-4 md:py-5;
+
+  svg {
+    @apply h-[23px] w-[48.3px] md:w-[52.5px] md:h-[25px];
+  }
+}
+
+.c-logo__j {
+  .hero-is-full-bleed .c-header & {
+    @apply fill-gray-100;
+  }
+}
+
+.c-logo__text {
+  @apply text-xs md:text-base lg:text-xl font-bold leading-3 md:leading-4 lg:leading-3;
+
+  .hero-is-full-bleed .c-header & {
+    @apply text-gray-100;
+  }
+
+  br {
+    @apply md:hidden;
+  }
+}
+
+/* Dark mode overrides */
+html.u-dark-mode .c-logo__j {
+  @apply fill-gray-100;
+}

@@ -1,0 +1,52 @@
+{#
+  Expects:
+    heading = {
+      text: string                      # required
+      tag?: string                      # e.g. h1..h6, a, div (default "h1")
+      size?: string                     # visual size "h1".."h6" (default = tag when it's h1..h6)
+      classes?: string                  # extra classes (space-separated)
+      attrs?: { [key: string]: string } # extra attributes
+    }
+
+  Example:
+    {% include '_components/heading/heading.twig' with {
+      heading: {
+        text: 'Featured Work',
+        tag: 'h2',
+        size: 'h3',
+        classes: 'text-red-500',
+        attrs: { id: 'featured-heading' }
+      }
+    } %}
+#}
+
+{% set headingTag   = heading.tag   ?? 'h1' %}
+{% set userClasses  = (heading.classes ?? '')|trim %}
+{% set tokens       = userClasses|split(' ')|filter(t => t|length) %}
+
+{# detect if user already provided a size class token exactly matching o-heading--h[1-6] #}
+{% set hasUserSize  = tokens|filter(t => t matches '/^o-heading--h[1-6]$/')|length > 0 %}
+
+{# remove any bare 'o-heading' token from the user list to avoid duplicates #}
+{% set tokensNoBase = tokens|filter(t => t != 'o-heading') %}
+
+{# compute an auto size ONLY if:
+   - caller didn't pass a size class, and
+   - a valid h1..h6 is provided via heading.size or heading.tag
+#}
+{% set requestedSize = (heading.size ?? headingTag)|lower %}
+{% set validSizes    = ['h1','h2','h3','h4','h5','h6'] %}
+{% set autoSizeClass = (not hasUserSize and requestedSize in validSizes) ? 'o-heading--' ~ requestedSize : null %}
+
+{% set classes = ['o-heading', autoSizeClass]|merge(tokensNoBase)|filter(t => t is not empty)|join(' ') %}
+
+{% set attrs = heading.attrs ?? {} %}
+
+{% if heading.text %}
+  <{{ headingTag }}
+    class="{{ classes }}"
+    {% for key, value in attrs %}
+      {{ key }}="{{ value is iterable ? value|join(',') : value }}"
+    {% endfor %}
+  >{{ heading.text|raw }}</{{ headingTag }}>
+{% endif %}

@@ -1,0 +1,19 @@
+{% extends '_blocks/_base/block.twig' %}
+
+{% block blockContent %}
+  {% set features = [] %}
+  {% for box in block.pageFeatures %}
+    {% set features = features | merge([{
+      title: box.contentHeading,
+      description: box.contentBody,
+      contentLink: box.contentLink
+    }]) %}
+  {% endfor %}
+
+  {% include '_patterns/features/features.twig' with {
+    "feature": {
+      "columns": 3,
+      "features": features
+    }
+  } %}
+{% endblock %}

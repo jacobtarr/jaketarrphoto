@@ -14,7 +14,7 @@
 
 {% block site %}
   <section class="c-landing-page">
-    {% include '_components/molecules/hero.twig' with { hero: hero } %}
+    {% include '_patterns/hero/hero.twig' with { hero: hero } %}
     {% set blocks = entry.pageBuilderFullColumnContent.all() %}
 
     {% for block in blocks %}
@@ -29,11 +29,11 @@
 
       {# Open wrapper if this is the start of a stack #}
       {% if isStackStart %}
-        <div class="c-page-block-stack c-page-block-stack--bg-{{ currentColor }}">
+        <div class="block-stack block-stack--bg-{{ currentColor }}">
       {% endif %}
 
       {# Render the block as normal #}
-      {% include '_blocks/' ~ block.type ~ '.twig' with {
+      {% include '_blocks/' ~ block.type.handle ~ '/index.twig' with {
         block: block,
         parentMatrix: 'pageBuilderFullColumnContent',
         isStacked: isStacked,

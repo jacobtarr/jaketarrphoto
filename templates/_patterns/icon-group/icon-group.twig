@@ -1,0 +1,8 @@
+{% set additionalClasses = iconGroup.classes is defined and iconGroup.classes ? ' ' ~ iconGroup.classes : '' %}
+{% set items = iconGroup.icons ?? [] %}
+
+<div class="c-icon-group{{ additionalClasses }}">
+  {% for icon in items %}
+    {% include '_components/icons/icon.twig' with { icon: icon } %}
+  {% endfor %}
+</div>

@@ -1,0 +1,119 @@
+@theme {
+  /* Breakpoints */
+  --breakpoint-3xl: 1600px;
+  --breakpoint-4xl: 1920px;
+
+  /* Container sizes */
+  --container-padding: 1rem;
+  --container-lg: 1140px;
+  --container-xl: 1340px;
+  --container-2xl: 1340px;
+
+  /* Colors */
+  --color-primary: #000000;
+  --color-secondary: #CC3D33;
+
+  --color-red-100: #FDE2DF;
+  --color-red-400: #E05E4E;
+  --color-red-500: #CC3D33;
+
+  --color-gray-100: #F3F3F3;
+  --color-gray-200: #E0E0E0;
+  --color-gray-300: #B8B8B8;
+  --color-gray-400: #929292;
+  --color-gray-500: #6E6E6E;
+  --color-gray-600: #4B4B4B;
+  --color-gray-700: #313131;
+  --color-gray-800: #272727;
+  --color-gray-900: #1A1A1A;
+
+  --color-beige-100: #F5EBDD; 
+  --color-beige-200: #E9DBC2;
+  --color-beige-300: #BFA98B;
+  --color-beige-400: #7A624B;
+
+  /* “soft” shadow geometry */
+  --shadow-card-soft: 0 2px 4px;
+
+  /* Spacing (subset, you can keep full set if you like) */
+  --spacing-0: 0px;
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-7: 1.875rem;
+  --spacing-8: 2rem;
+  --spacing-9: 2.25rem;
+  --spacing-10: 2.5rem;
+  --spacing-11: 2.75rem;
+  --spacing-12: 3rem;
+  --spacing-13: 3.25rem;
+  --spacing-14: 3.5rem;
+  --spacing-15: 3.75rem;
+  --spacing-16: 4rem;
+  --spacing-18: 4.5rem;
+  --spacing-20: 5rem;
+  --spacing-24: 6rem;
+  --spacing-28: 7rem;
+  --spacing-32: 8rem;
+  --spacing-36: 9rem;
+  --spacing-40: 10rem;
+  --spacing-44: 11rem;
+  --spacing-48: 12rem;
+  --spacing-52: 13rem;
+  --spacing-56: 14rem;
+  --spacing-60: 15rem;
+  --spacing-64: 16rem;
+  --spacing-72: 18rem;
+  --spacing-80: 20rem;
+
+  /* Type scale */
+  --text-xxs:  0.625rem;
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-3xl:  1.75rem;
+  --text-4xl:  2rem;
+  --text-5xl:  2.25rem;
+  --text-6xl:  2.625rem;
+  --text-7xl:  3rem;
+  --text-8xl:  4rem;
+  --text-9xl:  6rem;
+  --text-10xl: 8rem;
+
+  /* Fonts */
+  --font-sans: "neue-haas-grotesk-display", ui-sans-serif, system-ui;
+  --font-body: "source-serif-pro", serif;
+  --font-founders: "Founders Grotesk", sans-serif;
+}
+
+@utility shadow-card-soft {
+  box-shadow: var(--shadow-card-soft)
+              color-mix(in oklch, var(--shadow-color, var(--color-gray-900)) 50%, transparent);
+}
+
+@utility shadowc-gray-100  { --shadow-color: var(--color-gray-100); }
+@utility shadowc-gray-200  { --shadow-color: var(--color-gray-200); }
+@utility shadowc-gray-300  { --shadow-color: var(--color-gray-300); }
+@utility shadowc-gray-400  { --shadow-color: var(--color-gray-400); }
+@utility shadowc-gray-500  { --shadow-color: var(--color-gray-500); }
+@utility shadowc-gray-600  { --shadow-color: var(--color-gray-600); }
+@utility shadowc-gray-700  { --shadow-color: var(--color-gray-700); }
+@utility shadowc-gray-800  { --shadow-color: var(--color-gray-800); }
+@utility shadowc-gray-900  { --shadow-color: var(--color-gray-900); }
+
+/* Beige variants */
+@utility shadowc-beige-100 { --shadow-color: var(--color-beige-100); }
+@utility shadowc-beige-200 { --shadow-color: var(--color-beige-200); }
+@utility shadowc-beige-300 { --shadow-color: var(--color-beige-300); }
+@utility shadowc-beige-400 { --shadow-color: var(--color-beige-400); }
+
+/* Reds (since you have a red scale too) */
+@utility shadowc-red-100   { --shadow-color: var(--color-red-100); }
+@utility shadowc-red-400   { --shadow-color: var(--color-red-400); }
+@utility shadowc-red-500   { --shadow-color: var(--color-red-500); }

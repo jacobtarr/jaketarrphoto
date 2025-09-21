@@ -1,0 +1,19 @@
+@reference "tailwindcss";
+@reference "../../../src/css/tokens.css";
+
+.c-page {
+  @apply mt-6 md:mt-12;
+}
+
+.c-page-section__content {
+  @apply mt-6;
+}
+
+.c-page-left-column__inner,
+.c-page-right-column__inner {
+  @apply space-y-7;
+}
+
+.u-page-gap {
+  @apply gap-4 sm:gap-8 lg:gap-12;
+}

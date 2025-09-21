@@ -1,0 +1,48 @@
+{% set card = card ?? {} %}
+{% set additionalClasses = card.classes is defined and card.classes ? ' ' ~ card.classes : '' %}
+{% set innerAdditionalClasses = card.innerClasses is defined and card.innerClasses ? ' ' ~ card.innerClasses : '' %}
+
+<div class="c-card{{ additionalClasses }}">
+  <div class="c-card__inner{{ innerAdditionalClasses }}">
+    <div class="space-y-2 md:space-y-3">
+      {% if card.kicker is defined %}
+        {% include '_components/kicker/kicker.twig' with {
+          kicker: {
+            text: card.kicker
+          }
+        } %}
+      {% endif %}
+
+      <div class="space-y-3 md:space-y-6">
+        {% if card.heading is defined or card.headingAttrs is defined %}
+          {% include '_components/heading/heading.twig' with {
+            heading: {
+              classes: 'o-heading--h3' ~ (card.headingClass is defined ? ' ' ~ card.headingClass : ''),
+              tag: 'h3',
+              underline: false,
+              text: card.heading ?? '',
+              attrs: card.headingAttrs ?? {}
+            }
+          } %}
+        {% endif %}
+
+        {% if card.body is defined %}
+          {% include '_components/rich-text/rich-text.twig' with {
+            richText: {
+              classes: 'c-card__text',
+              content: card.body
+            }
+          } %}
+        {% endif %}
+      </div>
+    </div>
+
+    {% if card.link is defined %}
+      {% include '_components/link/link.twig' with {
+        link: card.link|merge({
+          classes: (card.link.classes is defined ? card.link.classes ~ ' ' : '') ~ 'c-card__link'
+        })
+      } %}
+    {% endif %}
+  </div>
+</div>
