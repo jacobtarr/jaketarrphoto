@@ -14,7 +14,7 @@ push-db-servd:
 	ddev exec ./craft servd-asset-storage/local/push-database --to=staging --servdSlug=jake-photo --servdKey=vDYo4A6UUS8mXNzGSSXzibVBUBR2PdjO
 
 dev: 
-	ddev startdd
+	ddev start
 	ddev exec npm run dev
 
 install:

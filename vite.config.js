@@ -2,7 +2,7 @@
 import { ViteFaviconsPlugin } from 'vite-plugin-favicon2';
 import ViteRestart from 'vite-plugin-restart';
 import copy from 'rollup-plugin-copy';
-import path from 'path'; // Use to resolve paths for SCSS
+import path from 'path';
 import tailwindcss from '@tailwindcss/vite'
 
 export default ({ command }) => ({
@@ -23,6 +23,13 @@ export default ({ command }) => ({
 			}
 		},
 	},
+
+	resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
+  },
+
 	server: {
 		fs: {
 			strict: false
