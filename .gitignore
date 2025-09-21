@@ -30,7 +30,7 @@ Thumbs.db
 # Craft CMS
 
 cpresources
-vendor
+/vendor/
 .env
 *.log
 storage/*
