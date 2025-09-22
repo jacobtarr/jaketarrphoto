@@ -1,4 +1,4 @@
-dateModified: 1758320065
+dateModified: 1758561598
 email:
   fromEmail: $CRAFT_EMAIL_SYSTEM
   fromName: $CRAFT_EMAIL_SYSTEM
@@ -225,11 +225,15 @@ plugins:
     edition: standard
     enabled: true
     schemaVersion: 3.0.0.0
+  datastar:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
   formie:
     edition: standard
     enabled: true
     licenseKey: 8SL2Y3LQRIPPKN9EEL4UHW63
-    schemaVersion: 3.4.6
+    schemaVersion: 3.4.10
   hyper:
     edition: standard
     enabled: true
@@ -293,5 +297,5 @@ system:
   live: true
   name: $CRAFT_SITE_NAME
   retryDuration: null
-  schemaVersion: 5.3.0.2
+  schemaVersion: 5.8.0.3
   timeZone: America/Los_Angeles

@@ -1,6 +1,6 @@
 columnSuffix: null
 handle: pageBuilderOptionLeftColumnWidth
-instructions: 'The left and right column width each have a grid width spanning 8 columns each. Choose whether to make the left column smaller or larger. The right column will expand or shrink based on the left column''s width.'
+instructions: "The left and right column width each have a grid width spanning 8 columns each. Choose whether to make the left column smaller or larger. The right column will expand or shrink based on the left column's width."
 name: 'Page Builder Option: Left Column Width'
 searchable: false
 settings:
