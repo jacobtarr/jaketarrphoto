@@ -1,25 +1,15 @@
 @reference "tailwindcss";
 @reference "../../../src/css/tokens.css";
 
-.c-icon-group {
-  @apply flex gap-3;
-}
+@layer component {
+  .c-icon-group {
+    @apply flex gap-3;
 
-.c-icon-group--share {
-  .c-icon {
-    svg {
-      @apply h-full;
+    .c-icon {
+      @apply p-2 bg-gray-500 rounded-full transition-all;
 
-      path {
-        @apply fill-gray-300;
-      }
-    }
-
-    &:hover, &:focus {
-      svg {
-        path {
-          @apply fill-red-500;
-        }
+      &:hover {
+        @apply scale-125;
       }
     }
   }

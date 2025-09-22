@@ -1,3 +1,21 @@
+{#
+  Expects:
+    richText = {
+      content: string                   # required – HTML/Twig-safe rich text
+      classes?: string                  # optional – extra classes on wrapper
+      attrs?: { [key: string]: string } # optional – extra attributes
+    }
+
+  Example:
+    {% include '_components/rich-text/rich-text.twig' with {
+      richText: {
+        content: entry.body,
+        classes: 'prose prose-lg text-gray-700',
+        attrs: { id: 'article-body' }
+      }
+    } %}
+#}
+
 {% set additionalClasses = richText.classes is defined and richText.classes ? ' ' ~ richText.classes : '' %}
 {% set attrs = richText.attrs ?? {} %}
 

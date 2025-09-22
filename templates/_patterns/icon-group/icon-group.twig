@@ -1,8 +1,45 @@
+{#
+  Expects:
+    iconGroup = {
+      classes?: string                 # optional — extra classes for the wrapper
+      icons: array<object>             # required — list of icon configs (each passed into icon.twig)
+                                       # each icon supports the full "icon.twig" API:
+                                       #   { name, tag?, url?, target?, classes?, attrs? }
+    }
+
+  Example:
+    {% include '_patterns/icon-group/icon-group.twig' with {
+      iconGroup: {
+        classes: 'flex gap-4',
+        icons: [
+          {
+            name: 'instagram',
+            tag: 'a',
+            url: 'https://www.instagram.com/jacobtarr/',
+            target: '_blank',
+            classes: 'text-gray-800',
+            attrs: { rel: 'noopener noreferrer' }
+          },
+          {
+            name: 'facebook',
+            tag: 'a',
+            url: 'https://facebook.com',
+            target: '_blank',
+            classes: 'text-gray-800',
+            attrs: { rel: 'noopener noreferrer' }
+          }
+        ]
+      }
+    } %}
+#}
+
 {% set additionalClasses = iconGroup.classes is defined and iconGroup.classes ? ' ' ~ iconGroup.classes : '' %}
 {% set items = iconGroup.icons ?? [] %}
 
 <div class="c-icon-group{{ additionalClasses }}">
   {% for icon in items %}
-    {% include '_components/icons/icon.twig' with { icon: icon } %}
+    {% include '_components/icon/icon.twig' with {
+      icon: icon
+    } %}
   {% endfor %}
 </div>

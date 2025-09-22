@@ -1,3 +1,27 @@
+{#
+  Expects:
+    icon = {
+      name: string                      # required — icon name (matches an SVG in _components/icon/icons/)
+      tag?: string                      # optional — wrapper tag, defaults to "span" (can be "a", "div", etc.)
+      url?: string                      # optional — only used if tag is "a"
+      target?: string                   # optional — link target (default "_self")
+      classes?: string                  # optional — extra classes for wrapper
+      attrs?: { [key: string]: string } # optional — extra attributes (data-*, aria-*, etc.)
+    }
+
+  Example:
+    {% include '_components/icon/icon.twig' with {
+      icon: {
+        name: 'twitter',
+        tag: 'a',
+        url: 'https://twitter.com/jacobtarr',
+        target: '_blank',
+        classes: 'w-6 h-6 text-blue-500 hover:text-blue-700',
+        attrs: { rel: 'noopener noreferrer' }
+      }
+    } %}
+#}
+
 {% set tag = icon.tag ?? 'span' %}
 {% set additionalClasses = icon.classes is defined and icon.classes ? ' ' ~ icon.classes : '' %}
 {% set attrs = icon.attrs ?? {} %}

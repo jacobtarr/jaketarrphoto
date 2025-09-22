@@ -1,4 +1,4 @@
-{# ------------------------------------------------------
+{#
   Expects:
     radio = {
       id?: string
@@ -31,7 +31,7 @@
         }
       }
     } %}
-------------------------------------------------------- #}
+#}
 
 {% set radio = radio ?? {} %}
 {% set classes = ['c-radio-label', radio.classes|default('')] | filter | join(' ') %}

@@ -1,40 +1,136 @@
-<footer class="c-footer-container w-full pt-8 pb-12 border-t border-gray-200 bg-white">
-  <div class="container space-y-7 md:space-y-12">
-    <div class="c-footer mx-auto grid grid-cols-16 items-center justify-between">
-      {% include '_components/logo/logo.twig' with {
-        logo: {
-          classes: 'col-span-4'
-        }
-      } %}
-      <nav class="c-footer__navigation col-span-12 flex justify-end items-center space-x-14">
-        <a href="/about" class="hidden md:flex text-lg font-semibold hover:text-red-500">About</a>
-        <a href="/portfolio" class="hidden md:flex text-lg font-semibold hover:text-red-500">Portfolio</a>
-        <a href="/blog" class="hidden md:flex text-lg font-semibold hover:text-red-500">Blog</a>
-        <a href="/contact" class="hidden md:flex text-lg font-semibold hover:text-red-500">Contact</a>
-        <div class="">
-          {% include '_components/button/button.twig' with {
-            "button": {
-              "url": '#top',
-              "text": 'Back To Top'
+<footer class="c-footer-wrapper">
+  <div class="c-footer container">
+    <div class="grid grid-cols-2 sm:grid-cols-12 gap-y-12 gap-x-4 sm:gap-5">
+      <div class="col-span-2 sm:col-span-3">
+        <div class="sm:space-y-12">
+          <div class="space-y-6">
+            {% include '_components/logo/logo.twig' with {
+              logo: {
+                classes: 'c-logo--footer'
+              }
+            } %}
+            {% include '_components/rich-text/rich-text.twig' with {
+              richText: {
+                content: 'Lorem ipsum dolor sit amet consectetur. Laoreet at euismod phasellus suspendisse fames facilisis ultrices.',
+                classes: 'hidden sm:block text-base',
+              }
+            } %}
+          </div>
+          
+          <div class="hidden sm:block space-y-5">
+            {% include '_components/kicker/kicker.twig' with {
+              kicker: {
+                classes: 'text-beige-200',
+                text: 'Follow Me on Social Media',
+              }
+            } %}
+            {% include '_patterns/icon-group/icon-group.twig' with {
+              iconGroup: {
+                classes: 'flex gap-4',
+                icons: [
+                  {
+                    name: 'instagram',
+                    tag: 'a',
+                    url: 'https://www.instagram.com/jacobtarr/',
+                    target: '_blank',
+                    classes: 'text-gray-900',
+                    attrs: { rel: 'noopener noreferrer' }
+                  },
+                  {
+                    name: 'facebook',
+                    tag: 'a',
+                    url: 'https://facebook.com',
+                    target: '_blank',
+                    classes: 'text-gray-900',
+                    attrs: { rel: 'noopener noreferrer' }
+                  }
+                ]
+              }
+            } %}
+          </div>
+          
+        </div>
+        
+
+      </div>
+      <div class="col-span-1 sm:col-start-7 sm:col-span-3">
+        <div class="space-y-6">
+          {% include '_components/kicker/kicker.twig' with {
+            kicker: {
+              classes: 'text-beige-200',
+              text: 'Quick Links',
+            }
+          } %}
+          {% set navLinks = [
+            { href: '/about',     label: 'About' },
+            { href: '/portfolio', label: 'Portfolio' },
+            { href: '/blog',      label: 'Blog' },
+            { href: '/contact',   label: 'Contact' },
+          ] %}
+
+          {% include '_patterns/nav-group/nav-group.twig' with {
+            navGroup: {
+              links: navLinks,
+              useActive: false,
+              classes: 'flex-col gap-5'
             }
           } %}
         </div>
-      </nav>
-    </div>
-    {# I may or may not keep this depending on if I make header fixed #}
-    <div class="c-footer__mobile-nav flex md:hidden">
-      <ul class="space-y-2">
-        <li><a href="/about" class="text-xl font-semibold hover:text-red-500">About</a></li>
-        <li><a href="/portfolio" class="text-xl font-semibold hover:text-red-500">Portfolio</a></li>
-        <li><a href="/blog" class="text-xl font-semibold hover:text-red-500">Blog</a></li>
-        <li><a href="/contact" class="text-xl font-semibold hover:text-red-500">Contact</a></li>
-      </ul>
-    </div>
-    <div class="c-footer__bottom mx-auto grid grid-cols-16">
-      <div class="col-span-16">
-        <div class="text-sm">
-          &copy; {{ now|date('Y') }} {{ siteName }}. All rights reserved.
+      </div>
+      <div class="col-span-1 block sm:hidden space-y-5">
+        {% include '_components/kicker/kicker.twig' with {
+          kicker: {
+            classes: 'text-beige-200',
+            text: 'Social Media',
+          }
+        } %}
+        {% include '_patterns/icon-group/icon-group.twig' with {
+          iconGroup: {
+            classes: 'flex gap-4',
+            icons: [
+              {
+                name: 'instagram',
+                tag: 'a',
+                url: 'https://www.instagram.com/jacobtarr/',
+                target: '_blank',
+                classes: 'text-gray-800',
+                attrs: { rel: 'noopener noreferrer' }
+              },
+              {
+                name: 'facebook',
+                tag: 'a',
+                url: 'https://facebook.com',
+                target: '_blank',
+                classes: 'text-gray-800',
+                attrs: { rel: 'noopener noreferrer' }
+              }
+            ]
+          }
+        } %}
+      </div>
+      <div class="col-span-2 sm:col-span-3">
+        <div class="space-y-5">
+          {% include '_components/kicker/kicker.twig' with {
+            kicker: {
+              classes: 'text-beige-200',
+              text: 'Subscribe to the Newsletter',
+            }
+          } %}
+          {% include '_components/rich-text/rich-text.twig' with {
+            richText: {
+              content: 'Lorem ipsum dolor sit amet consectetur. Laoreet at euismod phasellus suspendisse fames facilisis ultrices.',
+              classes: 'text-base',
+            }
+          } %}
         </div>
+      </div>
+      
+      
+    </div>
+
+    <div class="c-footer__bottom mt-12 py-8 border-t border-gray-700">
+      <div class="font-body text-gray-300 text-xs sm:text-sm text-center">
+        &copy; {{ now|date('Y') }} {{ siteName }}. All rights reserved.
       </div>
     </div>
     

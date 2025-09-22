@@ -1,6 +1,7 @@
 @reference "tailwindcss";
-@reference "@/css/tokens.css";
+@reference "@src/css/tokens.css";
 
-.c-footer-container {
-  @apply bg-gray-900;
+.c-footer-wrapper {
+  @apply text-gray-100 bg-gray-900
+  pt-12 md:pt-20;
 }
