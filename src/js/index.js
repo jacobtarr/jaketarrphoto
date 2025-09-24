@@ -53,37 +53,5 @@ document.addEventListener('DOMContentLoaded', async () => {
     initializePageGalleryComponent();
   }
 
-  window.updateFacet = function updateFacet(input) {
-    try {
-      const url = new URL(window.location.href);
-      const n = input.name;
-      const isArray = n.endsWith('[]');
-
-      if (!isArray) {
-        // Radio (or single-value input)
-        if (input.type === 'radio' && input.value === '') {
-          url.searchParams.delete(n);
-        } else {
-          url.searchParams.set(n, input.value);
-        }
-      } else {
-        // Checkbox group
-        const key = n;
-        url.searchParams.delete(key);
-        document.querySelectorAll(`input[name="${n}"]`).forEach(el => {
-          if (el.checked) url.searchParams.append(key, el.value);
-        });
-      }
-
-      window.history.replaceState({}, '', url);
-
-      const formSel = input.dataset.form || '#filters-form';
-      const form = document.querySelector(formSel);
-      if (form && form.requestSubmit) form.requestSubmit();
-    } catch (e) {
-      console.error('updateFacet error', e);
-    }
-  };
-
   Alpine.start();
 });

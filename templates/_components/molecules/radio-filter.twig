@@ -22,30 +22,7 @@
             name: inputName,
             value: option.slug ?? '',
             label: option.title ?? '',
-            checked: selectedValue == (option.slug ?? ''),
-            formSelector: '#filters-form',
-            useFacetHelper: true,
-            attrs: {
-              sprig: true,
-              's-val:offset': 0,
-              's-val:limit': limit,
-              's-val:sort': sort
-            } 
-            | merge(
-              extraVals is iterable
-                ? (
-                    extraVals
-                      | reduce((carry, kv, k) =>
-                        carry
-                        | merge(
-                            kv is iterable
-                              ? { ('s-val:' ~ k ~ '[]'): kv }
-                              : { ('s-val:' ~ k): kv }
-                          )
-                      , {})
-                  )
-                : {}
-            )
+            checked: selectedValue == (option.slug ?? '')
           }
         } %}
       {% endfor %}

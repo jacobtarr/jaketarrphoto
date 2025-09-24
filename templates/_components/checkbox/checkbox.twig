@@ -9,8 +9,6 @@
       classes?: string              # extra classes for outer <label>
       inputClasses?: string         # extra classes for <input>
       icon?: string                 # icon name (defaults to "checkmark")
-      formSelector?: string         # used by helper; default '#filters-form'
-      useFacetHelper?: bool         # when true, sets x-on:change="updateFacet(...)"
       attrs?: { [key: string]: string|bool|array }  # passthrough (sprig, s-val:*, x-*, etc.)
     }
 
@@ -25,8 +23,6 @@
         classes: 'mb-2',
         inputClasses: 'c-checkbox__input',
         icon: 'checkmark',
-        formSelector: '#filters-form',
-        useFacetHelper: true,               # opt-in to helper (optional)
         attrs: {
           sprig: true,
           's-val:limit': limit,
@@ -46,16 +42,7 @@
 {% set classes = ['c-checkbox', checkbox.classes|default('')] | filter | join(' ') %}
 {% set inputClasses = ['c-checkbox__input', checkbox.inputClasses|default('')] | filter | join(' ') %}
 {% set icon = checkbox.icon|default('checkmark') %}
-{% set formSelector = checkbox.formSelector|default('#filters-form') %}
 {% set attrs = checkbox.attrs|default({}) %}
-
-{# Only add the default handler if EXPLICITLY requested #}
-{% if checkbox.useFacetHelper is defined and checkbox.useFacetHelper %}
-  {% set attrs = attrs|merge({
-    'x-on:change': 'updateFacet($event.target)',
-    'data-form': formSelector
-  }) %}
-{% endif %}
 
 <label class="{{ classes }}">
   <input

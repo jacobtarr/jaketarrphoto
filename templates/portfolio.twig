@@ -1,16 +1,17 @@
 {% extends '_layouts/global.twig' %}
 
 {% block site %}
+  {# Read current query params (GET) so a reload preserves filters #}
+  {% set q = craft.app.request.getQueryParams() %}
+
   <section class="c-portfolio-page c-page">
-
-    <!-- Sprig component for filters and photo grid -->
-    {{ sprig('_components/sprig/photo-grid', {
-      offset: 0,
-      limit: 9,
-      state: '',
-      season: [],
-      genre: []
-    }) }}
-
+    {% include '_components/sprig/photo-grid.twig' with {
+      offset: (q.offset ?? 0)|number,
+      limit:  (q.limit  ?? 9)|number,
+      state:  q.state  ?? '',
+      season: q['season'] is defined ? (q['season'] is iterable ? q['season'] : [q['season']]) : [],
+      genre:  q['genre']  is defined ? (q['genre']  is iterable  ? q['genre']  : [q['genre']])  : [],
+      sort:   q.sort ?? ''
+    } only %}
   </section>
 {% endblock %}
