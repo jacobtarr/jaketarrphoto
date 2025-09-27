@@ -63,13 +63,7 @@
   {# Load More request - append photos to existing grid #}
   {% patchelements with {selector: '#photo-grid', mode: 'append'} %}
     {% for photoEntry in entries %}
-      <div class="col-span-1 c-photo-block-container"
-        data-on-load="
-          const img = this.querySelector('img');
-          if (img && img.complete && img.naturalHeight !== 0) {
-            img.classList.add('is-loaded');
-          }
-        ">
+      <div class="col-span-1 c-photo-block-container">
         {% include '_components/photo-block/photo-block.twig' with {
           "photo": {
             "image": photoEntry.featuredImage.one(),

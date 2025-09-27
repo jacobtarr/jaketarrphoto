@@ -294,8 +294,6 @@ jacobtarrphoto
 │   │   ├── select
 │   │   │   ├── select.css
 │   │   │   └── select.twig
-│   │   ├── sprig
-│   │   │   └── photo-grid.twig
 │   │   └── switch
 │   │       ├── switch.css
 │   │       └── switch.twig
@@ -326,6 +324,11 @@ jacobtarrphoto
 │   │   └── base
 │   │       ├── index.css
 │   │       └── index.twig
+│   ├── _partials
+│   │   └── portfolio
+│   │       ├── photo-grid-container.twig
+│   │       ├── photo-grid-results.twig
+│   │       └── photo-grid.twig
 │   ├── _patterns
 │   │   ├── features
 │   │   │   ├── features.css
@@ -345,5 +348,4 @@ jacobtarrphoto
 │   ├── photo
 │   │   └── _entry.twig
 │   └── portfolio.twig
-├── tree-view.txt
 └── vite.config.js

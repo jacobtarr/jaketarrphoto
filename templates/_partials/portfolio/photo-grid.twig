@@ -82,19 +82,32 @@
       </div>
 
       <div class="c-filter-nav__col c-filter-nav__sort-by">
-        <h4 class="text-2xl font-semibold hidden md:block">Sort by</h4>
-        <div id="sort-select-container">
-          <select 
-            data-bind-sort
-            data-on-change="{{ datastar.get('_partials/portfolio/photo-grid-results') }}"
-            class="c-select c-select--sort-by"
-          >
-            <option value="" {{ sort == '' ? 'selected' }}>Newest First</option>
-            <option value="oldest" {{ sort == 'oldest' ? 'selected' }}>Oldest First</option>
-            <option value="titleAsc" {{ sort == 'titleAsc' ? 'selected' }}>Title (A–Z)</option>
-            <option value="titleDesc" {{ sort == 'titleDesc' ? 'selected' }}>Title (Z–A)</option>
-          </select>
-        </div>
+        {% include '_components/heading/heading.twig' with {
+          heading: {
+            text: 'Sort by',
+            tag: 'h4',
+            classes: 'font-semibold hidden md:block',
+          }
+        } %}
+        {% include '_components/select/select.twig' with {
+          select: {
+            name: 'sort',
+            selected: sort,
+            prepend_text: 'Sort by:',
+            options: [
+              { value: '', label: 'Newest First' },
+              { value: 'oldest', label: 'Oldest First' },
+              { value: 'titleAsc', label: 'Title (A–Z)' },
+              { value: 'titleDesc', label: 'Title (Z–A)' }
+            ],
+            classes: 'c-select--sort-by',
+            icon: 'sort-by',
+            attrs: {
+              'data-bind-sort': '',
+              'data-on-change': "$offset = 0; " ~ datastar.get('_partials/portfolio/photo-grid-results')
+            }
+          }
+        } %}
       </div>
     </div>
     

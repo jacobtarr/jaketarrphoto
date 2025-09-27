@@ -55,10 +55,6 @@
     animation: fadeIn 0.3s ease-in forwards;
     transform: scale(1);
     transition: transform 0.6s ease-in-out;
-
-    &.is-loaded {
-      opacity: 1;
-    }
   }
 }
 
