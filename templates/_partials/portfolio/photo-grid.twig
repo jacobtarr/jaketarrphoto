@@ -1,0 +1,192 @@
+{# Import the filter macros #}
+{% import '_components/molecules/radio-filter.twig' as radioFilter %}
+{% import '_components/molecules/checkbox-filter.twig' as checkboxFilter %}
+
+{# Retrieve signals #}
+{% set state = signals.state ?? '' %}
+{% set season = signals.season ?? [] %}
+{% set genre = signals.genre ?? [] %}
+{% set sort = signals.sort ?? '' %}
+{% set offset = signals.offset ?? 0 %}
+{% set limit = signals.limit ?? 9 %}
+
+{# Ensure arrays for checkbox filters #}
+{% set season = season is iterable ? season : (season ? [season] : []) %}
+{% set genre = genre is iterable ? genre : (genre ? [genre] : []) %}
+
+{% set selectedFilterCount = (state ? 1 : 0) + season|length + genre|length %}
+
+{# Fetch the available categories for filters #}
+{% set states = craft.categories.group('state').all() %}
+
+<div
+  class="c-portfolio md:flex md:flex-col md:gap-12"
+  x-data="{
+    filterOpen: $persist(false).as('portfolioFilterOpen'),
+    toggleBodyScroll(value = this.filterOpen) {
+      const isMobile = window.matchMedia('(max-width: 767px)').matches;
+      if (isMobile) {
+        document.body.classList.toggle('overflow-hidden', value);
+      } else {
+        document.body.classList.remove('overflow-hidden');
+      }
+    }
+  }"
+>
+
+  {# Hero Section - Updates with state selection #}
+  <div id="portfolio-hero">
+    {% set portfolioHeroImageData = craft.app.config.getConfigFromFile('portfolioHeroImageData') %}
+    {% set portfolioHero = portfolioHeroImageData[state] ?? portfolioHeroImageData[''] %}
+
+    {% include '_patterns/hero/hero.twig' with {
+      hero: {
+        classes: 'c-hero--small',
+        image: portfolioHero.image,
+        heading: 'Portfolio',
+        headingClasses: 'test df',
+        secondary_heading: portfolioHero.heading
+      }
+    } %}
+  </div>
+
+  <div class="container space-y-5">
+    <div class="c-filter-nav">
+      <div class="hidden md:flex items-center gap-x-5 relative">
+        {% include '_components/heading/heading.twig' with {
+          heading: {
+            text: 'Filters',
+            tag: 'h4',
+            classes: 'font-semibold',
+          }
+        } %}
+        <div id="desktop-reset-button" data-show="$state || $season.length > 0 || $genre.length > 0">
+          {% include '_components/molecules/reset-button.twig' with {
+            selectedFilterCount: selectedFilterCount
+          } %}
+        </div>
+      </div>
+      
+      <div class="c-filter-nav__col c-filter-nav__mobile-buttons">
+        {% include '_components/button/button.twig' with {
+          button: {
+            text: 'Filters' ~ (selectedFilterCount > 0 ? ' (' ~ selectedFilterCount ~ ')' : ''),
+            icon: 'filter',
+            tag: 'button',
+            classes: 'justify-between',
+            attrs: {
+              '@click': 'filterOpen = true'
+            }
+          }
+        } %}
+      </div>
+
+      <div class="c-filter-nav__col c-filter-nav__sort-by">
+        <h4 class="text-2xl font-semibold hidden md:block">Sort by</h4>
+        <div id="sort-select-container">
+          <select 
+            data-bind-sort
+            data-on-change="{{ datastar.get('_partials/portfolio/photo-grid-results') }}"
+            class="c-select c-select--sort-by"
+          >
+            <option value="" {{ sort == '' ? 'selected' }}>Newest First</option>
+            <option value="oldest" {{ sort == 'oldest' ? 'selected' }}>Oldest First</option>
+            <option value="titleAsc" {{ sort == 'titleAsc' ? 'selected' }}>Title (A–Z)</option>
+            <option value="titleDesc" {{ sort == 'titleDesc' ? 'selected' }}>Title (Z–A)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    
+    <div class="c-portfolio-grid grid md:grid-cols-4 gap-4 md:gap-5">
+
+      {# Filter Sidebar with Alpine transitions #}
+      <div
+        x-show="filterOpen"
+        x-transition:enter="transition-opacity ease-in duration-50"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="transition-opacity ease-in duration-175 delay-75"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        class="fixed inset-0 bg-black/90 z-[90] md:hidden"
+        @click="filterOpen = false"
+      >
+      </div>
+      
+      <div
+        x-show="filterOpen"
+        x-transition:enter="transition transform ease-in duration-175 delay-50"
+        x-transition:enter-start="-translate-x-full"
+        x-transition:enter-end="translate-x-0"
+        x-transition:leave="transition transform ease-in duration-175"
+        x-transition:leave-start="translate-x-0"
+        x-transition:leave-end="-translate-x-full"
+        class="c-filter-sidebar"
+        @click.outside="filterOpen = false"
+      >
+        <div class="c-filter-box-container" @click.stop>
+          <div class="c-filter-box">
+            <div class="c-filter-box__mobile-nav">
+              {% include '_components/heading/heading.twig' with {
+                heading: {
+                  text: 'Filters',
+                  tag: 'h4',
+                  classes: 'o-heading--h2 font-semibold',
+                }
+              } %}
+              <div id="mobile-reset-button" data-show="$state || $season.length > 0 || $genre.length > 0">
+                {% include '_components/molecules/reset-button.twig' with {
+                  selectedFilterCount: selectedFilterCount
+                } %}
+              </div>
+            </div>
+
+            <div class="c-filter-sections-wrapper">
+              <div id="filters-form" class="c-filter-sections-container" x-ref="filterForm">
+                <div class="c-filter-sections">
+                  
+                  {# States Radio Filter #}
+                  {% set allStates = [{ title: 'All States', slug: '' }] | merge(states) %}
+                  {{ radioFilter.renderFilter('States', allStates, state, 'state') }}
+                  
+                  {# Season Checkbox Filter #}
+                  {% set seasons = craft.categories.group('season').all() %}
+                  {{ checkboxFilter.renderFilter('Seasons', seasons, season, 'season') }}
+                  
+                  {# Genre Checkbox Filter #}
+                  {% set genres = craft.categories.group('genre').all() %}
+                  {{ checkboxFilter.renderFilter('Genres', genres, genre, 'genre') }}
+
+                </div>
+              </div>
+              
+              <div class="c-filter-box__footer">
+                {% set total = craft.entries().section('photos').count() %}
+                {% include '_components/button/button.twig' with {
+                  button: {
+                    tag: 'button',
+                    classes: 'c-button--primary w-full justify-center text-center',
+                    text: 'Show ' ~ total ~ ' Results',
+                    attrs: {
+                      '@click': 'filterOpen = false'
+                    }
+                  }
+                } %}
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      
+      {# Results Grid #}
+      <div class="c-portfolio__results col-span-1 md:col-span-3">
+        <div id="photo-grid-results">
+          {{ include('_partials/portfolio/photo-grid-results.twig') }}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

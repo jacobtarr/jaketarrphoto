@@ -1,4 +1,4 @@
-{% macro renderFilter(title, options, selectedValue, inputName, limit, sort, extraVals) %}
+{% macro renderFilter(title, options, selectedValue, inputName) %}
   <div class="c-filter-section space-y-4">
     {% include '_components/kicker/kicker.twig' with {
       kicker: {
@@ -9,22 +9,24 @@
 
     <div class="c-filter-section__form-group c-form-group">
       {% for option in options %}
-        {# pick a stable id suffix: id → slug → kebab(title) → loop index #}
         {% set idSuffix = option.id is defined
           ? option.id
           : (option.slug is defined and option.slug|length
               ? option.slug
               : (option.title is defined ? option.title|kebab : loop.index)) %}
 
-        {% include '_components/radio/radio.twig' with {
-          radio: {
-            id: inputName ~ '-' ~ idSuffix,
-            name: inputName,
-            value: option.slug ?? '',
-            label: option.title ?? '',
-            checked: selectedValue == (option.slug ?? '')
-          }
-        } %}
+        <label class="c-radio-label">
+          <input
+            type="radio"
+            id="{{ inputName ~ '-' ~ idSuffix }}"
+            name="{{ inputName }}"
+            value="{{ option.slug ?? '' }}"
+            class="c-radio-input"
+            {{ selectedValue == (option.slug ?? '') ? 'checked' }}
+            data-on-change="$state = '{{ option.slug ?? '' }}'; $offset = 0; {{ datastar.get('_partials/portfolio/photo-grid-container') }}"
+          >
+          <span>{{ option.title ?? '' }}</span>
+        </label>
       {% endfor %}
     </div>
   </div>

@@ -1,17 +1,20 @@
 {% extends '_layouts/global.twig' %}
 
 {% block site %}
-  {# Read current query params (GET) so a reload preserves filters #}
-  {% set q = craft.app.request.getQueryParams() %}
-
   <section class="c-portfolio-page c-page">
-    {% include '_components/sprig/photo-grid.twig' with {
+    {# Initialize Datastar signals with query params for persistence #}
+    {% set q = craft.app.request.getQueryParams() %}
+    
+    <div data-signals="{{ {
+      state: q.state ?? '',
+      season: q.season is defined ? (q.season is iterable ? q.season : [q.season]) : [],
+      genre: q.genre is defined ? (q.genre is iterable ? q.genre : [q.genre]) : [],
+      sort: q.sort ?? '',
       offset: (q.offset ?? 0)|number,
-      limit:  (q.limit  ?? 9)|number,
-      state:  q.state  ?? '',
-      season: q['season'] is defined ? (q['season'] is iterable ? q['season'] : [q['season']]) : [],
-      genre:  q['genre']  is defined ? (q['genre']  is iterable  ? q['genre']  : [q['genre']])  : [],
-      sort:   q.sort ?? ''
-    } only %}
+      limit: (q.limit ?? 9)|number,
+      isLoadMore: false
+    }|json_encode }}">
+      {{ include('_partials/portfolio/photo-grid-container.twig') }}
+    </div>
   </section>
 {% endblock %}
