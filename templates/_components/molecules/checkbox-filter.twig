@@ -18,12 +18,17 @@
             class="c-checkbox__input"
             {{ option.slug in selectedOptions ? 'checked' }}
             data-on-change="
+              const url = new URL(window.location);
               if (event.target.checked) {
                 ${{ inputName }} = [...${{ inputName }}, '{{ option.slug }}'];
+                url.searchParams.append('{{ inputName }}[]', '{{ option.slug }}');
               } else {
                 ${{ inputName }} = ${{ inputName }}.filter(s => s !== '{{ option.slug }}');
+                url.searchParams.delete('{{ inputName }}[]');
+                ${{ inputName }}.forEach(s => url.searchParams.append('{{ inputName }}[]', s));
               }
               $offset = 0;
+              window.history.replaceState({}, '', url);
               {{ datastar.get('_partials/portfolio/photo-grid-container') }}
             "
           >

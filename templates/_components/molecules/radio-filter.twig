@@ -23,7 +23,18 @@
             value="{{ option.slug ?? '' }}"
             class="c-radio-input"
             {{ selectedValue == (option.slug ?? '') ? 'checked' }}
-            data-on-change="$state = '{{ option.slug ?? '' }}'; $offset = 0; {{ datastar.get('_partials/portfolio/photo-grid-container') }}"
+            data-on-change="
+              $state = '{{ option.slug ?? '' }}'; 
+              $offset = 0; 
+              const url = new URL(window.location);
+              if ('{{ option.slug }}') {
+                url.searchParams.set('state', '{{ option.slug }}');
+              } else {
+                url.searchParams.delete('state');
+              }
+              window.history.replaceState({}, '', url);
+              {{ datastar.get('_partials/portfolio/photo-grid-container') }}
+            "
           >
           <span>{{ option.title ?? '' }}</span>
         </label>

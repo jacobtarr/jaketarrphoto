@@ -16,6 +16,9 @@
         $isLoadMore = false;
         document.querySelectorAll('input[type=\"radio\"]').forEach(r => r.checked = r.value === '');
         document.querySelectorAll('input[type=\"checkbox\"]').forEach(c => c.checked = false);
+        const url = new URL(window.location);
+        url.search = '';
+        window.history.replaceState({}, '', url);
         " ~ datastar.get('_partials/portfolio/photo-grid-container')
     }
   }

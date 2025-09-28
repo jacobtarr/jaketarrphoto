@@ -22,16 +22,29 @@
 <div
   class="c-portfolio md:flex md:flex-col md:gap-12"
   x-data="{
-    filterOpen: $persist(false).as('portfolioFilterOpen'),
-    toggleBodyScroll(value = this.filterOpen) {
+    filterOpen: false,
+    toggleBodyScroll(val = this.filterOpen) {
       const isMobile = window.matchMedia('(max-width: 767px)').matches;
-      if (isMobile) {
-        document.body.classList.toggle('overflow-hidden', value);
-      } else {
-        document.body.classList.remove('overflow-hidden');
-      }
+      document.body.classList.toggle('overflow-hidden', isMobile && val);
+    },
+    _mq: null,
+    _syncToBreakpoint() {
+      const isDesktop = this._mq.matches; // (min-width:768px)
+      this.filterOpen = false;
+      this.toggleBodyScroll(false);
     }
   }"
+  x-init="
+    _mq = window.matchMedia('(min-width: 768px)');
+    _syncToBreakpoint();
+    _mq.addEventListener('change', () => _syncToBreakpoint());
+
+    $watch('filterOpen', v => toggleBodyScroll(v));
+
+    // (Safari quirks)
+    window.addEventListener('resize', () => toggleBodyScroll());
+  "
+  @keydown.window.escape="filterOpen = false"
 >
 
   {# Hero Section - Updates with state selection #}
@@ -154,7 +167,6 @@
                 } %}
               </div>
             </div>
-
             <div class="c-filter-sections-wrapper">
               <div id="filters-form" class="c-filter-sections-container" x-ref="filterForm">
                 <div class="c-filter-sections">
@@ -182,7 +194,7 @@
                     classes: 'c-button--primary w-full justify-center text-center',
                     text: 'Show ' ~ total ~ ' Results',
                     attrs: {
-                      '@click': 'filterOpen = false'
+                      '@click': 'filterOpen = false',
                     }
                   }
                 } %}
