@@ -1,14 +1,15 @@
 .c-filter-sidebar {
   @apply md:pb-8 md:px-0 md:pt-0 md:pb-0 space-y-5 
   fixed top-0 left-0 h-full w-[80vw]
-  bg-beige-100 md:bg-transparent md:h-auto md:static md:block md:col-span-1 z-[150];
+  bg-white md:bg-transparent md:h-auto md:static md:block md:col-span-1 z-[150];
 
-  @media (min-width: 768px) {
+  @media (min-width: theme(screens.md)) {
     display: block !important;
     opacity: 1 !important;
     visibility: visible !important;
     transform: none !important;
     width: auto !important;
+    transition: none !important;
   }
 
   html.u-dark-mode & {
@@ -21,10 +22,10 @@
 }
 
 .c-filter-box {
-  @apply md:pb-5 bg-beige-100 space-y-8 md:space-y-0 shadow-card-soft shadowc-gray-400;
+  @apply md:pb-5 bg-white space-y-8 md:space-y-0;
   &::after {
     content: '';
-    @apply md:content-none pointer-events-none absolute bottom-[66px] left-0 right-0 h-10 bg-gradient-to-t from-beige-100 to-transparent;
+    @apply md:content-none pointer-events-none absolute bottom-[66px] left-0 right-0 h-10 bg-gradient-to-t from-white to-transparent;
   }
 }
 
@@ -33,7 +34,7 @@
 }
 
 .c-filter-box__footer {
-  @apply flex md:hidden absolute bottom-0 left-0 right-0 p-4 bg-beige-100 border-t border-beige-200;
+  @apply flex md:hidden absolute bottom-0 left-0 right-0 p-4 bg-white border-t border-beige-200;
 }
 
 .c-filter-sections-container {
@@ -45,13 +46,9 @@
 }
 
 .c-filter-section__title {
-  @apply text-beige-400 py-4 px-5 bg-beige-200;
+  @apply text-beige-400 py-4 px-5;
 
   html.u-dark-mode & {
     @apply border-gray-800;
   }
-}
-
-.c-filter-section__form-group {
-  @apply px-5;
 }

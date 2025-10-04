@@ -1,5 +1,5 @@
 @reference "tailwindcss";
-@reference "../../../src/css/tokens.css";
+@reference "@css/tokens.css";
 
 .c-hero {
   @apply relative w-full md:h-screen overflow-hidden;

@@ -1,6 +1,7 @@
-defaultPlacement: end
+altTranslationKeyFormat: null
+altTranslationMethod: none
 fieldLayouts:
-  b3e0d02f-862a-461d-a1cf-46e4206340ef:
+  1dca67b0-ec7d-43c0-8441-079dbe56b214:
     cardThumbAlignment: end
     tabs:
       -
@@ -11,7 +12,7 @@ fieldLayouts:
             autocomplete: false
             autocorrect: true
             class: null
-            dateAdded: '2024-09-06T15:05:09+00:00'
+            dateAdded: '2025-09-28T23:49:14+00:00'
             disabled: false
             elementCondition: null
             id: null
@@ -31,21 +32,20 @@ fieldLayouts:
             step: null
             tip: null
             title: null
-            type: craft\fieldlayoutelements\TitleField
-            uid: 65bd6434-0b6d-4435-860a-a12d2db6b22f
+            type: craft\fieldlayoutelements\assets\AssetTitleField
+            uid: 27959e92-03bb-4f10-a85a-7db469ac4788
             userCondition: null
             warning: null
             width: 100
         name: Content
-        uid: 674a2ee6-56dd-46cd-aa14-9dc0f88c9635
+        uid: 1cd0c4d9-d730-4f23-b985-51fcb7477a68
         userCondition: null
-handle: genre
-name: Genre
-siteSettings:
-  08c386f4-5a41-4c9f-8282-f6785af06bfc: # $CRAFT_SITE_NAME
-    hasUrls: false
-    template: null
-    uriFormat: null
-structure:
-  maxLevels: null
-  uid: 1244bf03-ba2e-4420-920d-5f6f179f1ea8
+fs: iconsFilesystem
+handle: icons
+name: Icons
+sortOrder: 3
+subpath: ''
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+transformFs: ''
+transformSubpath: ''

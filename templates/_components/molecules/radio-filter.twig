@@ -1,4 +1,4 @@
-{% macro renderFilter(title, options, selectedValue, inputName) %}
+{% macro renderFilter(title, options, selectedValue, inputName, iconFolder) %}
   <div class="c-filter-section space-y-4">
     {% include '_components/kicker/kicker.twig' with {
       kicker: {
@@ -7,7 +7,7 @@
       }
     } %}
 
-    <div class="c-filter-section__form-group c-form-group">
+    <div class="c-form-group space-y-2">
       {% for option in options %}
         {% set idSuffix = option.id is defined
           ? option.id
@@ -15,29 +15,36 @@
               ? option.slug
               : (option.title is defined ? option.title|kebab : loop.index)) %}
 
-        <label class="c-radio-label">
-          <input
-            type="radio"
-            id="{{ inputName ~ '-' ~ idSuffix }}"
-            name="{{ inputName }}"
-            value="{{ option.slug ?? '' }}"
-            class="c-radio-input"
-            {{ selectedValue == (option.slug ?? '') ? 'checked' }}
-            data-on-change="
-              $state = '{{ option.slug ?? '' }}'; 
-              $offset = 0; 
-              const url = new URL(window.location);
-              if ('{{ option.slug }}') {
-                url.searchParams.set('state', '{{ option.slug }}');
-              } else {
-                url.searchParams.delete('state');
-              }
-              window.history.replaceState({}, '', url);
-              {{ datastar.get('_partials/portfolio/photo-grid-container') }}
-            "
-          >
-          <span>{{ option.title ?? '' }}</span>
-        </label>
+        {% set optionSlug = option.slug ?? '' %}
+        
+        {% set iconFileName = optionSlug ?: 'usa' %}
+        {% set iconPath = iconFolder ? 'portfolio/' ~ iconFolder ~ '/' ~ iconFileName ~ '.svg' : null %}
+
+        {% include '_components/radio/radio.twig' with {
+          radio: {
+            id: inputName ~ '-' ~ idSuffix,
+            name: inputName,
+            value: optionSlug,
+            label: option.title ?? '',
+            checked: (selectedValue == optionSlug) or (not selectedValue and not optionSlug),
+            iconPath: iconPath,
+            classes: 'c-radio-label',
+            inputClasses: 'c-radio-input',
+            attrs: {
+              'data-on-change': "
+                $state = '" ~ optionSlug ~ "'; 
+                $offset = 0; 
+                const url = new URL(window.location);
+                if ('" ~ optionSlug ~ "') {
+                  url.searchParams.set('state', '" ~ optionSlug ~ "');
+                } else {
+                  url.searchParams.delete('state');
+                }
+                window.history.replaceState({}, '', url);
+                " ~ datastar.get('_partials/portfolio/photo-grid-container')
+            }
+          }
+        } %}
       {% endfor %}
     </div>
   </div>

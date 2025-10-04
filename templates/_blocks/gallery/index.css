@@ -1,5 +1,5 @@
 @reference "tailwindcss";
-@reference "../../../src/css/tokens.css";
+@reference "@css/tokens.css";
 
 .c-gallery__caption {
   @apply font-founders text-gray-400 mt-2 xl:mt-3;

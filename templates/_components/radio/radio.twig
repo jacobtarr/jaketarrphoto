@@ -6,25 +6,21 @@
       value?: string                # e.g. "arizona" (use '' for "All")
       label?: string                # visible label text
       checked?: bool
+      iconPath?: string             # optional icon path (e.g., 'portfolio/state/arizona.svg')
       classes?: string              # extra classes for outer <label>
       inputClasses?: string         # extra classes for <input>
-      attrs?: { [key: string]: string|bool|array }  # passthrough (sprig, s-val:*, x-*, etc.)
+      attrs?: { [key: string]: string|bool|array }
     }
 
   Usage:
     {% include '_components/radio/radio.twig' with {
       radio: {
-        id: 'state-' ~ option.id,
+        id: 'state-arizona',
         name: 'state',
-        value: option.slug,           # '' means "All"
-        label: option.title,
-        checked: selectedValue == option.slug,
-        attrs: {
-          sprig: true,
-          's-val:limit': limit,
-          's-val:sort': sort
-          # 'x-on:change': '...'      # optional override if not using helper
-        }
+        value: 'arizona',
+        label: 'Arizona',
+        checked: selectedValue == 'arizona',
+        iconPath: 'portfolio/state/arizona.svg'
       }
     } %}
 #}
@@ -42,7 +38,18 @@
     value="{{ radio.value|default('') }}"
     class="{{ inputClasses }}"
     {{ radio.checked ? 'checked' }}
-    {{ attr(attrs) }}  {# sprig, s-val:*, x-*, etc. #}
+    {{ attr(attrs) }}
   >
+  
+  {% if radio.iconPath is defined and radio.iconPath %}
+    <span class="c-radio__category-icon">
+      {% include '_components/icon/icons/' ~ radio.iconPath ignore missing %}
+    </span>
+  {% endif %}
+  
   <span>{{ radio.label|default('') }}</span>
+
+  <span class="c-radio__indicator ml-auto">
+    <span class="c-radio__indicator-dot"></span>
+  </span>
 </label>

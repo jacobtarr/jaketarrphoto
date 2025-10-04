@@ -13,7 +13,8 @@
       sort: q.sort ?? '',
       offset: (q.offset ?? 0)|number,
       limit: (q.limit ?? 9)|number,
-      isLoadMore: false
+      isLoadMore: false,
+      filterOpen: false
     } %}
     
     <div data-signals="{{ initialSignals|json_encode }}">

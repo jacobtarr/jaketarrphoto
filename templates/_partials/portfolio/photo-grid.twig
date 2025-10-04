@@ -19,32 +19,17 @@
 {# Fetch the available categories for filters #}
 {% set states = craft.categories.group('state').all() %}
 
-<div
+<div 
   class="c-portfolio md:flex md:flex-col md:gap-12"
-  x-data="{
-    filterOpen: false,
-    toggleBodyScroll(val = this.filterOpen) {
-      const isMobile = window.matchMedia('(max-width: 767px)').matches;
-      document.body.classList.toggle('overflow-hidden', isMobile && val);
-    },
-    _mq: null,
-    _syncToBreakpoint() {
-      const isDesktop = this._mq.matches; // (min-width:768px)
-      this.filterOpen = false;
-      this.toggleBodyScroll(false);
+  data-signals="{ filterOpen: false, animateDrawer: false }"
+  data-on-resize__window="
+    const isDesktop = matchMedia('(min-width:768px)').matches;
+    if (isDesktop) {
+      $filterOpen = false;
+      $animateDrawer = false;
+      document.body.classList.remove('overflow-hidden');
     }
-  }"
-  x-init="
-    _mq = window.matchMedia('(min-width: 768px)');
-    _syncToBreakpoint();
-    _mq.addEventListener('change', () => _syncToBreakpoint());
-
-    $watch('filterOpen', v => toggleBodyScroll(v));
-
-    // (Safari quirks)
-    window.addEventListener('resize', () => toggleBodyScroll());
   "
-  @keydown.window.escape="filterOpen = false"
 >
 
   {# Hero Section - Updates with state selection #}
@@ -88,7 +73,11 @@
             tag: 'button',
             classes: 'justify-between',
             attrs: {
-              '@click': 'filterOpen = true'
+              'data-on-click': "
+                $animateDrawer = true;
+                $filterOpen = true;
+                if (matchMedia('(max-width: 767px)').matches) document.body.classList.add('overflow-hidden');
+              "
             }
           }
         } %}
@@ -126,30 +115,30 @@
     
     <div class="c-portfolio-grid grid md:grid-cols-4 gap-4 md:gap-5">
 
-      {# Filter Sidebar with Alpine transitions #}
+      {# Filter backdrop #}
       <div
-        x-show="filterOpen"
-        x-transition:enter="transition-opacity ease-in duration-50"
-        x-transition:enter-start="opacity-0"
-        x-transition:enter-end="opacity-100"
-        x-transition:leave="transition-opacity ease-in duration-175 delay-75"
-        x-transition:leave-start="opacity-100"
-        x-transition:leave-end="opacity-0"
-        class="fixed inset-0 bg-black/90 z-[90] md:hidden"
-        @click="filterOpen = false"
-      >
-      </div>
-      
+        class="fixed inset-0 bg-black/90 z-[90] md:hidden opacity-0 pointer-events-none"
+        data-class="{
+          'opacity-100 pointer-events-auto': $filterOpen,
+          'opacity-0 pointer-events-none': !$filterOpen,
+          'transition-opacity duration-300': $animateDrawer
+        }"
+        data-attr-aria-hidden="!$filterOpen"
+        data-on-click="
+          $animateDrawer = true;
+          $filterOpen = false;
+          document.body.classList.remove('overflow-hidden');
+        "
+      ></div>
+            
       <div
-        x-show="filterOpen"
-        x-transition:enter="transition transform ease-in duration-175 delay-50"
-        x-transition:enter-start="-translate-x-full"
-        x-transition:enter-end="translate-x-0"
-        x-transition:leave="transition transform ease-in duration-175"
-        x-transition:leave-start="translate-x-0"
-        x-transition:leave-end="-translate-x-full"
-        class="c-filter-sidebar"
-        @click.outside="filterOpen = false"
+        class="c-filter-sidebar transform -translate-x-full md:translate-x-0"
+        data-class="{
+          'translate-x-0': $filterOpen,
+          '-translate-x-full': !$filterOpen,
+          'transition-transform duration-300 ease-in-out': $animateDrawer
+        }"
+        data-attr-aria-hidden="!$filterOpen"
       >
         <div class="c-filter-box-container" @click.stop>
           <div class="c-filter-box">
@@ -167,40 +156,39 @@
                 } %}
               </div>
             </div>
-            <div class="c-filter-sections-wrapper">
-              <div id="filters-form" class="c-filter-sections-container" x-ref="filterForm">
-                <div class="c-filter-sections">
-                  
-                  {# States Radio Filter #}
-                  {% set allStates = [{ title: 'All States', slug: '' }] | merge(states) %}
-                  {{ radioFilter.renderFilter('States', allStates, state, 'state') }}
-                  
-                  {# Season Checkbox Filter #}
-                  {% set seasons = craft.categories.group('season').all() %}
-                  {{ checkboxFilter.renderFilter('Seasons', seasons, season, 'season') }}
-                  
-                  {# Genre Checkbox Filter #}
-                  {% set genres = craft.categories.group('genre').all() %}
-                  {{ checkboxFilter.renderFilter('Genres', genres, genre, 'genre') }}
+            <div id="filters-form" class="c-filter-sections-container">
+              <div class="c-filter-sections">
+                
+                {# States Radio Filter #}
+                {% set allStates = [{ title: 'All States', slug: '' }] | merge(states) %}
+                {{ radioFilter.renderFilter('States', allStates, state, 'state', 'state') }}
+                                
+                {# Season Checkbox Filter #}
+                {% set seasons = craft.categories().group('season').all() %}
+                {{ checkboxFilter.renderFilter('Seasons', seasons, season, 'season', 'season') }}
 
-                </div>
-              </div>
-              
-              <div class="c-filter-box__footer">
-                {% set total = craft.entries().section('photos').count() %}
-                {% include '_components/button/button.twig' with {
-                  button: {
-                    tag: 'button',
-                    classes: 'c-button--primary w-full justify-center text-center',
-                    text: 'Show ' ~ total ~ ' Results',
-                    attrs: {
-                      '@click': 'filterOpen = false',
-                    }
-                  }
-                } %}
+                {# Genre Checkbox Filter #}
+                {% set genres = craft.categories().group('genre').all() %}
+                {{ checkboxFilter.renderFilter('Genres', genres, genre, 'genre', 'genre') }}
+
               </div>
             </div>
-
+            
+            <div class="c-filter-box__footer">
+              {% set total = craft.entries().section('photos').count() %}
+              {% include '_components/button/button.twig' with {
+                button: {
+                  tag: 'button',
+                  classes: 'c-button--primary w-full justify-center text-center',
+                  text: 'Show ' ~ total ~ ' Results',
+                  attrs: {
+                    'data-on-click': "$animateDrawer = true;
+                    $filterOpen = false;
+                    document.body.classList.remove('overflow-hidden');",
+                  }
+                }
+              } %}
+            </div>
           </div>
         </div>
       </div>

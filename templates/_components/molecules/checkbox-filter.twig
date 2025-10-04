@@ -1,4 +1,4 @@
-{% macro renderFilter(title, options, selectedOptions, inputName) %}
+{% macro renderFilter(title, options, selectedOptions, inputName, iconFolder) %}
   <div class="c-filter-section space-y-4">
     {% include '_components/kicker/kicker.twig' with {
       kicker: {
@@ -7,36 +7,35 @@
       }
     } %}
     
-    <div class="c-filter-section__form-group c-form-group">
+    <div class="c-form-group space-y-2">
       {% for option in options %}
-        <label class="c-checkbox">
-          <input
-            type="checkbox"
-            id="{{ inputName ~ '-' ~ option.id }}"
-            name="{{ inputName ~ '[]' }}"
-            value="{{ option.slug }}"
-            class="c-checkbox__input"
-            {{ option.slug in selectedOptions ? 'checked' }}
-            data-on-change="
-              const url = new URL(window.location);
-              if (event.target.checked) {
-                ${{ inputName }} = [...${{ inputName }}, '{{ option.slug }}'];
-                url.searchParams.append('{{ inputName }}[]', '{{ option.slug }}');
-              } else {
-                ${{ inputName }} = ${{ inputName }}.filter(s => s !== '{{ option.slug }}');
-                url.searchParams.delete('{{ inputName }}[]');
-                ${{ inputName }}.forEach(s => url.searchParams.append('{{ inputName }}[]', s));
-              }
-              $offset = 0;
-              window.history.replaceState({}, '', url);
-              {{ datastar.get('_partials/portfolio/photo-grid-container') }}
-            "
-          >
-          <span class="c-checkbox__checkmark-icon-container mr-4">
-            {% include '_components/icon/icons/icon-checkmark.svg' %}
-          </span>
-          {{ option.title }}
-        </label>
+        {% include '_components/checkbox/checkbox.twig' with {
+          checkbox: {
+            id: inputName ~ '-' ~ option.id,
+            name: inputName ~ '[]',
+            value: option.slug,
+            label: option.title,
+            checked: option.slug in selectedOptions,
+            iconPath: iconFolder ? 'portfolio/' ~ iconFolder ~ '/' ~ option.slug ~ '.svg' : null,
+            classes: 'c-checkbox',
+            inputClasses: 'c-checkbox__input',
+            attrs: {
+              'data-on-change': "
+                const url = new URL(window.location);
+                if (event.target.checked) {
+                  $" ~ inputName ~ " = [...$" ~ inputName ~ ", '" ~ option.slug ~ "'];
+                  url.searchParams.append('" ~ inputName ~ "[]', '" ~ option.slug ~ "');
+                } else {
+                  $" ~ inputName ~ " = $" ~ inputName ~ ".filter(s => s !== '" ~ option.slug ~ "');
+                  url.searchParams.delete('" ~ inputName ~ "[]');
+                  $" ~ inputName ~ ".forEach(s => url.searchParams.append('" ~ inputName ~ "[]', s));
+                }
+                $offset = 0;
+                window.history.replaceState({}, '', url);
+                " ~ datastar.get('_partials/portfolio/photo-grid-container')
+            }
+          }
+        } %}
       {% endfor %}
     </div>
   </div>

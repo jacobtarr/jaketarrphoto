@@ -1,18 +1,11 @@
 @reference "tailwindcss";
-@reference "../../../src/css/tokens.css";
+@reference "@css/tokens.css";
 
 .c-select-container {
-  position: relative;
-  display: flex;
-  width: 100%;
-  cursor: pointer;
-  padding: 0;
-  border-radius: 3px;
-  background-color: #fff;
-  transition: 0.15s all ease-in-out;
-  overflow: hidden;
-
-  @apply border border-gray-900;
+  @apply overflow-hidden relative flex justify-center items-center gap-3 cursor-pointer
+          bg-gray-100 text-gray-700 p-0
+          rounded-full
+          transition-all;
 
   &:hover, &:focus {
     @apply border-gray-900 bg-gray-900;
@@ -27,19 +20,11 @@
       }
     }
   }
-
-  .c-select {
-    @apply py-[5px] px-4 md:py-[7px] md:px-5 bg-transparent;
-  }
 }
 
 .c-select--sort-by {
-  width: auto;
-  border-radius: 35px;
-  font-size: 14px;
-
   .c-select {
-    @apply py-[5px] pl-4 md:pr-[55px] md:py-[7px] md:pl-5;
+    @apply md:pr-[55px];
   }
 
   .c-select__arrow {
@@ -48,15 +33,9 @@
 }
 
 .c-select {
-  display: block;
-  width: 100%;
-  cursor: pointer;
-  appearance: none;
-  outline: none;
-  border: 0;
-  padding: 0;
-
-  @apply font-medium text-sm md:text-base;
+  @apply appearance-none outline-none block cursor-pointer w-auto px-4 py-3 md:px-5
+  bg-transparent border-0
+  text-sm md:text-[15px] font-medium leading-4;
 }
 
 .c-select__arrow {
