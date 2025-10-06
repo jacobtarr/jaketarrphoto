@@ -36,7 +36,7 @@
   {% endif %}
 
   {% if button.text is defined %}
-    <span {{ button.spanAttrs is defined ? attr(button.spanAttrs) }}>{{ button.text ?? '' }}</span>
+    <span {{ button.spanAttrs is defined ? attr(button.spanAttrs) }}>{{ (button.text ?? '')|raw }}</span>
   {% endif %}
 
   {% if button.icon is defined %}

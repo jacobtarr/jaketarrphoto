@@ -13,7 +13,36 @@
 {# Ensure arrays for checkbox filters #}
 {% set season = season is iterable ? season : (season ? [season] : []) %}
 {% set genre = genre is iterable ? genre : (genre ? [genre] : []) %}
+{# Build filtered query for count #}
+{% set query = craft.entries().section('photos') %}
+{% set relatedConditions = [] %}
 
+{% if state %}
+  {% set category = craft.categories.slug(state).one() %}
+  {% if category %}
+    {% set relatedConditions = relatedConditions|merge([{targetElement: category, field: 'state'}]) %}
+  {% endif %}
+{% endif %}
+
+{% if season|length %}
+  {% set cats = craft.categories().group('season').slug(season).all() %}
+  {% if cats|length %}
+    {% set relatedConditions = relatedConditions|merge([{field: 'season', targetElement: cats}]) %}
+  {% endif %}
+{% endif %}
+
+{% if genre|length %}
+  {% set cats = craft.categories().group('genre').slug(genre).all() %}
+  {% if cats|length %}
+    {% set relatedConditions = relatedConditions|merge([{field: 'genre', targetElement: cats}]) %}
+  {% endif %}
+{% endif %}
+
+{% if relatedConditions|length %}
+  {% set query = query.relatedTo(['and']|merge(relatedConditions)) %}
+{% endif %}
+
+{% set total = query.count() %}
 {% set selectedFilterCount = (state ? 1 : 0) + season|length + genre|length %}
 
 {# Fetch the available categories for filters #}
@@ -42,7 +71,7 @@
         classes: 'c-hero--small',
         image: portfolioHero.image,
         heading: 'Portfolio',
-        headingClasses: 'test df',
+        headingClasses: 'o-heading--h1',
         secondary_heading: portfolioHero.heading
       }
     } %}
@@ -175,12 +204,11 @@
             </div>
             
             <div class="c-filter-box__footer">
-              {% set total = craft.entries().section('photos').count() %}
               {% include '_components/button/button.twig' with {
                 button: {
                   tag: 'button',
                   classes: 'c-button--primary w-full justify-center text-center',
-                  text: 'Show ' ~ total ~ ' Results',
+                  text: 'Show ' ~ total ~ ' Result' ~ (total != 1 ? 's' : ''),
                   attrs: {
                     'data-on-click': "$animateDrawer = true;
                     $filterOpen = false;

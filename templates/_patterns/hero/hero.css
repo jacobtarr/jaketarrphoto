@@ -20,6 +20,10 @@
 .c-hero__image {
   @apply h-[350px] md:h-full relative overflow-hidden;
 
+  .c-hero--small & {
+    @apply h-full;
+  }
+
   &::before {
     content: '';
     position: absolute;
@@ -37,10 +41,11 @@
 }
 
 .c-hero__content-wrapper {
-  @apply text-center md:text-left pt-4 pb-8 md:pt-0 md:pb-0 md:absolute bottom-16 left-0 w-full h-auto z-10 bg-gray-900 md:bg-transparent;
+  @apply text-center md:text-left pt-4 pb-8 md:pt-0 md:pb-0 md:absolute
+  bottom-16 left-0 w-full h-auto z-10 bg-gray-900 md:bg-transparent;
 
   .c-hero--small & {
-    @apply bottom-5;
+    @apply bottom-4 md:bottom-5 pt-0 pb-0 bg-transparent absolute;
   }
 }
 

@@ -42,13 +42,38 @@
 }
 
 .c-filter-sections {
-  @apply space-y-5 md:space-y-7;
+
+}
+
+.c-filter-section {
+  @apply border-t border-gray-200;
 }
 
 .c-filter-section__title {
-  @apply text-beige-400 py-4 px-5;
+  @apply text-gray-500;
 
   html.u-dark-mode & {
     @apply border-gray-800;
   }
+}
+
+.c-filter-section__header {
+   @apply py-4 w-full flex items-center justify-between cursor-pointer;
+}
+
+.c-filter-section__icon {
+  @apply w-5 h-5 mr-3 text-gray-500 flex items-center justify-center origin-center;
+}
+
+.c-filter-section__content {
+  @apply grid transition-[grid-template-rows] duration-300 ease-in-out;
+  grid-template-rows: 0fr;
+}
+
+.c-filter-section__content.is-open {
+  grid-template-rows: 1fr;
+}
+
+.c-filter-section__content-inner {
+  @apply overflow-hidden;
 }

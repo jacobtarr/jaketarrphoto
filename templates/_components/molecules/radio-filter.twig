@@ -1,51 +1,79 @@
 {% macro renderFilter(title, options, selectedValue, inputName, iconFolder) %}
-  <div class="c-filter-section space-y-4">
-    {% include '_components/kicker/kicker.twig' with {
-      kicker: {
-        text: title,
-        classes: 'c-filter-section__title'
-      }
-    } %}
-
-    <div class="c-form-group space-y-2">
-      {% for option in options %}
-        {% set idSuffix = option.id is defined
-          ? option.id
-          : (option.slug is defined and option.slug|length
-              ? option.slug
-              : (option.title is defined ? option.title|kebab : loop.index)) %}
-
-        {% set optionSlug = option.slug ?? '' %}
-        
-        {% set iconFileName = optionSlug ?: 'usa' %}
-        {% set iconPath = iconFolder ? 'portfolio/' ~ iconFolder ~ '/' ~ iconFileName ~ '.svg' : null %}
-
-        {% include '_components/radio/radio.twig' with {
-          radio: {
-            id: inputName ~ '-' ~ idSuffix,
-            name: inputName,
-            value: optionSlug,
-            label: option.title ?? '',
-            checked: (selectedValue == optionSlug) or (not selectedValue and not optionSlug),
-            iconPath: iconPath,
-            classes: 'c-radio-label',
-            inputClasses: 'c-radio-input',
-            attrs: {
-              'data-on-change': "
-                $state = '" ~ optionSlug ~ "'; 
-                $offset = 0; 
-                const url = new URL(window.location);
-                if ('" ~ optionSlug ~ "') {
-                  url.searchParams.set('state', '" ~ optionSlug ~ "');
-                } else {
-                  url.searchParams.delete('state');
-                }
-                window.history.replaceState({}, '', url);
-                " ~ datastar.get('_partials/portfolio/photo-grid-container')
-            }
+  {% set accordionId = inputName ~ 'Accordion' %}
+  
+  <div 
+    class="c-filter-section"
+    data-signals="{ {{ accordionId }}: true }"
+  >
+    <button
+      type="button"
+      class="c-filter-section__header"
+      data-on-click="${{ accordionId }} = !${{ accordionId }}"
+    >
+      {% include '_components/kicker/kicker.twig' with {
+        kicker: {
+          text: title,
+          classes: 'c-filter-section__title'
+        }
+      } %}
+      
+      {% include '_components/icon/icon.twig' with {
+        icon: {
+          name: 'chevron-down',
+          classes: 'c-filter-section__icon transition-transform duration-200',
+          attrs: {
+            'data-class': "{ 'rotate-180': $" ~ accordionId ~ " }"
           }
-        } %}
-      {% endfor %}
+        }
+      } %}
+    </button>
+    
+    <div 
+      class="c-filter-section__content"
+      data-class="{ 'is-open': ${{ accordionId }} }"
+    >
+      <div class="c-filter-section__content-inner">
+        <div class="c-form-group space-y-2 pb-4">
+          {% for option in options %}
+            {% set idSuffix = option.id is defined
+              ? option.id
+              : (option.slug is defined and option.slug|length
+                  ? option.slug
+                  : (option.title is defined ? option.title|kebab : loop.index)) %}
+
+            {% set optionSlug = option.slug ?? '' %}
+            
+            {% set iconFileName = optionSlug ?: 'usa' %}
+            {% set iconPath = iconFolder ? 'portfolio/' ~ iconFolder ~ '/' ~ iconFileName ~ '.svg' : null %}
+
+            {% include '_components/radio/radio.twig' with {
+              radio: {
+                id: inputName ~ '-' ~ idSuffix,
+                name: inputName,
+                value: optionSlug,
+                label: option.title ?? '',
+                checked: (selectedValue == optionSlug) or (not selectedValue and not optionSlug),
+                iconPath: iconPath,
+                classes: 'c-radio-label',
+                inputClasses: 'c-radio-input',
+                attrs: {
+                  'data-on-change': "
+                    $state = '" ~ optionSlug ~ "'; 
+                    $offset = 0; 
+                    const url = new URL(window.location);
+                    if ('" ~ optionSlug ~ "') {
+                      url.searchParams.set('state', '" ~ optionSlug ~ "');
+                    } else {
+                      url.searchParams.delete('state');
+                    }
+                    window.history.replaceState({}, '', url);
+                    " ~ datastar.get('_partials/portfolio/photo-grid-container')
+                }
+              }
+            } %}
+          {% endfor %}
+        </div>
+      </div>
     </div>
   </div>
 {% endmacro %}
