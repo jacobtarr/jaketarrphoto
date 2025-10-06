@@ -2,15 +2,23 @@
 
 {% block site %}
   <section class="c-portfolio-page c-page">
-
-    <!-- Sprig component for filters and photo grid -->
-    {{ sprig('_components/sprig/photo-grid', {
-      offset: 0,
-      limit: 9,
-      state: '',
-      season: [],
-      genre: []
-    }) }}
-
+    {# Initialize Datastar signals with query params for persistence #}
+    {% set q = craft.app.request.getQueryParams() %}
+    
+    {# Parse the query params into the format we need #}
+    {% set initialSignals = {
+      state: q.state ?? '',
+      season: q.season is defined ? (q.season is iterable and q.season is not string ? q.season : [q.season]) : [],
+      genre: q.genre is defined ? (q.genre is iterable and q.genre is not string ? q.genre : [q.genre]) : [],
+      sort: q.sort ?? '',
+      offset: (q.offset ?? 0)|number,
+      limit: (q.limit ?? 9)|number,
+      isLoadMore: false,
+      filterOpen: false
+    } %}
+    
+    <div data-signals="{{ initialSignals|json_encode }}">
+      {{ include('_partials/portfolio/photo-grid-container.twig', {signals: initialSignals}) }}
+    </div>
   </section>
 {% endblock %}

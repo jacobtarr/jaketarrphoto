@@ -1,0 +1,46 @@
+@reference "tailwindcss";
+@reference "@css/tokens.css";
+
+.c-radio-label {
+  @apply flex cursor-pointer items-center font-medium py-2 px-3 rounded-md transition-colors duration-200;
+
+  &:has(.c-radio-input:checked) {
+    @apply bg-beige-200;
+
+    .c-radio__category-icon {
+      @apply text-beige-400;
+    }
+  }
+
+  &:hover {
+    @apply sm:bg-beige-200;
+  }
+}
+
+.c-radio__category-icon {
+  @apply text-gray-400 mr-3;
+}
+
+.c-radio-input {
+  @apply absolute opacity-0;
+}
+
+.c-radio__indicator {
+  @apply relative flex items-center justify-center
+  w-5 h-5
+  bg-white border border-gray-300 rounded-full
+  transition-colors duration-200;
+}
+
+.c-radio__indicator-dot {
+  @apply w-2.5 h-2.5 rounded-full bg-transparent;
+  /* transition-colors duration-200; */
+}
+
+.c-radio-input:checked ~ .c-radio__indicator {
+  @apply border-beige-400;
+}
+
+.c-radio-input:checked ~ .c-radio__indicator .c-radio__indicator-dot {
+  @apply bg-beige-400;
+}

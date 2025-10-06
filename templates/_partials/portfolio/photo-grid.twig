@@ -1,0 +1,233 @@
+{# Import the filter macros #}
+{% import '_components/molecules/radio-filter.twig' as radioFilter %}
+{% import '_components/molecules/checkbox-filter.twig' as checkboxFilter %}
+
+{# Retrieve signals #}
+{% set state = signals.state ?? '' %}
+{% set season = signals.season ?? [] %}
+{% set genre = signals.genre ?? [] %}
+{% set sort = signals.sort ?? '' %}
+{% set offset = signals.offset ?? 0 %}
+{% set limit = signals.limit ?? 9 %}
+
+{# Ensure arrays for checkbox filters #}
+{% set season = season is iterable ? season : (season ? [season] : []) %}
+{% set genre = genre is iterable ? genre : (genre ? [genre] : []) %}
+{# Build filtered query for count #}
+{% set query = craft.entries().section('photos') %}
+{% set relatedConditions = [] %}
+
+{% if state %}
+  {% set category = craft.categories.slug(state).one() %}
+  {% if category %}
+    {% set relatedConditions = relatedConditions|merge([{targetElement: category, field: 'state'}]) %}
+  {% endif %}
+{% endif %}
+
+{% if season|length %}
+  {% set cats = craft.categories().group('season').slug(season).all() %}
+  {% if cats|length %}
+    {% set relatedConditions = relatedConditions|merge([{field: 'season', targetElement: cats}]) %}
+  {% endif %}
+{% endif %}
+
+{% if genre|length %}
+  {% set cats = craft.categories().group('genre').slug(genre).all() %}
+  {% if cats|length %}
+    {% set relatedConditions = relatedConditions|merge([{field: 'genre', targetElement: cats}]) %}
+  {% endif %}
+{% endif %}
+
+{% if relatedConditions|length %}
+  {% set query = query.relatedTo(['and']|merge(relatedConditions)) %}
+{% endif %}
+
+{% set total = query.count() %}
+{% set selectedFilterCount = (state ? 1 : 0) + season|length + genre|length %}
+
+{# Fetch the available categories for filters #}
+{% set states = craft.categories.group('state').all() %}
+
+<div 
+  class="c-portfolio md:flex md:flex-col md:gap-12"
+  data-signals="{ filterOpen: false, animateDrawer: false }"
+  data-on-resize__window="
+    const isDesktop = matchMedia('(min-width:768px)').matches;
+    if (isDesktop) {
+      $filterOpen = false;
+      $animateDrawer = false;
+      document.body.classList.remove('overflow-hidden');
+    }
+  "
+>
+
+  {# Hero Section - Updates with state selection #}
+  <div id="portfolio-hero">
+    {% set portfolioHeroImageData = craft.app.config.getConfigFromFile('portfolioHeroImageData') %}
+    {% set portfolioHero = portfolioHeroImageData[state] ?? portfolioHeroImageData[''] %}
+
+    {% include '_patterns/hero/hero.twig' with {
+      hero: {
+        classes: 'c-hero--small',
+        image: portfolioHero.image,
+        heading: 'Portfolio',
+        headingClasses: 'o-heading--h1',
+        secondary_heading: portfolioHero.heading
+      }
+    } %}
+  </div>
+
+  <div class="container space-y-5">
+    <div class="c-filter-nav">
+      <div class="hidden md:flex items-center gap-x-5 relative">
+        {% include '_components/heading/heading.twig' with {
+          heading: {
+            text: 'Filters',
+            tag: 'h4',
+            classes: 'font-semibold',
+          }
+        } %}
+        <div id="desktop-reset-button" data-show="$state || $season.length > 0 || $genre.length > 0">
+          {% include '_components/molecules/reset-button.twig' with {
+            selectedFilterCount: selectedFilterCount
+          } %}
+        </div>
+      </div>
+      
+      <div class="c-filter-nav__col c-filter-nav__mobile-buttons">
+        {% include '_components/button/button.twig' with {
+          button: {
+            text: 'Filters' ~ (selectedFilterCount > 0 ? ' (' ~ selectedFilterCount ~ ')' : ''),
+            icon: 'filter',
+            tag: 'button',
+            classes: 'justify-between',
+            attrs: {
+              'data-on-click': "
+                $animateDrawer = true;
+                $filterOpen = true;
+                if (matchMedia('(max-width: 767px)').matches) document.body.classList.add('overflow-hidden');
+              "
+            }
+          }
+        } %}
+      </div>
+
+      <div class="c-filter-nav__col c-filter-nav__sort-by">
+        {% include '_components/heading/heading.twig' with {
+          heading: {
+            text: 'Sort by',
+            tag: 'h4',
+            classes: 'font-semibold hidden md:block',
+          }
+        } %}
+        {% include '_components/select/select.twig' with {
+          select: {
+            name: 'sort',
+            selected: sort,
+            prepend_text: 'Sort by:',
+            options: [
+              { value: '', label: 'Newest First' },
+              { value: 'oldest', label: 'Oldest First' },
+              { value: 'titleAsc', label: 'Title (A–Z)' },
+              { value: 'titleDesc', label: 'Title (Z–A)' }
+            ],
+            classes: 'c-select--sort-by',
+            icon: 'sort-by',
+            attrs: {
+              'data-bind-sort': '',
+              'data-on-change': "$offset = 0; " ~ datastar.get('_partials/portfolio/photo-grid-results')
+            }
+          }
+        } %}
+      </div>
+    </div>
+    
+    <div class="c-portfolio-grid grid md:grid-cols-4 gap-4 md:gap-5">
+
+      {# Filter backdrop #}
+      <div
+        class="fixed inset-0 bg-black/90 z-[90] md:hidden opacity-0 pointer-events-none"
+        data-class="{
+          'opacity-100 pointer-events-auto': $filterOpen,
+          'opacity-0 pointer-events-none': !$filterOpen,
+          'transition-opacity duration-300': $animateDrawer
+        }"
+        data-attr-aria-hidden="!$filterOpen"
+        data-on-click="
+          $animateDrawer = true;
+          $filterOpen = false;
+          document.body.classList.remove('overflow-hidden');
+        "
+      ></div>
+            
+      <div
+        class="c-filter-sidebar transform -translate-x-full md:translate-x-0"
+        data-class="{
+          'translate-x-0': $filterOpen,
+          '-translate-x-full': !$filterOpen,
+          'transition-transform duration-300 ease-in-out': $animateDrawer
+        }"
+        data-attr-aria-hidden="!$filterOpen"
+      >
+        <div class="c-filter-box-container" @click.stop>
+          <div class="c-filter-box">
+            <div class="c-filter-box__mobile-nav">
+              {% include '_components/heading/heading.twig' with {
+                heading: {
+                  text: 'Filters',
+                  tag: 'h4',
+                  classes: 'o-heading--h2 font-semibold',
+                }
+              } %}
+              <div id="mobile-reset-button" data-show="$state || $season.length > 0 || $genre.length > 0">
+                {% include '_components/molecules/reset-button.twig' with {
+                  selectedFilterCount: selectedFilterCount
+                } %}
+              </div>
+            </div>
+            <div id="filters-form" class="c-filter-sections-container">
+              <div class="c-filter-sections">
+                
+                {# States Radio Filter #}
+                {% set allStates = [{ title: 'All States', slug: '' }] | merge(states) %}
+                {{ radioFilter.renderFilter('States', allStates, state, 'state', 'state') }}
+                                
+                {# Season Checkbox Filter #}
+                {% set seasons = craft.categories().group('season').all() %}
+                {{ checkboxFilter.renderFilter('Seasons', seasons, season, 'season', 'season') }}
+
+                {# Genre Checkbox Filter #}
+                {% set genres = craft.categories().group('genre').all() %}
+                {{ checkboxFilter.renderFilter('Genres', genres, genre, 'genre', 'genre') }}
+
+              </div>
+            </div>
+            
+            <div class="c-filter-box__footer">
+              {% include '_components/button/button.twig' with {
+                button: {
+                  tag: 'button',
+                  classes: 'c-button--primary w-full justify-center text-center',
+                  text: 'Show ' ~ total ~ ' Result' ~ (total != 1 ? 's' : ''),
+                  attrs: {
+                    'data-on-click': "$animateDrawer = true;
+                    $filterOpen = false;
+                    document.body.classList.remove('overflow-hidden');",
+                  }
+                }
+              } %}
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {# Results Grid #}
+      <div class="c-portfolio__results col-span-1 md:col-span-3">
+        <div id="photo-grid-results">
+          {{ include('_partials/portfolio/photo-grid-results.twig') }}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 @reference "tailwindcss";
-@reference "../../../src/css/tokens.css";
+@reference "@css/tokens.css";
 
 .c-features {
   @apply bg-gray-100 p-6 rounded-[4px] shadow-card-soft shadowc-gray-400;

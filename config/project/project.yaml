@@ -1,4 +1,4 @@
-dateModified: 1758561598
+dateModified: 1759591681
 email:
   fromEmail: $CRAFT_EMAIL_SYSTEM
   fromName: $CRAFT_EMAIL_SYSTEM
@@ -20,6 +20,20 @@ fs:
       projectSlug: ''
       securityKey: ''
       subfolder: staging/blog/
+    type: servd\AssetStorage\AssetsPlatform\Fs
+    url: 'https://jake-photo.files.svdcdn.com'
+  iconsFilesystem:
+    hasUrls: true
+    name: 'Icons Filesystem'
+    settings:
+      cdnUrlPattern: ''
+      customSubfolder: icons
+      makeUploadsPublic: true
+      optimisePrefix: ''
+      optimiseUrlPattern: ''
+      projectSlug: ''
+      securityKey: ''
+      subfolder: staging/icons/
     type: servd\AssetStorage\AssetsPlatform\Fs
     url: 'https://jake-photo.files.svdcdn.com'
   portfolioImagesFilesystem:
@@ -70,6 +84,7 @@ meta:
     48aff211-f136-4da9-bea7-1eda25c22145: Homepage # Homepage
     54f6c8ff-d416-4233-8710-3ad76705b954: 'Page Layout' # Page Layout
     61b701ed-160d-4f78-8ee6-f775dc98e7ac: 'Featured Works Layout' # Featured Works Layout
+    68ab0645-d78a-4668-94f9-80dd9167ba90: 'Category Icon' # Category Icon
     79bef8f5-acf1-45ea-b55c-7f7a45909130: State # State
     80e8622f-26e3-4121-8be3-3716c04cd508: Season # Season
     82a2a030-6246-4333-af89-a21865e574c4: 'Page Builder: Full Content Row' # Page Builder: Full Content Row
@@ -93,6 +108,7 @@ meta:
     8612363b-d7c9-43e9-993a-b6454190280c: Genre # Genre
     12514558-49b6-40e0-a01a-5858740c93cc: 'Featured Works Entries' # Featured Works Entries
     33982884-3ffc-4b10-ab0f-7acce9c2f4e6: 'Block: Features' # Block: Features
+    a5c60f3a-074f-4c7e-871a-09ab81ecb0d2: Icons # Icons
     a985436b-09b0-444a-b956-d68913d3b05e: State # State
     a1898536-62a3-49b5-946b-baae1b1c79fa: Location # Location
     ac26babf-e061-425b-851b-465499715d7f: 'Date Taken' # Date Taken
@@ -286,7 +302,7 @@ plugins:
       useLocalVolumes: false
   sprig:
     edition: standard
-    enabled: true
+    enabled: false
     schemaVersion: 1.0.1
   vite:
     edition: standard

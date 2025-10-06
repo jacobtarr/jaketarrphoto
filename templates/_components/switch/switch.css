@@ -1,5 +1,5 @@
 @reference "tailwindcss";
-@reference "../../../src/css/tokens.css";
+@reference "@css/tokens.css";
 
 .c-switch__button {
   @apply border-[1px] border-solid border-gray-900

@@ -1,0 +1,149 @@
+{% set state = signals.state ?? '' %}
+{% set season = signals.season ?? [] %}
+{% set genre = signals.genre ?? [] %}
+{% set sort = signals.sort ?? '' %}
+{% set offset = signals.offset ?? 0 %}
+{% set limit = signals.limit ?? 9 %}
+{% set nextOffset = offset + limit %}
+{% set isLoadMore = signals.isLoadMore ?? false %}
+
+{# Ensure arrays #}
+{% set season = season is iterable ? season : (season ? [season] : []) %}
+{% set genre = genre is iterable ? genre : (genre ? [genre] : []) %}
+
+{# Build query #}
+{% set sortOptions = {
+  'oldest': 'postDate ASC',
+  'titleAsc': 'title ASC',
+  'titleDesc': 'title DESC'
+} %}
+{% set query = craft.entries().section('photos').orderBy(sortOptions[sort] ?? 'postDate DESC') %}
+
+{% set relatedConditions = [] %}
+
+{# Handle state filter #}
+{% if state %}
+  {% set category = craft.categories.slug(state).one() %}
+  {% if category %}
+    {% set relatedConditions = relatedConditions|merge([
+      { targetElement: category, field: 'state' }
+    ]) %}
+  {% endif %}
+{% endif %}
+
+{# Handle season filter #}
+{% if season|length %}
+  {% set cats = craft.categories().group('season').slug(season).all() %}
+  {% if cats|length %}
+    {% set relatedConditions = relatedConditions|merge([
+      { field: 'season', targetElement: cats }
+    ]) %}
+  {% endif %}
+{% endif %}
+
+{# Handle genre filter #}
+{% if genre|length %}
+  {% set cats = craft.categories().group('genre').slug(genre).all() %}
+  {% if cats|length %}
+    {% set relatedConditions = relatedConditions|merge([
+      { field: 'genre', targetElement: cats }
+    ]) %}
+  {% endif %}
+{% endif %}
+
+{% if relatedConditions|length %}
+  {% set query = query.relatedTo(['and']|merge(relatedConditions)) %}
+{% endif %}
+
+{% set total = query.count() %}
+{% set entries = query.offset(offset).limit(limit).all() %}
+{% set hasMorePages = nextOffset < total %}
+
+{% if isLoadMore %}
+  {# Load More request - append photos to existing grid #}
+  {% patchelements with {selector: '#photo-grid', mode: 'append'} %}
+    {% for photoEntry in entries %}
+      <div class="col-span-1 c-photo-block-container">
+        {% include '_components/photo-block/photo-block.twig' with {
+          "photo": {
+            "image": photoEntry.featuredImage.one(),
+            "url": photoEntry.url,
+            "title": photoEntry.title,
+            "caption": photoEntry.title,
+            "transform": 'squareMedium'
+          }
+        } %}
+      </div>
+    {% endfor %}
+  {% endpatchelements %}
+  
+  {# Update or remove the load more button #}
+  {% patchelements %}
+    <div id="load-more-wrapper" class="c-portfolio-grid__footer mt-6">
+      {% if hasMorePages %}
+        {% include '_components/button/button.twig' with {
+          button: {
+            text: 'Load More',
+            tag: 'button',
+            variant: 'secondary',
+            classes: 'c-button--arrow-down',
+            attrs: {
+              'data-on-click': "$offset = #{nextOffset}; $isLoadMore = true; " ~ datastar.get('_partials/portfolio/photo-grid-results')
+            }
+          }
+        } %}
+      {% endif %}
+    </div>
+  {% endpatchelements %}
+  
+  {# Reset the isLoadMore flag after processing #}
+  {% patchsignals {isLoadMore: false} %}
+
+{% else %}
+  {# Initial load or filter change - replace entire grid #}
+  {% if entries|length %}
+    <div id="photo-grid" class="c-portfolio-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-2 md:gap-3">
+      {% for photoEntry in entries %}
+        <div class="col-span-1 c-photo-block-container">
+          {% include '_components/photo-block/photo-block.twig' with {
+            "photo": {
+              "image": photoEntry.featuredImage.one(),
+              "url": photoEntry.url,
+              "title": photoEntry.title,
+              "caption": photoEntry.title,
+              "transform": 'squareMedium'
+            }
+          } %}
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div id="photo-grid">
+      {% include '_components/alert/alert.twig' with {
+        alert: {
+          text: 'No photos match the current filters.',
+          attrs: {
+            role: 'alert',
+            'aria-live': 'polite'
+          }
+        }
+      } %}
+    </div>
+  {% endif %}
+
+  <div id="load-more-wrapper" class="c-portfolio-grid__footer mt-6">
+    {% if hasMorePages and entries|length %}
+      {% include '_components/button/button.twig' with {
+        button: {
+          text: 'Load More',
+          tag: 'button',
+          variant: 'secondary',
+          classes: 'c-button--arrow-down',
+          attrs: {
+            'data-on-click': "$offset = #{nextOffset}; $isLoadMore = true; " ~ datastar.get('_partials/portfolio/photo-grid-results')
+          }
+        }
+      } %}
+    {% endif %}
+  </div>
+{% endif %}

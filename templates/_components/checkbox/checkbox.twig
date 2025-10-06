@@ -1,61 +1,7 @@
-{# ------------------------------------------------------
-  Expects:
-    checkbox = {
-      id?: string
-      name?: string                 # e.g. "season[]"
-      value?: string                # e.g. "summer"
-      label?: string                # visible label text
-      checked?: bool
-      classes?: string              # extra classes for outer <label>
-      inputClasses?: string         # extra classes for <input>
-      icon?: string                 # icon name (defaults to "checkmark")
-      formSelector?: string         # used by helper; default '#filters-form'
-      useFacetHelper?: bool         # when true, sets x-on:change="updateFacet(...)"
-      attrs?: { [key: string]: string|bool|array }  # passthrough (sprig, s-val:*, x-*, etc.)
-    }
-
-  Usage:
-    {% include '_components/checkbox/checkbox.twig' with {
-      checkbox: {
-        id: 'season-' ~ option.id,
-        name: 'season[]',
-        value: option.slug,
-        label: option.title,
-        checked: option.slug in selectedOptions,
-        classes: 'mb-2',
-        inputClasses: 'c-checkbox__input',
-        icon: 'checkmark',
-        formSelector: '#filters-form',
-        useFacetHelper: true,               # opt-in to helper (optional)
-        attrs: {
-          sprig: true,
-          's-val:limit': limit,
-          's-val:sort': sort
-          # 'x-on:change': '...'            # optional override if not using helper
-        }
-      }
-    } %}
-
-  Notes:
-    • If useFacetHelper is true, component outputs: x-on:change="updateFacet($event.target)" and data-form.
-    • If you pass your own x-on:change in attrs, that is used instead of the helper.
-    • Boolean attrs like `sprig` are rendered correctly via attr().
-------------------------------------------------------- #}
-
 {% set checkbox = checkbox ?? {} %}
 {% set classes = ['c-checkbox', checkbox.classes|default('')] | filter | join(' ') %}
 {% set inputClasses = ['c-checkbox__input', checkbox.inputClasses|default('')] | filter | join(' ') %}
-{% set icon = checkbox.icon|default('checkmark') %}
-{% set formSelector = checkbox.formSelector|default('#filters-form') %}
 {% set attrs = checkbox.attrs|default({}) %}
-
-{# Only add the default handler if EXPLICITLY requested #}
-{% if checkbox.useFacetHelper is defined and checkbox.useFacetHelper %}
-  {% set attrs = attrs|merge({
-    'x-on:change': 'updateFacet($event.target)',
-    'data-form': formSelector
-  }) %}
-{% endif %}
 
 <label class="{{ classes }}">
   <input
@@ -67,8 +13,19 @@
     {{ checkbox.checked ? 'checked' }}
     {{ attr(attrs) }}
   >
-  <span class="c-checkbox__checkmark-icon-container mr-4">
-    {% include '_components/icon/icons/icon-' ~ icon ~ '.svg' %}
-  </span>
+  
+  {# Category icon from subfolder (optional) #}
+  {% if checkbox.iconPath is defined and checkbox.iconPath %}
+    <span class="c-checkbox__category-icon mr-3">
+      {% include '_components/icon/icons/' ~ checkbox.iconPath ignore missing %}
+    </span>
+  {% endif %}
+  
+  {# Label text #}
   {{ checkbox.label|default('') }}
+  
+  {# Checkmark indicator #}
+  <span class="c-checkbox__checkmark-icon-container ml-auto">
+    {% include '_components/icon/icons/icon-checkmark.svg' %}
+  </span>
 </label>

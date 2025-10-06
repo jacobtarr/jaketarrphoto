@@ -1,27 +1,46 @@
 {#
   Expects:
     icon = {
-      name: string                      # required — icon name (matches an SVG in _components/icon/icons/)
-      tag?: string                      # optional — wrapper tag, defaults to "span" (can be "a", "div", etc.)
-      url?: string                      # optional — only used if tag is "a"
-      target?: string                   # optional — link target (default "_self")
-      classes?: string                  # optional — extra classes for wrapper
-      attrs?: { [key: string]: string } # optional — extra attributes (data-*, aria-*, etc.)
+      name?: string                     # icon name (e.g., 'twitter' → 'icon-twitter.svg')
+      path?: string                     # OR full path (e.g., 'portfolio/season/spring.svg')
+      tag?: string                      # wrapper tag, defaults to "span"
+      url?: string                      # only used if tag is "a"
+      target?: string                   # link target (default "_self")
+      classes?: string                  # extra classes for wrapper
+      attrs?: { [key: string]: string } # extra attributes
     }
 
-  Example:
+  Examples:
+    # Named icon (standard icons in root)
     {% include '_components/icon/icon.twig' with {
       icon: {
-        name: 'twitter',
+        name: 'checkmark',
+        classes: 'w-4 h-4'
+      }
+    } %}
+
+    # Path-based icon (nested icons)
+    {% include '_components/icon/icon.twig' with {
+      icon: {
+        path: 'portfolio/season/spring.svg',
+        classes: 'w-5 h-5'
+      }
+    } %}
+
+    # Icon as a link
+    {% include '_components/icon/icon.twig' with {
+      icon: {
+        name: 'instagram',
         tag: 'a',
-        url: 'https://twitter.com/jacobtarr',
+        url: 'https://www.instagram.com/jacobtarr/',
         target: '_blank',
-        classes: 'w-6 h-6 text-blue-500 hover:text-blue-700',
+        classes: 'text-gray-900 hover:text-gray-600',
         attrs: { rel: 'noopener noreferrer' }
       }
     } %}
 #}
 
+{% set icon = icon ?? {} %}
 {% set tag = icon.tag ?? 'span' %}
 {% set additionalClasses = icon.classes is defined and icon.classes ? ' ' ~ icon.classes : '' %}
 {% set attrs = icon.attrs ?? {} %}
@@ -33,12 +52,20 @@
   }) %}
 {% endif %}
 
+{# Build the icon file path #}
+{% set iconPath = null %}
+{% if icon.path is defined and icon.path %}
+  {% set iconPath = icon.path %}
+{% elseif icon.name is defined and icon.name %}
+  {% set iconPath = 'icon-' ~ icon.name ~ '.svg' %}
+{% endif %}
+
 <{{ tag }} class="c-icon{{ additionalClasses }}"
   {% for key, value in attrs %}
     {{ key }}="{{ value is iterable ? value|join(',') : value }}"
   {% endfor %}
 >
-  {% if icon.name is defined and icon.name %}
-    {% include '_components/icon/icons/icon-' ~ icon.name ~ '.svg' ignore missing %}
+  {% if iconPath %}
+    {% include '_components/icon/icons/' ~ iconPath ignore missing %}
   {% endif %}
 </{{ tag }}>

@@ -1,5 +1,4 @@
 {% set selectedFilterCount = selectedFilterCount ?? 0 %}
-{% set limit = limit ?? 9 %}
 
 {% include '_components/button/button.twig' with {
   button: {
@@ -8,21 +7,19 @@
     text: 'Reset Filters',
     icon: 'close',
     attrs: {
-      sprig: true,
-      's-val:reset': '1',
-      's-val:offset': '0',
-      's-val:limit': limit,
-      'x-on:click': "
-        sessionStorage.setItem('resetScrollTop', window.scrollY);
-        document.querySelectorAll('#filters-form input').forEach(input => {
-          if (input.type === 'checkbox') input.checked = false;
-          if (input.type === 'radio') input.checked = input.value === '';
-        });
+      'data-on-click': "
+        $state = '';
+        $season = [];
+        $genre = [];
+        $sort = '';
+        $offset = 0;
+        $isLoadMore = false;
+        document.querySelectorAll('input[type=\"radio\"]').forEach(r => r.checked = r.value === '');
+        document.querySelectorAll('input[type=\"checkbox\"]').forEach(c => c.checked = false);
         const url = new URL(window.location);
         url.search = '';
         window.history.replaceState({}, '', url);
-        document.querySelector('#filters-form').requestSubmit();
-      "
+        " ~ datastar.get('_partials/portfolio/photo-grid-container')
     }
   }
 } %}

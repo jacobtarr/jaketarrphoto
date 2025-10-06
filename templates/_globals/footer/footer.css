@@ -1,5 +1,5 @@
 @reference "tailwindcss";
-@reference "@src/css/tokens.css";
+@reference "@css/tokens.css";
 
 .c-footer-wrapper {
   @apply text-gray-100 bg-gray-900

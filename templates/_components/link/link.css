@@ -1,5 +1,5 @@
 @reference "tailwindcss";
-@reference "../../../src/css/tokens.css";
+@reference "@css/tokens.css";
 
 .c-link {
   @apply uppercase tracking-widest text-xs md:text-sm font-founders font-semibold leading-4

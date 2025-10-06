@@ -1,0 +1,48 @@
+@reference "tailwindcss";
+@reference "@css/tokens.css";
+
+.c-checkbox {
+  @apply flex cursor-pointer items-center font-medium py-2 px-3 rounded-md transition-colors duration-200;
+
+  &:has(.c-checkbox__input:checked) {
+    @apply bg-beige-200;
+
+    .c-checkbox__category-icon {
+      @apply text-beige-400;
+    }
+  }
+
+  &:hover {
+    @apply sm:bg-beige-200;
+  }
+}
+
+.c-checkbox__category-icon {
+  @apply text-gray-400;
+}
+
+.c-checkbox__input[type="checkbox"] {
+  @apply absolute opacity-[0];
+}
+
+.c-checkbox__checkmark-icon-container {
+  @apply relative flex items-center justify-center
+  w-5 h-5
+  bg-white border-gray-300 border rounded-sm;
+}
+
+.c-checkbox__checkmark-icon {
+  @apply absolute w-3 h-[10px] hidden;
+}
+
+.c-checkbox__input:checked ~ .c-checkbox__checkmark-icon-container {
+  @apply bg-beige-400 border-beige-400;
+}
+
+.c-checkbox__input:checked ~ .c-checkbox__checkmark-icon-container svg {
+  display: block;
+}
+
+.c-checkbox__checkmark-icon-container svg path {
+  stroke: white;
+}

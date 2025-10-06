@@ -1,5 +1,5 @@
 @reference "tailwindcss";
-@reference "../../../src/css/tokens.css";
+@reference "@css/tokens.css";
 
 .c-featured-grid__mobile-card-link {
   @apply col-span-12 text-right block lg:hidden;

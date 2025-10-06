@@ -1,6 +1,6 @@
 @reference "tailwindcss";
-@reference "@src/css/tokens.css";
-@import "@src/css/vendor/_hamburgers.css";
+@reference "@css/tokens.css";
+@import "@css/vendor/_hamburgers.css";
 
 .c-header {
   @apply relative z-[80] h-[55px] md:h-[63px] w-full bg-transparent;

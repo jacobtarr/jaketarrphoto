@@ -25,9 +25,12 @@ export default ({ command }) => ({
 	},
 
 	resolve: {
-    alias: {
-      '@src': path.resolve(__dirname, 'src'),
-    },
+    alias: [
+      { find: '@src',  replacement: path.resolve(__dirname, 'src') },
+      { find: '@css',  replacement: path.resolve(__dirname, 'src/css') },
+      { find: '@js',   replacement: path.resolve(__dirname, 'src/js') },
+      { find: '@img',  replacement: path.resolve(__dirname, 'src/public/images') },
+    ],
   },
 
 	server: {
