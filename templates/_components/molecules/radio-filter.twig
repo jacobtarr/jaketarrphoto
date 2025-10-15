@@ -1,14 +1,18 @@
 {% macro renderFilter(title, options, selectedValue, inputName, iconFolder) %}
   {% set accordionId = inputName ~ 'Accordion' %}
-  
+  {% set interactedId = inputName ~ 'Interacted' %}
+
   <div 
     class="c-filter-section"
-    data-signals="{ {{ accordionId }}: true }"
+    data-signals="{ {{ accordionId }}: true, {{ interactedId }}: false }"
   >
     <button
       type="button"
       class="c-filter-section__header"
-      data-on-click="${{ accordionId }} = !${{ accordionId }}"
+      data-on-click="
+        ${{ interactedId }} = true;
+        ${{ accordionId }} = !${{ accordionId }};
+      "
     >
       {% include '_components/kicker/kicker.twig' with {
         kicker: {
@@ -16,21 +20,28 @@
           classes: 'c-filter-section__title'
         }
       } %}
-      
+
       {% include '_components/icon/icon.twig' with {
         icon: {
           name: 'chevron-down',
-          classes: 'c-filter-section__icon transition-transform duration-200',
+          classes: 'c-filter-section__icon rotate-180 transition-none',
           attrs: {
-            'data-class': "{ 'rotate-180': $" ~ accordionId ~ " }"
+            'data-class': "{ 
+              '!transition-transform !duration-200': $" ~ interactedId ~ ",
+              'rotate-180': $" ~ accordionId ~ ",
+              'rotate-0': !$" ~ accordionId ~ "
+            }"
           }
         }
       } %}
     </button>
-    
+
     <div 
       class="c-filter-section__content"
-      data-class="{ 'is-open': ${{ accordionId }} }"
+      data-class="{ 
+        'is-open': ${{ accordionId }},
+        'c-filter-section__content--animate': ${{ interactedId }}
+      }"
     >
       <div class="c-filter-section__content-inner">
         <div class="c-form-group space-y-2 pb-4">
@@ -42,7 +53,7 @@
                   : (option.title is defined ? option.title|kebab : loop.index)) %}
 
             {% set optionSlug = option.slug ?? '' %}
-            
+
             {% set iconFileName = optionSlug ?: 'usa' %}
             {% set iconPath = iconFolder ? 'portfolio/' ~ iconFolder ~ '/' ~ iconFileName ~ '.svg' : null %}
 

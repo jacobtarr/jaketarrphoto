@@ -1,4 +1,4 @@
-dateModified: 1759591681
+dateModified: 1760018040
 email:
   fromEmail: $CRAFT_EMAIL_SYSTEM
   fromName: $CRAFT_EMAIL_SYSTEM
@@ -66,6 +66,7 @@ meta:
     3d2ab139-6eab-4ce4-a7c7-023881701cfd: 'Page Builder: Right Column Content' # Page Builder: Right Column Content
     3df712b7-085b-48cc-8a30-26fe0cf880fd: 'Content Image' # Content Image
     4b0cd134-c5fc-4773-9cca-86b5a0b1ae69: 'Page Builder Option: Column Stickiness' # Page Builder Option: Column Stickiness
+    4d88546c-b539-4225-b48f-0e87d9462f1f: 'Collection Test' # Collection Test
     5d3e6e09-5f5c-4369-b4fb-bd9410073b43: 'Page Builder Option: Background Color' # Page Builder Option: Background Color
     5f67fcef-4f51-4832-a46c-d1f9fe66abc0: 'Page Form' # Page Form
     6a2e7606-6a81-4adb-8538-b27df2adb73e: 'Page Slides' # Page Slides

@@ -1,7 +1,8 @@
 defaultPlacement: end
 enableVersioning: true
 entryTypes:
-  - 298cea5e-e970-4f91-91b6-21ba893e3458 # Photo
+  -
+    uid: 298cea5e-e970-4f91-91b6-21ba893e3458 # Photo
 handle: photos
 maxAuthors: 1
 name: Photos
