@@ -5,7 +5,7 @@
 {% set linkClasses = sectionHeading.linkClasses ?? null %}
 {% set additionalClasses = (sectionHeading.classes is defined and sectionHeading.classes) ? ' ' ~ sectionHeading.classes : '' %}
 
-<div class="c-section-heading{{ additionalClasses }} flex justify-between items-end">
+<div class="c-section-heading{{ additionalClasses }} w-full flex justify-between items-end">
   <div class="space-y-2 md:space-y-3">
     {% include '_components/kicker/kicker.twig' with {
       kicker: {

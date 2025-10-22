@@ -13,10 +13,32 @@
 {# Ensure arrays for checkbox filters #}
 {% set season = season is iterable ? season : (season ? [season] : []) %}
 {% set genre = genre is iterable ? genre : (genre ? [genre] : []) %}
+
+{# Define checkbox filter config once #}
+{% set checkboxFilterConfigs = [
+  {
+    title: 'Seasons',
+    signalName: 'season',
+    group: 'season',
+    field: 'season',
+    iconFolder: 'season',
+    value: season
+  },
+  {
+    title: 'Genres',
+    signalName: 'genre',
+    group: 'genre',
+    field: 'genre',
+    iconFolder: 'genre',
+    value: genre
+  }
+] %}
+
 {# Build filtered query for count #}
 {% set query = craft.entries().section('photos') %}
 {% set relatedConditions = [] %}
 
+{# Handle state filter #}
 {% if state %}
   {% set category = craft.categories.slug(state).one() %}
   {% if category %}
@@ -24,26 +46,35 @@
   {% endif %}
 {% endif %}
 
-{% if season|length %}
-  {% set cats = craft.categories().group('season').slug(season).all() %}
-  {% if cats|length %}
-    {% set relatedConditions = relatedConditions|merge([{field: 'season', targetElement: cats}]) %}
+{# Handle checkbox filters - DRY approach #}
+{% for filter in checkboxFilterConfigs %}
+  {% if filter.value|length %}
+    {% set cats = craft.categories().group(filter.group).slug(filter.value).all() %}
+    {% if cats|length %}
+      {% set relatedConditions = relatedConditions|merge([{field: filter.field, targetElement: cats}]) %}
+    {% endif %}
   {% endif %}
-{% endif %}
-
-{% if genre|length %}
-  {% set cats = craft.categories().group('genre').slug(genre).all() %}
-  {% if cats|length %}
-    {% set relatedConditions = relatedConditions|merge([{field: 'genre', targetElement: cats}]) %}
-  {% endif %}
-{% endif %}
+{% endfor %}
 
 {% if relatedConditions|length %}
   {% set query = query.relatedTo(['and']|merge(relatedConditions)) %}
 {% endif %}
 
 {% set total = query.count() %}
-{% set selectedFilterCount = (state ? 1 : 0) + season|length + genre|length %}
+
+{# Calculate selected filter count dynamically #}
+{% set checkboxFilterCount = 0 %}
+{% for filter in checkboxFilterConfigs %}
+  {% set checkboxFilterCount = checkboxFilterCount + filter.value|length %}
+{% endfor %}
+{% set selectedFilterCount = (state ? 1 : 0) + checkboxFilterCount %}
+
+{# Build dynamic filter condition for data-show #}
+{% set filterConditions = ['$state'] %}
+{% for filter in checkboxFilterConfigs %}
+  {% set filterConditions = filterConditions|merge(['$' ~ filter.signalName ~ '.length > 0']) %}
+{% endfor %}
+{% set hasFiltersCondition = filterConditions|join(' || ') %}
 
 {# Fetch the available categories for filters #}
 {% set states = craft.categories.group('state').all() %}
@@ -77,7 +108,7 @@
     } %}
   </div>
 
-  <div class="container space-y-5">
+  <div class="md:container space-y-2 md:space-y-5">
     <div class="c-filter-nav">
       <div class="hidden md:flex items-center gap-x-5 relative">
         {% include '_components/heading/heading.twig' with {
@@ -87,7 +118,7 @@
             classes: 'font-semibold',
           }
         } %}
-        <div id="desktop-reset-button" data-show="$state || $season.length > 0 || $genre.length > 0">
+        <div id="desktop-reset-button" data-show="{{ hasFiltersCondition }}">
           {% include '_components/molecules/reset-button.twig' with {
             selectedFilterCount: selectedFilterCount
           } %}
@@ -100,7 +131,7 @@
             text: 'Filters' ~ (selectedFilterCount > 0 ? ' (' ~ selectedFilterCount ~ ')' : ''),
             icon: 'filter',
             tag: 'button',
-            classes: 'justify-between',
+            classes: 'c-button--mobile-toggle',
             attrs: {
               'data-on-click': "
                 $animateDrawer = true;
@@ -131,7 +162,7 @@
               { value: 'titleAsc', label: 'Title (A–Z)' },
               { value: 'titleDesc', label: 'Title (Z–A)' }
             ],
-            classes: 'c-select--sort-by',
+            classes: 'c-select--sort-by c-select--mobile-toggle',
             icon: 'sort-by',
             attrs: {
               'data-bind-sort': '',
@@ -142,7 +173,7 @@
       </div>
     </div>
     
-    <div class="c-portfolio-grid grid md:grid-cols-4 gap-4 md:gap-5">
+    <div class="c-portfolio-grid grid md:grid-cols-4 gap-4 md:gap-5 px-2 md:px-0">
 
       {# Filter backdrop #}
       <div
@@ -179,7 +210,7 @@
                   classes: 'o-heading--h2 font-semibold',
                 }
               } %}
-              <div id="mobile-reset-button" data-show="$state || $season.length > 0 || $genre.length > 0">
+              <div id="mobile-reset-button" data-show="{{ hasFiltersCondition }}">
                 {% include '_components/molecules/reset-button.twig' with {
                   selectedFilterCount: selectedFilterCount
                 } %}
@@ -192,13 +223,11 @@
                 {% set allStates = [{ title: 'All States', slug: '' }] | merge(states) %}
                 {{ radioFilter.renderFilter('States', allStates, state, 'state', 'state') }}
                                 
-                {# Season Checkbox Filter #}
-                {% set seasons = craft.categories().group('season').all() %}
-                {{ checkboxFilter.renderFilter('Seasons', seasons, season, 'season', 'season') }}
-
-                {# Genre Checkbox Filter #}
-                {% set genres = craft.categories().group('genre').all() %}
-                {{ checkboxFilter.renderFilter('Genres', genres, genre, 'genre', 'genre') }}
+                {# Checkbox Filters - Loop through config #}
+                {% for filter in checkboxFilterConfigs %}
+                  {% set categories = craft.categories().group(filter.group).all() %}
+                  {{ checkboxFilter.renderFilter(filter.title, categories, filter.value, filter.signalName, filter.iconFolder) }}
+                {% endfor %}
 
               </div>
             </div>
@@ -207,7 +236,9 @@
               {% include '_components/button/button.twig' with {
                 button: {
                   tag: 'button',
-                  classes: 'c-button--primary w-full justify-center text-center',
+                  classes: 'c-button--primary--beige c-button--primary--large justify-center text-center font-semibold w-full',
+                  variant: 'primary',
+                  includeIcon: true,
                   text: 'Show ' ~ total ~ ' Result' ~ (total != 1 ? 's' : ''),
                   attrs: {
                     'data-on-click': "$animateDrawer = true;

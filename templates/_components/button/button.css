@@ -49,15 +49,24 @@
     &:hover {
       @apply bg-gray-900 text-gray-100;
       svg path {
-        @apply fill-gray-100 stroke-gray-100;
+        @apply fill-gray-100;
       }
+    }
+  }
+
+  /* Primary Large ( &--primary > &--large => .c-button--primary--large ) */
+  .c-button--primary--large {
+    @apply pt-[14px] pb-[14px] text-base;
+
+    svg {
+      @apply w-4 md:w-5;
     }
   }
 
   /* Primary Beige ( &--primary > &--beige => .c-button--primary--beige ) */
   .c-button--primary--beige {
-    @apply text-beige-200 bg-beige-400;
-    svg path { @apply fill-beige-200; }
+    @apply text-gray-100 bg-beige-400;
+    svg path { @apply fill-gray-100; }
   }
 
   /* ===========================
@@ -177,6 +186,22 @@
   .c-button--arrow-down {
     svg {
       @apply rotate-90;
+    }
+  }
+
+  @media (max-width: calc(theme(screens.md) - 1px)) {
+    .c-button--mobile-toggle {
+      @apply h-12 uppercase tracking-widest text-xs md:text-sm font-founders font-semibold leading-4
+      bg-transparent w-full justify-between rounded-none p-4;
+
+      &:hover {
+        @apply bg-transparent text-inherit;
+
+        svg path {
+          fill: initial;
+          stroke: initial;
+        }
+      }
     }
   }
 }

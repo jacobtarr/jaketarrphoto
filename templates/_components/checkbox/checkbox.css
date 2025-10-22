@@ -5,7 +5,7 @@
   @apply flex cursor-pointer items-center font-medium py-2 px-3 rounded-md transition-colors duration-200;
 
   &:has(.c-checkbox__input:checked) {
-    @apply bg-beige-200;
+    @apply bg-beige-100;
 
     .c-checkbox__category-icon {
       @apply text-beige-400;
@@ -13,7 +13,7 @@
   }
 
   &:hover {
-    @apply sm:bg-beige-200;
+    @apply sm:bg-beige-100;
   }
 }
 

@@ -2,30 +2,26 @@
   &.c-page {
     @apply mt-0;
   }
-} 
+}
 
 .c-portfolio-grid__footer {
   @apply flex justify-center text-center mt-6;
 }
 
 .c-filter-nav {
-  @apply border-b border-gray-200 md:border-0 bg-white flex justify-between items-center sticky top-0 z-10 md:static px-4 md:px-0 -mx-4 md:mx-0;
+  @apply border-b border-gray-200 md:border-0 bg-white flex justify-between items-center sticky top-0 z-10 md:static;
 }
 
 .c-filter-nav__mobile-buttons {
-  @apply pr-4 md:pr-0 block md:hidden;
+  @apply block md:hidden;
 }
 
 .c-filter-nav__sort-by {
-  @apply pl-4 md:pl-0 text-right justify-end gap-x-5 relative flex items-center border-l border-gray-200 md:border-0;
+  @apply text-right justify-end gap-x-5 relative flex items-center border-l border-gray-200 md:border-0;
 }
 
 .c-filter-nav__col {
-  @apply w-1/2 md:w-auto py-4 md:py-0;
-
-  .c-button {
-    @apply w-full md:w-auto;
-  }
+  @apply w-1/2 md:w-auto;
 
   .c-dropdown {
     @apply w-full md:w-auto;

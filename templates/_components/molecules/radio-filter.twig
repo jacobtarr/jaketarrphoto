@@ -1,6 +1,7 @@
 {% macro renderFilter(title, options, selectedValue, inputName, iconFolder) %}
   {% set accordionId = inputName ~ 'Accordion' %}
   {% set interactedId = inputName ~ 'Interacted' %}
+  {% set hasSelection = selectedValue ? true : false %}
 
   <div 
     class="c-filter-section"
@@ -16,7 +17,7 @@
     >
       {% include '_components/kicker/kicker.twig' with {
         kicker: {
-          text: title,
+          text: title ~ (hasSelection ? ' (1)' : ''),
           classes: 'c-filter-section__title'
         }
       } %}

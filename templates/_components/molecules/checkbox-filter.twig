@@ -1,5 +1,6 @@
 {% macro renderFilter(title, options, selectedOptions, inputName, iconFolder) %}
   {% set accordionId = inputName ~ 'Accordion' %}
+  {% set selectedCount = selectedOptions|length %}
   
   <div 
     class="c-filter-section"
@@ -12,7 +13,7 @@
     >
       {% include '_components/kicker/kicker.twig' with {
         kicker: {
-          text: title,
+          text: title ~ (selectedCount > 0 ? ' (' ~ selectedCount ~ ')' : ''),
           classes: 'c-filter-section__title'
         }
       } %}

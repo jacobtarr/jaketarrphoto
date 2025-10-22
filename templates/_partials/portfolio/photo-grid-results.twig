@@ -7,9 +7,15 @@
 {% set nextOffset = offset + limit %}
 {% set isLoadMore = signals.isLoadMore ?? false %}
 
-{# Ensure arrays #}
+{# Ensure arrays for checkbox filters #}
 {% set season = season is iterable ? season : (season ? [season] : []) %}
 {% set genre = genre is iterable ? genre : (genre ? [genre] : []) %}
+
+{# Define checkbox filter config once #}
+{% set checkboxFilterConfigs = [
+  { signalName: 'season', group: 'season', field: 'season', value: season },
+  { signalName: 'genre', group: 'genre', field: 'genre', value: genre }
+] %}
 
 {# Build query #}
 {% set sortOptions = {
@@ -31,25 +37,17 @@
   {% endif %}
 {% endif %}
 
-{# Handle season filter #}
-{% if season|length %}
-  {% set cats = craft.categories().group('season').slug(season).all() %}
-  {% if cats|length %}
-    {% set relatedConditions = relatedConditions|merge([
-      { field: 'season', targetElement: cats }
-    ]) %}
+{# Handle checkbox filters - DRY approach #}
+{% for filter in checkboxFilterConfigs %}
+  {% if filter.value|length %}
+    {% set cats = craft.categories().group(filter.group).slug(filter.value).all() %}
+    {% if cats|length %}
+      {% set relatedConditions = relatedConditions|merge([
+        { field: filter.field, targetElement: cats }
+      ]) %}
+    {% endif %}
   {% endif %}
-{% endif %}
-
-{# Handle genre filter #}
-{% if genre|length %}
-  {% set cats = craft.categories().group('genre').slug(genre).all() %}
-  {% if cats|length %}
-    {% set relatedConditions = relatedConditions|merge([
-      { field: 'genre', targetElement: cats }
-    ]) %}
-  {% endif %}
-{% endif %}
+{% endfor %}
 
 {% if relatedConditions|length %}
   {% set query = query.relatedTo(['and']|merge(relatedConditions)) %}

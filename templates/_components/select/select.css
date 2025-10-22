@@ -8,9 +8,7 @@
           transition-all;
 
   &:hover, &:focus {
-    @apply border-gray-900 bg-gray-900;
-    outline: none;
-    color: #fff;
+    @apply border-gray-900 bg-gray-900 outline-none text-white;
 
     .c-select__arrow {
       svg {
@@ -21,6 +19,31 @@
     }
   }
 }
+
+@media (max-width: calc(theme(screens.md) - 1px)) {
+  .c-select--mobile-toggle {
+    @apply
+      h-12 bg-transparent w-full rounded-none;
+
+    .c-select {
+      @apply h-full font-semibold leading-4 w-full
+      uppercase tracking-widest text-xs font-founders;
+    }
+
+    &:hover,
+    &:focus {
+      @apply bg-transparent text-inherit;
+
+      .c-select__arrow {
+        svg path {
+          fill: initial;
+          stroke: initial;
+        }
+      }
+    }
+  }
+}
+
 
 .c-select--sort-by {
   .c-select {

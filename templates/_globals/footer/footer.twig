@@ -54,7 +54,7 @@
 
       </div>
       <div class="col-span-1 sm:col-start-7 sm:col-span-3">
-        <div class="space-y-6">
+        <div class="space-y-4 md:space-y-6">
           {% include '_components/kicker/kicker.twig' with {
             kicker: {
               classes: 'text-beige-200',
@@ -72,12 +72,12 @@
             navGroup: {
               links: navLinks,
               useActive: false,
-              classes: 'flex-col gap-5'
+              classes: 'flex-col gap-3 md:gap-5'
             }
           } %}
         </div>
       </div>
-      <div class="col-span-1 block sm:hidden space-y-5">
+      <div class="col-span-1 block sm:hidden space-y-4">
         {% include '_components/kicker/kicker.twig' with {
           kicker: {
             classes: 'text-beige-200',
@@ -109,7 +109,7 @@
         } %}
       </div>
       <div class="col-span-2 sm:col-span-3">
-        <div class="space-y-5">
+        <div class="space-y-4 md:space-y-6">
           {% include '_components/kicker/kicker.twig' with {
             kicker: {
               classes: 'text-beige-200',
@@ -128,7 +128,7 @@
       
     </div>
 
-    <div class="c-footer__bottom mt-12 py-8 border-t border-gray-700">
+    <div class="c-footer__bottom mt-12 md:mt-20 py-8 border-t border-gray-700">
       <div class="font-body text-gray-300 text-xs sm:text-sm text-center">
         &copy; {{ now|date('Y') }} {{ siteName }}. All rights reserved.
       </div>

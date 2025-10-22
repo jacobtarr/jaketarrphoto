@@ -2,7 +2,15 @@
 @reference "@css/tokens.css";
 
 .c-page {
-  @apply mt-6 md:mt-12;
+  @apply mt-12 md:mt-16;
+
+  &:not(:has(.block--full-width)) {
+    @apply mb-12 md:mb-16;
+  }
+
+  &:has(.c-hero--full-bleed) {
+    @apply mt-0;
+  }
 }
 
 .c-page-section__content {

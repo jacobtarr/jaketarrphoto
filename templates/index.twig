@@ -13,7 +13,7 @@
 {% set bodyClass = hero.isFullBleed ? 'hero-is-full-bleed' : '' %}
 
 {% block site %}
-  <section class="c-landing-page">
+  <section class="c-page">
     {% include '_patterns/hero/hero.twig' with { hero: hero } %}
     {% set blocks = entry.pageBuilderFullColumnContent.all() %}
 

@@ -1,5 +1,5 @@
 .c-filter-sidebar {
-  @apply md:pb-8 md:px-0 md:pt-0 md:pb-0 space-y-5 
+  @apply md:px-0 md:pt-0 md:pb-0 space-y-5 
   fixed top-0 left-0 h-full w-[80vw]
   bg-white md:bg-transparent md:h-auto md:static md:block md:col-span-1 z-[150];
 
@@ -11,10 +11,6 @@
     width: auto !important;
     transition: none !important;
   }
-
-  html.u-dark-mode & {
-    @apply bg-gray-800;
-  }
 }
 
 .c-filter-box-container {
@@ -22,7 +18,7 @@
 }
 
 .c-filter-box {
-  @apply md:pb-5 bg-white space-y-8 md:space-y-0;
+  @apply md:pb-5 bg-white space-y-4 md:space-y-0;
   &::after {
     content: '';
     @apply md:content-none pointer-events-none absolute bottom-[66px] left-0 right-0 h-10 bg-gradient-to-t from-white to-transparent;
@@ -30,19 +26,21 @@
 }
 
 .c-filter-box__mobile-nav {
-  @apply px-4 md:px-0 pt-4 md:pt-0 flex justify-between items-center md:hidden;
+  @apply h-10 md:h-auto px-4 md:px-0 mt-4 md:mt-0 flex justify-between items-center md:hidden;
 }
 
 .c-filter-box__footer {
-  @apply flex md:hidden absolute bottom-0 left-0 right-0 p-4 bg-white border-t border-beige-200;
+  @apply z-10 flex md:hidden absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-3;
+
+  .c-button--mobile-toggle {
+    @apply h-16;
+  }
 }
 
 .c-filter-sections-container {
-  @apply px-0 max-h-[calc(100dvh-84px-66px)] md:max-h-none pb-12 md:pb-0 overflow-y-auto md:overflow-visible md:max-h-none relative;
-}
-
-.c-filter-sections {
-
+  @apply px-4 md:px-0 pb-12 md:pb-0
+  max-h-[calc(100dvh-109px)] md:max-h-none
+  overflow-y-auto md:overflow-visible relative;
 }
 
 .c-filter-section {

@@ -14,7 +14,7 @@
 
 {% block blockContent %}
   {% if images|length %}
-    <div class="space-y-6 text-right">
+    <div class="flex flex-wrap justify-end gap-6 text-right">
       {% include '_patterns/section-heading/section-heading.twig' with {
         sectionHeading: {
           kickerText: kickerText,
@@ -26,7 +26,7 @@
       } %}
 
       <div
-        class="flex md:grid gap-3 md:gap-4 [grid-template-columns:repeat(var(--cols),minmax(0,1fr))]"
+        class="flex md:grid gap-3 md:gap-4 [grid-template-columns:repeat(var(--cols),minmax(0,1fr))] text-left"
         style="--cols: {{ cols }}"
       >
         {% for image in images %}
